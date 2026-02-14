@@ -1,0 +1,35 @@
+# External projects
+melonDS-master/
+umamusume-localify-develop/
+
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+apps/desktop/dist/
+apps/desktop/release/
+
+# Tmp
+tmp/
+
+# Logs
+*.log
+
+# Editor
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Personal
+memo.txt
+
+# Dll1 (VC++ project)
+Dll1/.vs/
+Dll1/x64/
+Dll1/Dll1/x64/
+Dll1/Dll1/Dll1.vcxproj.user
+Dll1/nul

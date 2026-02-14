@@ -1,0 +1,702 @@
+{
+  "00000000": {
+    "suit": "heart",
+    "number": 1,
+    "name": "noiseCard.name.leo_kingdom_n",
+    "effect": "noiseCard.effect.fire_ga_plus",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 1, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "00000001": {
+    "suit": "heart",
+    "number": 2,
+    "name": "noiseCard.name.moaian_n",
+    "effect": "noiseCard.effect.break_plus_10",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 10 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "00000002": {
+    "suit": "heart",
+    "number": 3,
+    "name": "noiseCard.name.ox_fire_n",
+    "effect": "noiseCard.effect.super_armor",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "other": "noiseCard.effect.super_armor" }
+  },
+  "00000003": {
+    "suit": "heart",
+    "number": 4,
+    "name": "noiseCard.name.hammary_n",
+    "effect": "noiseCard.effect.hp_plus_250",
+    "effectDetail": { "hp_plus": 250, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "00000004": {
+    "suit": "heart",
+    "number": 5,
+    "name": "noiseCard.name.melamanda_n",
+    "effect": "noiseCard.effect.fire_plus_10",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 10, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "00000005": {
+    "suit": "heart",
+    "number": 6,
+    "name": "noiseCard.name.akashisar_n",
+    "effect": "noiseCard.effect.s_attack_panel",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "support": "attack_panel" }
+  },
+  "00000006": {
+    "suit": "heart",
+    "number": 7,
+    "name": "noiseCard.name.death_count_n",
+    "effect": "noiseCard.effect.flash_body",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "other": "noiseCard.effect.flash_body" }
+  },
+  "00000007": {
+    "suit": "heart",
+    "number": 8,
+    "name": "noiseCard.name.stongo_n",
+    "effect": "noiseCard.effect.c_heavy_dawn",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "cs": "heavy_dawn" }
+  },
+  "00000008": {
+    "suit": "heart",
+    "number": 9,
+    "name": "noiseCard.name.mettrio_n",
+    "effect": "noiseCard.effect.reflect",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "other": "noiseCard.effect.reflect" }
+  },
+  "00000009": {
+    "suit": "heart",
+    "number": 10,
+    "name": "noiseCard.name.bobon_n",
+    "effect": "noiseCard.effect.s_bomb_riser",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "support": "bomb_riser" }
+  },
+  "0000000A": {
+    "suit": "heart",
+    "number": 11,
+    "name": "noiseCard.name.jack_corvus_n",
+    "effect": "noiseCard.effect.fire_plus_20",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 20, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "0000000B": {
+    "suit": "heart",
+    "number": 12,
+    "name": "noiseCard.name.moeroder_n",
+    "effect": "noiseCard.effect.hp_plus_150",
+    "effectDetail": { "hp_plus": 150, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "0000000C": {
+    "suit": "heart",
+    "number": 1,
+    "name": "noiseCard.name.ororon_n",
+    "effect": "noiseCard.effect.hp_plus_200",
+    "effectDetail": { "hp_plus": 200, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "0000000D": {
+    "suit": "heart",
+    "number": 2,
+    "name": "noiseCard.name.flamer_n",
+    "effect": "noiseCard.effect.c_m_flame",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "cs": "m_flame" }
+  },
+  "0000000E": {
+    "suit": "heart",
+    "number": 3,
+    "name": "noiseCard.name.dabadance_n",
+    "effect": "noiseCard.effect.s_attack_plus_10",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "support": "attack_plus_10" }
+  },
+  "0000000F": {
+    "suit": "heart",
+    "number": 5,
+    "name": "noiseCard.name.sirius_n",
+    "effect": "noiseCard.effect.break_plus_20",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 20 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "00000010": {
+    "suit": "heart",
+    "number": 7,
+    "name": "noiseCard.name.dokkarn_n",
+    "effect": "noiseCard.effect.fire_plus_10",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 10, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "00000011": {
+    "suit": "heart",
+    "number": 8,
+    "name": "noiseCard.name.libra_balance_n",
+    "effect": "noiseCard.effect.hp_plus_400",
+    "effectDetail": { "hp_plus": 400, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "00000012": {
+    "suit": "heart",
+    "number": 9,
+    "name": "noiseCard.name.edorade_n",
+    "effect": "noiseCard.effect.sword_plus_10",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 10, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "00000013": {
+    "suit": "heart",
+    "number": 10,
+    "name": "noiseCard.name.warrock_copy_n",
+    "effect": "noiseCard.effect.s_double_eater",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "support": "double_eater" }
+  },
+  "00000014": {
+    "suit": "heart",
+    "number": 11,
+    "name": "noiseCard.name.iwaganko_n",
+    "effect": "noiseCard.effect.c_plus",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "cs": "plus" }
+  },
+  "00000015": {
+    "suit": "heart",
+    "number": 12,
+    "name": "noiseCard.name.harp_note_n",
+    "effect": "noiseCard.effect.normal_ga_plus",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 1, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "00000016": {
+    "suit": "heart",
+    "number": 13,
+    "name": "noiseCard.name.hell_black_n",
+    "effect": "noiseCard.effect.plus_poison_panel",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "cs_plus": "poison_panel" }
+  },
+  "00000017": {
+    "suit": "heart",
+    "number": 13,
+    "name": "noiseCard.name.apollon_flame_n",
+    "effect": "noiseCard.effect.first_aura",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "other": "noiseCard.effect.first_aura" }
+  },
+  "00000018": {
+    "suit": "diamond",
+    "number": 1,
+    "name": "noiseCard.name.rabi_jet_n",
+    "effect": "noiseCard.effect.plus_ice_panel",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "cs_plus": "ice_panel" }
+  },
+  "00000019": {
+    "suit": "diamond",
+    "number": 3,
+    "name": "noiseCard.name.kill_shark_n",
+    "effect": "noiseCard.effect.aqua_plus_10",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 10, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "0000001A": {
+    "suit": "diamond",
+    "number": 4,
+    "name": "noiseCard.name.origa_general_n",
+    "effect": "noiseCard.effect.s_whistle",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "support": "whistle" }
+  },
+  "0000001B": {
+    "suit": "diamond",
+    "number": 5,
+    "name": "noiseCard.name.hoilz_n",
+    "effect": "noiseCard.effect.c_giza_wheel",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "cs": "giza_wheel" }
+  },
+  "0000001C": {
+    "suit": "diamond",
+    "number": 6,
+    "name": "noiseCard.name.snow_goron_n",
+    "effect": "noiseCard.effect.first_barrier",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "other": "noiseCard.effect.first_barrier" }
+  },
+  "0000001D": {
+    "suit": "diamond",
+    "number": 7,
+    "name": "noiseCard.name.diamond_icebahn_n",
+    "effect": "noiseCard.effect.aqua_plus_20",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 20, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "0000001E": {
+    "suit": "diamond",
+    "number": 9,
+    "name": "noiseCard.name.octarin_n",
+    "effect": "noiseCard.effect.s_black_ink",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "support": "black_ink" }
+  },
+  "0000001F": {
+    "suit": "diamond",
+    "number": 10,
+    "name": "noiseCard.name.piranish_n",
+    "effect": "noiseCard.effect.hp_plus_250",
+    "effectDetail": { "hp_plus": 250, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "00000020": {
+    "suit": "diamond",
+    "number": 11,
+    "name": "noiseCard.name.nebarla_n",
+    "effect": "noiseCard.effect.gravity_body",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "other": "noiseCard.effect.gravity_body" }
+  },
+  "00000021": {
+    "suit": "diamond",
+    "number": 12,
+    "name": "noiseCard.name.shishikashu_n",
+    "effect": "noiseCard.effect.plus_panic",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "cs_plus": "panic" }
+  },
+  "00000022": {
+    "suit": "diamond",
+    "number": 13,
+    "name": "noiseCard.name.pegasus_magic_n",
+    "effect": "noiseCard.effect.aqua_ga_plus",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 1, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "00000023": {
+    "suit": "diamond",
+    "number": 1,
+    "name": "noiseCard.name.purumin_n",
+    "effect": "noiseCard.effect.aqua_plus_10",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 10, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "00000024": {
+    "suit": "diamond",
+    "number": 2,
+    "name": "noiseCard.name.sawanigar_n",
+    "effect": "noiseCard.effect.s_ice",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "support": "ice" }
+  },
+  "00000025": {
+    "suit": "diamond",
+    "number": 3,
+    "name": "noiseCard.name.penkiller_n",
+    "effect": "noiseCard.effect.c_i_spinning",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "cs": "i_spinning" }
+  },
+  "00000026": {
+    "suit": "diamond",
+    "number": 4,
+    "name": "noiseCard.name.junkness_n",
+    "effect": "noiseCard.effect.break_plus_10",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 10 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "00000027": {
+    "suit": "diamond",
+    "number": 5,
+    "name": "noiseCard.name.jamingar_n",
+    "effect": "noiseCard.effect.hp_plus_250",
+    "effectDetail": { "hp_plus": 250, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "00000028": {
+    "suit": "diamond",
+    "number": 6,
+    "name": "noiseCard.name.yeti_blizzard_n",
+    "effect": "noiseCard.effect.freeze_body",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "other": "noiseCard.effect.freeze_body" }
+  },
+  "00000029": {
+    "suit": "diamond",
+    "number": 7,
+    "name": "noiseCard.name.aro_skull_n",
+    "effect": "noiseCard.effect.plus_gravity",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "cs_plus": "gravity" }
+  },
+  "0000002A": {
+    "suit": "diamond",
+    "number": 8,
+    "name": "noiseCard.name.heal_wizard_n",
+    "effect": "noiseCard.effect.plus_p_panel",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "cs_plus": "p_panel" }
+  },
+  "0000002B": {
+    "suit": "diamond",
+    "number": 10,
+    "name": "noiseCard.name.cannobase_n",
+    "effect": "noiseCard.effect.hp_plus_150",
+    "effectDetail": { "hp_plus": 150, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "0000002C": {
+    "suit": "diamond",
+    "number": 11,
+    "name": "noiseCard.name.brachio_wave_n",
+    "effect": "noiseCard.effect.s_mahi_plus",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "support": "mahi_plus" }
+  },
+  "0000002D": {
+    "suit": "diamond",
+    "number": 12,
+    "name": "noiseCard.name.queen_virgo_n",
+    "effect": "noiseCard.effect.mega_class_plus_1",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "other": "noiseCard.effect.mega_class_plus_1" }
+  },
+  "0000002E": {
+    "suit": "diamond",
+    "number": 13,
+    "name": "noiseCard.name.nyorofoon_n",
+    "effect": "noiseCard.effect.hp_plus_250",
+    "effectDetail": { "hp_plus": 250, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "0000002F": {
+    "suit": "diamond",
+    "number": 2,
+    "name": "noiseCard.name.cancer_bubble_n",
+    "effect": "noiseCard.effect.bubble_body",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "other": "noiseCard.effect.bubble_body" }
+  },
+  "00000030": {
+    "suit": "spade",
+    "number": 2,
+    "name": "noiseCard.name.inadran_n",
+    "effect": "noiseCard.effect.elec_plus_10",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 10, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "00000031": {
+    "suit": "spade",
+    "number": 3,
+    "name": "noiseCard.name.moon_disaster_n",
+    "effect": "noiseCard.effect.hp_plus_300",
+    "effectDetail": { "hp_plus": 300, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "00000032": {
+    "suit": "spade",
+    "number": 4,
+    "name": "noiseCard.name.gorobolta_n",
+    "effect": "noiseCard.effect.s_p_cloud",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "support": "p_cloud" }
+  },
+  "00000033": {
+    "suit": "spade",
+    "number": 5,
+    "name": "noiseCard.name.eyes_n",
+    "effect": "noiseCard.effect.plus_invisi",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "cs_plus": "invisi" }
+  },
+  "00000034": {
+    "suit": "spade",
+    "number": 6,
+    "name": "noiseCard.name.killme_n",
+    "effect": "noiseCard.effect.hp_plus_200",
+    "effectDetail": { "hp_plus": 200, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "00000035": {
+    "suit": "spade",
+    "number": 7,
+    "name": "noiseCard.name.phantom_black_n",
+    "effect": "noiseCard.effect.undershirt",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "other": "noiseCard.effect.undershirt" }
+  },
+  "00000036": {
+    "suit": "spade",
+    "number": 8,
+    "name": "noiseCard.name.elemira_n",
+    "effect": "noiseCard.effect.hp_plus_150",
+    "effectDetail": { "hp_plus": 150, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "00000037": {
+    "suit": "spade",
+    "number": 9,
+    "name": "noiseCard.name.noised_wizard_n",
+    "effect": "noiseCard.effect.plus_insulate_panel",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "cs_plus": "insulate_panel" }
+  },
+  "00000038": {
+    "suit": "spade",
+    "number": 10,
+    "name": "noiseCard.name.vulcana_n",
+    "effect": "noiseCard.effect.c_mad_vulcan",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "cs": "mad_vulcan" }
+  },
+  "00000039": {
+    "suit": "spade",
+    "number": 11,
+    "name": "noiseCard.name.bigrippa_n",
+    "effect": "noiseCard.effect.hp_plus_250",
+    "effectDetail": { "hp_plus": 250, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "0000003A": {
+    "suit": "spade",
+    "number": 12,
+    "name": "noiseCard.name.nainai_n",
+    "effect": "noiseCard.effect.plus_blind",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "cs_plus": "blind" }
+  },
+  "0000003B": {
+    "suit": "spade",
+    "number": 13,
+    "name": "noiseCard.name.burai_n",
+    "effect": "noiseCard.effect.sword_plus_20",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 20, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "0000003C": {
+    "suit": "spade",
+    "number": 1,
+    "name": "noiseCard.name.basalica_n",
+    "effect": "noiseCard.effect.hp_plus_200",
+    "effectDetail": { "hp_plus": 200, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "0000003D": {
+    "suit": "spade",
+    "number": 2,
+    "name": "noiseCard.name.bell_gong_n",
+    "effect": "noiseCard.effect.hp_plus_150",
+    "effectDetail": { "hp_plus": 150, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "0000003E": {
+    "suit": "spade",
+    "number": 3,
+    "name": "noiseCard.name.mairy_n",
+    "effect": "noiseCard.effect.hp_plus_150",
+    "effectDetail": { "hp_plus": 150, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "0000003F": {
+    "suit": "spade",
+    "number": 4,
+    "name": "noiseCard.name.speard_n",
+    "effect": "noiseCard.effect.c_f_spear",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "cs": "f_spear" }
+  },
+  "00000040": {
+    "suit": "spade",
+    "number": 6,
+    "name": "noiseCard.name.crown_thunder_n",
+    "effect": "noiseCard.effect.s_paralyze_s",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "support": "paralyze_s" }
+  },
+  "00000041": {
+    "suit": "spade",
+    "number": 7,
+    "name": "noiseCard.name.hotaro_n",
+    "effect": "noiseCard.effect.elec_plus_10",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 10, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "00000042": {
+    "suit": "spade",
+    "number": 8,
+    "name": "noiseCard.name.billy_ace_n",
+    "effect": "noiseCard.effect.plus_paralyze",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "cs_plus": "paralyze" }
+  },
+  "00000043": {
+    "suit": "spade",
+    "number": 9,
+    "name": "noiseCard.name.empty_n",
+    "effect": "noiseCard.effect.paralyze_body",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "other": "noiseCard.effect.paralyze_body" }
+  },
+  "00000044": {
+    "suit": "spade",
+    "number": 10,
+    "name": "noiseCard.name.spade_magnets_n",
+    "effect": "noiseCard.effect.elec_plus_20",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 20, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "00000045": {
+    "suit": "spade",
+    "number": 11,
+    "name": "noiseCard.name.stealth_n",
+    "effect": "noiseCard.effect.hp_plus_150",
+    "effectDetail": { "hp_plus": 150, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "00000046": {
+    "suit": "spade",
+    "number": 13,
+    "name": "noiseCard.name.majonale_n",
+    "effect": "noiseCard.effect.card_recovery",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "other": "noiseCard.effect.card_recovery" }
+  },
+  "00000047": {
+    "suit": "spade",
+    "number": 1,
+    "name": "noiseCard.name.gemini_spark_n",
+    "effect": "noiseCard.effect.elec_ga_plus",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 1, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "00000048": {
+    "suit": "club",
+    "number": 1,
+    "name": "noiseCard.name.moo_cube_n",
+    "effect": "noiseCard.effect.c_m_technology",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "cs": "m_technology" }
+  },
+  "00000049": {
+    "suit": "club",
+    "number": 2,
+    "name": "noiseCard.name.mojahei_n",
+    "effect": "noiseCard.effect.wood_plus_10",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 10, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "0000004A": {
+    "suit": "club",
+    "number": 4,
+    "name": "noiseCard.name.wolf_forest_n",
+    "effect": "noiseCard.effect.hp_plus_400",
+    "effectDetail": { "hp_plus": 400, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "0000004B": {
+    "suit": "club",
+    "number": 5,
+    "name": "noiseCard.name.mono_sword_n",
+    "effect": "noiseCard.effect.sword_plus_10",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 10, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "0000004C": {
+    "suit": "club",
+    "number": 6,
+    "name": "noiseCard.name.kogarashimaru_n",
+    "effect": "noiseCard.effect.plus_wind",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "cs_plus": "wind" }
+  },
+  "0000004D": {
+    "suit": "club",
+    "number": 7,
+    "name": "noiseCard.name.powdaleaf_n",
+    "effect": "noiseCard.effect.plus_green_panel",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "cs_plus": "green_panel" }
+  },
+  "0000004E": {
+    "suit": "club",
+    "number": 8,
+    "name": "noiseCard.name.goat_kungfu_n",
+    "effect": "noiseCard.effect.quick_gauge",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "other": "noiseCard.effect.quick_gauge" }
+  },
+  "0000004F": {
+    "suit": "club",
+    "number": 9,
+    "name": "noiseCard.name.club_strong_n",
+    "effect": "noiseCard.effect.wood_plus_20",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 20, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "00000050": {
+    "suit": "club",
+    "number": 11,
+    "name": "noiseCard.name.kakapetto_n",
+    "effect": "noiseCard.effect.s_kusamura",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "support": "kusamura" }
+  },
+  "00000051": {
+    "suit": "club",
+    "number": 12,
+    "name": "noiseCard.name.pasaran_n",
+    "effect": "noiseCard.effect.s_recovery_30",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "support": "recovery_30" }
+  },
+  "00000052": {
+    "suit": "club",
+    "number": 13,
+    "name": "noiseCard.name.spidala_n",
+    "effect": "noiseCard.effect.hp_plus_250",
+    "effectDetail": { "hp_plus": 250, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "00000053": {
+    "suit": "club",
+    "number": 1,
+    "name": "noiseCard.name.kabu_horn_n",
+    "effect": "noiseCard.effect.hp_plus_250",
+    "effectDetail": { "hp_plus": 250, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "00000054": {
+    "suit": "club",
+    "number": 2,
+    "name": "noiseCard.name.condor_geograph_n",
+    "effect": "noiseCard.effect.air_shoes",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "other": "noiseCard.effect.air_shoes" }
+  },
+  "00000055": {
+    "suit": "club",
+    "number": 3,
+    "name": "noiseCard.name.crocker_n",
+    "effect": "noiseCard.effect.hp_plus_250",
+    "effectDetail": { "hp_plus": 250, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "00000056": {
+    "suit": "club",
+    "number": 4,
+    "name": "noiseCard.name.flutter_n",
+    "effect": "noiseCard.effect.wood_plus_10",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 10, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "00000057": {
+    "suit": "club",
+    "number": 5,
+    "name": "noiseCard.name.dragon_sky_n",
+    "effect": "noiseCard.effect.wood_ga_plus",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 1, "sword": 0, "break": 0 } }
+  },
+  "00000058": {
+    "suit": "club",
+    "number": 7,
+    "name": "noiseCard.name.lirilish_n",
+    "effect": "noiseCard.effect.c_spread",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "cs": "spread" }
+  },
+  "00000059": {
+    "suit": "club",
+    "number": 8,
+    "name": "noiseCard.name.uringa_n",
+    "effect": "noiseCard.effect.hp_plus_250",
+    "effectDetail": { "hp_plus": 250, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "0000005A": {
+    "suit": "club",
+    "number": 9,
+    "name": "noiseCard.name.nukky_n",
+    "effect": "noiseCard.effect.kawarimi",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "other": "noiseCard.effect.kawarimi" }
+  },
+  "0000005B": {
+    "suit": "club",
+    "number": 10,
+    "name": "noiseCard.name.eland_n",
+    "effect": "noiseCard.effect.s_divide",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "support": "divide" }
+  },
+  "0000005C": {
+    "suit": "club",
+    "number": 12,
+    "name": "noiseCard.name.ophiuca_queen_n",
+    "effect": "noiseCard.effect.hp_plus_400",
+    "effectDetail": { "hp_plus": 400, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  },
+  "0000005D": {
+    "suit": "club",
+    "number": 13,
+    "name": "noiseCard.name.shurimal_n",
+    "effect": "noiseCard.effect.c_shuriken",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "cs": "shuriken" }
+  },
+  "0000005E": {
+    "suit": "club",
+    "number": 6,
+    "name": "noiseCard.name.cygnus_wing_n",
+    "effect": "noiseCard.effect.float_shoes",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "other": "noiseCard.effect.float_shoes" }
+  },
+  "0000005F": {
+    "suit": "joker",
+    "number": null,
+    "name": "noiseCard.name.grave_joker_n",
+    "effect": "noiseCard.effect.body_pack",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "other": "noiseCard.effect.body_pack" }
+  },
+  "00000060": {
+    "suit": "joker",
+    "number": null,
+    "name": "noiseCard.name.andromeda_n",
+    "effect": "noiseCard.effect.max_buster",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "other": "noiseCard.effect.max_buster" }
+  },
+  "00000061": {
+    "suit": "joker",
+    "number": null,
+    "name": "noiseCard.name.acid_ace_n",
+    "effect": "noiseCard.effect.auto_lock_on",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "other": "noiseCard.effect.auto_lock_on" }
+  },
+  "00000062": {
+    "suit": "joker",
+    "number": null,
+    "name": "noiseCard.name.la_mu_n",
+    "effect": "noiseCard.effect.s_invisible",
+    "effectDetail": { "hp_plus": 0, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "support": "invisible" }
+  },
+  "00000063": {
+    "suit": "joker",
+    "number": null,
+    "name": "noiseCard.name.crimson_dragon_n",
+    "effect": "noiseCard.effect.hp_plus_500",
+    "effectDetail": { "hp_plus": 500, "type_plus": { "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 }, "ga_plus": { "null": 0, "fire": 0, "aqua": 0, "elec": 0, "wood": 0, "sword": 0, "break": 0 } }
+  }
+}

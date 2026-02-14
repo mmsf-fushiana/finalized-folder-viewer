@@ -1,0 +1,25 @@
+{
+  "name": "ssr3-viewer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "start": "yarn workspace @ssr3-viewer/web dev",
+    "dev:web": "yarn workspace @ssr3-viewer/web dev",
+    "dev:desktop": "yarn workspace @ssr3-viewer/desktop dev",
+    "build:web": "yarn workspace @ssr3-viewer/web build",
+    "build:desktop": "yarn workspace @ssr3-viewer/desktop build",
+    "dist:desktop": "yarn workspace @ssr3-viewer/desktop dist",
+    "preview:web": "yarn workspace @ssr3-viewer/web preview"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
