@@ -1,0 +1,733 @@
+[
+  {
+    "class": "standard",
+    "source_cards": [
+      "Cannon",
+      "Cannon",
+      "Cannon"
+    ],
+    "name_en": "Impact Cannon",
+    "name": "インパクトキャノン",
+    "types": [
+      "無"
+    ],
+    "attack": 240,
+    "text": "Cannon atk spreads dmg to adj pnls",
+    "image_url": "ImpctCanon.png"
+  },
+  {
+    "class": "standard",
+    "source_cards": [
+      "Mini Grenade",
+      "Mini Grenade",
+      "Mini Grenade"
+    ],
+    "name_en": "Big Grenade",
+    "name": "ビッググレネード",
+    "types": [
+      "無"
+    ],
+    "attack": 60,
+    "text": "3-hit dmgs all adj pnls if hits",
+    "image_url": "BigGrenade.png"
+  },
+  {
+    "class": "standard",
+    "source_cards": [
+      "Sword",
+      "Wide Sword",
+      "Long Sword"
+    ],
+    "name_en": "Giant Axe",
+    "name": "ジャイアントアックス",
+    "types": [
+      "無",
+      "ソード",
+      "ブレイク"
+    ],
+    "attack": 320,
+    "text": "Swing Guard-busting ax thru 3x2 pnl",
+    "image_url": "GiantAxe.png"
+  },
+  {
+    "class": "standard",
+    "source_cards": [
+      "Sword",
+      "Sword",
+      "Jet Attack 1"
+    ],
+    "name_en": "Hurricane Dance",
+    "name": "ハリケーンダンス",
+    "types": [
+      "無",
+      "風"
+    ],
+    "attack": 60,
+    "text": "Spin 4 times, hit adj panels with wind!",
+    "image_url": "HurricaneDance.png"
+  },
+  {
+    "class": "standard",
+    "source_cards": [
+      "Mad Vulcan 1",
+      "Attack +10",
+      "White Meteor"
+    ],
+    "name_en": "Platinum Meteor",
+    "name": "プラチナメテオ",
+    "types": [
+      "無"
+    ],
+    "attack": 90,
+    "text": "Hit far 9 normal pnls w/ Meteors.",
+    "image_url": "PlatMeteor.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Flash Strike 1",
+      "Flash Strike 2",
+      "Flash Strike 3"
+    ],
+    "name_en": "Spade Magnes GA",
+    "name": "スペードマグネッツGA",
+    "types": [
+      "電気",
+      "ソード"
+    ],
+    "attack": 220,
+    "text": "SpadeMgnes slices twice max 2 hits",
+    "image_url": "Xxx_spade_magnes_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Ice Spin 1",
+      "Ice Spin 2",
+      "Ice Spin 3"
+    ],
+    "name_en": "Diamond Ice GA",
+    "name": "ダイヤアイスバーンGA",
+    "types": [
+      "水",
+      "風"
+    ],
+    "attack": 130,
+    "text": "Diamond Dust diagonal 3-hit atk",
+    "image_url": "Xxx_diamond_ice_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Pollen Shot 1",
+      "Pollen Shot 2",
+      "Pollen Shot 3"
+    ],
+    "name_en": "Club Strong GA",
+    "name": "クラブストロングGA",
+    "types": [
+      "木",
+      "風"
+    ],
+    "attack": 70,
+    "text": "SwingStrmAtk that pwrs up on grass pnl",
+    "image_url": "Xxx_club_strong_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Wide Wave 1",
+      "Wide Wave 2",
+      "Wide Wave 3"
+    ],
+    "name_en": "Queen Virgo GA",
+    "name": "クイーンヴァルゴGA",
+    "types": [
+      "水",
+      "ブレイク"
+    ],
+    "attack": 150,
+    "text": "HydroDrgnAtk hits more w/ proximity",
+    "image_url": "Xxx_queen_virgo_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Kilo Bomb 1",
+      "Kilo Bomb 2",
+      "Kilo Bomb 3"
+    ],
+    "name_en": "Jack Corvus GA",
+    "name": "ジャックコーヴァスGA",
+    "types": [
+      "火"
+    ],
+    "attack": 480,
+    "text": "2-pnl claw atk on 3 far side cols",
+    "image_url": "Xxx_jack_corvus_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Bushido 1",
+      "Busihdo 2",
+      "Bushido 3"
+    ],
+    "name_en": "Dread Joker GA",
+    "name": "グレイブジョーカーGA",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 450,
+    "text": "Atk w/ total of 3 gigaton buildings",
+    "image_url": "Xxx_dread_joker_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Mad Vulcan 1",
+      "Mad Vulcan 2",
+      "Mad Vulcan 3"
+    ],
+    "name_en": "Acid Ace GA",
+    "name": "アシッドエースGA",
+    "types": [
+      "無",
+      "ソード",
+      "ブレイク"
+    ],
+    "attack": 350,
+    "text": "Slash 1 emy w/ lock-on sword",
+    "image_url": "Xxx_acid_ace_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Mad Fire 1",
+      "Mad Fire 2",
+      "Mad Fire 3"
+    ],
+    "name_en": "Taurus Fire GA",
+    "name": "オックスファイアGA",
+    "types": [
+      "火"
+    ],
+    "attack": 380,
+    "text": "TaurusFire covers field in flames!",
+    "image_url": "Xxx_taurus_fire_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Ground Wave 1",
+      "Ground Wave 2",
+      "Ground Wave 3"
+    ],
+    "name_en": "Cygnus Wing GA",
+    "name": "キグナスウィングGA",
+    "types": [
+      "無",
+      "ブレイク",
+      "風"
+    ],
+    "attack": 400,
+    "text": "CygnusWing dances round field edge!",
+    "image_url": "Xxx_cygnus_wing_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Shuriken 1",
+      "Shuriken 2",
+      "Shuriken 3"
+    ],
+    "name_en": "Wolf Woods GA",
+    "name": "ウルフフォレストGA",
+    "types": [
+      "木",
+      "ソード"
+    ],
+    "attack": 240,
+    "text": "Dart to emy, slice row, then upper!",
+    "image_url": "Xxx_wolf_woods_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Smile Coin 1",
+      "Smile Coin 2",
+      "Smile Coin 3"
+    ],
+    "name_en": "Dark Phantom GA",
+    "name": "ファントムブラックGA",
+    "types": [
+      "無"
+    ],
+    "attack": 450,
+    "text": "Phantom atks fwd pnl with Phantom Claw",
+    "image_url": "Xxx_dark_phantom_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Mu Technology 1",
+      "Mu Technology 2",
+      "Mu Technology 3"
+    ],
+    "name_en": "Rogue GA",
+    "name": "ブライGA",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 100,
+    "text": "4-shot consecutive fwd attack.",
+    "image_url": "Xxx_rogue_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Buzzsaw 1",
+      "Buzzsaw 2",
+      "Buzzsaw 3"
+    ],
+    "name_en": "Moon Destroyer GA",
+    "name": "ムーンディザスターGA",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 250,
+    "text": "Lft 3-col or right 1-col cutter atk",
+    "image_url": "Xxx_moon_destroy_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Mad Fire 2",
+      "Wide Wave 2",
+      "Big Drop 2"
+    ],
+    "name_en": "Libra Scales GA",
+    "name": "リブラバランスGA",
+    "types": [
+      "無"
+    ],
+    "attack": 180,
+    "text": "2-hit Fire, Aqua on last and 1st row.",
+    "image_url": "Xxx_libra_scales_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Arach Attack 3",
+      "Arach Attack 3",
+      "Arach Attack 3"
+    ],
+    "name_en": "Queen Ophiuca GA",
+    "name": "オヒュカスクイーンGA",
+    "types": [
+      "木",
+      "ブレイク"
+    ],
+    "attack": 330,
+    "text": "2 columns atk. Left 2 if frm cntr.",
+    "image_url": "Xxx_queen_ophiuca_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Double Stone",
+      "Stun Knuckle",
+      "Elec Slash"
+    ],
+    "name_en": "Gemini Spark GA",
+    "name": "ジェミニスパークGA",
+    "types": [
+      "電気",
+      "ソード",
+      "ブレイク"
+    ],
+    "attack": 170,
+    "text": "GeminiSpark tagteam pnch and slice!",
+    "image_url": "Xxx_gemini_spark_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Wide Wave 1",
+      "Wide Wave 1",
+      "Bubble Hook 1"
+    ],
+    "name_en": "Cancer Bubble GA",
+    "name": "キャンサーバブルGA",
+    "types": [
+      "水"
+    ],
+    "attack": 320,
+    "text": "From nearest enemy, 3x2 tidal wave!",
+    "image_url": "Xxx_cancer_bubble_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Plasma Gun",
+      "Plasma Gun",
+      "Drill Arm 1"
+    ],
+    "name_en": "Crown Thunder GA",
+    "name": "クラウンサンダーGA",
+    "types": [
+      "電気"
+    ],
+    "attack": 420,
+    "text": "2nd to last row center, X lightng atk.",
+    "image_url": "Xxx_crown_thunder_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Snowball 3",
+      "Snowball 3",
+      "Double Stone"
+    ],
+    "name_en": "Yeti Blizzard GA",
+    "name": "イエティブリザードGA",
+    "types": [
+      "水"
+    ],
+    "attack": 270,
+    "text": "Atk 3x3 pnls w/ 6 snoball rounds.",
+    "image_url": "Xxx_yeti_blizzard_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Shark Attack 1",
+      "Shark Attack 1",
+      "Shark Attack 1"
+    ],
+    "name_en": "Plesio Surf GA",
+    "name": "ブラキオウェーブGA",
+    "types": [
+      "水"
+    ],
+    "attack": 350,
+    "text": "Hit nearest emy's row w/Aqua Fang.",
+    "image_url": "Xxx_plesio_surf_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Pollen Shot 2",
+      "Pollen Shot 2",
+      "Typhoon Dance"
+    ],
+    "name_en": "Terra Condor GA",
+    "name": "コンドルジオグラフGA",
+    "types": [
+      "無"
+    ],
+    "attack": 110,
+    "text": "3-shot misle atk straight down 3 rows.",
+    "image_url": "Xxx_terra_condor_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Big Drop 3",
+      "Big Drop 3",
+      "Big Drop 3"
+    ],
+    "name_en": "General Auriga GA",
+    "name": "オリガジェネルGA",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 340,
+    "text": "Unblockable 3-column rush attack.",
+    "image_url": "Xxx_general_auriga_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Mech Flame 1",
+      "Mech Flame 2",
+      "Mech Flame 3"
+    ],
+    "name_en": "Apollo Flame GA",
+    "name": "アポロンフレイムGA",
+    "types": [
+      "火"
+    ],
+    "attack": 360,
+    "text": "Fwd 3x3 Solar Flare attack!",
+    "image_url": "Xxx_apollo_flame_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "White Meteor",
+      "Silver Meteor",
+      "Break Sabre"
+    ],
+    "name_en": "Sirius GA",
+    "name": "シリウスGA",
+    "types": [
+      "無"
+    ],
+    "attack": 280,
+    "text": "Satellite Blazer atk on 3x4 pnls",
+    "image_url": "Xxx_sirius_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Drill Arm 1",
+      "Drill Arm 1",
+      "Drill Arm 1"
+    ],
+    "name_en": "Rocket Launch GA",
+    "name": "アクシスジェットGA",
+    "types": [
+      "電気",
+      "ブレイク"
+    ],
+    "attack": 370,
+    "text": "Rush atk w/RocktLnch & GravRockt",
+    "image_url": "Xxx_rocket_launch_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Snow Storm",
+      "Snow Storm",
+      "Buki 3"
+    ],
+    "name_en": "Ice Hammer B GA",
+    "name": "BアイスハンマーGA",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 400,
+    "text": "Heavily Dmg 1 emy w/ DiamndIceHmr",
+    "image_url": "Xxx_ice_hammer_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Acorn Bomb 2",
+      "Acorn Bomb 2",
+      "Wood Slash"
+    ],
+    "name_en": "Strong Swing GA",
+    "name": "ストロングスイングGA",
+    "types": [
+      "木",
+      "ブレイク"
+    ],
+    "attack": 100,
+    "text": "Smack fwd 3 rows a total of 10 times",
+    "image_url": "Xxx_strong_swing_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Black Hole 1",
+      "Black Hole 1",
+      "Black Ink"
+    ],
+    "name_en": "Darkness Hole GA",
+    "name": "ダークネスホールGA",
+    "types": [
+      "無"
+    ],
+    "attack": 510,
+    "text": "Del if below 255HP:virus,510HP:boss.",
+    "image_url": "Xxx_darkness_hole_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Jet Attack 2",
+      "Jet Attack 2",
+      "Bombalizer"
+    ],
+    "name_en": "Destroy Missile GA",
+    "name": "デストロイミサイルGA",
+    "types": [
+      "無"
+    ],
+    "attack": 55,
+    "text": "Hit all enemies on normal pnls.",
+    "image_url": "Xxx_destroy_missile_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Time Bomb 3",
+      "Time Bomb 3",
+      "Time Bomb 3"
+    ],
+    "name_en": "Break Time Bomb GA",
+    "name": "ブレイクカウントボムGA",
+    "types": [
+      "火",
+      "ブレイク"
+    ],
+    "attack": 630,
+    "text": "Set unblockable bmb atk 2 pnls ahd.",
+    "image_url": "Xxx_break_time_bomb_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Heat Upper 1",
+      "Heat Upper 1",
+      "Jet Attack 1"
+    ],
+    "name_en": "Ox Tackle GA",
+    "name": "オックスタックルGA",
+    "types": [
+      "火",
+      "ブレイク"
+    ],
+    "attack": 570,
+    "text": "OxTackle all enemies in 1 column.",
+    "image_url": "Ox_Tackle_GA.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Grass Stage",
+      "Mu Technology 3",
+      "Mu Technology 3"
+    ],
+    "name_en": "Gorgon Eye GA",
+    "name": "ゴルゴンアイGA",
+    "types": [
+      "木"
+    ],
+    "attack": 580,
+    "text": "Shoot a laser beam dwn a col.",
+    "image_url": "Xxx_gorgon_eye_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Mummy Hand 3",
+      "Mummy Hand 3",
+      "Mummy Hand 3"
+    ],
+    "name_en": "Gemini Thunder GA",
+    "name": "ジェミニサンダーGA",
+    "types": [
+      "電気"
+    ],
+    "attack": 430,
+    "text": "Gemini Thunder cntr col!",
+    "image_url": "Xxx_gemini_thunder_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Snowball 3",
+      "Snowball 3",
+      "Wide Wave 3"
+    ],
+    "name_en": "Avalanche GA",
+    "name": "ナダレダイコGA",
+    "types": [
+      "水"
+    ],
+    "attack": 90,
+    "text": "Wipe out entire field w/Avalanche.",
+    "image_url": "Xxx_avalanche_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Pirahna Kiss 2",
+      "Pirahna Kiss 2",
+      "Pirahna Kiss 2"
+    ],
+    "name_en": "Torrent Wave GA",
+    "name": "ゲキリュウウェーブGA",
+    "types": [
+      "水"
+    ],
+    "attack": 430,
+    "text": "Tidal wave wash all obj from field.",
+    "image_url": "Xxx_turrent_wave_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Jet Attack 3",
+      "Jet Attack 3",
+      "Jungle Storm"
+    ],
+    "name_en": "Flying Impact GA",
+    "name": "フライングインパクトGA",
+    "types": [
+      "木",
+      "ブレイク"
+    ],
+    "attack": 530,
+    "text": "2-column high-speed ram attack.",
+    "image_url": "Xxx_flying_impact_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Scythe 2",
+      "Scythe 2",
+      "Scythe 2"
+    ],
+    "name_en": "Rogue Break GA",
+    "name": "ブライブレイクGA",
+    "types": [
+      "無",
+      "ソード",
+      "ブレイク"
+    ],
+    "attack": 480,
+    "text": "Far 3x3 pnl sword attack RogueBreak.",
+    "image_url": "Xxx_rogue_break_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Puff Blast 3",
+      "Puff Blast 3",
+      "Tornado Dance"
+    ],
+    "name_en": "Holy Light GA",
+    "name": "ライトオブセイントGA",
+    "types": [
+      "無"
+    ],
+    "attack": 100,
+    "text": "Emerge 3 pnl ahead & atk adjacnt pnls",
+    "image_url": "Xxx_holy_light_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Dance Fire 3",
+      "Dance Fire 3",
+      "Dance Fire 3"
+    ],
+    "name_en": "Wicked Flame GA",
+    "name": "ペインヘルフレイムGA",
+    "types": [
+      "火"
+    ],
+    "attack": 120,
+    "text": "Unleash 12 WickdFlam on far 3 rows",
+    "image_url": "Xxx_wicked_flame_ga.png"
+  }
+]

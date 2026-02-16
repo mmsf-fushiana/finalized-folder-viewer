@@ -1,0 +1,5827 @@
+[
+  {
+    "class": "standard",
+    "name_en": "Cannon",
+    "name": "キャノン",
+    "types": [
+      "無"
+    ],
+    "attack": 40,
+    "text": "Cannon atk 1 enmy",
+    "image_url": "SF3_BC_001.png",
+    "id": "00000001"
+  },
+  {
+    "class": "standard",
+    "name_en": "Plus Cannon",
+    "name": "プラスキャノン",
+    "types": [
+      "無"
+    ],
+    "attack": 100,
+    "text": "Cannon atk splits in + pattern",
+    "image_url": "SF3_BC_002.png",
+    "id": "00000002"
+  },
+  {
+    "class": "standard",
+    "name_en": "HeaVy Cannon",
+    "name": "ヘビーキャノン",
+    "types": [
+      "無"
+    ],
+    "attack": 160,
+    "text": "Cannon atk Splits Left, Right, back 3",
+    "image_url": "SF3_BC_003.png",
+    "id": "00000003"
+  },
+  {
+    "class": "standard",
+    "source_cards": [
+      "Cannon",
+      "Cannon",
+      "Cannon"
+    ],
+    "name_en": "Impact Cannon",
+    "name": "インパクトキャノン",
+    "types": [
+      "無"
+    ],
+    "attack": 240,
+    "text": "Cannon atk spreads dmg to adj pnls",
+    "image_url": "ImpctCanon.png",
+    "id": "00000110"
+  },
+  {
+    "class": "standard",
+    "name_en": "PlasmaGun",
+    "name": "プラズマガン",
+    "types": [
+      "電気"
+    ],
+    "attack": 30,
+    "text": "Atk and paralyze 1 enemy",
+    "image_url": "SF3_BC_004.png",
+    "id": "00000004"
+  },
+  {
+    "class": "standard",
+    "name_en": "Plasma Gun X",
+    "name": "プラズマガンX",
+    "types": [
+      "電気"
+    ],
+    "attack": 120,
+    "attack2": 160,
+    "attack3": 190,
+    "text": "Atk & prlyz 1 enemy for a long time",
+    "image_url": "PlasmaGunX.png",
+    "id": "00000111"
+  },
+  {
+    "class": "standard",
+    "name_en": "Air Spread 1",
+    "name": "エアスプレッド1",
+    "types": [
+      "無",
+      "風"
+    ],
+    "attack": 10,
+    "text": "3-shot atk. Spreads dmg in V ptrn",
+    "image_url": "SF3_BC_005.png",
+    "id": "00000005"
+  },
+  {
+    "class": "standard",
+    "name_en": "Air Spread 2",
+    "name": "エアスプレッド2",
+    "types": [
+      "無",
+      "風"
+    ],
+    "attack": 20,
+    "text": "3-shot atk. Spreads dmg in X ptrn",
+    "image_url": "SF3_BC_006.png",
+    "id": "00000006"
+  },
+  {
+    "class": "standard",
+    "name_en": "Air Spread 3",
+    "name": "エアスプレッド3",
+    "types": [
+      "無",
+      "風"
+    ],
+    "attack": 30,
+    "text": "3-shot atk. Spreads dmg to adj pnls",
+    "image_url": "SF3_BC_007.png",
+    "id": "00000007"
+  },
+  {
+    "class": "standard",
+    "name_en": "Air Spread X",
+    "name": "エアスプレッドX",
+    "types": [
+      "無",
+      "風"
+    ],
+    "attack": 50,
+    "text": "3-shot atk. Spreads dmg to adj pnls",
+    "image_url": "AirSpreadX.png",
+    "id": "00000112"
+  },
+  {
+    "class": "standard",
+    "name_en": "Mad Vulcan 1",
+    "name": "マッドバルカン1",
+    "types": [
+      "無"
+    ],
+    "attack": 10,
+    "text": "5-shot Vlcn atk also ignites rear",
+    "image_url": "SF3_BC_008.png",
+    "id": "00000066"
+  },
+  {
+    "class": "standard",
+    "name_en": "Mad Vulcan 2",
+    "name": "マッドバルカン2",
+    "types": [
+      "無"
+    ],
+    "attack": 10,
+    "text": "8-shot Vlcn atk also ignites rear",
+    "image_url": "SF3_BC_009.png",
+    "id": "00000067"
+  },
+  {
+    "class": "standard",
+    "name_en": "Mad Vulcan 3",
+    "name": "マッドバルカン3",
+    "types": [
+      "無"
+    ],
+    "attack": 10,
+    "text": "12-shot Vlcn atk also ignites rear",
+    "image_url": "SF3_BC_010.png",
+    "id": "00000068"
+  },
+  {
+    "class": "standard",
+    "name_en": "Mad Vulcan X",
+    "name": "マッドバルカンX",
+    "types": [
+      "無"
+    ],
+    "attack": 10,
+    "text": "15-shot Vlcn atk also ignites rear",
+    "image_url": "MadVulcnX.png",
+    "id": "00000132"
+  },
+  {
+    "class": "standard",
+    "name_en": "Black Ink",
+    "name": "ブラックインク",
+    "types": [
+      "無"
+    ],
+    "attack": 90,
+    "text": "Blinding atk spreads dmg to adj pnls",
+    "image_url": "SF3_BC_011.png",
+    "id": "0000001C"
+  },
+  {
+    "class": "standard",
+    "name_en": "Green Ink",
+    "name": "グリーンインク",
+    "types": [
+      "木"
+    ],
+    "attack": 90,
+    "text": "If hit emy, adj pnls trn into grass.",
+    "image_url": "GreenInk.png",
+    "id": "000000F3"
+  },
+  {
+    "class": "standard",
+    "name_en": "Blue Ink",
+    "name": "ブルーインク",
+    "types": [
+      "水"
+    ],
+    "attack": 110,
+    "text": "If hit emy, adj pnls trn into ice.",
+    "image_url": "BlueInk.png",
+    "id": "000000F4"
+  },
+  {
+    "class": "standard",
+    "name_en": "Purple Ink",
+    "name": "パープルインク",
+    "types": [
+      "無"
+    ],
+    "attack": 130,
+    "text": "If hit emy, adj pnls trn into poison.",
+    "image_url": "PurpleInk.png",
+    "id": "0000005F"
+  },
+  {
+    "class": "standard",
+    "name_en": "Mini Grenade",
+    "name": "ミニグレネード",
+    "types": [
+      "無"
+    ],
+    "attack": 10,
+    "text": "Lob a 6-shot grenade at your enemy",
+    "image_url": "SF3_BC_012.png",
+    "id": "00000008"
+  },
+  {
+    "class": "standard",
+    "name_en": "Heat Grenade",
+    "name": "ヒートグレネード",
+    "types": [
+      "火"
+    ],
+    "attack": 120,
+    "text": "Lob a 9-pnl fire grenade at enemy.",
+    "image_url": "HeatGrnde.png",
+    "id": "000000E8"
+  },
+  {
+    "class": "standard",
+    "name_en": "Wood Grenade",
+    "name": "グリーングレネード",
+    "types": [
+      "木"
+    ],
+    "attack": 100,
+    "text": "Grenade that turns 9 pnls into grass.",
+    "image_url": "WoodGrnde.png",
+    "id": "000000E9"
+  },
+  {
+    "class": "standard",
+    "name_en": "Ice Grenade",
+    "name": "アイスグレネード",
+    "types": [
+      "水"
+    ],
+    "attack": 100,
+    "text": "Grenade that turns 9 pnls into ice.",
+    "image_url": "IceGrnde.png",
+    "id": "000000EA"
+  },
+  {
+    "class": "standard",
+    "source_cards": [
+      "Mini Grenade",
+      "Mini Grenade",
+      "Mini Grenade"
+    ],
+    "name_en": "Big Grenade",
+    "name": "ビッググレネード",
+    "types": [
+      "無"
+    ],
+    "attack": 60,
+    "attack2": 100,
+    "attack3": 140,
+    "text": "3-hit atk dmgs all adj pnls if hits",
+    "image_url": "BigGrenade.png",
+    "id": "00000113"
+  },
+  {
+    "class": "standard",
+    "name_en": "Sword",
+    "name": "ソード",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 80,
+    "text": "Cuts emy in frnt of you",
+    "image_url": "SF3_BC_013.png",
+    "id": "00000013"
+  },
+  {
+    "class": "standard",
+    "name_en": "Wide Sword",
+    "name": "ワイドソード",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 80,
+    "text": "Cuts emies in row in frnt of you",
+    "image_url": "SF3_BC_014.png",
+    "id": "00000014"
+  },
+  {
+    "class": "standard",
+    "name_en": "Long Sword",
+    "name": "ロングソード",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 80,
+    "text": "Cuts emy in frnt of you. Rnge:2 pnls",
+    "image_url": "SF3_BC_015.png",
+    "id": "00000015"
+  },
+  {
+    "class": "standard",
+    "name_en": "Bushido 1",
+    "name": "エドギリブレード1",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 110,
+    "text": "Selct w/same card makes swrd strongr",
+    "image_url": "SF3_BC_016.png",
+    "id": "00000060"
+  },
+  {
+    "class": "standard",
+    "name_en": "Bushido 2",
+    "name": "エドギリブレード2",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 140,
+    "text": "Selct w/same card makes swrd strongr",
+    "image_url": "SF3_BC_017.png",
+    "id": "00000061"
+  },
+  {
+    "class": "standard",
+    "name_en": "Bushido 3",
+    "name": "エドギリブレード3",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 170,
+    "attack2": 210,
+    "attack3": 260,
+    "text": "Selct w/same card makes swrd strongr",
+    "image_url": "SF3_BC_018.png",
+    "id": "00000062"
+  },
+  {
+    "class": "standard",
+    "name_en": "Bushido X",
+    "name": "エドギリブレードX",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 200,
+    "attack2": 240,
+    "attack3": 290,
+    "text": "Select w/same card makes swrd strongr",
+    "image_url": "BushidoX.png",
+    "id": "00000130"
+  },
+  {
+    "class": "standard",
+    "name_en": "Elec Slash",
+    "name": "エレキスラッシュ",
+    "types": [
+      "電気",
+      "ソード"
+    ],
+    "attack": 150,
+    "attack2": 180,
+    "attack3": 220,
+    "text": "Elec swrd cut 'n prlyz emy in row",
+    "image_url": "ElecSlash.png",
+    "id": "000000EF"
+  },
+  {
+    "class": "standard",
+    "name_en": "Wood Slash",
+    "name": "ウッドスラッシュ",
+    "types": [
+      "木",
+      "ソード"
+    ],
+    "attack": 180,
+    "text": "Wood swrd cuts emy in row in frnt",
+    "image_url": "WoodSlash.png",
+    "id": "000000F0"
+  },
+  {
+    "class": "standard",
+    "name_en": "Fire Slash",
+    "name": "ファイアスラッシュ",
+    "types": [
+      "火",
+      "ソード"
+    ],
+    "attack": 200,
+    "attack2": 230,
+    "attack3": 270,
+    "text": "Fire swrd cuts emy in row in frnt",
+    "image_url": "FireSlash.png",
+    "id": "000000F1"
+  },
+  {
+    "class": "standard",
+    "name_en": "Break Sabre",
+    "name": "ブレイクサーベル",
+    "types": [
+      "無",
+      "ソード",
+      "ブレイク"
+    ],
+    "attack": 200,
+    "attack2": 240,
+    "attack3": 290,
+    "text": "Diag. saber atk. Cuts thru shield.",
+    "image_url": "BreakSabre.png",
+    "id": "000000F2"
+  },
+  {
+    "class": "standard",
+    "name_en": "Break Sabre X",
+    "name": "ブレイクサーベルX",
+    "types": [
+      "無",
+      "ソード",
+      "ブレイク"
+    ],
+    "attack": 250,
+    "attack2": 290,
+    "attack3": 340,
+    "text": "Diag. saber atk. Cuts thru shield.",
+    "image_url": "BreakSabrX.png",
+    "id": "00000143"
+  },
+  {
+    "class": "standard",
+    "name_en": "Great Axe",
+    "name": "グレートアックス",
+    "types": [
+      "木",
+      "ソード"
+    ],
+    "attack": 140,
+    "attack2": 180,
+    "attack3": 240,
+    "text": "Swing Wood ax thru 3x2 pnls",
+    "image_url": "SF3_BC_019.png",
+    "id": "00000016"
+  },
+  {
+    "class": "standard",
+    "name_en": "Flame Axe",
+    "name": "フレイムアックス",
+    "types": [
+      "火",
+      "ソード"
+    ],
+    "attack": 200,
+    "attack2": 240,
+    "attack3": 300,
+    "text": "Swing giant fire ax thru 3x2 sqrs",
+    "image_url": "SF3_BC_020.png",
+    "id": "0000007B"
+  },
+  {
+    "class": "standard",
+    "source_cards": [
+      "Sword",
+      "Wide Sword",
+      "Long Sword"
+    ],
+    "name_en": "Giant Axe",
+    "name": "ジャイアントアックス",
+    "types": [
+      "無",
+      "ソード",
+      "ブレイク"
+    ],
+    "attack": 320,
+    "attack2": 360,
+    "attack3": 420,
+    "text": "Swing Guard-busting ax thru 3x2 pnl",
+    "image_url": "GiantAxe.png",
+    "id": "00000117"
+  },
+  {
+    "class": "standard",
+    "name_en": "Muramasa",
+    "name": "ムラマサブレード",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": null,
+    "text": "Sword Atk is as strong as you are weak",
+    "image_url": "Muramasa.png",
+    "id": "000000FB"
+  },
+  {
+    "class": "standard",
+    "name_en": "Sword Fighter 1",
+    "name": "ソードファイター1",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 50,
+    "text": "Mad 3-slash sword attack",
+    "image_url": "SwrdFghtr1.png",
+    "id": "00000105"
+  },
+  {
+    "class": "standard",
+    "name_en": "Sword Fighter 2",
+    "name": "ソードファイター2",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 50,
+    "text": "Mad 4-slash sword attack",
+    "image_url": "SwrdFghtr2.png",
+    "id": "00000106"
+  },
+  {
+    "class": "standard",
+    "name_en": "Sword Fighter 3",
+    "name": "ソードファイター3",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 50,
+    "attack2": 65,
+    "attack3": 80,
+    "text": "Mad 5-slash sword attack",
+    "image_url": "SwrdFghtr3.png",
+    "id": "00000107"
+  },
+  {
+    "class": "standard",
+    "name_en": "Sword Fighter X",
+    "name": "ソードファイターX",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 60,
+    "attack2": 75,
+    "attack3": 90,
+    "text": "Mad 5-slash sword attack",
+    "image_url": "SwrdFghtrX.png",
+    "id": "00000141"
+  },
+  {
+    "class": "standard",
+    "name_en": "Windy Attack 1",
+    "name": "ウィンディアタック1",
+    "types": [
+      "無",
+      "風"
+    ],
+    "attack": 90,
+    "text": "Knock emy in frnt all the way back",
+    "image_url": "SF3_BC_021.png",
+    "id": "0000000F"
+  },
+  {
+    "class": "standard",
+    "name_en": "Windy Attack 2",
+    "name": "ウィンディアタック2",
+    "types": [
+      "無",
+      "風"
+    ],
+    "attack": 120,
+    "text": "Knock emy in frnt all the way back",
+    "image_url": "SF3_BC_022.png",
+    "id": "00000010"
+  },
+  {
+    "class": "standard",
+    "name_en": "Windy Attack 3",
+    "name": "ウィンディアタック3",
+    "types": [
+      "無",
+      "風"
+    ],
+    "attack": 150,
+    "attack2": 190,
+    "attack3": 230,
+    "text": "Knock emy in frnt all the way back",
+    "image_url": "SF3_BC_023.png",
+    "id": "00000011"
+  },
+  {
+    "class": "standard",
+    "name_en": "Windy Attack X",
+    "name": "ウィンディアタックX",
+    "types": [
+      "無",
+      "風"
+    ],
+    "attack": 180,
+    "attack2": 220,
+    "attack3": 260,
+    "text": "Knock emy in frnt all the way back",
+    "image_url": "WindyAtkX.png",
+    "id": "00000116"
+  },
+  {
+    "class": "standard",
+    "name_en": "Synchro Hook 1",
+    "name": "シンクロフック1",
+    "types": [
+      "無"
+    ],
+    "attack": 100,
+    "text": "Lft hook all of the same type of emy",
+    "image_url": "SF3_BC_024.png",
+    "id": "00000017"
+  },
+  {
+    "class": "standard",
+    "name_en": "Synchro Hook 2",
+    "name": "シンクロフック2",
+    "types": [
+      "無"
+    ],
+    "attack": 130,
+    "text": "Lft hook all of the same type of emy",
+    "image_url": "SF3_BC_025.png",
+    "id": "00000018"
+  },
+  {
+    "class": "standard",
+    "name_en": "Synchro Hook 3",
+    "name": "シンクロフック3",
+    "types": [
+      "無"
+    ],
+    "attack": 150,
+    "attack2": 190,
+    "attack3": 230,
+    "text": "Lft hook all of the same type of emy",
+    "image_url": "SF3_BC_026.png",
+    "id": "00000019"
+  },
+  {
+    "class": "standard",
+    "name_en": "Synchro Hook X",
+    "name": "シンクロフックX",
+    "types": [
+      "無"
+    ],
+    "attack": 180,
+    "attack2": 220,
+    "attack3": 260,
+    "text": "Lft hook all of the same type of emy",
+    "image_url": "SyncHookX.png",
+    "id": "00000118"
+  },
+  {
+    "class": "standard",
+    "name_en": "Stun Knuckle",
+    "name": "スタンナックル",
+    "types": [
+      "電気"
+    ],
+    "attack": 130,
+    "text": "Punch and paralyze emy in front!",
+    "image_url": "StunKnukle.png",
+    "id": "000000EC"
+  },
+  {
+    "class": "standard",
+    "name_en": "Poison Knuckle",
+    "name": "ポイズンナックル",
+    "types": [
+      "無"
+    ],
+    "attack": 150,
+    "text": "Punch and HP bug emy in frnt of you!",
+    "image_url": "PoisKnukle.png",
+    "id": "000000ED"
+  },
+  {
+    "class": "standard",
+    "name_en": "Freeze Knuckle",
+    "name": "フリーズナックル",
+    "types": [
+      "水"
+    ],
+    "attack": 180,
+    "text": "Punch and freez emy in frnt of you!",
+    "image_url": "FrezKnukle.png",
+    "id": "000000EE"
+  },
+  {
+    "class": "standard",
+    "name_en": "Destroy Upper",
+    "name": "デストロイアッパー",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 140,
+    "text": "In match, uprcut nulls 5 body abils",
+    "image_url": "DstryUpper.png",
+    "id": "000000F9"
+  },
+  {
+    "class": "standard",
+    "name_en": "Drill Arm 1",
+    "name": "ドリルアーム1",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 40,
+    "text": "Atk 2 fwd pnls & knock emies bck 1",
+    "image_url": "SF3_BC_027.png",
+    "id": "00000009"
+  },
+  {
+    "class": "standard",
+    "name_en": "Drill Arm 2",
+    "name": "ドリルアーム2",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 50,
+    "text": "Atk 2 fwd pnls & knock emies bck 1",
+    "image_url": "SF3_BC_028.png",
+    "id": "0000000A"
+  },
+  {
+    "class": "standard",
+    "name_en": "Drill Arm 3",
+    "name": "ドリルアーム3",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 60,
+    "text": "Atk 2 fwd pnls & knock emies bck 1",
+    "image_url": "SF3_BC_029.png",
+    "id": "0000000B"
+  },
+  {
+    "class": "standard",
+    "name_en": "Drill Arm X",
+    "name": "ドリルアームX",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 80,
+    "attack2": 100,
+    "attack3": 120,
+    "text": "Atk 2 fwd pnls & knock emies bck 1",
+    "image_url": "DrillArmX.png",
+    "id": "00000114"
+  },
+  {
+    "class": "standard",
+    "name_en": "Typhoon Dance",
+    "name": "タイフーンダンス",
+    "types": [
+      "無",
+      "風"
+    ],
+    "attack": 60,
+    "attack2": 75,
+    "attack3": 100,
+    "text": "Spin twice, hit adj pnls with wind",
+    "image_url": "SF3_BC_030.png",
+    "id": "00000075"
+  },
+  {
+    "class": "standard",
+    "name_en": "Tornado Dance",
+    "name": "トルネードダンス",
+    "types": [
+      "無",
+      "風"
+    ],
+    "attack": 60,
+    "attack2": 75,
+    "attack3": 100,
+    "text": "Spin 3 times, hit adj pnls with wind",
+    "image_url": "SF3_BC_031.png",
+    "id": "00000076"
+  },
+  {
+    "class": "standard",
+    "name_en": "Hurricane Dance",
+    "source_cards": [
+      "Sword",
+      "Sword",
+      "Jet Attack 1"
+    ],
+    "name": "ハリケーンダンス",
+    "types": [
+      "無",
+      "風"
+    ],
+    "attack": 60,
+    "attack2": 75,
+    "attack3": 100,
+    "text": "Spin 4 times hit adj pnls with wind",
+    "image_url": "HurricaneDance.png",
+    "id": "00000137"
+  },
+  {
+    "class": "standard",
+    "name_en": "White Meteor",
+    "name": "ホワイトメテオ",
+    "types": [
+      "無"
+    ],
+    "attack": 50,
+    "text": "Hit far 9 normal pnls w/ Meteors",
+    "image_url": "SF3_BC_032.png",
+    "id": "0000001A"
+  },
+  {
+    "class": "standard",
+    "name_en": "SilVer Meteor",
+    "name": "シルバーメテオ",
+    "types": [
+      "無"
+    ],
+    "attack": 70,
+    "text": "Hit far 9 normal pnls w/ Meteors",
+    "image_url": "SF3_BC_033.png",
+    "id": "0000001B"
+  },
+  {
+    "class": "standard",
+    "source_cards": [
+      "Mad Vulcan 1",
+      "Attack +10",
+      "White Meteor"
+    ],
+    "name_en": "Platinum Meteor",
+    "name": "プラチナメテオ",
+    "types": [
+      "無"
+    ],
+    "attack": 90,
+    "text": "Hit far 9 normal pnls w/Meteors.",
+    "image_url": "PlatMeteor.png",
+    "id": "00000119"
+  },
+  {
+    "class": "standard",
+    "name_en": "Extinction Meteor",
+    "name": "ゼツメツメテオ",
+    "types": [
+      "火",
+      "ブレイク"
+    ],
+    "attack": 70,
+    "text": "Rain Meteors down on far 9 panls",
+    "image_url": "ExtiMeteor.png",
+    "id": "000000FC"
+  },
+  {
+    "class": "standard",
+    "name_en": "Radar Missile",
+    "name": "レーダーミサイル",
+    "types": [
+      "無"
+    ],
+    "attack": 200,
+    "text": "Missile atk. Targts Non-elm emies.",
+    "image_url": "RaderMisil.png",
+    "id": "000000EB"
+  },
+  {
+    "class": "standard",
+    "name_en": "Grand WaVe 1",
+    "name": "グランドウェーブ1",
+    "types": [
+      "無"
+    ],
+    "attack": 50,
+    "text": "Piercing atk can change direc once",
+    "image_url": "SF3_BC_034.png",
+    "id": "0000001E"
+  },
+  {
+    "class": "standard",
+    "name_en": "Grand WaVe 2",
+    "name": "グランドウェーブ2",
+    "types": [
+      "無"
+    ],
+    "attack": 80,
+    "text": "Piercing atk can change direc once",
+    "image_url": "SF3_BC_035.png",
+    "id": "0000001F"
+  },
+  {
+    "class": "standard",
+    "name_en": "Grand WaVe 3",
+    "name": "グランドウェーブ3",
+    "types": [
+      "無"
+    ],
+    "attack": 120,
+    "attack2": 150,
+    "attack3": 200,
+    "text": "Piercing atk can change direc once",
+    "image_url": "SF3_BC_036.png",
+    "id": "00000020"
+  },
+  {
+    "class": "standard",
+    "name_en": "Grand WaVe X",
+    "name": "グランドウェーブX",
+    "types": [
+      "無"
+    ],
+    "attack": 150,
+    "attack2": 180,
+    "attack3": 230,
+    "text": "Piercing atk can change direc. once.",
+    "image_url": "GrandWaVeX.png",
+    "id": "0000011A"
+  },
+  {
+    "class": "standard",
+    "name_en": "Jet Attack 1",
+    "name": "ジェットアタック1",
+    "types": [
+      "無",
+      "ブレイク",
+      "風"
+    ],
+    "attack": 90,
+    "text": "Piercing strght line rush atk",
+    "image_url": "SF3_BC_037.png",
+    "id": "00000021"
+  },
+  {
+    "class": "standard",
+    "name_en": "Jet Attack 2",
+    "name": "ジェットアタック2",
+    "types": [
+      "無",
+      "ブレイク",
+      "風"
+    ],
+    "attack": 120,
+    "text": "Piercing strght line rush atk",
+    "image_url": "SF3_BC_038.png",
+    "id": "00000022"
+  },
+  {
+    "class": "standard",
+    "name_en": "Jet Attack 3",
+    "name": "ジェットアタック3",
+    "types": [
+      "無",
+      "ブレイク",
+      "風"
+    ],
+    "attack": 150,
+    "attack2": 180,
+    "attack3": 230,
+    "text": "Piercing strght line rush atk",
+    "image_url": "SF3_BC_039.png",
+    "id": "00000023"
+  },
+  {
+    "class": "standard",
+    "name_en": "Jet Attack X",
+    "name": "ジェットアタックX",
+    "types": [
+      "無",
+      "ブレイク",
+      "風"
+    ],
+    "attack": 180,
+    "attack2": 210,
+    "attack3": 260,
+    "text": "Piercing strght line rush atk.",
+    "image_url": "JetAttackX.png",
+    "id": "0000011B"
+  },
+  {
+    "class": "standard",
+    "name_en": "Buki 1",
+    "name": "ハンマーウェポン1",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 130,
+    "text": "3x3-pnl frontal Hammer atk",
+    "image_url": "SF3_BC_040.png",
+    "id": "00000024"
+  },
+  {
+    "class": "standard",
+    "name_en": "Buki 2",
+    "name": "ハンマーウェポン2",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 150,
+    "text": "3x3-pnl frontal Hammer atk",
+    "image_url": "SF3_BC_041.png",
+    "id": "00000025"
+  },
+  {
+    "class": "standard",
+    "name_en": "Buki 3",
+    "name": "ハンマーウェポン3",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 170,
+    "attack2": 205,
+    "attack3": 250,
+    "text": "3x3-pnl frontal Hammer atk",
+    "image_url": "SF3_BC_042.png",
+    "id": "00000026"
+  },
+  {
+    "class": "standard",
+    "name_en": "Buki X",
+    "name": "ハンマーウェポンX",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 190,
+    "attack2": 225,
+    "attack3": 270,
+    "text": "3x3-pnl frontal Hammer atk.",
+    "image_url": "BukiX.png",
+    "id": "0000011C"
+  },
+  {
+    "class": "standard",
+    "name_en": "Smile Coin 1",
+    "name": "スマイルコイン1",
+    "types": [
+      "無"
+    ],
+    "attack": 30,
+    "text": "Rain down coins on emy fwd 3 rows",
+    "image_url": "SF3_BC_043.png",
+    "id": "00000027"
+  },
+  {
+    "class": "standard",
+    "name_en": "Smile Coin 2",
+    "name": "スマイルコイン2",
+    "types": [
+      "無"
+    ],
+    "attack": 40,
+    "text": "Rain down coins on emy fwd 3 rows",
+    "image_url": "SF3_BC_044.png",
+    "id": "00000028"
+  },
+  {
+    "class": "standard",
+    "name_en": "Smile Coin 3",
+    "name": "スマイルコイン3",
+    "types": [
+      "無"
+    ],
+    "attack": 50,
+    "text": "Rain down coins on emy fwd 3 rows",
+    "image_url": "SF3_BC_045.png",
+    "id": "00000029"
+  },
+  {
+    "class": "standard",
+    "name_en": "Smile Coin X",
+    "name": "スマイルコインX",
+    "types": [
+      "無"
+    ],
+    "attack": 60,
+    "text": "Rain down coins on emy fwd 3 rows",
+    "image_url": "SmileCoinX.png",
+    "id": "0000011D"
+  },
+  {
+    "class": "standard",
+    "name_en": "Big Drop 1",
+    "name": "ヘビードーン1",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 140,
+    "text": "Drop Ku'i on field, crack adacnt pnls",
+    "image_url": "SF3_BC_046.png",
+    "id": "0000002A"
+  },
+  {
+    "class": "standard",
+    "name_en": "Big Drop 2",
+    "name": "ヘビードーン2",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 180,
+    "text": "Drop Ku'i on field, crack adacnt pnls",
+    "image_url": "SF3_BC_047.png",
+    "id": "0000002B"
+  },
+  {
+    "class": "standard",
+    "name_en": "Big Drop 3",
+    "name": "ヘビードーン3",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 220,
+    "text": "Drop Ku'i on field, crack adacnt pnls",
+    "image_url": "SF3_BC_048.png",
+    "id": "0000002C"
+  },
+  {
+    "class": "standard",
+    "name_en": "Big Drop X",
+    "name": "ヘビードーンX",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 280,
+    "attack2": 310,
+    "attack3": 380,
+    "text": "Drop Ku'i on field, crack adacnt pnls",
+    "image_url": "BigDropX.png",
+    "id": "0000001E"
+  },
+  {
+    "class": "standard",
+    "name_en": "Buzzsaw 1",
+    "name": "ギザホイール1",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 100,
+    "text": "Buzz Saw Atk turns once after thrown",
+    "image_url": "SF3_BC_049.png",
+    "id": "0000005D"
+  },
+  {
+    "class": "standard",
+    "name_en": "Buzzsaw 2",
+    "name": "ギザホイール2",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 120,
+    "text": "Buzz Saw Atk turns once after thrown",
+    "image_url": "SF3_BC_050.png",
+    "id": "0000005E"
+  },
+  {
+    "class": "standard",
+    "name_en": "Buzzsaw 3",
+    "name": "ギザホイール3",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 150,
+    "attack2": 190,
+    "attack3": 240,
+    "text": "Buzz Saw Atk turns once after thrown",
+    "image_url": "SF3_BC_051.png",
+    "id": "0000005F"
+  },
+  {
+    "class": "standard",
+    "name_en": "Buzzsaw X",
+    "name": "ギザホイールX",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 180,
+    "attack2": 220,
+    "attack3": 270,
+    "text": "Buzz Saw Atk turns once after thrown",
+    "image_url": "BuzzSawX.png",
+    "id": "0000012F"
+  },
+  {
+    "class": "standard",
+    "name_en": "Skull Arrow 1",
+    "name": "スカルアロー1",
+    "types": [
+      "無"
+    ],
+    "attack": 130,
+    "text": "Skull Arrow imoblz emies back 3 pnls",
+    "image_url": "SF3_BC_052.png",
+    "id": "00000063"
+  },
+  {
+    "class": "standard",
+    "name_en": "Skull Arrow 2",
+    "name": "スカルアロー2",
+    "types": [
+      "無"
+    ],
+    "attack": 150,
+    "text": "Skull Arrow imoblz emies back 3 pnls",
+    "image_url": "SF3_BC_053.png",
+    "id": "00000064"
+  },
+  {
+    "class": "standard",
+    "name_en": "Skull Arrow 3",
+    "name": "スカルアロー3",
+    "types": [
+      "無"
+    ],
+    "attack": 170,
+    "attack2": 210,
+    "attack3": 250,
+    "text": "Skull Arrow imoblz emies back 3 pnls",
+    "image_url": "SF3_BC_054.png",
+    "id": "00000065"
+  },
+  {
+    "class": "standard",
+    "name_en": "Skull Arrow X",
+    "name": "スカルアローX",
+    "types": [
+      "無"
+    ],
+    "attack": 190,
+    "attack2": 230,
+    "attack3": 270,
+    "text": "Skull Arrow imoblz emies back 3 pnls",
+    "image_url": "SkullArrwX.png",
+    "id": "00000131"
+  },
+  {
+    "class": "standard",
+    "name_en": "Mu Technology 1",
+    "name": "ムーテクノロジー1",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 50,
+    "text": "3-shot laser gets stronger w/holey pnls",
+    "image_url": "SF3_BC_055.png",
+    "id": "00000069"
+  },
+  {
+    "class": "standard",
+    "name_en": "Mu Technology 2",
+    "name": "ムーテクノロジー2",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 60,
+    "text": "3-shot laser gets stronger w/holey pnls",
+    "image_url": "SF3_BC_056.png",
+    "id": "0000006A"
+  },
+  {
+    "class": "standard",
+    "name_en": "Mu Technology 3",
+    "name": "ムーテクノロジー3",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 70,
+    "text": "3-shot laser gets stronger w/holey pnls",
+    "image_url": "SF3_BC_057.png",
+    "id": "0000006B"
+  },
+  {
+    "class": "standard",
+    "name_en": "Mu Technology X",
+    "name": "ムーテクノロジーX",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 80,
+    "text": "3-shot laser gets stronger w/holey pnls",
+    "image_url": "MuTechX.png",
+    "id": "00000133"
+  },
+  {
+    "class": "standard",
+    "name_en": "Scythe 1",
+    "name": "デスサイズ1",
+    "types": [
+      "無",
+      "ソード",
+      "風"
+    ],
+    "attack": 20,
+    "text": "2nd fwd pnl Scythe atk. Max 3 hits.",
+    "image_url": "Scythe1.png",
+    "id": "000000D0"
+  },
+  {
+    "class": "standard",
+    "name_en": "Scythe 2",
+    "name": "デスサイズ2",
+    "types": [
+      "無",
+      "ソード",
+      "風"
+    ],
+    "attack": 30,
+    "text": "2nd fwd pnl Scythe atk. Max 3 hits.",
+    "image_url": "Scythe2.png",
+    "id": "000000D1"
+  },
+  {
+    "class": "standard",
+    "name_en": "Scythe 3",
+    "name": "デスサイズ3",
+    "types": [
+      "無",
+      "ソード",
+      "風"
+    ],
+    "attack": 40,
+    "text": "2nd fwd pnl Scythe atk. Max 3 hits.",
+    "image_url": "Scythe3.png",
+    "id": "000000D2"
+  },
+  {
+    "class": "standard",
+    "name_en": "Scythe X",
+    "name": "デスサイズX",
+    "types": [
+      "無",
+      "ソード",
+      "風"
+    ],
+    "attack": 60,
+    "text": "2nd fwd pnl Scythe atk. Max 3 hits.",
+    "image_url": "ScytheX.png",
+    "id": "00000138"
+  },
+  {
+    "class": "standard",
+    "name_en": "Puff Blast 1",
+    "name": "ケサランパサラン1",
+    "types": [
+      "無"
+    ],
+    "attack": 80,
+    "text": "PuffBlast hits 2nd col ahead.",
+    "image_url": "PuffBlast1.png",
+    "id": "000000E2"
+  },
+  {
+    "class": "standard",
+    "name_en": "Puff Blast 2",
+    "name": "ケサランパサラン2",
+    "types": [
+      "無"
+    ],
+    "attack": 100,
+    "text": "PuffBlast hits 2nd col ahead.",
+    "image_url": "PuffBlast2.png",
+    "id": "000000E3"
+  },
+  {
+    "class": "standard",
+    "name_en": "Puff Blast 3",
+    "name": "ケサランパサラン3",
+    "types": [
+      "無"
+    ],
+    "attack": 130,
+    "text": "PuffBlast hits 2nd col ahead.",
+    "image_url": "PuffBlast3.png",
+    "id": "000000E4"
+  },
+  {
+    "class": "standard",
+    "name_en": "Puff Blast X",
+    "name": "ケサランパサランX",
+    "types": [
+      "無"
+    ],
+    "attack": 160,
+    "text": "PuffBlast hits 2nd col ahead.",
+    "image_url": "PuffBlastX.png",
+    "id": "0000013E"
+  },
+  {
+    "class": "standard",
+    "name_en": "Time Bomb 1",
+    "name": "カウントボム1",
+    "types": [
+      "火"
+    ],
+    "attack": 130,
+    "text": "Set bomb 2 pnls ahead. 3 sec timer",
+    "image_url": "SF3_BC_058.png",
+    "id": "0000002D"
+  },
+  {
+    "class": "standard",
+    "name_en": "Time Bomb 2",
+    "name": "カウントボム2",
+    "types": [
+      "火"
+    ],
+    "attack": 160,
+    "text": "Set bomb 2 pnls ahead. 3 sec timer",
+    "image_url": "SF3_BC_059.png",
+    "id": "0000002E"
+  },
+  {
+    "class": "standard",
+    "name_en": "Time Bomb 3",
+    "name": "カウントボム3",
+    "types": [
+      "火"
+    ],
+    "attack": 200,
+    "attack2": 240,
+    "attack3": 280,
+    "text": "Set bomb 2 pnls ahead. 3 sec timer",
+    "image_url": "SF3_BC_060.png",
+    "id": "0000003F"
+  },
+  {
+    "class": "standard",
+    "name_en": "Time Bomb X",
+    "name": "カウントボムX",
+    "types": [
+      "火"
+    ],
+    "attack": 240,
+    "attack2": 280,
+    "attack3": 320,
+    "text": "Set bomb 2 pnls ahead. 3 sec timer.",
+    "image_url": "TimeBombX.png",
+    "id": "0000011F"
+  },
+  {
+    "class": "standard",
+    "name_en": "Heat Upper 1",
+    "name": "ヒートアッパー1",
+    "types": [
+      "火",
+      "ブレイク"
+    ],
+    "attack": 120,
+    "text": "Hit 1 emy with a Flmng uppercut",
+    "image_url": "SF3_BC_061.png",
+    "id": "00000030"
+  },
+  {
+    "class": "standard",
+    "name_en": "Heat Upper 2",
+    "name": "ヒートアッパー2",
+    "types": [
+      "火",
+      "ブレイク"
+    ],
+    "attack": 150,
+    "text": "Hit 1 emy with a Flmng uppercut",
+    "image_url": "SF3_BC_062.png",
+    "id": "00000031"
+  },
+  {
+    "class": "standard",
+    "name_en": "Heat Upper 3",
+    "name": "ヒートアッパー3",
+    "types": [
+      "火",
+      "ブレイク"
+    ],
+    "attack": 200,
+    "text": "Hit 1 emy with a Flmng uppercut",
+    "image_url": "SF3_BC_063.png",
+    "id": "00000032"
+  },
+  {
+    "class": "standard",
+    "name_en": "Heat Upper X",
+    "name": "ヒートアッパーX",
+    "types": [
+      "火",
+      "ブレイク"
+    ],
+    "attack": 250,
+    "attack2": 300,
+    "attack3": 350,
+    "text": "Flmng upper-cut knocks emies bck 1",
+    "image_url": "HeatUpprX.png",
+    "id": "00000120"
+  },
+  {
+    "class": "standard",
+    "name_en": "Mech Flame 1",
+    "name": "マシーンフレイム1",
+    "types": [
+      "火"
+    ],
+    "attack": 110,
+    "text": "Flamethrowr. Missed pnls become holes",
+    "image_url": "SF3_BC_064.png",
+    "id": "00000033"
+  },
+  {
+    "class": "standard",
+    "name_en": "Mech Flame 2",
+    "name": "マシーンフレイム2",
+    "types": [
+      "火"
+    ],
+    "attack": 140,
+    "text": "Flamethrowr. Missed pnls become holes",
+    "image_url": "SF3_BC_065.png",
+    "id": "00000034"
+  },
+  {
+    "class": "standard",
+    "name_en": "Mech Flame 3",
+    "name": "マシーンフレイム3",
+    "types": [
+      "火"
+    ],
+    "attack": 170,
+    "attack2": 200,
+    "attack3": 260,
+    "text": "Flamethrowr. Missed pnls become holes",
+    "image_url": "SF3_BC_066.png",
+    "id": "00000035"
+  },
+  {
+    "class": "standard",
+    "name_en": "Mech Flame X",
+    "name": "マシーンフレイムX",
+    "types": [
+      "火"
+    ],
+    "attack": 200,
+    "attack2": 230,
+    "attack3": 290,
+    "text": "Flamethrowr. Missed pnls become holes",
+    "image_url": "MechFlameX.png",
+    "id": "00000121"
+  },
+  {
+    "class": "standard",
+    "name_en": "Mad Fire 1",
+    "name": "アンガーファイア1",
+    "types": [
+      "火"
+    ],
+    "attack": 100,
+    "text": "Fireball. If after guard, 3 shots",
+    "image_url": "SF3_BC_067.png",
+    "id": "00000036"
+  },
+  {
+    "class": "standard",
+    "name_en": "Mad Fire 2",
+    "name": "アンガーファイア2",
+    "types": [
+      "火"
+    ],
+    "attack": 140,
+    "text": "Fireball. If after guard, 3 shots",
+    "image_url": "SF3_BC_068.png",
+    "id": "00000037"
+  },
+  {
+    "class": "standard",
+    "name_en": "Mad Fire 3",
+    "name": "アンガーファイア3",
+    "types": [
+      "火"
+    ],
+    "attack": 180,
+    "text": "Fireball. If after guard, 3 shots",
+    "image_url": "SF3_BC_069.png",
+    "id": "00000038"
+  },
+  {
+    "class": "standard",
+    "name_en": "Mad Fire X",
+    "name": "アンガーファイアX",
+    "types": [
+      "火"
+    ],
+    "attack": 220,
+    "text": "Fireball. If after guard, 3 shots",
+    "image_url": "MadFireX.png",
+    "id": "00000122"
+  },
+  {
+    "class": "standard",
+    "name_en": "Dance Fire 1",
+    "name": "ダバフレイム1",
+    "types": [
+      "火"
+    ],
+    "attack": 140,
+    "text": "Flamethrowr atk 3 pnls ahead.",
+    "image_url": "DanceFire1.png",
+    "id": "000000D3"
+  },
+  {
+    "class": "standard",
+    "name_en": "Dance Fire 2",
+    "name": "ダバフレイム2",
+    "types": [
+      "火"
+    ],
+    "attack": 160,
+    "text": "Flamethrowr atk in a T shape.",
+    "image_url": "DanceFire2.png",
+    "id": "000000D4"
+  },
+  {
+    "class": "standard",
+    "name_en": "Dance Fire 3",
+    "name": "ダバフレイム3",
+    "types": [
+      "火"
+    ],
+    "attack": 190,
+    "attack2": 220,
+    "attack3": 260,
+    "text": "Flamethrowr radiating 3 pnls ahead.",
+    "image_url": "DanceFire3.png",
+    "id": "000000D5"
+  },
+  {
+    "class": "standard",
+    "name_en": "Dance Fire X",
+    "name": "ダバフレイムX",
+    "types": [
+      "火"
+    ],
+    "attack": 230,
+    "attack2": 260,
+    "attack3": 300,
+    "text": "Flamethrowr radiating 3 pnls ahead.",
+    "image_url": "DanceFireX.png",
+    "id": "00000139"
+  },
+  {
+    "class": "standard",
+    "name_en": "Kilo Bomb 1",
+    "name": "ボボボンボム1",
+    "types": [
+      "火",
+      "ブレイク"
+    ],
+    "attack": 150,
+    "text": "Lobs bomb at emy if fire atk hits.",
+    "image_url": "KiloBomb1.png",
+    "id": "000000D6"
+  },
+  {
+    "class": "standard",
+    "name_en": "Kilo Bomb 2",
+    "name": "ボボボンボム2",
+    "types": [
+      "火",
+      "ブレイク"
+    ],
+    "attack": 200,
+    "text": "Lobs bomb at emy if fire atk hits.",
+    "image_url": "KiloBomb2.png",
+    "id": "000000D7"
+  },
+  {
+    "class": "standard",
+    "name_en": "Kilo Bomb 3",
+    "name": "ボボボンボム3",
+    "types": [
+      "火",
+      "ブレイク"
+    ],
+    "attack": 250,
+    "attack2": 280,
+    "attack3": 350,
+    "text": "Lobs bomb at emy if fire atk hits.",
+    "image_url": "KiloBomb3.png",
+    "id": "000000D8"
+  },
+  {
+    "class": "standard",
+    "name_en": "Kilo Bomb X",
+    "name": "ボボボンボムX",
+    "types": [
+      "火",
+      "ブレイク"
+    ],
+    "attack": 300,
+    "attack2": 330,
+    "attack3": 400,
+    "text": "Lobs bomb at emy if fire atk hits.",
+    "image_url": "KiloBombX.png",
+    "id": "0000013A"
+  },
+  {
+    "class": "standard",
+    "name_en": "Wide WaVe 1",
+    "name": "ワイドウェーブ1",
+    "types": [
+      "水"
+    ],
+    "attack": 70,
+    "text": "Send out a waVe a row wide",
+    "image_url": "SF3_BC_070.png",
+    "id": "00000039"
+  },
+  {
+    "class": "standard",
+    "name_en": "Wide WaVe 2",
+    "name": "ワイドウェーブ2",
+    "types": [
+      "水"
+    ],
+    "attack": 90,
+    "text": "Send out a waVe a row wide",
+    "image_url": "SF3_BC_071.png",
+    "id": "0000003A"
+  },
+  {
+    "class": "standard",
+    "name_en": "Wide WaVe 3",
+    "name": "ワイドウェーブ3",
+    "types": [
+      "水"
+    ],
+    "attack": 120,
+    "text": "Send out a waVe a row wide",
+    "image_url": "SF3_BC_072.png",
+    "id": "0000003B"
+  },
+  {
+    "class": "standard",
+    "name_en": "Wide WaVe X",
+    "name": "ワイドウェーブX",
+    "types": [
+      "水"
+    ],
+    "attack": 150,
+    "attack2": 190,
+    "attack3": 240,
+    "text": "Send out a waVe a row wide!",
+    "image_url": "WideWaVeX.png",
+    "id": "00000123"
+  },
+  {
+    "class": "standard",
+    "name_en": "Bubble Hook 1",
+    "name": "バブルフック1",
+    "types": [
+      "水"
+    ],
+    "attack": 60,
+    "text": "2-pnl bubble atk on 3 far side pnls",
+    "image_url": "SF3_BC_073.png",
+    "id": "0000003C"
+  },
+  {
+    "class": "standard",
+    "name_en": "Bubble Hook 2",
+    "name": "バブルフック2",
+    "types": [
+      "水"
+    ],
+    "attack": 80,
+    "text": "2-pnl bubble atk on 3 far side pnls",
+    "image_url": "SF3_BC_074.png",
+    "id": "0000003D"
+  },
+  {
+    "class": "standard",
+    "name_en": "Bubble Hook 3",
+    "name": "バブルフック3",
+    "types": [
+      "水"
+    ],
+    "attack": 100,
+    "attack2": 130,
+    "attack3": 170,
+    "text": "2-pnl bubble atk on 3 far side pnls",
+    "image_url": "SF3_BC_075.png",
+    "id": "0000003E"
+  },
+  {
+    "class": "standard",
+    "name_en": "Bubble Hook X",
+    "name": "バブルフックX",
+    "types": [
+      "水"
+    ],
+    "attack": 120,
+    "attack2": 150,
+    "attack3": 190,
+    "text": "2-pnl bubble atk on 3 far side pnls",
+    "image_url": "BubblHookX.png",
+    "id": "00000124"
+  },
+  {
+    "class": "standard",
+    "name_en": "Shark Attack 1",
+    "name": "シャークカッター1",
+    "types": [
+      "水"
+    ],
+    "attack": 70,
+    "text": "Summons Blue Shark Atk on col ahead",
+    "image_url": "SF3_BC_076.png",
+    "id": "0000003F"
+  },
+  {
+    "class": "standard",
+    "name_en": "Shark Attack 2",
+    "name": "シャークカッター2",
+    "types": [
+      "水"
+    ],
+    "attack": 80,
+    "text": "Summons Blue Shark Atk on col ahead",
+    "image_url": "SF3_BC_077.png",
+    "id": "00000040"
+  },
+  {
+    "class": "standard",
+    "name_en": "Shark Attack 3",
+    "name": "シャークカッター3",
+    "types": [
+      "水"
+    ],
+    "attack": 90,
+    "attack2": 120,
+    "attack3": 165,
+    "text": "Summons Blue Shark Atk on col ahead",
+    "image_url": "SF3_BC_078.png",
+    "id": "00000041"
+  },
+  {
+    "class": "standard",
+    "name_en": "Shark Attack X",
+    "name": "シャークカッターX",
+    "types": [
+      "水"
+    ],
+    "attack": 100,
+    "attack2": 130,
+    "attack3": 175,
+    "text": "Summons Blue Shark Atk on col ahead",
+    "image_url": "SharkAtkX.png",
+    "id": "00000125"
+  },
+  {
+    "class": "standard",
+    "name_en": "Ice Spin 1",
+    "name": "アイススピニング1",
+    "types": [
+      "水",
+      "ブレイク"
+    ],
+    "attack": 70,
+    "text": "Launches zig-zagging Spinguin",
+    "image_url": "SF3_BC_079.png",
+    "id": "00000042"
+  },
+  {
+    "class": "standard",
+    "name_en": "Ice Spin 2",
+    "name": "アイススピニング2",
+    "types": [
+      "水",
+      "ブレイク"
+    ],
+    "attack": 90,
+    "text": "Launches zig-zagging Spinguin",
+    "image_url": "SF3_BC_080.png",
+    "id": "00000043"
+  },
+  {
+    "class": "standard",
+    "name_en": "Ice Spin 3",
+    "name": "アイススピニング3",
+    "types": [
+      "水",
+      "ブレイク"
+    ],
+    "attack": 110,
+    "text": "Launches zig-zagging Spinguin",
+    "image_url": "SF3_BC_081.png",
+    "id": "00000044"
+  },
+  {
+    "class": "standard",
+    "name_en": "Ice Spin X",
+    "name": "アイススピニングX",
+    "types": [
+      "水",
+      "ブレイク"
+    ],
+    "attack": 130,
+    "text": "Launches zig-zagging Spinguin",
+    "image_url": "IceSpinX.png",
+    "id": "00000126"
+  },
+  {
+    "class": "standard",
+    "name_en": "Snowball 1",
+    "name": "スノーボール1",
+    "types": [
+      "水"
+    ],
+    "attack": 100,
+    "text": "Roll snoball that grows w/each hit.",
+    "image_url": "SnoBall1.png",
+    "id": "000000D9"
+  },
+  {
+    "class": "standard",
+    "name_en": "Snowball 2",
+    "name": "スノーボール2",
+    "types": [
+      "水"
+    ],
+    "attack": 120,
+    "text": "Roll snoball that grows w/each hit.",
+    "image_url": "SnoBall2.png",
+    "id": "000000DA"
+  },
+  {
+    "class": "standard",
+    "name_en": "Snowball 3",
+    "name": "スノーボール3",
+    "types": [
+      "水"
+    ],
+    "attack": 150,
+    "text": "Roll snoball that grows w/each hit.",
+    "image_url": "SnoBall3.png",
+    "id": "000000DB"
+  },
+  {
+    "class": "standard",
+    "name_en": "Snowball X",
+    "name": "スノーボールX",
+    "types": [
+      "水"
+    ],
+    "attack": 180,
+    "text": "Roll snoball that grows w/each hit.",
+    "image_url": "SnoBallX.png",
+    "id": "0000013B"
+  },
+  {
+    "class": "standard",
+    "name_en": "Piranha Kiss 1",
+    "name": "ピラニアキッス1",
+    "types": [
+      "水"
+    ],
+    "attack": 10,
+    "text": "Piranha atk enemies from adj pnls",
+    "image_url": "PiranKss1.png",
+    "id": "000000DC"
+  },
+  {
+    "class": "standard",
+    "name_en": "Piranha Kiss 2",
+    "name": "ピラニアキッス2",
+    "types": [
+      "水"
+    ],
+    "attack": 20,
+    "text": "Piranha atk enemies from adj pnls",
+    "image_url": "PiranKss2.png",
+    "id": "000000DD"
+  },
+  {
+    "class": "standard",
+    "name_en": "Piranha Kiss 3",
+    "name": "ピラニアキッス3",
+    "types": [
+      "水"
+    ],
+    "attack": 30,
+    "text": "Piranha atk enemies from adj pnls",
+    "image_url": "PiranKss3.png",
+    "id": "000000DE"
+  },
+  {
+    "class": "standard",
+    "name_en": "Pirahna Kiss X",
+    "name": "ピラニアキッスX",
+    "types": [
+      "水"
+    ],
+    "attack": 40,
+    "text": "Piranha atk enemies from adj pnls",
+    "image_url": "PiranKssX.png",
+    "id": "0000013C"
+  },
+  {
+    "class": "standard",
+    "name_en": "Stealth Laser 1",
+    "name": "ステルスレーザー1",
+    "types": [
+      "電気"
+    ],
+    "attack": 40,
+    "text": "3-shot laser atk to enemy w/highest HP",
+    "image_url": "SF3_BC_082.png",
+    "id": "00000045"
+  },
+  {
+    "class": "standard",
+    "name_en": "Stealth Laser 2",
+    "name": "ステルスレーザー2",
+    "types": [
+      "電気"
+    ],
+    "attack": 50,
+    "text": "3-shot laser atk to enemy w/highest HP",
+    "image_url": "SF3_BC_083.png",
+    "id": "00000046"
+  },
+  {
+    "class": "standard",
+    "name_en": "Stealth Laser 3",
+    "name": "ステルスレーザー3",
+    "types": [
+      "電気"
+    ],
+    "attack": 60,
+    "text": "3-shot laser atk to enemy w/highest HP",
+    "image_url": "SF3_BC_084.png",
+    "id": "00000047"
+  },
+  {
+    "class": "standard",
+    "name_en": "Stealth Laser X",
+    "name": "ステルスレーザーX",
+    "types": [
+      "電気"
+    ],
+    "attack": 70,
+    "text": "3-shot laser atk to enemy w/highest HP",
+    "image_url": "StlthLazrX.png",
+    "id": "00000127"
+  },
+  {
+    "class": "standard",
+    "name_en": "Mummy Hand 1",
+    "name": "マミーハンド1",
+    "types": [
+      "電気"
+    ],
+    "attack": 120,
+    "text": "Mummy Hand Parlyzes 3x2 panels ahead",
+    "image_url": "SF3_BC_085.png",
+    "id": "00000048"
+  },
+  {
+    "class": "standard",
+    "name_en": "Mummy Hand 2",
+    "name": "マミーハンド2",
+    "types": [
+      "電気"
+    ],
+    "attack": 150,
+    "text": "Mummy Hand Parlyzes 3x2 panels ahead",
+    "image_url": "SF3_BC_086.png",
+    "id": "00000049"
+  },
+  {
+    "class": "standard",
+    "name_en": "Mummy Hand 3",
+    "name": "マミーハンド3",
+    "types": [
+      "電気"
+    ],
+    "attack": 170,
+    "text": "Mummy Hand Parlyzes 3x2 panels ahead",
+    "image_url": "SF3_BC_087.png",
+    "id": "0000004A"
+  },
+  {
+    "class": "standard",
+    "name_en": "Mummy Hand X",
+    "name": "マミーハンドX",
+    "types": [
+      "電気"
+    ],
+    "attack": 200,
+    "text": "Atk around MegaMan 5x5. Paralyze.",
+    "image_url": "MummyHandX.png",
+    "id": "00000128"
+  },
+  {
+    "class": "standard",
+    "name_en": "Thunder Head 1",
+    "name": "イナズマヘッド1",
+    "types": [
+      "電気"
+    ],
+    "attack": 150,
+    "text": "Rdmly rain down thunder on 3x3 area",
+    "image_url": "SF3_BC_088.png",
+    "id": "0000004B"
+  },
+  {
+    "class": "standard",
+    "name_en": "Thunder Head 2",
+    "name": "イナズマヘッド2",
+    "types": [
+      "電気"
+    ],
+    "attack": 180,
+    "text": "Rdmly rain down thunder on 3x3 area",
+    "image_url": "SF3_BC_089.png",
+    "id": "0000004C"
+  },
+  {
+    "class": "standard",
+    "name_en": "Thunder Head 3",
+    "name": "イナズマヘッド3",
+    "types": [
+      "電気"
+    ],
+    "attack": 230,
+    "text": "Rdmly rain down thunder on 3x3 area",
+    "image_url": "SF3_BC_090.png",
+    "id": "0000004D"
+  },
+  {
+    "class": "standard",
+    "name_en": "Thunder Head X",
+    "name": "イナズマヘッドX",
+    "types": [
+      "電気"
+    ],
+    "attack": 260,
+    "text": "Rdmly rain down thunder on 3x3 area",
+    "image_url": "ThndrHeadX.png",
+    "id": "00000129"
+  },
+  {
+    "class": "standard",
+    "name_en": "Flash Strike 1",
+    "name": "フラッシュスピア1",
+    "types": [
+      "電気"
+    ],
+    "attack": 10,
+    "text": "5-shot Flash Strike atk 2 rows ahead",
+    "image_url": "SF3_BC_091.png",
+    "id": "0000004E"
+  },
+  {
+    "class": "standard",
+    "name_en": "Flash Strike 2",
+    "name": "フラッシュスピア2",
+    "types": [
+      "電気"
+    ],
+    "attack": 20,
+    "text": "5-shot Flash Strike atk 2 rows ahead",
+    "image_url": "SF3_BC_092.png",
+    "id": "0000004F"
+  },
+  {
+    "class": "standard",
+    "name_en": "Flash Strike 3",
+    "name": "フラッシュスピア3",
+    "types": [
+      "電気"
+    ],
+    "attack": 30,
+    "attack2": 45,
+    "attack3": 70,
+    "text": "5-shot Flash Strike atk 2 rows ahead",
+    "image_url": "SF3_BC_093.png",
+    "id": "00000050"
+  },
+  {
+    "class": "standard",
+    "name_en": "Flash Strike X",
+    "name": "フラッシュスピアX",
+    "types": [
+      "電気"
+    ],
+    "attack": 40,
+    "attack2": 55,
+    "attack3": 80,
+    "text": "5-shot Flash Strike atk 2 rows ahead",
+    "image_url": "FlashStrkX.png",
+    "id": "0000012A"
+  },
+  {
+    "class": "standard",
+    "name_en": "Earth Thunder 1",
+    "name": "サンダーオブアース1",
+    "types": [
+      "電気"
+    ],
+    "attack": 30,
+    "text": "ThndrBalls come up from holes. 9 max",
+    "image_url": "Earthundr1.png",
+    "id": "00000102"
+  },
+  {
+    "class": "standard",
+    "name_en": "Earth Thunder 2",
+    "name": "サンダーオブアース2",
+    "types": [
+      "電気"
+    ],
+    "attack": 40,
+    "text": "ThndrBalls come up from holes. 9 max",
+    "image_url": "Earthundr2.png",
+    "id": "00000103"
+  },
+  {
+    "class": "standard",
+    "name_en": "Earth Thunder 3",
+    "name": "サンダーオブアース3",
+    "types": [
+      "電気"
+    ],
+    "attack": 50,
+    "text": "ThndrBalls come up from holes. 9 max",
+    "image_url": "Earthundr3.png",
+    "id": "00000104"
+  },
+  {
+    "class": "standard",
+    "name_en": "Earth Thunder X",
+    "name": "サンダーオブアースX",
+    "types": [
+      "電気"
+    ],
+    "attack": 60,
+    "text": "ThndrBalls come up from holes. 9 max",
+    "image_url": "EarthundrX.png",
+    "id": "00000140"
+  },
+  {
+    "class": "standard",
+    "name_en": "Arach Attack 1",
+    "name": "ダミースパイダー1",
+    "types": [
+      "木"
+    ],
+    "attack": 40,
+    "text": "Arachnid atk from aboVe, confuses emy",
+    "image_url": "SF3_BC_094.png",
+    "id": "00000051"
+  },
+  {
+    "class": "standard",
+    "name_en": "Arach Attack 2",
+    "name": "ダミースパイダー2",
+    "types": [
+      "木"
+    ],
+    "attack": 50,
+    "text": "Arachnid atk from aboVe, confuses emy",
+    "image_url": "SF3_BC_095.png",
+    "id": "00000052"
+  },
+  {
+    "class": "standard",
+    "name_en": "Arach Attack 3",
+    "name": "ダミースパイダー3",
+    "types": [
+      "木"
+    ],
+    "attack": 60,
+    "attack2": 90,
+    "attack3": 120,
+    "text": "Arachnid atk from aboVe, confuses emy",
+    "image_url": "SF3_BC_096.png",
+    "id": "00000053"
+  },
+  {
+    "class": "standard",
+    "name_en": "Arach Attack X",
+    "name": "ダミースパイダーX",
+    "types": [
+      "木"
+    ],
+    "attack": 70,
+    "attack2": 100,
+    "attack3": 130,
+    "text": "Arachnid atk from aboVe, confuses emy",
+    "image_url": "ArachAtkX.png",
+    "id": "0000012B"
+  },
+  {
+    "class": "standard",
+    "name_en": "Shuriken 1",
+    "name": "シュリシュリケン1",
+    "types": [
+      "木",
+      "ソード"
+    ],
+    "attack": 100,
+    "text": "Shuriken whiz around battlefield",
+    "image_url": "SF3_BC_097.png",
+    "id": "00000054"
+  },
+  {
+    "class": "standard",
+    "name_en": "Shuriken 2",
+    "name": "シュリシュリケン2",
+    "types": [
+      "木",
+      "ソード"
+    ],
+    "attack": 120,
+    "text": "Shuriken whiz around battlefield",
+    "image_url": "SF3_BC_098.png",
+    "id": "00000055"
+  },
+  {
+    "class": "standard",
+    "name_en": "Shuriken 3",
+    "name": "シュリシュリケン3",
+    "types": [
+      "木",
+      "ソード"
+    ],
+    "attack": 140,
+    "attack2": 170,
+    "attack3": 220,
+    "text": "Shuriken whiz around battlefield",
+    "image_url": "SF3_BC_099.png",
+    "id": "00000056"
+  },
+  {
+    "class": "standard",
+    "name_en": "Shuriken X",
+    "name": "シュリシュリケンX",
+    "types": [
+      "木"
+    ],
+    "attack": 160,
+    "attack2": 190,
+    "attack3": 240,
+    "text": "Shuriken whiz around battlefield",
+    "image_url": "ShurikenX.png",
+    "id": "0000012C"
+  },
+  {
+    "class": "standard",
+    "name_en": "Pollen Shot 1",
+    "name": "パウダーシュート1",
+    "types": [
+      "木"
+    ],
+    "attack": 120,
+    "text": "Pollen Shot emies on fwd grass pnls",
+    "image_url": "SF3_BC_100.png",
+    "id": "00000057"
+  },
+  {
+    "class": "standard",
+    "name_en": "Pollen Shot 2",
+    "name": "パウダーシュート2",
+    "types": [
+      "木"
+    ],
+    "attack": 140,
+    "text": "Pollen Shot emies on fwd grass pnls",
+    "image_url": "SF3_BC_101.png",
+    "id": "00000058"
+  },
+  {
+    "class": "standard",
+    "name_en": "Pollen Shot 3",
+    "name": "パウダーシュート3",
+    "types": [
+      "木"
+    ],
+    "attack": 160,
+    "text": "Pollen Shot emies on fwd grass pnls",
+    "image_url": "SF3_BC_102.png",
+    "id": "00000059"
+  },
+  {
+    "class": "standard",
+    "name_en": "Pollen Shot X",
+    "name": "パウダーシュートX",
+    "types": [
+      "木"
+    ],
+    "attack": 180,
+    "text": "Pollen Shot emies on fwd grass pnls",
+    "image_url": "PollnShotX.png",
+    "id": "0000012D"
+  },
+  {
+    "class": "standard",
+    "name_en": "Acorn Bomb 1",
+    "name": "ローリングナッツ1",
+    "types": [
+      "木"
+    ],
+    "attack": 100,
+    "text": "+Control Pad up & explode Acorn Bomb",
+    "image_url": "SF3_BC_103.png",
+    "id": "0000005A"
+  },
+  {
+    "class": "standard",
+    "name_en": "Acorn Bomb 2",
+    "name": "ローリングナッツ2",
+    "types": [
+      "木"
+    ],
+    "attack": 120,
+    "text": "+Control Pad up & explode Acorn Bomb",
+    "image_url": "SF3_BC_104.png",
+    "id": "0000005B"
+  },
+  {
+    "class": "standard",
+    "name_en": "Acorn Bomb 3",
+    "name": "ローリングナッツ3",
+    "types": [
+      "木"
+    ],
+    "attack": 140,
+    "text": "+Control Pad up & explode Acorn Bomb",
+    "image_url": "SF3_BC_105.png",
+    "id": "0000005C"
+  },
+  {
+    "class": "standard",
+    "name_en": "Acorn Bomb X",
+    "name": "ローリングナッツX",
+    "types": [
+      "木"
+    ],
+    "attack": 160,
+    "text": "+Control Pad up & explode Acorn Bomb",
+    "image_url": "AcornBombX.png",
+    "id": "0000012E"
+  },
+  {
+    "class": "standard",
+    "name_en": "Squall 1",
+    "name": "コガラシ1",
+    "types": [
+      "木",
+      "風"
+    ],
+    "attack": 10,
+    "text": "Max 8-hit wind atk 2 pnls ahead.",
+    "image_url": "Squall1.png",
+    "id": "000000DF"
+  },
+  {
+    "class": "standard",
+    "name_en": "Squall 2",
+    "name": "コガラシ2",
+    "types": [
+      "木",
+      "風"
+    ],
+    "attack": 20,
+    "text": "Max 8-hit wind atk 2 pnls ahead.",
+    "image_url": "Squall2.png",
+    "id": "000000E0"
+  },
+  {
+    "class": "standard",
+    "name_en": "Squall 3",
+    "name": "コガラシ3",
+    "types": [
+      "木",
+      "風"
+    ],
+    "attack": 30,
+    "attack2": 45,
+    "attack3": 60,
+    "text": "Max 8-hit wind atk 2 pnls ahead.",
+    "image_url": "Squall3.png",
+    "id": "000000E1"
+  },
+  {
+    "class": "standard",
+    "name_en": "Squall X",
+    "name": "コガラシX",
+    "types": [
+      "木",
+      "風"
+    ],
+    "attack": 40,
+    "attack2": 55,
+    "attack3": 70,
+    "text": "Max 8-hit wind atk 2 pnls ahead.",
+    "image_url": "SquallX.png",
+    "id": "0000013D"
+  },
+  {
+    "class": "standard",
+    "name_en": "Vulcan Seed 1",
+    "name": "バルカンシード1",
+    "types": [
+      "木"
+    ],
+    "attack": 20,
+    "text": "9-shot atk across 3 columns!",
+    "image_url": "VulcnSeed1.png",
+    "id": "000000F6"
+  },
+  {
+    "class": "standard",
+    "name_en": "Vulcan Seed 2",
+    "name": "バルカンシード2",
+    "types": [
+      "木"
+    ],
+    "attack": 30,
+    "text": "9-shot atk across 3 columns!",
+    "image_url": "VulcnSeed2.png",
+    "id": "000000F7"
+  },
+  {
+    "class": "standard",
+    "name_en": "Vulcan Seed 3",
+    "name": "バルカンシード3",
+    "types": [
+      "木"
+    ],
+    "attack": 40,
+    "attack2": 55,
+    "attack3": 70,
+    "text": "9-shot atk across 3 columns!",
+    "image_url": "VulcnSeed3.png",
+    "id": "000000F8"
+  },
+  {
+    "class": "standard",
+    "name_en": "Vulcan Seed X",
+    "name": "バルカンシードX",
+    "types": [
+      "木"
+    ],
+    "attack": 50,
+    "attack2": 65,
+    "attack3": 80,
+    "text": "9-shot atk across 3 columns!",
+    "image_url": "VulcnSeedX.png",
+    "id": "0000013F"
+  },
+  {
+    "class": "standard",
+    "name_en": "Beast Slap 1",
+    "name": "ビーストスイング1",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 100,
+    "text": "Mega slashes fwd 3x2 pnls",
+    "image_url": "SF3_BC_106.png",
+    "id": "0000000C"
+  },
+  {
+    "class": "standard",
+    "name_en": "Beast Slap 2",
+    "name": "ビーストスイング2",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 140,
+    "text": "Mega slashes fwd 3x2 pnls",
+    "image_url": "SF3_BC_107.png",
+    "id": "0000000D"
+  },
+  {
+    "class": "standard",
+    "name_en": "Beast Slap 3",
+    "name": "ビーストスイング3",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 200,
+    "text": "Mega slashes fwd 3x2 pnls",
+    "image_url": "SF3_BC_108.png",
+    "id": "0000000E"
+  },
+  {
+    "class": "standard",
+    "name_en": "Beast Slap X",
+    "name": "ビーストスイングX",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 240,
+    "text": "Mega slashes fwd 3x2 pnls",
+    "image_url": "BeastSlapX.png",
+    "id": "00000015"
+  },
+  {
+    "class": "standard",
+    "name_en": "Noised Wizard 1",
+    "name": "ノイズドウィザード1",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 120,
+    "text": "Noise Wizard atks far row from outside",
+    "image_url": "SF3_BC_109.png",
+    "id": "0000006C"
+  },
+  {
+    "class": "standard",
+    "name_en": "Noised Wizard 2",
+    "name": "ノイズドウィザード2",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 150,
+    "text": "Noise Wizard atks far row from outside",
+    "image_url": "SF3_BC_110.png",
+    "id": "0000006D"
+  },
+  {
+    "class": "standard",
+    "name_en": "Noised Wizard 3",
+    "name": "ノイズドウィザード3",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 180,
+    "text": "Noise Wizard atks far row from outside",
+    "image_url": "SF3_BC_111.png",
+    "id": "0000006E"
+  },
+  {
+    "class": "standard",
+    "name_en": "Noised Wizard X",
+    "name": "ノイズドウィザードX",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 210,
+    "text": "Noise Wizard atks far row from outside",
+    "image_url": "NoiseWzrdX.png",
+    "id": "00000134"
+  },
+  {
+    "class": "standard",
+    "name_en": "Mal Wizard 1",
+    "name": "ヒールウィザード1",
+    "types": [
+      "電気"
+    ],
+    "attack": 180,
+    "text": "Mal Wizard prlyz whip atk 2 pnls",
+    "image_url": "SF3_BC_112.png",
+    "id": "0000006F"
+  },
+  {
+    "class": "standard",
+    "name_en": "Mal Wizard 2",
+    "name": "ヒールウィザード2",
+    "types": [
+      "電気"
+    ],
+    "attack": 210,
+    "text": "Mal Wizard prlyz whip atk 2 pnls",
+    "image_url": "SF3_BC_113.png",
+    "id": "00000070"
+  },
+  {
+    "class": "standard",
+    "name_en": "Mal Wizard 3",
+    "name": "ヒールウィザード3",
+    "types": [
+      "電気"
+    ],
+    "attack": 250,
+    "text": "Mal Wizard prlyz whip atk 2 pnls",
+    "image_url": "SF3_BC_114.png",
+    "id": "00000071"
+  },
+  {
+    "class": "standard",
+    "name_en": "Mal Wizard X",
+    "name": "ヒールウィザードX",
+    "types": [
+      "電気"
+    ],
+    "attack": 290,
+    "text": "Mal Wizard prlyz whip atk 2 pnls",
+    "image_url": "MalWizardX.png",
+    "id": "00000135"
+  },
+  {
+    "class": "standard",
+    "name_en": "Spin Blade 1",
+    "name": "ダンシングブレード1",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 120,
+    "text": "SpinBlade cuts diag across field",
+    "image_url": "SpinBlade1.png",
+    "id": "00000108"
+  },
+  {
+    "class": "standard",
+    "name_en": "Spin Blade 2",
+    "name": "ダンシングブレード2",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 150,
+    "text": "SpinBlade cuts diag across field",
+    "image_url": "SpinBlade2.png",
+    "id": "00000109"
+  },
+  {
+    "class": "standard",
+    "name_en": "Spin Blade 3",
+    "name": "ダンシングブレード3",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 180,
+    "attack2": 210,
+    "attack3": 240,
+    "text": "SpinBlade cuts diag across field",
+    "image_url": "SpinBlade3.png",
+    "id": "0000010A"
+  },
+  {
+    "class": "standard",
+    "name_en": "Spin Blade X",
+    "name": "ダンシングブレードX",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 210,
+    "attack2": 240,
+    "attack3": 270,
+    "text": "SpinBlade cuts diag across field",
+    "image_url": "SpinBladeX.png",
+    "id": "00000142"
+  },
+  {
+    "class": "standard",
+    "name_en": "Black Hole 1",
+    "name": "ブラックホール1",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "Emy w/ less than 100 HP are deleted",
+    "image_url": "SF3_BC_115.png",
+    "id": "00000072"
+  },
+  {
+    "class": "standard",
+    "name_en": "Black Hole 2",
+    "name": "ブラックホール2",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "Emy w/ less than 130 HP are deleted",
+    "image_url": "SF3_BC_116.png",
+    "id": "00000073"
+  },
+  {
+    "class": "standard",
+    "name_en": "Black Hole 3",
+    "name": "ブラックホール3",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "Emy w/ less than 160 HP are deleted",
+    "image_url": "SF3_BC_117.png",
+    "id": "00000074"
+  },
+  {
+    "class": "standard",
+    "name_en": "Black Hole X",
+    "name": "ブラックホールX",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "Emy w/ less than 190 HP are deleted.",
+    "image_url": "BlackHoleX.png",
+    "id": "00000136"
+  },
+  {
+    "class": "standard",
+    "name_en": "Jungle Storm",
+    "name": "ジャングルストーム",
+    "types": [
+      "木",
+      "風"
+    ],
+    "attack": 30,
+    "text": "Atk using grass pnls on field.",
+    "image_url": "JngleStorm.png",
+    "id": "000000E5"
+  },
+  {
+    "class": "standard",
+    "name_en": "Snow Storm",
+    "name": "スノーストーム",
+    "types": [
+      "水",
+      "風"
+    ],
+    "attack": 35,
+    "text": "Atk using ice pnls on field.",
+    "image_url": "SnoStorm.png",
+    "id": "000000E6"
+  },
+  {
+    "class": "standard",
+    "name_en": "Poison Storm",
+    "name": "ポイズンストーム",
+    "types": [
+      "無",
+      "風"
+    ],
+    "attack": 40,
+    "text": "Atk using poison pnls on field.",
+    "image_url": "PoisnStorm.png",
+    "id": "000000E7"
+  },
+  {
+    "class": "standard",
+    "name_en": "Double Stone",
+    "name": "ダブルストーン",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "Cmd settings let you put 2 stones",
+    "image_url": "SF3_BC_118.png",
+    "id": "00000077"
+  },
+  {
+    "class": "standard",
+    "name_en": "Bombalizer",
+    "name": "ボムライザー",
+    "types": [
+      "無"
+    ],
+    "attack": 200,
+    "text": "Blow up all obstcls, dmg adj pnls",
+    "image_url": "SF3_BC_119.png",
+    "id": "00000078"
+  },
+  {
+    "class": "standard",
+    "name_en": "DiVide Line",
+    "name": "ディバイドライン",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "Make row in front of you holes 3 trns",
+    "image_url": "SF3_BC_120.png",
+    "id": "00000079"
+  },
+  {
+    "class": "standard",
+    "name_en": "Double Eater",
+    "name": "ダブルイーター",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "For 3 turns, cut 2 rows from field",
+    "image_url": "SF3_BC_121.png",
+    "id": "0000001D"
+  },
+  {
+    "class": "standard",
+    "name_en": "Panel Format",
+    "name": "パネルフォーマット",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "Make all pnls on field normal",
+    "image_url": "SF3_BC_122.png",
+    "id": "0000007A"
+  },
+  {
+    "class": "standard",
+    "name_en": "Panic Cloud",
+    "name": "パニッククラウド",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "Confuses emies on normal pnls 8 secs",
+    "image_url": "SF3_BC_123.png",
+    "id": "00000012"
+  },
+  {
+    "class": "standard",
+    "name_en": "RecoVer 10",
+    "name": "リカバリー10",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "RecoVer 10 HP",
+    "image_url": "SF3_BC_124.png",
+    "id": "0000007E"
+  },
+  {
+    "class": "standard",
+    "name_en": "RecoVer 30",
+    "name": "リカバリー30",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "RecoVer 30 HP",
+    "image_url": "SF3_BC_125.png",
+    "id": "0000007F"
+  },
+  {
+    "class": "standard",
+    "name_en": "RecoVer 50",
+    "name": "リカバリー50",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "RecoVer 50 HP",
+    "image_url": "SF3_BC_126.png",
+    "id": "00000080"
+  },
+  {
+    "class": "standard",
+    "name_en": "RecoVer 80",
+    "name": "リカバリー80",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "RecoVer 80 HP",
+    "image_url": "SF3_BC_127.png",
+    "id": "00000081"
+  },
+  {
+    "class": "standard",
+    "name_en": "RecoVer 120",
+    "name": "リカバリー120",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "RecoVer 120 HP",
+    "image_url": "SF3_BC_128.png",
+    "id": "00000082"
+  },
+  {
+    "class": "standard",
+    "name_en": "RecoVer 150",
+    "name": "リカバリー150",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "RecoVer 150 HP",
+    "image_url": "SF3_BC_129.png",
+    "id": "00000083"
+  },
+  {
+    "class": "standard",
+    "name_en": "RecoVer 200",
+    "name": "リカバリー200",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "RecoVer 200 HP",
+    "image_url": "SF3_BC_130.png",
+    "id": "00000084"
+  },
+  {
+    "class": "standard",
+    "name_en": "RecoVer 300",
+    "name": "リカバリー300",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "RecoVer 300 HP",
+    "image_url": "SF3_BC_131.png",
+    "id": "00000085"
+  },
+  {
+    "class": "standard",
+    "name_en": "Barrier",
+    "name": "バリア",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "Barrier blocks most atks 1 time",
+    "image_url": "SF3_BC_132.png",
+    "id": "00000086"
+  },
+  {
+    "class": "standard",
+    "name_en": "Super Barrier",
+    "name": "スーパーバリア",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "Barrier blocks most atks 5 times",
+    "image_url": "SF3_BC_133.png",
+    "id": "00000087"
+  },
+  {
+    "class": "standard",
+    "name_en": "Aura",
+    "name": "オーラ",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "Absorbs all dmg less than 100",
+    "image_url": "SF3_BC_134.png",
+    "id": "00000088"
+  },
+  {
+    "class": "standard",
+    "name_en": "InVisible",
+    "name": "インビジブル",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "Temp inVis. Most atks ineffectiVe",
+    "image_url": "SF3_BC_135.png",
+    "id": "00000089"
+  },
+  {
+    "class": "standard",
+    "name_en": "Mega Boost",
+    "name": "ウォーロックブースト",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "Take no dmg during a Mega atk",
+    "image_url": "MegaBoost.png",
+    "id": "0000010F"
+  },
+  {
+    "class": "standard",
+    "name_en": "Quick Gauge",
+    "name": "クイックゲージ",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "Speeds up Custom Gauge",
+    "image_url": "QuickGauge.png",
+    "id": "0000010B"
+  },
+  {
+    "class": "standard",
+    "name_en": "Normal Gauge",
+    "name": "ノーマルゲージ",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "Restore norml Custom Gauge speed",
+    "image_url": "NormlGauge.png",
+    "id": "0000010C"
+  },
+  {
+    "class": "standard",
+    "name_en": "Slow Gauge",
+    "name": "ヘビーゲージ",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "Slows down Custom Gauge",
+    "image_url": "SlowGauge.png",
+    "id": "0000010D"
+  },
+  {
+    "class": "standard",
+    "name_en": "Warrior Soul",
+    "name": "ウォリアーブラッド",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "MaxBstr & SprArmr. But also, HP Bug",
+    "image_url": "WrrirSoul.png",
+    "id": "000000FA"
+  },
+  {
+    "class": "standard",
+    "name_en": "Whistle",
+    "name": "ホイッスル",
+    "types": [
+      "無",
+      "風"
+    ],
+    "attack": null,
+    "text": "Call all enemies to you",
+    "image_url": "SF3_BC_136.png",
+    "id": "0000008A"
+  },
+  {
+    "class": "standard",
+    "name_en": "Card ReViVe",
+    "name": "アンデッドリバース",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "w/holey pnl copy last summon atk",
+    "image_url": "CardReViVe.png",
+    "id": "0000010E"
+  },
+  {
+    "class": "standard",
+    "name_en": "Mega Crusher",
+    "name": "メガクラッシャー",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "Make opp M cards unusable Vs only",
+    "image_url": "SF3_BC_137.png",
+    "id": "0000007C"
+  },
+  {
+    "class": "standard",
+    "name_en": "Spirit Fury",
+    "name": "セイレイノイカリ",
+    "types": [
+      "無"
+    ],
+    "attack": 150,
+    "text": "VS only. Use Elmnt S card to unleash",
+    "image_url": "SF3_BC_138.png",
+    "id": "0000008B"
+  },
+  {
+    "class": "standard",
+    "name_en": "Anti Sword",
+    "name": "シラハドリ",
+    "types": [
+      "無"
+    ],
+    "attack": 120,
+    "text": "VS only. Use swrd crd trap sprngs",
+    "image_url": "SF3_BC_139.png",
+    "id": "0000008C"
+  },
+  {
+    "class": "standard",
+    "name_en": "Poison Apple",
+    "name": "ドクリンゴ",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "VS only. Use rcVr crd trap sprngs",
+    "image_url": "SF3_BC_140.png",
+    "id": "0000008D"
+  },
+  {
+    "class": "standard",
+    "name_en": "DoubleCross",
+    "name": "ウラギリノススメ",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "VS only. M Summon crd trap sprngs",
+    "image_url": "SF3_BC_141.png",
+    "id": "0000008E"
+  },
+  {
+    "class": "standard",
+    "name_en": "GigaMine",
+    "name": "ギガマイン",
+    "types": [
+      "無"
+    ],
+    "attack": 300,
+    "text": "VS only. Use Giga crd trap sprngs",
+    "image_url": "SF3_BC_142.png",
+    "id": "0000008F"
+  },
+  {
+    "class": "standard",
+    "name_en": "Grass Stage",
+    "name": "クサムラステージ",
+    "types": [
+      "木"
+    ],
+    "attack": null,
+    "text": "Farthest 3x3 pnls change into grass",
+    "image_url": "SF3_BC_143.png",
+    "id": "00000090"
+  },
+  {
+    "class": "standard",
+    "name_en": "Ice Stage",
+    "name": "アイスステージ",
+    "types": [
+      "水"
+    ],
+    "attack": null,
+    "text": "Farthest 3x3 pnls change into ice",
+    "image_url": "SF3_BC_144.png",
+    "id": "00000091"
+  },
+  {
+    "class": "standard",
+    "name_en": "Paralyze Stage",
+    "name": "パラライズステージ",
+    "types": [
+      "電気"
+    ],
+    "attack": null,
+    "text": "Paralyze atk on far 3x3 panels",
+    "image_url": "SF3_BC_145.png",
+    "id": "00000092"
+  },
+  {
+    "class": "standard",
+    "name_en": "Holy Panel",
+    "name": "ホーリーパネル",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "Current pnl becomes 1/2 dmg HolyPnl",
+    "image_url": "SF3_BC_146.png",
+    "id": "00000093"
+  },
+  {
+    "class": "standard",
+    "name_en": "Attack Panel",
+    "name": "アタックパネル",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "Use crd when on pnl Atk pwr +10",
+    "image_url": "SF3_BC_147.png",
+    "id": "00000094"
+  },
+  {
+    "class": "standard",
+    "name_en": "All Poison",
+    "name": "オールポイズン",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "Turn entire field into poisn panels",
+    "image_url": "AllPoison.png",
+    "id": "000000FD"
+  },
+  {
+    "class": "standard",
+    "name_en": "GraVity Plus",
+    "name": "グラビティプラス",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "If preVious is atk card, add imoblz",
+    "image_url": "SF3_BC_148.png",
+    "id": "0000007D"
+  },
+  {
+    "class": "standard",
+    "name_en": "Paralyze Plus",
+    "name": "マヒプラス",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "If preVious is atk card, add paralyz",
+    "image_url": "SF3_BC_149.png",
+    "id": "00000095"
+  },
+  {
+    "class": "standard",
+    "name_en": "Attack +10",
+    "name": "アタック＋10",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "If preVious is atk card, +10 to atk",
+    "image_url": "SF3_BC_150.png",
+    "id": "00000096"
+  },
+  {
+    "class": "standard",
+    "name_en": "Fire +30",
+    "name": "ファイア＋30",
+    "types": [
+      "火"
+    ],
+    "attack": null,
+    "text": "+30 atk pwr to Fire elm cards",
+    "image_url": "Fire_30.png",
+    "id": "000000FE"
+  },
+  {
+    "class": "standard",
+    "name_en": "Aqua +30",
+    "name": "アクア＋30",
+    "types": [
+      "水"
+    ],
+    "attack": null,
+    "text": "+30 atk pwr to Aqua elm cards",
+    "image_url": "Aqua_30.png",
+    "id": "000000FF"
+  },
+  {
+    "class": "standard",
+    "name_en": "Elec +30",
+    "name": "エレキ＋30",
+    "types": [
+      "電気"
+    ],
+    "attack": null,
+    "text": "+30 atk pwr to Elec elm cards",
+    "image_url": "Elec_30.png",
+    "id": "00000100"
+  },
+  {
+    "class": "standard",
+    "name_en": "Wood +30",
+    "name": "ウッド＋30",
+    "types": [
+      "木"
+    ],
+    "attack": null,
+    "text": "+30 atk pwr to Wood elm cards",
+    "image_url": "Wood_30.png",
+    "id": "00000101"
+  },
+  {
+    "class": "mega",
+    "name_en": "Spade Magnes",
+    "name": "スペードマグネッツ",
+    "types": [
+      "電気",
+      "ソード"
+    ],
+    "attack": 60,
+    "text": "SpadeMgnes slices twice max 2 hits",
+    "image_url": "SF3_BC_M001.png",
+    "id": "00000097"
+  },
+  {
+    "class": "mega",
+    "name_en": "Spade Magnes V2",
+    "name": "スペードマグネッツV2",
+    "types": [
+      "電気",
+      "ソード"
+    ],
+    "attack": 90,
+    "text": "SpadeMgnes slices twice max 2 hits",
+    "image_url": "SF3_BC_M002.png",
+    "id": "00000098"
+  },
+  {
+    "class": "mega",
+    "name_en": "Spade Magnes V3",
+    "name": "スペードマグネッツV3",
+    "types": [
+      "電気",
+      "ソード"
+    ],
+    "attack": 130,
+    "text": "SpadeMgnes slices twice max 2 hits",
+    "image_url": "SF3_BC_M003.png",
+    "id": "00000099"
+  },
+  {
+    "class": "mega",
+    "name_en": "Spade Magnes X",
+    "name": "スペードマグネッツX",
+    "types": [
+      "電気",
+      "ソード"
+    ],
+    "attack": 170,
+    "text": "SpadeMgnes slices twice max 2 hits",
+    "image_url": "Xxx_spade_magnetsX.png",
+    "id": "00000168"
+  },
+  {
+    "class": "mega",
+    "name_en": "Diamond Ice",
+    "name": "ダイヤアイスバーン",
+    "types": [
+      "水",
+      "風"
+    ],
+    "attack": 40,
+    "text": "Diamond Dust diagonal 3-hit atk",
+    "image_url": "SF3_BC_M004.png",
+    "id": "0000009A"
+  },
+  {
+    "class": "mega",
+    "name_en": "Diamond Ice V2",
+    "name": "ダイヤアイスバーンV2",
+    "types": [
+      "水",
+      "風"
+    ],
+    "attack": 50,
+    "text": "Diamond Dust diagonal 3-hit atk",
+    "image_url": "SF3_BC_M005.png",
+    "id": "0000009B"
+  },
+  {
+    "class": "mega",
+    "name_en": "Diamond Ice V3",
+    "name": "ダイヤアイスバーンV3",
+    "types": [
+      "水",
+      "風"
+    ],
+    "attack": 80,
+    "text": "Diamond Dust diagonal 3-hit atk",
+    "image_url": "SF3_BC_M006.png",
+    "id": "0000009C"
+  },
+  {
+    "class": "mega",
+    "name_en": "Diamond Ice X",
+    "name": "ダイヤアイスバーンX",
+    "types": [
+      "水",
+      "風"
+    ],
+    "attack": 100,
+    "text": "Diamond Dust diagonal 3-hit atk",
+    "image_url": "Xxx_diamond_iceX.png",
+    "id": "00000169"
+  },
+  {
+    "class": "mega",
+    "name_en": "Club Strong",
+    "name": "クラブストロング",
+    "types": [
+      "木",
+      "風"
+    ],
+    "attack": 20,
+    "text": "SwingStrmAtk that pwrs up on grass pnl",
+    "image_url": "SF3_BC_M007.png",
+    "id": "0000009D"
+  },
+  {
+    "class": "mega",
+    "name_en": "Club Strong V2",
+    "name": "クラブストロングV2",
+    "types": [
+      "木",
+      "風"
+    ],
+    "attack": 25,
+    "text": "SwingStrmAtk that pwrs up on grass pnl",
+    "image_url": "SF3_BC_M008.png",
+    "id": "0000009E"
+  },
+  {
+    "class": "mega",
+    "name_en": "Club Strong V3",
+    "name": "クラブストロングV3",
+    "types": [
+      "木",
+      "風"
+    ],
+    "attack": 40,
+    "text": "SwingStrmAtk that pwrs up on grass pnl",
+    "image_url": "SF3_BC_M009.png",
+    "id": "0000009F"
+  },
+  {
+    "class": "mega",
+    "name_en": "Club Strong X",
+    "name": "クラブストロングX",
+    "types": [
+      "木",
+      "風"
+    ],
+    "attack": 50,
+    "text": "SwingStrmAtk that pwrs up on grass pnl",
+    "image_url": "Xxx_club_strongX.png",
+    "id": "0000016A"
+  },
+  {
+    "class": "mega",
+    "name_en": "Queen Virgo",
+    "name": "クイーンヴァルゴ",
+    "types": [
+      "水",
+      "ブレイク"
+    ],
+    "attack": 60,
+    "text": "HydroDrgnAtk hits more w/ proximity",
+    "image_url": "SF3_BC_M010.png",
+    "id": "000000A0"
+  },
+  {
+    "class": "mega",
+    "name_en": "Queen Virgo V2",
+    "name": "クイーンヴァルゴV2",
+    "types": [
+      "水",
+      "ブレイク"
+    ],
+    "attack": 80,
+    "text": "HydroDrgnAtk hits more w/ proximity",
+    "image_url": "SF3_BC_M011.png",
+    "id": "000000A1"
+  },
+  {
+    "class": "mega",
+    "name_en": "Queen Virgo V3",
+    "name": "クイーンヴァルゴV3",
+    "types": [
+      "水",
+      "ブレイク"
+    ],
+    "attack": 100,
+    "text": "HydroDrgnAtk hits more w/ proximity",
+    "image_url": "SF3_BC_M012.png",
+    "id": "000000A2"
+  },
+  {
+    "class": "mega",
+    "name_en": "Queen Virgo X",
+    "name": "クイーンヴァルゴX",
+    "types": [
+      "水",
+      "ブレイク"
+    ],
+    "attack": 120,
+    "text": "HydroDrgnAtk hits more w/ proximity",
+    "image_url": "Xxx_queen_VirgoX.png",
+    "id": "0000016B"
+  },
+  {
+    "class": "mega",
+    "name_en": "Jack CorVus",
+    "name": "ジャックコーヴァス",
+    "types": [
+      "火"
+    ],
+    "attack": 150,
+    "text": "2-pnl claw atk on 3 far side cols",
+    "image_url": "SF3_BC_M013.png",
+    "id": "000000A3"
+  },
+  {
+    "class": "mega",
+    "name_en": "Jack CorVus V2",
+    "name": "ジャックコーヴァスV2",
+    "types": [
+      "火"
+    ],
+    "attack": 180,
+    "text": "2-pnl claw atk on 3 far side cols",
+    "image_url": "SF3_BC_M014.png",
+    "id": "000000A4"
+  },
+  {
+    "class": "mega",
+    "name_en": "Jack CorVus V3",
+    "name": "ジャックコーヴァスV3",
+    "types": [
+      "火"
+    ],
+    "attack": 300,
+    "text": "2-pnl claw atk on 3 far side cols",
+    "image_url": "SF3_BC_M015.png",
+    "id": "000000A5"
+  },
+  {
+    "class": "mega",
+    "name_en": "Jack CorVus X",
+    "name": "ジャックコーヴァスX",
+    "types": [
+      "火"
+    ],
+    "attack": 380,
+    "text": "2-pnl claw atk on 3 far side cols",
+    "image_url": "Xxx_jack_corVus_X.png",
+    "id": "0000016C"
+  },
+  {
+    "class": "mega",
+    "name_en": "Dread Joker",
+    "name": "グレイブジョーカー",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 160,
+    "text": "Atk w/ total of 3 gigaton buildings",
+    "image_url": "SF3_BC_M016.png",
+    "id": "000000A6"
+  },
+  {
+    "class": "mega",
+    "name_en": "Dread Joker V2",
+    "name": "グレイブジョーカーV2",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 190,
+    "text": "Atk w/ total of 3 gigaton buildings",
+    "image_url": "SF3_BC_M017.png",
+    "id": "000000A7"
+  },
+  {
+    "class": "mega",
+    "name_en": "Dread Joker V3",
+    "name": "グレイブジョーカーV3",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 270,
+    "text": "Atk w/ total of 3 gigaton buildings",
+    "image_url": "SF3_BC_M018.png",
+    "id": "000000A8"
+  },
+  {
+    "class": "mega",
+    "name_en": "Dread Joker X",
+    "name": "グレイブジョーカーX",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 350,
+    "text": "Atk w/ total of 3 gigaton buildings",
+    "image_url": "Xxx_dread_jokerX.png",
+    "id": "0000016D"
+  },
+  {
+    "class": "mega",
+    "name_en": "Acid Ace",
+    "name": "アシッドエース",
+    "types": [
+      "無",
+      "ソード",
+      "ブレイク"
+    ],
+    "attack": 140,
+    "text": "Slash 1 emy w/ lock-on sword",
+    "image_url": "SF3_BC_M019.png",
+    "id": "000000A9"
+  },
+  {
+    "class": "mega",
+    "name_en": "Acid Ace V2",
+    "name": "アシッドエースV2",
+    "types": [
+      "無",
+      "ソード",
+      "ブレイク"
+    ],
+    "attack": 170,
+    "text": "Slash 1 emy w/ lock-on sword",
+    "image_url": "SF3_BC_M020.png",
+    "id": "000000AA"
+  },
+  {
+    "class": "mega",
+    "name_en": "Acid Ace V3",
+    "name": "アシッドエースV3",
+    "types": [
+      "無",
+      "ソード",
+      "ブレイク"
+    ],
+    "attack": 220,
+    "text": "Slash 1 emy w/ lock-on sword",
+    "image_url": "SF3_BC_M021.png",
+    "id": "000000AB"
+  },
+  {
+    "class": "mega",
+    "name_en": "Acid Ace X",
+    "name": "アシッドエースX",
+    "types": [
+      "無",
+      "ソード",
+      "ブレイク"
+    ],
+    "attack": 280,
+    "text": "Slash 1 emy w/ lock-on sword",
+    "image_url": "Xxx_acid_aceX.png",
+    "id": "0000016E"
+  },
+  {
+    "class": "mega",
+    "name_en": "Taurus Fire",
+    "name": "オックスファイア",
+    "types": [
+      "火"
+    ],
+    "attack": 100,
+    "text": "TaurusFire coVers field in flames",
+    "image_url": "SF3_BC_M022.png",
+    "id": "000000AC"
+  },
+  {
+    "class": "mega",
+    "name_en": "Taurus Fire V2",
+    "name": "オックスファイアV2",
+    "types": [
+      "火"
+    ],
+    "attack": 150,
+    "text": "TaurusFire coVers field in flames",
+    "image_url": "SF3_BC_M023.png",
+    "id": "000000AD"
+  },
+  {
+    "class": "mega",
+    "name_en": "Taurus Fire V3",
+    "name": "オックスファイアV3",
+    "types": [
+      "火"
+    ],
+    "attack": 220,
+    "text": "TaurusFire coVers field in flames",
+    "image_url": "SF3_BC_M024.png",
+    "id": "000000AE"
+  },
+  {
+    "class": "mega",
+    "name_en": "Taurus Fire X",
+    "name": "オックスファイアX",
+    "types": [
+      "火"
+    ],
+    "attack": 280,
+    "text": "TaurusFire coVers field in flames",
+    "image_url": "Xxx_taurus_fireX.png",
+    "id": "0000016F"
+  },
+  {
+    "class": "mega",
+    "name_en": "Cygnus Wing",
+    "name": "キグナスウィング",
+    "types": [
+      "無",
+      "ブレイク",
+      "風"
+    ],
+    "attack": 130,
+    "text": "CygnusWing dances round field edge",
+    "image_url": "SF3_BC_M025.png",
+    "id": "000000AF"
+  },
+  {
+    "class": "mega",
+    "name_en": "Cygnus Wing V2",
+    "name": "キグナスウィングV2",
+    "types": [
+      "無",
+      "ブレイク",
+      "風"
+    ],
+    "attack": 170,
+    "text": "CygnusWing dances round field edge",
+    "image_url": "SF3_BC_M026.png",
+    "id": "000000B0"
+  },
+  {
+    "class": "mega",
+    "name_en": "Cygnus Wing V3",
+    "name": "キグナスウィングV3",
+    "types": [
+      "無",
+      "ブレイク",
+      "風"
+    ],
+    "attack": 240,
+    "text": "CygnusWing dances round field edge",
+    "image_url": "SF3_BC_M027.png",
+    "id": "000000B1"
+  },
+  {
+    "class": "mega",
+    "name_en": "Cygnus Wing X",
+    "name": "キグナスウィングX",
+    "types": [
+      "無",
+      "ブレイク",
+      "風"
+    ],
+    "attack": 300,
+    "text": "CygnusWing dances round field edge",
+    "image_url": "Xxx_cygnus_wingX.png",
+    "id": "00000170"
+  },
+  {
+    "class": "mega",
+    "name_en": "Wolf Woods",
+    "name": "ウルフフォレスト",
+    "types": [
+      "木",
+      "ソード"
+    ],
+    "attack": 80,
+    "text": "Dart to emy, slice row, then upper",
+    "image_url": "SF3_BC_M028.png",
+    "id": "000000B2"
+  },
+  {
+    "class": "mega",
+    "name_en": "Wolf Woods V2",
+    "name": "ウルフフォレストV2",
+    "types": [
+      "木",
+      "ソード"
+    ],
+    "attack": 100,
+    "text": "Dart to emy, slice row, then upper",
+    "image_url": "SF3_BC_M029.png",
+    "id": "000000B3"
+  },
+  {
+    "class": "mega",
+    "name_en": "Wolf Woods V3",
+    "name": "ウルフフォレストV3",
+    "types": [
+      "木",
+      "ソード"
+    ],
+    "attack": 140,
+    "text": "Dart to emy, slice row, then upper",
+    "image_url": "SF3_BC_M030.png",
+    "id": "000000B4"
+  },
+  {
+    "class": "mega",
+    "name_en": "Wolf Woods X",
+    "name": "ウルフフォレストX",
+    "types": [
+      "木",
+      "ソード"
+    ],
+    "attack": 180,
+    "text": "Dart to emy, slice row, then upper",
+    "image_url": "Xxx_wolf_woodsX.png",
+    "id": "00000171"
+  },
+  {
+    "class": "mega",
+    "name_en": "Dark Phantom",
+    "name": "ファントムブラック",
+    "types": [
+      "無"
+    ],
+    "attack": 130,
+    "text": "Phantom atks fwd pnl with Phantom Claw",
+    "image_url": "SF3_BC_M031.png",
+    "id": "000000B5"
+  },
+  {
+    "class": "mega",
+    "name_en": "Dark Phantom V2",
+    "name": "ファントムブラックV2",
+    "types": [
+      "無"
+    ],
+    "attack": 200,
+    "text": "Phantom atks fwd pnl with Phantom Claw",
+    "image_url": "SF3_BC_M032.png",
+    "id": "000000B6"
+  },
+  {
+    "class": "mega",
+    "name_en": "Dark Phantom V3",
+    "name": "ファントムブラックV3",
+    "types": [
+      "無"
+    ],
+    "attack": 300,
+    "text": "Phantom atks fwd pnl with Phantom Claw",
+    "image_url": "SF3_BC_M033.png",
+    "id": "000000B7"
+  },
+  {
+    "class": "mega",
+    "name_en": "Dark Phantom X",
+    "name": "ファントムブラックX",
+    "types": [
+      "無"
+    ],
+    "attack": 350,
+    "text": "Phantom atks fwd pnl with Phantom Claw",
+    "image_url": "Xxx_dark_phantomX.png",
+    "id": "00000172"
+  },
+  {
+    "class": "mega",
+    "name_en": "Rogue",
+    "name": "ブライ",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 40,
+    "text": "4-shot consecutiVe fwd attack",
+    "image_url": "SF3_BC_M034.png",
+    "id": "000000B8"
+  },
+  {
+    "class": "mega",
+    "name_en": "Rogue V2",
+    "name": "ブライV2",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 50,
+    "text": "4-shot consecutiVe fwd attack",
+    "image_url": "SF3_BC_M035.png",
+    "id": "000000B9"
+  },
+  {
+    "class": "mega",
+    "name_en": "Rogue V3",
+    "name": "ブライV3",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 70,
+    "text": "4-shot consecutiVe fwd attack",
+    "image_url": "SF3_BC_M036.png",
+    "id": "000000BA"
+  },
+  {
+    "class": "mega",
+    "name_en": "Rogue X",
+    "name": "ブライX",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 90,
+    "text": "4-shot consecutiVe fwd attack",
+    "image_url": "Xxx_rogueX.png",
+    "id": "00000173"
+  },
+  {
+    "class": "mega",
+    "name_en": "Moon Destroyer",
+    "name": "ムーンディザスター",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 100,
+    "text": "Lft 3-col or right 1-col cutter atk",
+    "image_url": "SF3_BC_M037.png",
+    "id": "000000BB"
+  },
+  {
+    "class": "mega",
+    "name_en": "Moon Destroyer V2",
+    "name": "ムーンディザスターV2",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 120,
+    "text": "Lft 3-col or right 1-col cutter atk",
+    "image_url": "SF3_BC_M038.png",
+    "id": "000000BC"
+  },
+  {
+    "class": "mega",
+    "name_en": "Moon Destroyer V3",
+    "name": "ムーンディザスターV3",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 140,
+    "text": "Lft 3-col or right 1-col cutter atk",
+    "image_url": "SF3_BC_M039.png",
+    "id": "000000BD"
+  },
+  {
+    "class": "mega",
+    "name_en": "Moon Destroyer X",
+    "name": "ムーンディザスターX",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 180,
+    "text": "Lft 3-col or right 1-col cutter atk",
+    "image_url": "Xxx_moon_destroyerX.png",
+    "id": "00000174"
+  },
+  {
+    "class": "mega",
+    "name_en": "Apollo Flame",
+    "name": "アポロンフレイム",
+    "types": [
+      "火"
+    ],
+    "attack": 170,
+    "text": "Solar Flare atk on fwd 3x3 pnls",
+    "image_url": "SF3_BC_M040.png",
+    "id": "000000BE"
+  },
+  {
+    "class": "mega",
+    "name_en": "Apollo Flame V2",
+    "name": "アポロンフレイムV2",
+    "types": [
+      "火"
+    ],
+    "attack": 200,
+    "text": "Solar Flare atk on fwd 3x3 pnls",
+    "image_url": "SF3_BC_M041.png",
+    "id": "000000BF"
+  },
+  {
+    "class": "mega",
+    "name_en": "Apollo Flame V3",
+    "name": "アポロンフレイムV3",
+    "types": [
+      "火"
+    ],
+    "attack": 250,
+    "text": "Solar Flare atk on fwd 3x3 pnls",
+    "image_url": "SF3_BC_M042.png",
+    "id": "000000C0"
+  },
+  {
+    "class": "mega",
+    "name_en": "Apollo Flame X",
+    "name": "アポロンフレイムX",
+    "types": [
+      "火"
+    ],
+    "attack": 330,
+    "text": "Fwd 3x3 Solar Flare attack",
+    "image_url": "Xxx_apollo_flameX.png",
+    "id": "00000175"
+  },
+  {
+    "class": "mega",
+    "name_en": "Sirius",
+    "name": "シリウス",
+    "types": [
+      "無"
+    ],
+    "attack": 120,
+    "text": "Satellite Blazer atk on 3x4 pnls",
+    "image_url": "SF3_BC_M043.png",
+    "id": "000000C1"
+  },
+  {
+    "class": "mega",
+    "name_en": "Sirius V2",
+    "name": "シリウスV2",
+    "types": [
+      "無"
+    ],
+    "attack": 160,
+    "text": "Satellite Blazer atk on 3x4 pnls",
+    "image_url": "SF3_BC_M044.png",
+    "id": "000000C2"
+  },
+  {
+    "class": "mega",
+    "name_en": "Sirius V3",
+    "name": "シリウスV3",
+    "types": [
+      "無"
+    ],
+    "attack": 200,
+    "text": "Satellite Blazer atk on 3x4 pnls",
+    "image_url": "SF3_BC_M045.png",
+    "id": "000000C3"
+  },
+  {
+    "class": "mega",
+    "name_en": "Sirius X",
+    "name": "シリウスX",
+    "types": [
+      "無"
+    ],
+    "attack": 250,
+    "text": "Satellite Blazer atk on 3x4 pnls",
+    "image_url": "Xxx_sirusX.png",
+    "id": "00000176"
+  },
+  {
+    "class": "mega",
+    "name_en": "AcidArrest",
+    "name": "アシッドイリーガル",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "3 rdm shots frm out-of-ctrl Acid",
+    "image_url": "BC_Mega_AcidArrest.png",
+    "id": "000000CF"
+  },
+  {
+    "class": "mega",
+    "name_en": "Yeti Blizzard",
+    "name": "イエティブリザード",
+    "types": [
+      "水"
+    ],
+    "attack": 120,
+    "text": "Atk 3x3 pnls w/ 6 snoball rounds",
+    "image_url": "Xxx_yeti_blizzard.png",
+    "id": "00000144"
+  },
+  {
+    "class": "mega",
+    "name_en": "Yeti Blizzard V2",
+    "name": "イエティブリザードV2",
+    "types": [
+      "水"
+    ],
+    "attack": 150,
+    "text": "Atk 3x3 pnls w/ 6 snoball rounds",
+    "image_url": "Xxx_yeti_blizzardV2.png",
+    "id": "00000145"
+  },
+  {
+    "class": "mega",
+    "name_en": "Yeti Blizzard V3",
+    "name": "イエティブリザードV3",
+    "types": [
+      "水"
+    ],
+    "attack": 200,
+    "text": "Atk 3x3 pnls w/ 6 snoball rounds",
+    "image_url": "Xxx_yeti_blizzardV3.png",
+    "id": "00000146"
+  },
+  {
+    "class": "mega",
+    "name_en": "Yeti Blizzard X",
+    "name": "イエティブリザードX",
+    "types": [
+      "水"
+    ],
+    "attack": 250,
+    "text": "Atk 3x3 pnls w/ 6 snoball rounds",
+    "image_url": "Xxx_yeti_blizzardX.png",
+    "id": "00000177"
+  },
+  {
+    "class": "mega",
+    "name_en": "Plesio Surf",
+    "name": "ブラキオウェーブ",
+    "types": [
+      "水"
+    ],
+    "attack": 150,
+    "text": "Hit nearest emy's row w/Aqua Fang",
+    "image_url": "Xxx_plesio_surf.png",
+    "id": "00000147"
+  },
+  {
+    "class": "mega",
+    "name_en": "Plesio Surf V2",
+    "name": "ブラキオウェーブV2",
+    "types": [
+      "水"
+    ],
+    "attack": 200,
+    "text": "Hit nearest emy's row w/Aqua Fang",
+    "image_url": "Xxx_plesio_surfV2.png",
+    "id": "00000148"
+  },
+  {
+    "class": "mega",
+    "name_en": "Plesio Surf V3",
+    "name": "ブラキオウェーブV3",
+    "types": [
+      "水"
+    ],
+    "attack": 250,
+    "text": "Hit nearest emy's row w/Aqua Fang",
+    "image_url": "Xxx_plesio_surfV3.png",
+    "id": "00000149"
+  },
+  {
+    "class": "mega",
+    "name_en": "Plesio Surf X",
+    "name": "ブラキオウェーブX",
+    "types": [
+      "水"
+    ],
+    "attack": 320,
+    "text": "Hit nearest emy's row w/Aqua Fang",
+    "image_url": "Xxx_plesio_surfX.png",
+    "id": "00000178"
+  },
+  {
+    "class": "mega",
+    "name_en": "Terra Condor",
+    "name": "コンドルジオグラフ",
+    "types": [
+      "無"
+    ],
+    "attack": 40,
+    "text": "3-shot misle atk straight down 3 rows",
+    "image_url": "Xxx_terra_condor.png",
+    "id": "0000014A"
+  },
+  {
+    "class": "mega",
+    "name_en": "Terra Condor V2",
+    "name": "コンドルジオグラフV2",
+    "types": [
+      "無"
+    ],
+    "attack": 60,
+    "text": "3-shot misle atk straight down 3 rows",
+    "image_url": "Xxx_terra_condorV2.png",
+    "id": "0000014B"
+  },
+  {
+    "class": "mega",
+    "name_en": "Terra Condor V3",
+    "name": "コンドルジオグラフV3",
+    "types": [
+      "無"
+    ],
+    "attack": 80,
+    "text": "3-shot misle atk straight down 3 rows",
+    "image_url": "Xxx_terra_condorV3.png",
+    "id": "0000014C"
+  },
+  {
+    "class": "mega",
+    "name_en": "Terra Condor X",
+    "name": "コンドルジオグラフX",
+    "types": [
+      "無"
+    ],
+    "attack": 100,
+    "text": "3-shot misle atk straight down 3 rows",
+    "image_url": "Xxx_terra_condorX.png",
+    "id": "00000179"
+  },
+  {
+    "class": "mega",
+    "name_en": "Queen Ophiuca",
+    "name": "オヒュカスクイーン",
+    "types": [
+      "木",
+      "ブレイク"
+    ],
+    "attack": 140,
+    "text": "2 columns atk. Left 2 if frm cntr.",
+    "image_url": "Xxx_queen_ophiuca.png",
+    "id": "0000014D"
+  },
+  {
+    "class": "mega",
+    "name_en": "Queen Ophiuca V2",
+    "name": "オヒュカスクイーンV2",
+    "types": [
+      "木",
+      "ブレイク"
+    ],
+    "attack": 180,
+    "text": "2 columns atk. Left 2 if frm cntr",
+    "image_url": "Xxx_queen_ophiucaV2.png",
+    "id": "0000014E"
+  },
+  {
+    "class": "mega",
+    "name_en": "Queen Ophiuca V3",
+    "name": "オヒュカスクイーンV3",
+    "types": [
+      "木",
+      "ブレイク"
+    ],
+    "attack": 230,
+    "text": "2 columns atk. Left 2 if frm cntr.",
+    "image_url": "Xxx_queen_ophiucaV3.png",
+    "id": "0000014F"
+  },
+  {
+    "class": "mega",
+    "name_en": "Queen Ophiuca X",
+    "name": "オヒュカスクイーンX",
+    "types": [
+      "木",
+      "ブレイク"
+    ],
+    "attack": 300,
+    "text": "2 columns atk. Left 2 if frm cntr",
+    "image_url": "Xxx_queen_ophiucaX.png",
+    "id": "0000017A"
+  },
+  {
+    "class": "mega",
+    "name_en": "Gemini Spark",
+    "name": "ジェミニスパーク",
+    "types": [
+      "電気",
+      "ソード",
+      "ブレイク"
+    ],
+    "attack": 70,
+    "text": "GeminiSpark tagteam pnch and slice",
+    "image_url": "Xxx_gemini_spark.png",
+    "id": "00000150"
+  },
+  {
+    "class": "mega",
+    "name_en": "Gemini Spark V2",
+    "name": "ジェミニスパークV2",
+    "types": [
+      "電気",
+      "ソード",
+      "ブレイク"
+    ],
+    "attack": 80,
+    "text": "GeminiSpark tagteam pnch and slice",
+    "image_url": "Xxx_gemini_sparkV2.png",
+    "id": "00000151"
+  },
+  {
+    "class": "mega",
+    "name_en": "Gemini Spark V3",
+    "name": "ジェミニスパークV3",
+    "types": [
+      "電気",
+      "ソード",
+      "ブレイク"
+    ],
+    "attack": 100,
+    "text": "GeminiSpark tagteam pnch and slice",
+    "image_url": "Xxx_gemini_sparkV3.png",
+    "id": "00000152"
+  },
+  {
+    "class": "mega",
+    "name_en": "Gemini Spark X",
+    "name": "ジェミニスパークX",
+    "types": [
+      "電気",
+      "ソード",
+      "ブレイク"
+    ],
+    "attack": 150,
+    "text": "GeminiSpark tagteam pnch and slice",
+    "image_url": "Xxx_gemini_sparkX.png",
+    "id": "0000017B"
+  },
+  {
+    "class": "mega",
+    "name_en": "Cancer Bubble",
+    "name": "キャンサーバブル",
+    "types": [
+      "水"
+    ],
+    "attack": 130,
+    "text": "From nearest enemy, 3x2 tidal waVe",
+    "image_url": "Xxx_cancer_bubble.png",
+    "id": "00000153"
+  },
+  {
+    "class": "mega",
+    "name_en": "Cancer Bubble V2",
+    "name": "キャンサーバブルV2",
+    "types": [
+      "水"
+    ],
+    "attack": 170,
+    "text": "From nearest enemy, 3x2 tidal waVe",
+    "image_url": "Xxx_cancer_bubbleV2.png",
+    "id": "00000154"
+  },
+  {
+    "class": "mega",
+    "name_en": "Cancer Bubble V3",
+    "name": "キャンサーバブルV3",
+    "types": [
+      "水"
+    ],
+    "attack": 220,
+    "text": "From nearest enemy, 3x2 tidal waVe",
+    "image_url": "Xxx_cancer_bubbleV3.png",
+    "id": "00000155"
+  },
+  {
+    "class": "mega",
+    "name_en": "Cancer Bubble X",
+    "name": "キャンサーバブルX",
+    "types": [
+      "水"
+    ],
+    "attack": 280,
+    "text": "From nearest enemy, 3x2 tidal waVe",
+    "image_url": "Xxx_cancer_bubbleX.png",
+    "id": "0000017C"
+  },
+  {
+    "class": "mega",
+    "name_en": "General Auriga",
+    "name": "オリガジェネラル",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 140,
+    "text": "Unblockable 3-column rush attack",
+    "image_url": "Xxx_general_auriga.png",
+    "id": "00000156"
+  },
+  {
+    "class": "mega",
+    "name_en": "General Auriga V2",
+    "name": "オリガジェネラルV2",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 180,
+    "text": "Unblockable 3-column rush attack",
+    "image_url": "Xxx_general_aurigaV2.png",
+    "id": "00000157"
+  },
+  {
+    "class": "mega",
+    "name_en": "General Auriga V3",
+    "name": "オリガジェネラルV3",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 220,
+    "text": "Unblockable 3-column rush attack",
+    "image_url": "Xxx_general_aurigaV3.png",
+    "id": "00000158"
+  },
+  {
+    "class": "mega",
+    "name_en": "General Auriga X",
+    "name": "オリガジェネラルX",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 300,
+    "text": "Unblockable 3-column rush attack",
+    "image_url": "Xxx_general_aurigaX.png",
+    "id": "0000017D"
+  },
+  {
+    "class": "mega",
+    "name_en": "Libra Scales",
+    "name": "リブラバランス",
+    "types": [
+      "無"
+    ],
+    "attack": 70,
+    "text": "2-hit Fire, Aqua on last and 1st row",
+    "image_url": "Xxx_libra_scales.png",
+    "id": "00000159"
+  },
+  {
+    "class": "mega",
+    "name_en": "Libra Scales V2",
+    "name": "リブラバランスV2",
+    "types": [
+      "無"
+    ],
+    "attack": 90,
+    "text": "2-hit Fire, Aqua on last and 1st row",
+    "image_url": "Xxx_libra_scalesV2.png",
+    "id": "0000015A"
+  },
+  {
+    "class": "mega",
+    "name_en": "Libra Scales V3",
+    "name": "リブラバランスV3",
+    "types": [
+      "無"
+    ],
+    "attack": 120,
+    "text": "2-hit Fire, Aqua on last and 1st row",
+    "image_url": "Xxx_libra_scalesV3.png",
+    "id": "0000015B"
+  },
+  {
+    "class": "mega",
+    "name_en": "Libra Scales X",
+    "name": "リブラバランスX",
+    "types": [
+      "無"
+    ],
+    "attack": 160,
+    "text": "2-hit Fire, Aqua on last and 1st row",
+    "image_url": "Xxx_libra_scalesX.png",
+    "id": "0000017E"
+  },
+  {
+    "class": "mega",
+    "name_en": "Crown Thunder",
+    "name": "クラウンサンダー",
+    "types": [
+      "電気"
+    ],
+    "attack": 150,
+    "text": "2nd to last row center, X lightng atk",
+    "image_url": "Xxx_crown_thunder.png",
+    "id": "0000015C"
+  },
+  {
+    "class": "mega",
+    "name_en": "Crown Thunder V2",
+    "name": "クラウンサンダーV2",
+    "types": [
+      "電気"
+    ],
+    "attack": 200,
+    "text": "2nd to last row center, X lightng atk",
+    "image_url": "Xxx_crown_thunderV2.png",
+    "id": "0000015D"
+  },
+  {
+    "class": "mega",
+    "name_en": "Crown Thunder V3",
+    "name": "クラウンサンダーV3",
+    "types": [
+      "電気"
+    ],
+    "attack": 300,
+    "text": "2nd to last row center, X lightng atk",
+    "image_url": "Xxx_crown_thunderV3.png",
+    "id": "0000015E"
+  },
+  {
+    "class": "mega",
+    "name_en": "Crown Thunder X",
+    "name": "クラウンサンダーX",
+    "types": [
+      "電気"
+    ],
+    "attack": 400,
+    "text": "2nd to last row center, X lightng atk",
+    "image_url": "Xxx_crown_thunderX.png",
+    "id": "0000017F"
+  },
+  {
+    "class": "mega",
+    "name_en": "Rocket Launch",
+    "name": "アクシスジェット",
+    "types": [
+      "電気",
+      "ブレイク"
+    ],
+    "attack": 160,
+    "text": "Rush atk w/RocktLnch &GraVRockt",
+    "image_url": "Xxx_rocket_launch.png",
+    "id": "0000015F"
+  },
+  {
+    "class": "mega",
+    "name_en": "Rocket Launch V2",
+    "name": "アクシスジェットV2",
+    "types": [
+      "電気",
+      "ブレイク"
+    ],
+    "attack": 210,
+    "text": "Rush atk w/RocktLnch &GraVRockt",
+    "image_url": "Xxx_rocket_launchV2.png",
+    "id": "00000160"
+  },
+  {
+    "class": "mega",
+    "name_en": "Rocket Launch V3",
+    "name": "アクシスジェットV3",
+    "types": [
+      "電気",
+      "ブレイク"
+    ],
+    "attack": 260,
+    "text": "Rush atk w/RocktLnch &GraVRockt",
+    "image_url": "Xxx_rocket_launchV3.png",
+    "id": "00000161"
+  },
+  {
+    "class": "mega",
+    "name_en": "Rocket Launch X",
+    "name": "アクシスジェットX",
+    "types": [
+      "電気",
+      "ブレイク"
+    ],
+    "attack": 340,
+    "text": "Rush atk w/RocktLnch &GraVRockt",
+    "image_url": "Xxx_rocket_launchX.png",
+    "id": "00000180"
+  },
+  {
+    "class": "mega",
+    "name_en": "Ice Hammer Break",
+    "name": "Bアイスハンマー",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 200,
+    "text": "HeaVily Dmg 1 emy w/ DiamndIceHmr",
+    "image_url": "Xxx_ice_hammer.png",
+    "id": "00000162"
+  },
+  {
+    "class": "mega",
+    "name_en": "Ice Hammer Break V2",
+    "name": "BアイスハンマーV2",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 250,
+    "text": "HeaVily Dmg 1 emy w/ DiamndIceHmr",
+    "image_url": "Xxx_ice_hammerV2.png",
+    "id": "00000163"
+  },
+  {
+    "class": "mega",
+    "name_en": "Ice Hammer Break V3",
+    "name": "BアイスハンマーV3",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 300,
+    "text": "HeaVily Dmg 1 emy w/ DiamndIceHmr",
+    "image_url": "Xxx_ice_hammerV3.png",
+    "id": "00000164"
+  },
+  {
+    "class": "mega",
+    "name_en": "Ice Hammer Break X",
+    "name": "BアイスハンマーX",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 370,
+    "text": "HeaVily Dmg 1 emy w/ DiamndIceHmr",
+    "image_url": "Xxx_ice_hammerX.png",
+    "id": "00000181"
+  },
+  {
+    "class": "mega",
+    "name_en": "Strong Swing",
+    "name": "ストロングスイング",
+    "types": [
+      "木",
+      "ブレイク"
+    ],
+    "attack": 50,
+    "text": "Smack fwd 3 rows a total of 10 times",
+    "image_url": "Xxx_strong_swing.png",
+    "id": "00000165"
+  },
+  {
+    "class": "mega",
+    "name_en": "Strong Swing V2",
+    "name": "ストロングスイングV2",
+    "types": [
+      "木",
+      "ブレイク"
+    ],
+    "attack": 60,
+    "text": "Smack fwd 3 rows a total of 10 times",
+    "image_url": "Xxx_strong_swingV2.png",
+    "id": "00000166"
+  },
+  {
+    "class": "mega",
+    "name_en": "Strong Swing V3",
+    "name": "ストロングスイングV3",
+    "types": [
+      "木",
+      "ブレイク"
+    ],
+    "attack": 70,
+    "text": "Smack fwd 3 rows a total of 10 times",
+    "image_url": "Xxx_strong_swingV3.png",
+    "id": "00000167"
+  },
+  {
+    "class": "mega",
+    "name_en": "Strong Swing X",
+    "name": "ストロングスイングX",
+    "types": [
+      "木",
+      "ブレイク"
+    ],
+    "attack": 90,
+    "text": "Smack fwd 3 rows a total of 10 times",
+    "image_url": "Xxx_strong_swingX.png",
+    "id": "00000182"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Flash Strike 1",
+      "Flash Strike 2",
+      "Flash Strike 3"
+    ],
+    "name_en": "Spade Magnes GA",
+    "name": "スペードマグネッツGA",
+    "types": [
+      "電気",
+      "ソード"
+    ],
+    "attack": 220,
+    "text": "SpadeMgnes slices twice max 2 hits",
+    "image_url": "Xxx_spade_magnes_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Ice Spin 1",
+      "Ice Spin 2",
+      "Ice Spin 3"
+    ],
+    "name_en": "Diamond Ice GA",
+    "name": "ダイヤアイスバーンGA",
+    "types": [
+      "水",
+      "風"
+    ],
+    "attack": 130,
+    "text": "Diamond Dust diagonal 3-hit atk",
+    "image_url": "Xxx_diamond_ice_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Pollen Shot 1",
+      "Pollen Shot 2",
+      "Pollen Shot 3"
+    ],
+    "name_en": "Club Strong GA",
+    "name": "クラブストロングGA",
+    "types": [
+      "木",
+      "風"
+    ],
+    "attack": 70,
+    "text": "SwingStrmAtk that pwrs up on grass pnl",
+    "image_url": "Xxx_club_strong_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Wide WaVe 1",
+      "Wide WaVe 2",
+      "Wide WaVe 3"
+    ],
+    "name_en": "Queen Virgo GA",
+    "name": "クイーンヴァルゴGA",
+    "types": [
+      "水",
+      "ブレイク"
+    ],
+    "attack": 150,
+    "text": "HydroDrgnAtk hits more w/ proximity",
+    "image_url": "Xxx_queen_Virgo_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Kilo Bomb 1",
+      "Kilo Bomb 2",
+      "Kilo Bomb 3"
+    ],
+    "name_en": "Jack CorVus GA",
+    "name": "ジャックコーヴァスGA",
+    "types": [
+      "火"
+    ],
+    "attack": 480,
+    "text": "2-pnl claw atk on 3 far side cols",
+    "image_url": "Xxx_jack_corVus_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Bushido 1",
+      "Busihdo 2",
+      "Bushido 3"
+    ],
+    "name_en": "Dread Joker GA",
+    "name": "グレイブジョーカーGA",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 450,
+    "text": "Atk w/ total of 3 gigaton buildings",
+    "image_url": "Xxx_dread_joker_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Mad Vulcan 1",
+      "Mad Vulcan 2",
+      "Mad Vulcan 3"
+    ],
+    "name_en": "Acid Ace GA",
+    "name": "アシッドエースGA",
+    "types": [
+      "無",
+      "ソード",
+      "ブレイク"
+    ],
+    "attack": 350,
+    "text": "Slash 1 emy w/ lock-on sword",
+    "image_url": "Xxx_acid_ace_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Mad Fire 1",
+      "Mad Fire 2",
+      "Mad Fire 3"
+    ],
+    "name_en": "Taurus Fire GA",
+    "name": "オックスファイアGA",
+    "types": [
+      "火"
+    ],
+    "attack": 380,
+    "text": "TaurusFire coVers field in flames!",
+    "image_url": "Xxx_taurus_fire_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Ground WaVe 1",
+      "Ground WaVe 2",
+      "Ground WaVe 3"
+    ],
+    "name_en": "Cygnus Wing GA",
+    "name": "キグナスウィングGA",
+    "types": [
+      "無",
+      "ブレイク",
+      "風"
+    ],
+    "attack": 400,
+    "text": "CygnusWing dances round field edge!",
+    "image_url": "Xxx_cygnus_wing_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Shuriken 1",
+      "Shuriken 2",
+      "Shuriken 3"
+    ],
+    "name_en": "Wolf Woods GA",
+    "name": "ウルフフォレストGA",
+    "types": [
+      "木",
+      "ソード"
+    ],
+    "attack": 240,
+    "text": "Dart to emy, slice row, then upper!",
+    "image_url": "Xxx_wolf_woods_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Smile Coin 1",
+      "Smile Coin 2",
+      "Smile Coin 3"
+    ],
+    "name_en": "Dark Phantom GA",
+    "name": "ファントムブラックGA",
+    "types": [
+      "無"
+    ],
+    "attack": 450,
+    "text": "Phantom atks fwd pnl with Phantom Claw",
+    "image_url": "Xxx_dark_phantom_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Mu Technology 1",
+      "Mu Technology 2",
+      "Mu Technology 3"
+    ],
+    "name_en": "Rogue GA",
+    "name": "ブライGA",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 140,
+    "text": "4-shot consecutiVe fwd attack.",
+    "image_url": "Xxx_rogue_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Buzzsaw 1",
+      "Buzzsaw 2",
+      "Buzzsaw 3"
+    ],
+    "name_en": "Moon Destroyer GA",
+    "name": "ムーンディザスターGA",
+    "types": [
+      "無",
+      "ソード"
+    ],
+    "attack": 250,
+    "text": "Lft 3-col or right 1-col cutter atk",
+    "image_url": "Xxx_moon_destroy_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Mech Flame 1",
+      "Mech Flame 2",
+      "Mech Flame 3"
+    ],
+    "name_en": "Apollo Flame GA",
+    "name": "アポロンフレイムGA",
+    "types": [
+      "火"
+    ],
+    "attack": 420,
+    "text": "Fwd 3x3 Solar Flare attack!",
+    "image_url": "Xxx_apollo_flame_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "White Meteor",
+      "SilVer Meteor",
+      "Break Sabre"
+    ],
+    "name_en": "Sirius GA",
+    "name": "シリウスGA",
+    "types": [
+      "無"
+    ],
+    "attack": 340,
+    "text": "Satellite Blazer atk on 3x4 pnls",
+    "image_url": "Xxx_sirius_ga.png"
+  },
+  {
+    "class": "giga",
+    "name_en": "Wing Blade",
+    "name": "ウィングブレード",
+    "types": [
+      "無",
+      "風",
+      "ブレイク"
+    ],
+    "attack": 450,
+    "text": "3-pnl wide fwd center break attack",
+    "image_url": "BC_Giga_WingBlade.png",
+    "id": "000000C4"
+  },
+  {
+    "class": "giga",
+    "name_en": "Darkness Hole",
+    "name": "ダークネスホール",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "Del if below 250HP:Virus,500HP:boss.",
+    "image_url": "G2a_darknesshole.png",
+    "id": "000000C5"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Black Hole 1",
+      "Black Hole 1",
+      "Black Ink"
+    ],
+    "name_en": "Darkness Hole GA",
+    "name": "ダークネスホールGA",
+    "types": [
+      "無"
+    ],
+    "attack": 620,
+    "text": "Del if below 255HP:Virus,510HP:boss.",
+    "image_url": "Xxx_darkness_hole_ga.png"
+  },
+  {
+    "class": "giga",
+    "name_en": "Milli Kick",
+    "name": "サウサンドキック",
+    "types": [
+      "無"
+    ],
+    "attack": 20,
+    "text": "Mad 24-shot MilliKick attack.",
+    "image_url": "G3a_thousandkick.png",
+    "id": "000000C6"
+  },
+  {
+    "class": "giga",
+    "name_en": "Break Time Bomb",
+    "name": "ブレイクカウントボム",
+    "types": [
+      "ブレイク"
+    ],
+    "attack": 600,
+    "text": "Set unblockable bmb atk 2 pnls ahd.",
+    "image_url": "G4a_breakcountbomb.png",
+    "id": "00000C7"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Time Bomb 3",
+      "Time Bomb 3",
+      "Time Bomb 3"
+    ],
+    "name_en": "Break Time Bomb GA",
+    "name": "ブレイクカウントボムGA",
+    "types": [
+      "火",
+      "ブレイク"
+    ],
+    "attack": 750,
+    "text": "Set unblockable bmb atk 2 pnls ahd.",
+    "image_url": "Xxx_break_time_bomb_ga.png"
+  },
+  {
+    "class": "giga",
+    "name_en": "Mu Barrier",
+    "name": "ムーリジェクション",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "Regenerate wall of Mu w/each moVe",
+    "image_url": "G5a_murejection.png",
+    "id": "000000C8"
+  },
+  {
+    "class": "giga",
+    "name_en": "Dread Laser",
+    "name": "Gメテオレーザー",
+    "types": [
+      "無"
+    ],
+    "attack": 30,
+    "text": "Crack 3 fwd pnls w/DreadMeteorLaser",
+    "image_url": "G1j_gmeteorlaser.png",
+    "id": "000000C9"
+  },
+  {
+    "class": "giga",
+    "name_en": "Destroy Missile",
+    "name": "デストロイミサイル",
+    "types": [
+      "無"
+    ],
+    "attack": 50,
+    "text": "Hit all enemies on normal pnls",
+    "image_url": "G2j_destroymissile.png",
+    "id": "000000CA"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Jet Attack 2",
+      "Jet Attack 2",
+      "Bombalizer"
+    ],
+    "name_en": "Destroy Missile GA",
+    "name": "デストロイミサイルGA",
+    "types": [
+      "無"
+    ],
+    "attack": 70,
+    "text": "Hit all enemies on normal pnls.",
+    "image_url": "Xxx_destroy_missile_ga.png"
+  },
+  {
+    "class": "giga",
+    "name_en": "Buster MAX",
+    "name": "バスターマックス",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "Rapd & Chrg: max pwr. atk: max+",
+    "image_url": "G3j_bustermax.png",
+    "id": "000000CB"
+  },
+  {
+    "class": "giga",
+    "name_en": "Ox Tackle",
+    "name": "オックスタックル",
+    "types": [
+      "ブレイク"
+    ],
+    "attack": 520,
+    "text": "OxTackle all enemies in 1 column.",
+    "image_url": "G4j_oxtackle.png",
+    "id": "000000CC"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Heat Upper 1",
+      "Heat Upper 1",
+      "Jet Attack 1"
+    ],
+    "name_en": "Ox Tackle GA",
+    "name": "オックスタックルGA",
+    "types": [
+      "火",
+      "ブレイク"
+    ],
+    "attack": 740,
+    "text": "OxTackle all enemies in 1 column.",
+    "image_url": "Ox_Tackle_GA.png"
+  },
+  {
+    "class": "giga",
+    "name_en": "Mirror's Edge",
+    "name": "ドッペルミラー",
+    "types": [
+      "無"
+    ],
+    "attack": null,
+    "text": "Mirror sucks HP of emies on same col",
+    "image_url": "G5j_dopplemirror.png",
+    "id": "000000CD"
+  },
+  {
+    "class": "giga",
+    "name_en": "CrmsnMteor",
+    "name": "メテオオブクリムゾン",
+    "types": [
+      "無"
+    ],
+    "attack": 300,
+    "text": "Dbl shot of CrimsnDragn DstryrBreath",
+    "image_url": "BC_Giga_CrmsnMteor.png",
+    "id": "000000CE"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Snowball 3",
+      "Snowball 3",
+      "Double Stone"
+    ],
+    "name_en": "Yeti Blizzard GA",
+    "name": "イエティブリザードGA",
+    "types": [
+      "水"
+    ],
+    "attack": 350,
+    "text": "Atk 3x3 pnls w/ 6 snoball rounds.",
+    "image_url": "Xxx_yeti_blizzard_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Shark Attack 1",
+      "Shark Attack 1",
+      "Shark Attack 1"
+    ],
+    "name_en": "Plesio Surf GA",
+    "name": "ブラキオウェーブGA",
+    "types": [
+      "水"
+    ],
+    "attack": 450,
+    "text": "Hit nearest emy's row w/Aqua Fang.",
+    "image_url": "Xxx_plesio_surf_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Pollen Shot 2",
+      "Pollen Shot 2",
+      "Typhoon Dance"
+    ],
+    "name_en": "Terra Condor GA",
+    "name": "コンドルジオグラフGA",
+    "types": [
+      "無"
+    ],
+    "attack": 150,
+    "text": "3-shot misle atk straight down 3 rows.",
+    "image_url": "Xxx_terra_condor_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Arach Attack 3",
+      "Arach Attack 3",
+      "Arach Attack 3"
+    ],
+    "name_en": "Queen Ophiuca GA",
+    "name": "オヒュカスクイーンGA",
+    "types": [
+      "木",
+      "ブレイク"
+    ],
+    "attack": 400,
+    "text": "2 columns atk. Left 2 if frm cntr.",
+    "image_url": "Xxx_queen_ophiuca_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Double Stone",
+      "Stun Knuckle",
+      "Elec Slash"
+    ],
+    "name_en": "Gemini Spark GA",
+    "name": "ジェミニスパークGA",
+    "types": [
+      "電気",
+      "ソード",
+      "ブレイク"
+    ],
+    "attack": 210,
+    "text": "GeminiSpark tagteam pnch and slice!",
+    "image_url": "Xxx_gemini_spark_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Wide WaVe 1",
+      "Wide WaVe 1",
+      "Bubble Hook 1"
+    ],
+    "name_en": "Cancer Bubble GA",
+    "name": "キャンサーバブルGA",
+    "types": [
+      "水"
+    ],
+    "attack": 380,
+    "text": "From nearest enemy, 3x2 tidal waVe!",
+    "image_url": "Xxx_cancer_bubble_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Big Drop 3",
+      "Big Drop 3",
+      "Big Drop 3"
+    ],
+    "name_en": "General Auriga GA",
+    "name": "オリガジェネラルGA",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 420,
+    "text": "Unblockable 3-column rush attack.",
+    "image_url": "Xxx_general_auriga_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Mad Fire 2",
+      "Wide WaVe 2",
+      "Big Drop 2"
+    ],
+    "name_en": "Libra Scales GA",
+    "name": "リブラバランスGA",
+    "types": [
+      "無"
+    ],
+    "attack": 220,
+    "text": "2-hit Fire, Aqua on last and 1st row.",
+    "image_url": "Xxx_libra_scales_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Plasma Gun",
+      "Plasma Gun",
+      "Drill Arm 1"
+    ],
+    "name_en": "Crown Thunder GA",
+    "name": "クラウンサンダーGA",
+    "types": [
+      "電気"
+    ],
+    "attack": 500,
+    "text": "2nd to last row center, X lightng atk.",
+    "image_url": "Xxx_crown_thunder_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Drill Arm 1",
+      "Drill Arm 1",
+      "Drill Arm 1"
+    ],
+    "name_en": "Rocket Launch GA",
+    "name": "アクシスジェットGA",
+    "types": [
+      "電気",
+      "ブレイク"
+    ],
+    "attack": 430,
+    "text": "Rush atk w/RocktLnch & GraVRockt",
+    "image_url": "Xxx_rocket_launch_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Snow Storm",
+      "Snow Storm",
+      "Buki 3"
+    ],
+    "name_en": "Ice Hammer B GA",
+    "name": "BアイスハンマーGA",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 470,
+    "text": "HeaVily Dmg 1 emy w/ DiamndIceHmr",
+    "image_url": "Xxx_ice_hammer_ga.png"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Acorn Bomb 2",
+      "Acorn Bomb 2",
+      "Wood Slash"
+    ],
+    "name_en": "Strong Swing GA",
+    "name": "ストロングスイングGA",
+    "types": [
+      "木",
+      "ブレイク"
+    ],
+    "attack": 130,
+    "text": "Smack fwd 3 rows a total of 10 times",
+    "image_url": "Xxx_strong_swing_ga.png"
+  },
+  {
+    "class": "giga",
+    "name_en": "Pegasus Magic",
+    "name": "ペガサスマジックGX",
+    "types": [
+      "水"
+    ],
+    "attack": 450,
+    "text": "Pegasus Freeze far 3x3 panels!",
+    "image_url": "Sf3_pegasus_magicGX.PNG",
+    "id": "00000183"
+  },
+  {
+    "class": "giga",
+    "name_en": "Leo Kingdom",
+    "name": "レオキングダムGX",
+    "types": [
+      "火"
+    ],
+    "attack": 40,
+    "text": "Leo Blazer far 3x3 panels!",
+    "image_url": "Sf3_leo_kingdomGX.PNG",
+    "id": "00000184"
+  },
+  {
+    "class": "giga",
+    "name_en": "Dragon Sky",
+    "name": "ドラゴンスカイGX",
+    "types": [
+      "木",
+      "風"
+    ],
+    "attack": 50,
+    "text": "Dragon Cyclone far 3x3 panels!",
+    "image_url": "Sf3_dragon_skyGX.PNG",
+    "id": "00000185"
+  },
+  {
+    "class": "giga",
+    "name_en": "Gorgon Eye",
+    "name": "ゴルゴンアイ",
+    "types": [
+      "木"
+    ],
+    "attack": 550,
+    "text": "Shoot a laser beam dwn a col.",
+    "image_url": "Sf3_Gorgon_eye.PNG",
+    "id": "00000186"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Grass Stage",
+      "Mu Technology 3",
+      "Mu Technology 3"
+    ],
+    "name_en": "Gorgon Eye GA",
+    "name": "ゴルゴンアイGA",
+    "types": [
+      "木"
+    ],
+    "attack": 700,
+    "text": "Shoot a laser beam dwn a col.",
+    "image_url": "Xxx_gorgon_eye_ga.png"
+  },
+  {
+    "class": "giga",
+    "name_en": "Gemini Thunder",
+    "name": "ジェミニサンダー",
+    "types": [
+      "電気"
+    ],
+    "attack": 400,
+    "text": "Gemini Thunder cntr col!",
+    "image_url": "Sf3_gemini_thunder.PNG",
+    "id": "00000187"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Mummy Hand 3",
+      "Mummy Hand 3",
+      "Mummy Hand 3"
+    ],
+    "name_en": "Gemini Thunder GA",
+    "name": "ジェミニサンダーGA",
+    "types": [
+      "電気"
+    ],
+    "attack": 500,
+    "text": "Gemini Thunder cntr col!",
+    "image_url": "Xxx_gemini_thunder_ga.png"
+  },
+  {
+    "class": "giga",
+    "name_en": "Rogue Break",
+    "name": "ブライブレイク",
+    "types": [
+      "無",
+      "ソード",
+      "ブレイク"
+    ],
+    "attack": 450,
+    "text": "Far 3x3 pnl sword attack RogueBreak.",
+    "image_url": "Sf3_Rogue_break.PNG",
+    "id": "00000188"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Scythe 2",
+      "Scythe 2",
+      "Scythe 2"
+    ],
+    "name_en": "Rogue Break GA",
+    "name": "ブライブレイクGA",
+    "types": [
+      "無",
+      "ソード",
+      "ブレイク"
+    ],
+    "attack": 600,
+    "text": "Far 3x3 pnl sword attack RogueBreak.",
+    "image_url": "Xxx_rogue_break_ga.png"
+  },
+  {
+    "class": "giga",
+    "name_en": "AValanche",
+    "name": "ナダレダイコ",
+    "types": [
+      "水"
+    ],
+    "attack": 80,
+    "text": "Wipe out entire field w/AValanche.",
+    "image_url": "Sf3_aValanche.PNG",
+    "id": "00000189"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Snowball 3",
+      "Snowball 3",
+      "Wide WaVe 3"
+    ],
+    "name_en": "AValanche GA",
+    "name": "ナダレダイコGA",
+    "types": [
+      "水"
+    ],
+    "attack": 130,
+    "text": "Wipe out entire field w/AValanche.",
+    "image_url": "Xxx_aValanche_ga.png"
+  },
+  {
+    "class": "giga",
+    "name_en": "Flying Impact",
+    "name": "フライングインパクト",
+    "types": [
+      "木",
+      "ブレイク"
+    ],
+    "attack": 500,
+    "text": "2-column high-speed ram attack.",
+    "image_url": "Sf3_Flying_impact.PNG",
+    "id": "0000018A"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Jet Attack 3",
+      "Jet Attack 3",
+      "Jungle Storm"
+    ],
+    "name_en": "Flying Impact GA",
+    "name": "フライングインパクトGA",
+    "types": [
+      "木",
+      "ブレイク"
+    ],
+    "attack": 650,
+    "text": "2-column high-speed ram attack.",
+    "image_url": "Xxx_flying_impact_ga.png"
+  },
+  {
+    "class": "giga",
+    "name_en": "Torrent WaVe",
+    "name": "ゲキリュウウェーブ",
+    "types": [
+      "水"
+    ],
+    "attack": 400,
+    "text": "Tidal waVe wash all obj from field.",
+    "image_url": "Sf3_turrent_waVe.PNG",
+    "id": "0000018B"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Pirahna Kiss 2",
+      "Pirahna Kiss 2",
+      "Pirahna Kiss 2"
+    ],
+    "name_en": "Torrent WaVe GA",
+    "name": "ゲキリュウウェーブGA",
+    "types": [
+      "水"
+    ],
+    "attack": 550,
+    "text": "Tidal waVe wash all obj from field.",
+    "image_url": "Xxx_turrent_waVe_ga.png"
+  },
+  {
+    "class": "giga",
+    "name_en": "Holy Light",
+    "name": "ライトオブセイント",
+    "types": [
+      "無"
+    ],
+    "attack": 90,
+    "text": "Emerge 3 pnl ahead & atk adjacnt pnls",
+    "image_url": "Xxx_holy_light_ga.png",
+    "id": "0000018C"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Puff Blast 3",
+      "Puff Blast 3",
+      "Tornado Dance"
+    ],
+    "name_en": "Holy Light GA",
+    "name": "ライトオブセイントGA",
+    "types": [
+      "無"
+    ],
+    "attack": 140,
+    "text": "Emerge 3 pnl ahead & atk adjacnt pnls",
+    "image_url": "Xxx_holy_light_ga.png"
+  },
+  {
+    "class": "giga",
+    "name_en": "Wicked Flame",
+    "name": "ペインヘルフレイム",
+    "types": [
+      "火"
+    ],
+    "attack": 100,
+    "text": "Unleash 12 WickdFlam on far 3 rows",
+    "image_url": "Sf3_jack_corVus_giga.PNG",
+    "id": "0000018D"
+  },
+  {
+    "class": "giga",
+    "source_cards": [
+      "Dance Fire 3",
+      "Dance Fire 3",
+      "Dance Fire 3"
+    ],
+    "name_en": "Wicked Flame GA",
+    "name": "ペインヘルフレイムGA",
+    "types": [
+      "火"
+    ],
+    "attack": 150,
+    "text": "Unleash 12 WickdFlam on far 3 rows",
+    "image_url": "Xxx_wicked_flame_ga.png"
+  },
+  {
+    "name_en": "Meteor Light Barrage",
+    "name": "メテオライトB",
+    "types": [
+      "無"
+    ],
+    "attack": 130,
+    "text": "NFB MteorLight esta apunto de explotar",
+    "image_url": "Nfb_meteorlightbarrage.png",
+    "class": "standard"
+  },
+  {
+    "name_en": "Atomic Blazer",
+    "name": "Aブレイザー",
+    "types": [
+      "火",
+      "風"
+    ],
+    "attack": 400,
+    "text": "NFB AtomBlzr Va a explotar",
+    "image_url": "Nfb_atomblazer.png",
+    "class": "standard"
+  },
+  {
+    "name_en": "Elemental Cyclone",
+    "name": "Eサイクロン",
+    "types": [
+      "木",
+      "風"
+    ],
+    "attack": 100,
+    "text": "NFB ElemCycln Va a explotar",
+    "image_url": "Nfb_elementalcyclone.png",
+    "class": "standard"
+  },
+  {
+    "name_en": "Thunder Bolt Blade",
+    "name": "TBブレード",
+    "types": [
+      "電気",
+      "ソード"
+    ],
+    "attack": 100,
+    "text": "NFB TB Blade Va a explotar",
+    "image_url": "Nfb_thunderboltblade.png",
+    "class": "standard"
+  },
+  {
+    "name_en": "Dyna WaVe",
+    "name": "Dウェーブ",
+    "types": [
+      "水"
+    ],
+    "attack": 100,
+    "text": "NFB DynaWaVe Va a explotar",
+    "image_url": "Nfb_dynawaVe.png",
+    "class": "standard"
+  },
+  {
+    "name_en": "Black End Galaxy",
+    "name": "BEギャラクシー",
+    "types": [
+      "無",
+      "ソード",
+      "風"
+    ],
+    "attack": 500,
+    "text": "NFB BlkEndGlxy Va a explotar",
+    "image_url": "Nfb_blackendgalaxy.png",
+    "class": "standard"
+  },
+  {
+    "name_en": "Red Gaia Eraser",
+    "name": "RGイレイザー",
+    "types": [
+      "無",
+      "ブレイク"
+    ],
+    "attack": 200,
+    "text": "NFB RdGaiaErsr Va a explotar",
+    "image_url": "Nfb_redgaiaeraser.png",
+    "class": "standard"
+  }
+]

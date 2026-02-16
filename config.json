@@ -1,0 +1,14 @@
+{
+  "appName": "Finalized Folder Viewer",
+  "version": "1.0.0",
+  "features": {
+    "darkMode": true
+  },
+  "limits": {
+    "maxItems": 100
+  },
+  "routes": {
+    "home": "/",
+    "settings": "/settings"
+  }
+}

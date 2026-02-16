@@ -1,0 +1,44 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat:*)",
+      "Bash(grep:*)",
+      "Bash(dir:*)",
+      "Bash(git clone:*)",
+      "Bash(\"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\MSBuild\\\\Current\\\\Bin\\\\MSBuild.exe\" Dll1.sln /p:Configuration=Release /p:Platform=x64 /t:Rebuild)",
+      "Bash(\"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\MSBuild\\\\Current\\\\Bin\\\\MSBuild.exe\" Dll1.sln -p:Configuration=Release -p:Platform=x64 -t:Rebuild)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nfeat: NDS structure pattern scanning for MainRAM detection\n\n- Implement pattern scan for [MainRAM ptr][MainRAMMask] pair\n- Add three detection methods: module scan, heap scan, size-based fallback\n- Add SEH-protected safe memory read functions\n- Validate MainRAMMask values \\(0x003FFFFF for NDS, 0x00FFFFFF for DSi\\)\n- Add IMPLEMENTATION_NOTES.md documenting investigation and approach\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(powershell -Command \"[System.IO.File]::WriteAllText\\(''c:\\\\Users\\\\morea\\\\Documents\\\\pg\\\\ssr3_viewer\\\\Dll1\\\\Dll1\\\\dllmain.cpp'', [System.IO.File]::ReadAllText\\(''c:\\\\Users\\\\morea\\\\Documents\\\\pg\\\\ssr3_viewer\\\\Dll1\\\\Dll1\\\\dllmain.cpp'', [System.Text.Encoding]::UTF8\\), [System.Text.Encoding]::UTF8\\)\")",
+      "Bash(\"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\MSBuild\\\\Current\\\\Bin\\\\MSBuild.exe\":*)",
+      "Bash(\"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\MSBuild\\\\Current\\\\Bin\\\\MSBuild.exe\" \"c:\\\\Users\\\\morea\\\\Documents\\\\pg\\\\ssr3_viewer\\\\Dll1\\\\Dll1.sln\" -p:Configuration=Release -p:Platform=x64 -t:Rebuild)",
+      "Bash(node -e:*)",
+      "Bash(node merge_cards.js:*)",
+      "Bash(node:*)",
+      "Bash(del \"c:\\\\Users\\\\morea\\\\Documents\\\\pg\\\\ssr3_viewer\\\\merge_cards.js\")",
+      "Bash(npx tsc:*)",
+      "Bash(git reset:*)",
+      "Bash(git commit:*)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_take_screenshot",
+      "mcp__playwright__browser_evaluate",
+      "mcp__playwright__browser_hover",
+      "mcp__playwright__browser_click",
+      "Bash(yarn build:web:*)",
+      "Bash(powershell -Command \"Get-Content ''c:\\\\Users\\\\morea\\\\Documents\\\\pg\\\\ssr3_viewer\\\\apps\\\\web\\\\public\\\\type_images\\\\Null.png'' -Encoding Byte -TotalCount 200 | ForEach-Object { [char]$_} | Join-String\")",
+      "Bash(powershell -ExecutionPolicy Bypass -File:*)",
+      "Bash(while read:*)",
+      "Bash(do git update-ref -d \"$ref\")",
+      "Bash(done)",
+      "Bash(git check-ignore:*)",
+      "Bash(powershell:*)",
+      "Bash(xxd:*)",
+      "Bash(git config:*)",
+      "WebFetch(domain:megaman.fandom.com)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "playwright"
+  ]
+}

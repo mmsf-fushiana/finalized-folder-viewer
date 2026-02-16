@@ -1,0 +1,502 @@
+{
+  "00003867": {
+    "name": "ability.name.hp50",
+    "capacity": 120
+  },
+  "000038A8": {
+    "name": "ability.name.hp50",
+    "capacity": 110
+  },
+  "000038BE": {
+    "name": "ability.name.hp50",
+    "capacity": 100
+  },
+  "000038D4": {
+    "name": "ability.name.hp50",
+    "capacity": 90
+  },
+  "00003868": {
+    "name": "ability.name.hp100",
+    "capacity": 220
+  },
+  "000038A9": {
+    "name": "ability.name.hp100",
+    "capacity": 205
+  },
+  "000038BF": {
+    "name": "ability.name.hp100",
+    "capacity": 190
+  },
+  "000038D5": {
+    "name": "ability.name.hp100",
+    "capacity": 170
+  },
+  "0000386A": {
+    "name": "ability.name.hp200",
+    "capacity": 310
+  },
+  "000038AA": {
+    "name": "ability.name.hp200",
+    "capacity": 290
+  },
+  "000038C0": {
+    "name": "ability.name.hp200",
+    "capacity": 270
+  },
+  "000038D6": {
+    "name": "ability.name.hp200",
+    "capacity": 250
+  },
+  "0000386C": {
+    "name": "ability.name.hp300",
+    "capacity": 420
+  },
+  "000038AB": {
+    "name": "ability.name.hp300",
+    "capacity": 390
+  },
+  "000038C1": {
+    "name": "ability.name.hp300",
+    "capacity": 370
+  },
+  "000038D7": {
+    "name": "ability.name.hp300",
+    "capacity": 340
+  },
+  "0000386D": {
+    "name": "ability.name.hp400",
+    "capacity": 490
+  },
+  "000038AC": {
+    "name": "ability.name.hp400",
+    "capacity": 470
+  },
+  "000038C2": {
+    "name": "ability.name.hp400",
+    "capacity": 450
+  },
+  "000038D8": {
+    "name": "ability.name.hp400",
+    "capacity": 430
+  },
+  "0000386E": {
+    "name": "ability.name.hp500",
+    "capacity": 610
+  },
+  "000038AD": {
+    "name": "ability.name.hp500",
+    "capacity": 570
+  },
+  "000038C3": {
+    "name": "ability.name.hp500",
+    "capacity": 540
+  },
+  "000038D9": {
+    "name": "ability.name.hp500",
+    "capacity": 450
+  },
+  "000038E5": {
+    "name": "ability.name.hp500",
+    "capacity": 350
+  },
+  "00003800": {
+    "name": "ability.name.undershirt",
+    "capacity": 60
+  },
+  "00003892": {
+    "name": "ability.name.undershirt",
+    "capacity": 50
+  },
+  "000038B0": {
+    "name": "ability.name.undershirt",
+    "capacity": 30
+  },
+  "000038C6": {
+    "name": "ability.name.undershirt",
+    "capacity": 5
+  },
+  "00003801": {
+    "name": "ability.name.air_shoes",
+    "capacity": 450
+  },
+  "00003893": {
+    "name": "ability.name.air_shoes",
+    "capacity": 400
+  },
+  "000038B1": {
+    "name": "ability.name.air_shoes",
+    "capacity": 350
+  },
+  "000038C7": {
+    "name": "ability.name.air_shoes",
+    "capacity": 260
+  },
+  "000038DC": {
+    "name": "ability.name.air_shoes",
+    "capacity": 200
+  },
+  "00003802": {
+    "name": "ability.name.float_shoes",
+    "capacity": 300
+  },
+  "00003894": {
+    "name": "ability.name.float_shoes",
+    "capacity": 270
+  },
+  "000038B2": {
+    "name": "ability.name.float_shoes",
+    "capacity": 240
+  },
+  "000038C8": {
+    "name": "ability.name.float_shoes",
+    "capacity": 210
+  },
+  "000038DD": {
+    "name": "ability.name.float_shoes",
+    "capacity": 150
+  },
+  "00003803": {
+    "name": "ability.name.reflect",
+    "capacity": 260
+  },
+  "00003895": {
+    "name": "ability.name.reflect",
+    "capacity": 320
+  },
+  "000038B3": {
+    "name": "ability.name.reflect",
+    "capacity": 200
+  },
+  "000038C9": {
+    "name": "ability.name.reflect",
+    "capacity": 150
+  },
+  "000038DE": {
+    "name": "ability.name.reflect",
+    "capacity": 50
+  },
+  "00003804": {
+    "name": "ability.name.super_armor",
+    "capacity": 900
+  },
+  "00003896": {
+    "name": "ability.name.super_armor",
+    "capacity": 700
+  },
+  "00003805": {
+    "name": "ability.name.flash_body",
+    "capacity": 300
+  },
+  "00003897": {
+    "name": "ability.name.flash_body",
+    "capacity": 200
+  },
+  "00003806": {
+    "name": "ability.name.gravity_body",
+    "capacity": 500
+  },
+  "00003898": {
+    "name": "ability.name.gravity_body",
+    "capacity": 300
+  },
+  "00003807": {
+    "name": "ability.name.paralyze_body",
+    "capacity": 800
+  },
+  "00003899": {
+    "name": "ability.name.paralyze_body",
+    "capacity": 600
+  },
+  "00003808": {
+    "name": "ability.name.freeze_body",
+    "capacity": 800
+  },
+  "0000389A": {
+    "name": "ability.name.freeze_body",
+    "capacity": 600
+  },
+  "00003809": {
+    "name": "ability.name.bubble_body",
+    "capacity": 800
+  },
+  "0000389B": {
+    "name": "ability.name.bubble_body",
+    "capacity": 600
+  },
+  "0000380B": {
+    "name": "ability.name.first_barrier",
+    "capacity": 60
+  },
+  "0000389C": {
+    "name": "ability.name.first_barrier",
+    "capacity": 50
+  },
+  "000038B4": {
+    "name": "ability.name.first_barrier",
+    "capacity": 40
+  },
+  "000038CA": {
+    "name": "ability.name.first_barrier",
+    "capacity": 30
+  },
+  "0000380C": {
+    "name": "ability.name.first_aura",
+    "capacity": 600
+  },
+  "0000389D": {
+    "name": "ability.name.first_aura",
+    "capacity": 400
+  },
+  "0000386F": {
+    "name": "ability.name.mega_class_plus_1",
+    "capacity": 440
+  },
+  "000038AE": {
+    "name": "ability.name.mega_class_plus_1",
+    "capacity": 400
+  },
+  "000038C4": {
+    "name": "ability.name.mega_class_plus_1",
+    "capacity": 360
+  },
+  "000038DA": {
+    "name": "ability.name.mega_class_plus_1",
+    "capacity": 270
+  },
+  "000038E6": {
+    "name": "ability.name.mega_class_plus_1",
+    "capacity": 200
+  },
+  "00003871": {
+    "name": "ability.name.giga_class_plus_1",
+    "capacity": 750
+  },
+  "000038AF": {
+    "name": "ability.name.giga_class_plus_1",
+    "capacity": 700
+  },
+  "000038C5": {
+    "name": "ability.name.giga_class_plus_1",
+    "capacity": 650
+  },
+  "000038DB": {
+    "name": "ability.name.giga_class_plus_1",
+    "capacity": 400
+  },
+  "0000380D": {
+    "name": "ability.name.plus_v",
+    "capacity": 90
+  },
+  "0000389E": {
+    "name": "ability.name.plus_v",
+    "capacity": 80
+  },
+  "000038B5": {
+    "name": "ability.name.plus_v",
+    "capacity": 70
+  },
+  "000038CB": {
+    "name": "ability.name.plus_v",
+    "capacity": 50
+  },
+  "0000380E": {
+    "name": "ability.name.plus_cross",
+    "capacity": 150
+  },
+  "0000389F": {
+    "name": "ability.name.plus_cross",
+    "capacity": 130
+  },
+  "000038B6": {
+    "name": "ability.name.plus_cross",
+    "capacity": 110
+  },
+  "000038CC": {
+    "name": "ability.name.plus_cross",
+    "capacity": 90
+  },
+  "000038DF": {
+    "name": "ability.name.plus_cross",
+    "capacity": 45
+  },
+  "0000380F": {
+    "name": "ability.name.plus_spread",
+    "capacity": 200
+  },
+  "000038A0": {
+    "name": "ability.name.plus_spread",
+    "capacity": 180
+  },
+  "000038B7": {
+    "name": "ability.name.plus_spread",
+    "capacity": 160
+  },
+  "000038CD": {
+    "name": "ability.name.plus_spread",
+    "capacity": 140
+  },
+  "000038E0": {
+    "name": "ability.name.plus_spread",
+    "capacity": 100
+  },
+  "00003810": {
+    "name": "ability.name.plus_green_panel",
+    "capacity": 220
+  },
+  "000038A1": {
+    "name": "ability.name.plus_green_panel",
+    "capacity": 200
+  },
+  "000038B8": {
+    "name": "ability.name.plus_green_panel",
+    "capacity": 170
+  },
+  "000038CE": {
+    "name": "ability.name.plus_green_panel",
+    "capacity": 150
+  },
+  "000038E1": {
+    "name": "ability.name.plus_green_panel",
+    "capacity": 50
+  },
+  "00003811": {
+    "name": "ability.name.plus_ice_panel",
+    "capacity": 220
+  },
+  "000038A2": {
+    "name": "ability.name.plus_ice_panel",
+    "capacity": 210
+  },
+  "000038B9": {
+    "name": "ability.name.plus_ice_panel",
+    "capacity": 180
+  },
+  "000038CF": {
+    "name": "ability.name.plus_ice_panel",
+    "capacity": 160
+  },
+  "000038E2": {
+    "name": "ability.name.plus_ice_panel",
+    "capacity": 50
+  },
+  "00003812": {
+    "name": "ability.name.plus_paralyze_panel",
+    "capacity": 250
+  },
+  "000038A3": {
+    "name": "ability.name.plus_paralyze_panel",
+    "capacity": 230
+  },
+  "000038BA": {
+    "name": "ability.name.plus_paralyze_panel",
+    "capacity": 210
+  },
+  "000038D0": {
+    "name": "ability.name.plus_paralyze_panel",
+    "capacity": 180
+  },
+  "000038E3": {
+    "name": "ability.name.plus_paralyze_panel",
+    "capacity": 70
+  },
+  "00003813": {
+    "name": "ability.name.plus_insulate_panel",
+    "capacity": 200
+  },
+  "000038BB": {
+    "name": "ability.name.plus_insulate_panel",
+    "capacity": 190
+  },
+  "000038A4": {
+    "name": "ability.name.plus_insulate_panel",
+    "capacity": 170
+  },
+  "000038D1": {
+    "name": "ability.name.plus_insulate_panel",
+    "capacity": 140
+  },
+  "000038E4": {
+    "name": "ability.name.plus_insulate_panel",
+    "capacity": 50
+  },
+  "00003814": {
+    "name": "ability.name.plus_poison_panel",
+    "capacity": 270
+  },
+  "000038A5": {
+    "name": "ability.name.plus_poison_panel",
+    "capacity": 250
+  },
+  "000038BC": {
+    "name": "ability.name.plus_poison_panel",
+    "capacity": 230
+  },
+  "000038D2": {
+    "name": "ability.name.plus_poison_panel",
+    "capacity": 120
+  },
+  "00003825": {
+    "name": "ability.name.auto_lock_on",
+    "capacity": 950
+  },
+  "00003826": {
+    "name": "ability.name.quick_gauge",
+    "capacity": 500
+  },
+  "000038A6": {
+    "name": "ability.name.quick_gauge",
+    "capacity": 300
+  },
+  "00003827": {
+    "name": "ability.name.kawarimi",
+    "capacity": 370
+  },
+  "000038A7": {
+    "name": "ability.name.kawarimi",
+    "capacity": 350
+  },
+  "000038BD": {
+    "name": "ability.name.kawarimi",
+    "capacity": 330
+  },
+  "000038D3": {
+    "name": "ability.name.kawarimi",
+    "capacity": 250
+  },
+  "00003828": {
+    "name": "ability.name.circle_search",
+    "capacity": 5
+  },
+  "00003829": {
+    "name": "ability.name.side_search",
+    "capacity": 5
+  },
+  "0000382A": {
+    "name": "ability.name.ace_joker_pgm",
+    "capacity": 0
+  },
+  "00003831": {
+    "name": "ability.name.s_area_eater",
+    "capacity": 5
+  },
+  "00003832": {
+    "name": "ability.name.s_double_stone",
+    "capacity": 5
+  },
+  "00003836": {
+    "name": "ability.name.s_panel_format",
+    "capacity": 5
+  },
+  "0000382B": {
+    "name": "ability.name.humor_ward",
+    "capacity": 1
+  },
+  "0000382C": {
+    "name": "ability.name.humor_buster",
+    "capacity": 1
+  },
+  "0000382D": {
+    "name": "ability.name.humor_buster",
+    "capacity": 1
+  }
+}

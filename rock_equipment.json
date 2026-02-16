@@ -1,0 +1,156 @@
+{
+  "03011800": {
+    "name": "rock.name.surudo_ikiba",
+    "attack": 1,
+    "rapid": 2,
+    "charge": 1,
+    "effect": "rock.effect.none"
+  },
+  "03011801": {
+    "name": "rock.name.tangaro_pierce",
+    "attack": 2,
+    "rapid": 2,
+    "charge": 2,
+    "effect": "rock.effect.none"
+  },
+  "03011802": {
+    "name": "rock.name.kageshibari_claw",
+    "attack": 1,
+    "rapid": 2,
+    "charge": 2,
+    "effect": "rock.effect.cs_immobilize_50"
+  },
+  "03011803": {
+    "name": "rock.name.quick_ring",
+    "attack": 3,
+    "rapid": 1,
+    "charge": 3,
+    "effect": "rock.effect.none"
+  },
+  "03011804": {
+    "name": "rock.name.suiryu_fang",
+    "attack": 1,
+    "rapid": 3,
+    "charge": 2,
+    "effect": "rock.effect.cs_bubble_50"
+  },
+  "03011805": {
+    "name": "rock.name.shippu_pierce",
+    "attack": 2,
+    "rapid": 1,
+    "charge": 5,
+    "effect": "rock.effect.none"
+  },
+  "03011806": {
+    "name": "rock.name.paralyze_wing",
+    "attack": 3,
+    "rapid": 1,
+    "charge": 2,
+    "effect": "rock.effect.cs_paralyze_50"
+  },
+  "03011807": {
+    "name": "rock.name.machinegun_claw",
+    "attack": 2,
+    "rapid": 4,
+    "charge": 1,
+    "effect": "rock.effect.none"
+  },
+  "03011808": {
+    "name": "rock.name.zenny_decide",
+    "attack": 3,
+    "rapid": 2,
+    "charge": 2,
+    "effect": "rock.effect.zenny_drop"
+  },
+  "03011809": {
+    "name": "rock.name.titan_glove",
+    "attack": 5,
+    "rapid": 1,
+    "charge": 2,
+    "effect": "rock.effect.none"
+  },
+  "0301180A": {
+    "name": "rock.name.senkou_bracelet",
+    "attack": 2,
+    "rapid": 2,
+    "charge": 3,
+    "effect": "rock.effect.cs_blind_50"
+  },
+  "0301180B": {
+    "name": "rock.name.kaiser_knuckle",
+    "attack": 4,
+    "rapid": 3,
+    "charge": 4,
+    "effect": "rock.effect.none"
+  },
+  "0301180C": {
+    "name": "rock.name.bugrise_claw",
+    "attack": 1,
+    "rapid": 2,
+    "charge": 3,
+    "effect": "rock.effect.cs_hpbug_50"
+  },
+  "0301180D": {
+    "name": "rock.name.genwaku_eye",
+    "attack": 2,
+    "rapid": 1,
+    "charge": 3,
+    "effect": "rock.effect.cs_confuse_50"
+  },
+  "0301180E": {
+    "name": "rock.name.impact_brace",
+    "attack": 4,
+    "rapid": 1,
+    "charge": 5,
+    "effect": "rock.effect.cs_crack_100"
+  },
+  "0301180F": {
+    "name": "rock.name.collector_eye",
+    "attack": 2,
+    "rapid": 2,
+    "charge": 3,
+    "effect": "rock.effect.card_drop"
+  },
+  "03011810": {
+    "name": "rock.name.cosmic_rave",
+    "attack": 5,
+    "rapid": 3,
+    "charge": 4,
+    "effect": "rock.effect.none"
+  },
+  "03011811": {
+    "name": "rock.name.knight_spirit",
+    "attack": 3,
+    "rapid": 4,
+    "charge": 4,
+    "effect": "rock.effect.none"
+  },
+  "03011812": {
+    "name": "rock.name.white_fang",
+    "attack": 1,
+    "rapid": 3,
+    "charge": 3,
+    "effect": "rock.effect.cs_freeze_25"
+  },
+  "03011813": {
+    "name": "rock.name.gyakufu_claw",
+    "attack": 2,
+    "rapid": 1,
+    "charge": 2,
+    "effect": "rock.effect.none"
+  },
+  "03011814": {
+    "name": "rock.name.danger_ring",
+    "attack": 2,
+    "rapid": 2,
+    "charge": 3,
+    "effect": "rock.effect.cs_blind_or_immobilize_33"
+  },
+  "03011815": {
+    "name": "rock.name.exe_blaster_ex",
+    "attack": 1,
+    "rapid": 5,
+    "charge": 2,
+    "effect": "rock.effect.none"
+  }
+}
