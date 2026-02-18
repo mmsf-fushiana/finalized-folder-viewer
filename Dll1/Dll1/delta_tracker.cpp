@@ -50,7 +50,7 @@ std::string DeltaTracker::BuildFullStateJson() const {
 
         jw.Key(tv.name);
         jw.BeginObject();
-        jw.UIntField("v", tv.currentValue);
+        jw.HexValueField("v", tv.currentValue, tv.size);
         jw.HexField("a", tv.dsAddress);
         jw.UIntField("s", tv.size);
         jw.EndObject();
@@ -84,7 +84,7 @@ std::string DeltaTracker::BuildDeltaJson() const {
 
         jw.Key(tv.name);
         jw.BeginObject();
-        jw.UIntField("v", tv.currentValue);
+        jw.HexValueField("v", tv.currentValue, tv.size);
         jw.EndObject();
     }
     jw.EndObject();

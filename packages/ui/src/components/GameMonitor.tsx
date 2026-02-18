@@ -11,7 +11,7 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
-import { useGameState } from '../stores/gameStore';
+import { useGameState, hexToNumber } from '../stores/gameStore';
 
 /** ミリ秒付きタイムスタンプ文字列 */
 function formatTimestamp(ms: number): string {
@@ -150,7 +150,10 @@ export function GameMonitor() {
                       color: row.isChanged ? 'primary.main' : 'text.primary',
                     }}
                   >
-                    {row.value}
+                    0x{row.value}
+                    <Box component="span" sx={{ ml: 1, color: 'text.secondary', fontWeight: 'normal', fontSize: '0.75rem' }}>
+                      ({hexToNumber(row.value)})
+                    </Box>
                   </TableCell>
                   <TableCell
                     sx={{

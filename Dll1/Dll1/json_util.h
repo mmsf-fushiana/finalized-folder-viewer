@@ -77,11 +77,24 @@ public:
         ValueBool(val);
     }
 
-    // 16進文字列フィールド (アドレス表示用)
+    // 16進文字列フィールド (アドレス表示用: 常に8桁)
     void HexField(const char* key, uint32_t val) {
         Key(key);
         char tmp[16];
         snprintf(tmp, sizeof(tmp), "%08X", val);
+        m_buf += '"';
+        m_buf += tmp;
+        m_buf += '"';
+    }
+
+    // バイトサイズに応じた16進数値フィールド (ゲーム値送信用)
+    // size=1 → "FF", size=2 → "FFFF", size=4 → "FFFFFFFF"
+    void HexValueField(const char* key, uint32_t val, uint8_t size) {
+        Key(key);
+        char tmp[16];
+        if (size == 1)      snprintf(tmp, sizeof(tmp), "%02X", (uint8_t)val);
+        else if (size == 2) snprintf(tmp, sizeof(tmp), "%04X", (uint16_t)val);
+        else                snprintf(tmp, sizeof(tmp), "%08X", val);
         m_buf += '"';
         m_buf += tmp;
         m_buf += '"';

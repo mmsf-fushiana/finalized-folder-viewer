@@ -8,10 +8,18 @@ import { createContext, useContext } from 'react';
 // ========================================
 
 export interface GameValue {
-  value: number;
+  value: string;       // 16進数文字列 e.g. "000186A0" (big-endian, size分の桁数)
   address: string;
   size: number;
   lastUpdated: number; // Date.now() ms
+}
+
+/**
+ * 16進数文字列 → 数値変換
+ * DLLはbig-endian表現で送信するためparseIntで正しく変換される
+ */
+export function hexToNumber(hex: string): number {
+  return parseInt(hex, 16);
 }
 
 export interface GameState {
@@ -36,12 +44,12 @@ export interface HelloMessage {
 
 export interface FullMessage {
   type: 'full';
-  data: Record<string, { v: number; a: string; s: number }>;
+  data: Record<string, { v: string; a: string; s: number }>;
 }
 
 export interface DeltaMessage {
   type: 'delta';
-  data: Record<string, { v: number }>;
+  data: Record<string, { v: string }>;
 }
 
 export interface StatusMessage {
