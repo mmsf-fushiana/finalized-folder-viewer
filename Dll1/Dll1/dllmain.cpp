@@ -1,11 +1,15 @@
 ﻿// dllmain.cpp : melonDS用 DLLプロキシ (version.dll)
 // NDS構造体パターンスキャンによるMainRAM検出
+// Named Pipe Server + DeltaTracker によるリアルタイム通信
 
 #include "pch.h"
 #include <Psapi.h>
 #include <cstdio>
 #include <vector>
 #include <MinHook.h>
+#include "pipe_server.h"
+#include "delta_tracker.h"
+#include "json_util.h"
 
 #pragma comment(lib, "Psapi.lib")
 
@@ -14,7 +18,7 @@
 // ========================================
 static HMODULE g_originalDll = nullptr;
 static std::atomic<bool> g_running{ false };
-static std::thread g_cheatThread;
+static std::thread g_mainThread;
 
 // version.dll オリジナル関数ポインタ
 static FARPROC p_GetFileVersionInfoA = nullptr;
@@ -41,7 +45,7 @@ constexpr uint32_t DSI_MAIN_RAM_MASK = 0x00FFFFFF;  // 16MBマスク
 struct GameAddress {
     const char* name;           // 識別名
     uint32_t dsAddress;         // DSメモリ上のアドレス
-    uint8_t size;               // バイトサイズ (2 or 4)
+    uint8_t size;               // バイトサイズ (1, 2, or 4)
 };
 
 // アドレスリスト（ゲームごとに変更）
@@ -79,14 +83,18 @@ static const GameAddress GAME_ADDRESSES[] = {
     { "CARD28",     0x020F383C, 2 },
     { "CARD29",     0x020F383E, 2 },
     { "CARD30",     0x020F3840, 2 },
-    { "REG",        0x020F3844, 2 },// 2?
-    { "TAG1_2",     0x020F3842, 2 },// 2?
+    { "REG",        0x020F3844, 2 },
+    { "TAG1_2",     0x020F3842, 2 },
 };
 static constexpr size_t GAME_ADDRESS_COUNT = sizeof(GAME_ADDRESSES) / sizeof(GAME_ADDRESSES[0]);
 
 // melonDSのMainRAMポインタ（実行時に検出）
 static uint8_t* g_mainRAM = nullptr;
 static uint32_t g_mainRAMMask = 0;
+
+// PipeServer & DeltaTracker
+static PipeServer g_pipeServer;
+static DeltaTracker g_deltaTracker;
 
 // ========================================
 // デバッグコンソール
@@ -98,7 +106,7 @@ void InitConsole() {
     AllocConsole();
     freopen_s(&g_consoleOut, "CONOUT$", "w", stdout);
     freopen_s(&g_consoleIn, "CONIN$", "r", stdin);
-    printf("[melonDS Cheat] コンソール初期化完了\n");
+    printf("[DLL] コンソール初期化完了\n");
 }
 
 void CloseConsole() {
@@ -189,131 +197,64 @@ static bool SafeWriteU8(void* addr, uint8_t value) {
 // 汎用メモリ読み書きAPI
 // ========================================
 
-// DSアドレスからホストアドレスを計算
 uint8_t* GetHostAddress(uint32_t dsAddress) {
     if (!g_mainRAM || !g_mainRAMMask) return nullptr;
     uint32_t offset = (dsAddress - DS_MAIN_RAM_START) & g_mainRAMMask;
     return g_mainRAM + offset;
 }
 
-// 32bit値を読み取り
-bool ReadU32(uint32_t dsAddress, uint32_t* outValue) {
+// DeltaTracker用メモリ読み取りコールバック
+static bool ReadMemory(uint32_t dsAddress, uint8_t size, uint32_t* outValue) {
     uint8_t* hostAddr = GetHostAddress(dsAddress);
     if (!hostAddr) return false;
-    return SafeReadU32(hostAddr, outValue);
-}
 
-// 16bit値を読み取り
-bool ReadU16(uint32_t dsAddress, uint16_t* outValue) {
-    uint8_t* hostAddr = GetHostAddress(dsAddress);
-    if (!hostAddr) return false;
-    return SafeReadU16(hostAddr, outValue);
-}
-
-// 8bit値を読み取り
-bool ReadU8(uint32_t dsAddress, uint8_t* outValue) {
-    uint8_t* hostAddr = GetHostAddress(dsAddress);
-    if (!hostAddr) return false;
-    return SafeReadU8(hostAddr, outValue);
-}
-
-// 32bit値を書き込み
-bool WriteU32(uint32_t dsAddress, uint32_t value) {
-    uint8_t* hostAddr = GetHostAddress(dsAddress);
-    if (!hostAddr) return false;
-    return SafeWriteU32(hostAddr, value);
-}
-
-// 16bit値を書き込み
-bool WriteU16(uint32_t dsAddress, uint16_t value) {
-    uint8_t* hostAddr = GetHostAddress(dsAddress);
-    if (!hostAddr) return false;
-    return SafeWriteU16(hostAddr, value);
-}
-
-// 8bit値を書き込み
-bool WriteU8(uint32_t dsAddress, uint8_t value) {
-    uint8_t* hostAddr = GetHostAddress(dsAddress);
-    if (!hostAddr) return false;
-    return SafeWriteU8(hostAddr, value);
-}
-
-// アドレス名から定義を検索
-const GameAddress* FindAddressByName(const char* name) {
-    for (size_t i = 0; i < GAME_ADDRESS_COUNT; i++) {
-        if (strcmp(GAME_ADDRESSES[i].name, name) == 0) {
-            return &GAME_ADDRESSES[i];
-        }
+    switch (size) {
+    case 4: return SafeReadU32(hostAddr, outValue);
+    case 2: {
+        uint16_t v16 = 0;
+        if (!SafeReadU16(hostAddr, &v16)) return false;
+        *outValue = v16;
+        return true;
     }
-    return nullptr;
+    case 1: {
+        uint8_t v8 = 0;
+        if (!SafeReadU8(hostAddr, &v8)) return false;
+        *outValue = v8;
+        return true;
+    }
+    default: return false;
+    }
 }
 
-// 名前指定で32bit値を読み取り
-bool ReadByName(const char* name, uint32_t* outValue) {
-    const GameAddress* addr = FindAddressByName(name);
-    if (!addr) return false;
-    return ReadU32(addr->dsAddress, outValue);
-}
-
-// 名前指定で32bit値を書き込み
-bool WriteByName(const char* name, uint32_t value) {
-    const GameAddress* addr = FindAddressByName(name);
-    if (!addr) return false;
-    return WriteU32(addr->dsAddress, value);
-}
-
-// 名前指定で値を加算
-bool AddByName(const char* name, int32_t amount) {
-    const GameAddress* addr = FindAddressByName(name);
-    if (!addr) return false;
-
-    uint32_t current;
-    if (!ReadU32(addr->dsAddress, &current)) return false;
-
-    uint32_t newValue = current + amount;
-    return WriteU32(addr->dsAddress, newValue);
-}
-
-// デバッグ: 生バイト表示
-void DumpBytes(uint32_t dsAddress, size_t count) {
+// メモリ書き込み（コマンド処理用）
+static bool WriteMemory(uint32_t dsAddress, uint8_t size, uint32_t value) {
     uint8_t* hostAddr = GetHostAddress(dsAddress);
-    if (!hostAddr) {
-        printf("[melonDS Cheat] アドレス 0x%08X: 無効\n", dsAddress);
-        return;
-    }
+    if (!hostAddr) return false;
 
-    printf("[melonDS Cheat] アドレス 0x%08X: ", dsAddress);
-    for (size_t i = 0; i < count; i++) {
-        uint8_t b;
-        if (SafeReadU8(hostAddr + i, &b)) {
-            printf("%02X ", b);
-        } else {
-            printf("?? ");
-        }
+    switch (size) {
+    case 4: return SafeWriteU32(hostAddr, value);
+    case 2: return SafeWriteU16(hostAddr, (uint16_t)value);
+    case 1: return SafeWriteU8(hostAddr, (uint8_t)value);
+    default: return false;
     }
-    printf("\n");
 }
 
 // ========================================
 // MainRAM検出（ヒープパターンスキャン）
 // ========================================
 
-// ヒープメモリをスキャンしてMainRAMを検索
 uint8_t* FindMainRAMByHeapScan() {
-    printf("[melonDS Cheat] ヒープ領域でMainRAMパターンをスキャン中...\n");
+    printf("[DLL] ヒープ領域でMainRAMパターンをスキャン中...\n");
 
     HANDLE hProcess = GetCurrentProcess();
     MEMORY_BASIC_INFORMATION mbi;
     uint8_t* addr = nullptr;
     std::vector<std::pair<uint8_t*, size_t>> heapRegions;
 
-    // まず全てのヒープ領域を列挙
     while (VirtualQueryEx(hProcess, addr, &mbi, sizeof(mbi))) {
         if (mbi.State == MEM_COMMIT &&
             mbi.Type == MEM_PRIVATE &&
             (mbi.Protect == PAGE_READWRITE || mbi.Protect == PAGE_EXECUTE_READWRITE)) {
-
-            // 十分な大きさのヒープ領域のみ（1MB以上）
             if (mbi.RegionSize >= 0x100000) {
                 heapRegions.push_back({ static_cast<uint8_t*>(mbi.BaseAddress), mbi.RegionSize });
             }
@@ -321,9 +262,8 @@ uint8_t* FindMainRAMByHeapScan() {
         addr = static_cast<uint8_t*>(mbi.BaseAddress) + mbi.RegionSize;
     }
 
-    printf("[melonDS Cheat] %zu個のヒープ領域をスキャン対象として発見\n", heapRegions.size());
+    printf("[DLL] %zu個のヒープ領域をスキャン対象として発見\n", heapRegions.size());
 
-    // 各ヒープ領域内でMainRAM/Maskパターンを検索
     for (const auto& region : heapRegions) {
         uint8_t* base = region.first;
         size_t size = region.second;
@@ -347,10 +287,8 @@ uint8_t* FindMainRAMByHeapScan() {
             size_t expectedSize = (maskCandidate == NDS_MAIN_RAM_MASK) ? DS_MAIN_RAM_SIZE : DSI_MAIN_RAM_SIZE;
             if (targetMbi.RegionSize < expectedSize) continue;
 
-            printf("[melonDS Cheat] *** ヒープ内でNDSパターン発見! ***\n");
-            printf("[melonDS Cheat]   位置: %p (ヒープ領域 %p 内)\n", base + i, base);
-            printf("[melonDS Cheat]   MainRAM: %p\n", mainRAMCandidate);
-            printf("[melonDS Cheat]   MainRAMMask: 0x%08X\n", maskCandidate);
+            printf("[DLL] *** ヒープ内でNDSパターン発見! ***\n");
+            printf("[DLL]   MainRAM: %p  Mask: 0x%08X\n", mainRAMCandidate, maskCandidate);
 
             g_mainRAMMask = maskCandidate;
             return static_cast<uint8_t*>(mainRAMCandidate);
@@ -361,152 +299,222 @@ uint8_t* FindMainRAMByHeapScan() {
 }
 
 // ========================================
-// 全アドレス値をテキストで構築
+// コマンド処理（Electron → DLL）
 // ========================================
 
-std::string BuildAllValuesText() {
-    std::string result;
-    char line[128];
-
-    for (size_t i = 0; i < GAME_ADDRESS_COUNT; i++) {
-        const GameAddress& addr = GAME_ADDRESSES[i];
-        uint8_t* hostAddr = GetHostAddress(addr.dsAddress);
-        if (!hostAddr) continue;
-
-        uint32_t value = 0;
-        bool ok = false;
-        if (addr.size == 4) {
-            ok = SafeReadU32(hostAddr, &value);
-        } else if (addr.size == 2) {
-            uint16_t v16 = 0;
-            ok = SafeReadU16(hostAddr, &v16);
-            value = v16;
-        } else if (addr.size == 1) {
-            uint8_t v8 = 0;
-            ok = SafeReadU8(hostAddr, &v8);
-            value = v8;
-        }
-
-        if (ok) {
-            snprintf(line, sizeof(line), "%s=%u\n", addr.name, value);
-            result += line;
-        }
+static void HandleCommand(const std::string& message) {
+    JsonCommand cmd = ParseCommand(message.c_str());
+    if (!cmd.valid) {
+        printf("[DLL] 不正なコマンド: %s\n", message.c_str());
+        return;
     }
 
-    return result;
+    if (strcmp(cmd.cmd, "ping") == 0) {
+        // pong応答
+        SYSTEMTIME st;
+        GetSystemTime(&st);
+        FILETIME ft;
+        SystemTimeToFileTime(&st, &ft);
+        ULARGE_INTEGER uli;
+        uli.LowPart = ft.dwLowDateTime;
+        uli.HighPart = ft.dwHighDateTime;
+        // Windows FILETIME → Unix timestamp (ms)
+        int64_t ts = (int64_t)(uli.QuadPart / 10000ULL - 11644473600000ULL);
+
+        JsonWriter jw;
+        jw.BeginObject();
+        jw.StringField("type", "pong");
+        jw.IntField("ts", ts);
+        jw.EndObject();
+        g_pipeServer.Send(jw.GetString());
+
+    } else if (strcmp(cmd.cmd, "refresh") == 0) {
+        // フルステート再送
+        g_deltaTracker.Update(ReadMemory);
+        std::string fullJson = g_deltaTracker.BuildFullStateJson();
+        g_pipeServer.Send(fullJson);
+        g_deltaTracker.ResetChangeFlags();
+        printf("[DLL] refresh実行\n");
+
+    } else if (strcmp(cmd.cmd, "write") == 0) {
+        // 値書き込み
+        TrackedValue* tv = g_deltaTracker.FindByName(cmd.target);
+        if (tv) {
+            if (WriteMemory(tv->dsAddress, tv->size, cmd.value)) {
+                printf("[DLL] write: %s = %u\n", cmd.target, cmd.value);
+            } else {
+                JsonWriter jw;
+                jw.BeginObject();
+                jw.StringField("type", "error");
+                jw.StringField("code", "WRITE_FAILED");
+                jw.StringField("msg", "Memory write failed");
+                jw.EndObject();
+                g_pipeServer.Send(jw.GetString());
+            }
+        } else {
+            JsonWriter jw;
+            jw.BeginObject();
+            jw.StringField("type", "error");
+            jw.StringField("code", "UNKNOWN_TARGET");
+            jw.StringField("msg", "Target address not found");
+            jw.EndObject();
+            g_pipeServer.Send(jw.GetString());
+        }
+
+    } else {
+        printf("[DLL] 不明コマンド: %s\n", cmd.cmd);
+        JsonWriter jw;
+        jw.BeginObject();
+        jw.StringField("type", "error");
+        jw.StringField("code", "UNKNOWN_CMD");
+        jw.StringField("msg", "Unknown command");
+        jw.EndObject();
+        g_pipeServer.Send(jw.GetString());
+    }
 }
 
 // ========================================
-// チートスレッド（Named Pipe Server）
+// メインスレッド
 // ========================================
 
-void CheatThreadFunc() {
-    printf("[PipeServer] スレッド開始\n");
-    printf("[PipeServer] ゲームロード待機中（15秒）...\n");
+void MainThreadFunc() {
+    printf("[DLL] メインスレッド開始\n");
+
+    // DeltaTrackerにアドレス登録
+    for (size_t i = 0; i < GAME_ADDRESS_COUNT; i++) {
+        g_deltaTracker.RegisterAddress(
+            GAME_ADDRESSES[i].name,
+            GAME_ADDRESSES[i].dsAddress,
+            GAME_ADDRESSES[i].size
+        );
+    }
+
+    // PipeServerコールバック設定
+    g_pipeServer.OnMessage = HandleCommand;
+    g_pipeServer.OnConnect = []() {
+        printf("[DLL] クライアント接続 → hello送信\n");
+        g_pipeServer.Send(g_deltaTracker.BuildHelloJson());
+
+        // MainRAM検出済みならstatus送信
+        if (g_mainRAM) {
+            JsonWriter jw;
+            jw.BeginObject();
+            jw.StringField("type", "status");
+            jw.BoolField("connected", true);
+            jw.BoolField("gameActive", true);
+            jw.PtrField("mainram", g_mainRAM);
+            jw.EndObject();
+            g_pipeServer.Send(jw.GetString());
+
+            // フルステート送信
+            g_deltaTracker.Update(ReadMemory);
+            g_pipeServer.Send(g_deltaTracker.BuildFullStateJson());
+            g_deltaTracker.ResetChangeFlags();
+        }
+    };
+    g_pipeServer.OnDisconnect = []() {
+        printf("[DLL] クライアント切断\n");
+    };
+
+    // PipeServer開始
+    g_pipeServer.Start("\\\\.\\pipe\\ssr3_viewer");
+
+    // ゲームロード待機
+    printf("[DLL] ゲームロード待機中（15秒）...\n");
     Sleep(15000);
 
-    // ヒープスキャンでMainRAMを探す
+    // MainRAM検出
     for (int attempt = 0; attempt < 20 && !g_mainRAM && g_running; attempt++) {
-        printf("[PipeServer] === 検出試行 %d ===\n", attempt + 1);
+        printf("[DLL] === 検出試行 %d ===\n", attempt + 1);
         g_mainRAM = FindMainRAMByHeapScan();
         if (!g_mainRAM) {
-            printf("[PipeServer] 見つからず、3秒後に再試行...\n");
+            printf("[DLL] 見つからず、3秒後に再試行...\n");
+
+            // 接続中ならエラー通知
+            if (g_pipeServer.IsConnected()) {
+                JsonWriter jw;
+                jw.BeginObject();
+                jw.StringField("type", "status");
+                jw.BoolField("connected", true);
+                jw.BoolField("gameActive", false);
+                jw.EndObject();
+                g_pipeServer.Send(jw.GetString());
+            }
+
             Sleep(3000);
         }
     }
 
     if (!g_mainRAM) {
-        printf("[PipeServer] エラー: MainRAMが見つかりません!\n");
+        printf("[DLL] エラー: MainRAMが見つかりません!\n");
+        if (g_pipeServer.IsConnected()) {
+            JsonWriter jw;
+            jw.BeginObject();
+            jw.StringField("type", "error");
+            jw.StringField("code", "MAINRAM_NOT_FOUND");
+            jw.StringField("msg", "MainRAM detection failed");
+            jw.EndObject();
+            g_pipeServer.Send(jw.GetString());
+        }
+        // PipeServerは動かし続ける（再接続に備える）
+        while (g_running) {
+            Sleep(500);
+        }
+        g_pipeServer.Stop();
         return;
     }
 
-    printf("[PipeServer] MainRAM発見: %p (mask: 0x%08X)\n", g_mainRAM, g_mainRAMMask);
+    printf("[DLL] MainRAM発見: %p (mask: 0x%08X)\n", g_mainRAM, g_mainRAMMask);
 
-    // Named Pipe サーバーループ
-    const char* PIPE_NAME = "\\\\.\\pipe\\ssr3_viewer";
+    // 接続中ならstatus + フルステート送信
+    if (g_pipeServer.IsConnected()) {
+        JsonWriter jw;
+        jw.BeginObject();
+        jw.StringField("type", "status");
+        jw.BoolField("connected", true);
+        jw.BoolField("gameActive", true);
+        jw.PtrField("mainram", g_mainRAM);
+        jw.EndObject();
+        g_pipeServer.Send(jw.GetString());
 
-    while (g_running) {
-        HANDLE hPipe = CreateNamedPipeA(
-            PIPE_NAME,
-            PIPE_ACCESS_DUPLEX | FILE_FLAG_OVERLAPPED,
-            PIPE_TYPE_BYTE | PIPE_READMODE_BYTE,
-            1,      // max instances
-            4096,   // out buffer
-            4096,   // in buffer
-            0, NULL
-        );
-
-        if (hPipe == INVALID_HANDLE_VALUE) {
-            printf("[PipeServer] CreateNamedPipe失敗: %lu\n", GetLastError());
-            Sleep(1000);
-            continue;
-        }
-
-        printf("[PipeServer] クライアント接続待機中...\n");
-
-        // Overlapped接続（g_runningチェック可能にする）
-        OVERLAPPED olConnect = {};
-        olConnect.hEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
-        ConnectNamedPipe(hPipe, &olConnect);
-        DWORD lastErr = GetLastError();
-
-        bool connected = false;
-        if (lastErr == ERROR_PIPE_CONNECTED) {
-            connected = true;
-        } else if (lastErr == ERROR_IO_PENDING) {
-            while (g_running) {
-                DWORD waitResult = WaitForSingleObject(olConnect.hEvent, 500);
-                if (waitResult == WAIT_OBJECT_0) {
-                    connected = true;
-                    break;
-                }
-            }
-        }
-        CloseHandle(olConnect.hEvent);
-
-        if (!connected) {
-            CloseHandle(hPipe);
-            continue;
-        }
-
-        printf("[PipeServer] クライアント接続!\n");
-
-        // データ送信ループ（1秒間隔）
-        HANDLE hWriteEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
-
-        while (g_running) {
-            std::string text = BuildAllValuesText();
-            text += "\n"; // フレーム区切り（末尾の\nと合わせて\n\nになる）
-
-            OVERLAPPED olWrite = {};
-            olWrite.hEvent = hWriteEvent;
-            ResetEvent(hWriteEvent);
-
-            BOOL ok = WriteFile(hPipe, text.c_str(), (DWORD)text.size(), NULL, &olWrite);
-            if (!ok && GetLastError() != ERROR_IO_PENDING) {
-                printf("[PipeServer] 書き込み失敗、クライアント切断\n");
-                break;
-            }
-
-            DWORD written = 0;
-            if (!GetOverlappedResult(hPipe, &olWrite, &written, TRUE)) {
-                printf("[PipeServer] 書き込み完了失敗、クライアント切断\n");
-                break;
-            }
-
-            // 1秒待機（100ms刻みでg_runningチェック）
-            for (int i = 0; i < 10 && g_running; i++) {
-                Sleep(100);
-            }
-        }
-
-        CloseHandle(hWriteEvent);
-        DisconnectNamedPipe(hPipe);
-        CloseHandle(hPipe);
-        printf("[PipeServer] クライアント切断、再接続待機...\n");
+        g_deltaTracker.Update(ReadMemory);
+        g_pipeServer.Send(g_deltaTracker.BuildFullStateJson());
+        g_deltaTracker.ResetChangeFlags();
     }
 
-    printf("[PipeServer] スレッド停止\n");
+    // ========================================
+    // メインポーリングループ (50ms間隔)
+    // ========================================
+    printf("[DLL] ポーリング開始 (50ms)\n");
+    DWORD lastFullSend = GetTickCount();
+
+    while (g_running) {
+        // メモリ読み取り＆差分検知
+        g_deltaTracker.Update(ReadMemory);
+
+        if (g_pipeServer.IsConnected()) {
+            // 定期的にフルステート送信 (30秒ごと)
+            DWORD now = GetTickCount();
+            if (now - lastFullSend >= 30000) {
+                g_pipeServer.Send(g_deltaTracker.BuildFullStateJson());
+                g_deltaTracker.ResetChangeFlags();
+                lastFullSend = now;
+            }
+            // 差分があれば送信
+            else if (g_deltaTracker.HasChanges()) {
+                std::string deltaJson = g_deltaTracker.BuildDeltaJson();
+                if (!deltaJson.empty()) {
+                    g_pipeServer.Send(deltaJson);
+                }
+                g_deltaTracker.ResetChangeFlags();
+            }
+        }
+
+        Sleep(50);
+    }
+
+    g_pipeServer.Stop();
+    printf("[DLL] メインスレッド停止\n");
 }
 
 // ========================================
@@ -550,7 +558,7 @@ bool InitVersionProxy() {
 
     g_originalDll = LoadLibraryW(systemPath);
     if (!g_originalDll) {
-        printf("[melonDS Cheat] エラー: オリジナルのversion.dllを読み込めません\n");
+        printf("[DLL] エラー: オリジナルのversion.dllを読み込めません\n");
         return false;
     }
 
@@ -561,7 +569,7 @@ bool InitVersionProxy() {
     p_VerQueryValueA = GetProcAddress(g_originalDll, "VerQueryValueA");
     p_VerQueryValueW = GetProcAddress(g_originalDll, "VerQueryValueW");
 
-    printf("[melonDS Cheat] version.dllプロキシ初期化完了\n");
+    printf("[DLL] version.dllプロキシ初期化完了\n");
     return true;
 }
 
@@ -574,22 +582,23 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
     case DLL_PROCESS_ATTACH:
         DisableThreadLibraryCalls(hModule);
         InitConsole();
-        printf("[melonDS Cheat] DLL読み込み完了!\n");
-        printf("[melonDS Cheat] NDS構造体パターン検出を使用\n");
+        printf("[DLL] version.dll読み込み完了!\n");
+        printf("[DLL] Named Pipe + DeltaTracker モード\n");
 
         if (!InitVersionProxy()) {
             return FALSE;
         }
 
         g_running = true;
-        g_cheatThread = std::thread(CheatThreadFunc);
+        g_mainThread = std::thread(MainThreadFunc);
         break;
 
     case DLL_PROCESS_DETACH:
-        printf("[melonDS Cheat] DLLアンロード中...\n");
+        printf("[DLL] DLLアンロード中...\n");
         g_running = false;
-        if (g_cheatThread.joinable()) {
-            g_cheatThread.detach(); // プロセス終了時にブロックしないようdetach
+        g_pipeServer.Stop();
+        if (g_mainThread.joinable()) {
+            g_mainThread.detach();
         }
         if (g_originalDll) {
             FreeLibrary(g_originalDll);

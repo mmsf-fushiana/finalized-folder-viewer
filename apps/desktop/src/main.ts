@@ -1,7 +1,8 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { PipeClient } from './pipeClient.js';
+import type { PipeMessage } from './pipeClient.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -36,8 +37,9 @@ function createWindow() {
   // Named Pipe クライアント開始
   pipeClient = new PipeClient();
 
-  pipeClient.on('frame', (text: string) => {
-    mainWindow.webContents.send('pipe-data', text);
+  pipeClient.on('message', (msg: PipeMessage) => {
+    // JSON メッセージをそのまま Renderer に転送
+    mainWindow.webContents.send('game-message', msg);
   });
 
   pipeClient.on('connected', () => {
@@ -51,6 +53,25 @@ function createWindow() {
   });
 
   pipeClient.connect();
+
+  // IPC ハンドラ: Renderer → DLL コマンド転送
+  ipcMain.on('game-write', (_event, data: { target: string; value: number }) => {
+    if (pipeClient) {
+      pipeClient.writeValue(data.target, data.value);
+    }
+  });
+
+  ipcMain.on('game-refresh', () => {
+    if (pipeClient) {
+      pipeClient.requestRefresh();
+    }
+  });
+
+  ipcMain.on('game-ping', () => {
+    if (pipeClient) {
+      pipeClient.ping();
+    }
+  });
 }
 
 app.whenReady().then(() => {

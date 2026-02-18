@@ -1,53 +1,46 @@
-import { useState, useEffect } from 'react';
-import { Typography, Box, Paper, Chip } from '@mui/material';
+import { useReducer, useEffect } from 'react';
+import { Box } from '@mui/material';
+import {
+  GameContext,
+  gameReducer,
+  initialGameState,
+} from '../stores/gameStore';
+import type { GameMessage } from '../stores/gameStore';
+import { GameMonitor } from '../components/GameMonitor';
 
 declare global {
   interface Window {
-    pipeAPI?: {
-      onData: (callback: (text: string) => void) => void;
-      onStatus: (callback: (connected: boolean) => void) => void;
+    gameAPI?: {
+      onMessage: (callback: (msg: GameMessage) => void) => void;
+      onPipeStatus: (callback: (connected: boolean) => void) => void;
+      writeValue: (target: string, value: number) => void;
+      requestRefresh: () => void;
+      ping: () => void;
     };
   }
 }
 
 export function DesktopHome() {
-  const [pipeData, setPipeData] = useState<string>('DLL接続待機中...');
-  const [connected, setConnected] = useState(false);
+  const [state, dispatch] = useReducer(gameReducer, initialGameState);
 
   useEffect(() => {
-    if (window.pipeAPI) {
-      window.pipeAPI.onData((text) => setPipeData(text));
-      window.pipeAPI.onStatus((status) => setConnected(status));
-    }
+    const api = window.gameAPI;
+    if (!api) return;
+
+    api.onMessage((msg: GameMessage) => {
+      dispatch({ type: 'MESSAGE', payload: msg });
+    });
+
+    api.onPipeStatus((connected: boolean) => {
+      dispatch({ type: connected ? 'PIPE_CONNECTED' : 'PIPE_DISCONNECTED' });
+    });
   }, []);
 
   return (
-    <Box>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
-        <Typography variant="h5" component="h1">
-          Game Monitor
-        </Typography>
-        <Chip
-          label={connected ? '接続中' : '未接続'}
-          color={connected ? 'success' : 'default'}
-          size="small"
-        />
+    <GameContext.Provider value={{ state, dispatch }}>
+      <Box sx={{ p: 2 }}>
+        <GameMonitor />
       </Box>
-      <Paper sx={{ p: 2 }}>
-        <Box
-          component="pre"
-          sx={{
-            fontFamily: 'Consolas, monospace',
-            fontSize: '0.85rem',
-            lineHeight: 1.6,
-            m: 0,
-            whiteSpace: 'pre-wrap',
-            wordBreak: 'break-all',
-          }}
-        >
-          {pipeData}
-        </Box>
-      </Paper>
-    </Box>
+    </GameContext.Provider>
   );
 }

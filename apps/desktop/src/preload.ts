@@ -10,12 +10,26 @@ contextBridge.exposeInMainWorld('env', {
   isElectron: true,
 });
 
-contextBridge.exposeInMainWorld('pipeAPI', {
-  onData: (callback: (text: string) => void) => {
-    ipcRenderer.on('pipe-data', (_: unknown, text: string) => callback(text));
+contextBridge.exposeInMainWorld('gameAPI', {
+  // DLLからのメッセージ受信 (hello, full, delta, status, error, pong)
+  onMessage: (callback: (msg: unknown) => void) => {
+    ipcRenderer.on('game-message', (_: unknown, msg: unknown) => callback(msg));
   },
-  onStatus: (callback: (connected: boolean) => void) => {
+  // pipe接続状態
+  onPipeStatus: (callback: (connected: boolean) => void) => {
     ipcRenderer.on('pipe-status', (_: unknown, connected: boolean) => callback(connected));
+  },
+  // 値書き込み
+  writeValue: (target: string, value: number) => {
+    ipcRenderer.send('game-write', { target, value });
+  },
+  // フルステート要求
+  requestRefresh: () => {
+    ipcRenderer.send('game-refresh');
+  },
+  // ping
+  ping: () => {
+    ipcRenderer.send('game-ping');
   },
 });
 
