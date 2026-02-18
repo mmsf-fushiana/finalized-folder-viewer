@@ -35,24 +35,34 @@ function createWindow() {
   }
 
   // Named Pipe クライアント開始
+  let pipeConnected = false;
   pipeClient = new PipeClient();
 
   pipeClient.on('message', (msg: PipeMessage) => {
-    // JSON メッセージをそのまま Renderer に転送
     mainWindow.webContents.send('game-message', msg);
   });
 
   pipeClient.on('connected', () => {
     console.log('[Main] Pipe connected');
+    pipeConnected = true;
     mainWindow.webContents.send('pipe-status', true);
   });
 
   pipeClient.on('disconnected', () => {
     console.log('[Main] Pipe disconnected');
+    pipeConnected = false;
     mainWindow.webContents.send('pipe-status', false);
   });
 
+  // Rendererロード完了後に現在のpipe状態を再送（ロード前の接続イベント対策）
+  mainWindow.webContents.on('did-finish-load', () => {
+    mainWindow.webContents.send('pipe-status', pipeConnected);
+  });
+
   pipeClient.connect();
+
+  // Renderer → Main: 現在のpipe状態を問い合わせ
+  ipcMain.handle('get-pipe-status', () => pipeConnected);
 
   // IPC ハンドラ: Renderer → DLL コマンド転送
   ipcMain.on('game-write', (_event, data: { target: string; value: number }) => {

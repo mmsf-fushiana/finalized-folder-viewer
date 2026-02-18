@@ -103,7 +103,7 @@ export function GameMonitor() {
       )}
 
       {/* 値テーブル */}
-      <TableContainer component={Paper} sx={{ maxHeight: 600 }}>
+      <TableContainer component={Paper} sx={{  }}>
         <Table size="small" stickyHeader>
           <TableHead>
             <TableRow>

@@ -329,11 +329,26 @@ static void HandleCommand(const std::string& message) {
         g_pipeServer.Send(jw.GetString());
 
     } else if (strcmp(cmd.cmd, "refresh") == 0) {
+        // 現在のstatus送信
+        {
+            JsonWriter jw;
+            jw.BeginObject();
+            jw.StringField("type", "status");
+            jw.BoolField("connected", true);
+            jw.BoolField("gameActive", g_mainRAM != nullptr);
+            if (g_mainRAM) {
+                jw.PtrField("mainram", g_mainRAM);
+            }
+            jw.EndObject();
+            g_pipeServer.Send(jw.GetString());
+        }
         // フルステート再送
-        g_deltaTracker.Update(ReadMemory);
-        std::string fullJson = g_deltaTracker.BuildFullStateJson();
-        g_pipeServer.Send(fullJson);
-        g_deltaTracker.ResetChangeFlags();
+        if (g_mainRAM) {
+            g_deltaTracker.Update(ReadMemory);
+            std::string fullJson = g_deltaTracker.BuildFullStateJson();
+            g_pipeServer.Send(fullJson);
+            g_deltaTracker.ResetChangeFlags();
+        }
         printf("[DLL] refresh実行\n");
 
     } else if (strcmp(cmd.cmd, "write") == 0) {

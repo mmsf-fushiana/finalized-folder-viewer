@@ -123,19 +123,23 @@ function handleMessage(state: GameState, msg: GameMessage): GameState {
 
     case 'full': {
       const values: Record<string, GameValue> = {};
+      const changedKeys: string[] = [];
       for (const [key, entry] of Object.entries(msg.data)) {
+        const existing = state.values[key];
+        const isChanged = existing !== undefined && existing.value !== entry.v;
         values[key] = {
           value: entry.v,
           address: entry.a,
           size: entry.s,
-          lastUpdated: now,
+          lastUpdated: isChanged ? now : (existing?.lastUpdated ?? now),
         };
+        if (isChanged) changedKeys.push(key);
       }
       return {
         ...state,
         values,
-        lastDeltaKeys: Object.keys(msg.data),
-        lastDeltaTime: now,
+        // full受信時: 変化があったキーのみハイライト更新、変化なしなら既存のlastDeltaKeysを保持
+        ...(changedKeys.length > 0 ? { lastDeltaKeys: changedKeys, lastDeltaTime: now } : {}),
         lastReceivedTime: now,
       };
     }

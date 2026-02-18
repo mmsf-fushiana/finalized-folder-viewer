@@ -12,12 +12,22 @@ contextBridge.exposeInMainWorld('env', {
 
 contextBridge.exposeInMainWorld('gameAPI', {
   // DLLからのメッセージ受信 (hello, full, delta, status, error, pong)
+  // 戻り値はクリーンアップ関数（useEffect の return で呼ぶ）
   onMessage: (callback: (msg: unknown) => void) => {
-    ipcRenderer.on('game-message', (_: unknown, msg: unknown) => callback(msg));
+    const wrapper = (_: unknown, msg: unknown) => callback(msg);
+    ipcRenderer.on('game-message', wrapper);
+    return () => ipcRenderer.removeListener('game-message', wrapper);
   },
-  // pipe接続状態
+  // pipe接続状態（リアルタイム通知）
+  // 戻り値はクリーンアップ関数
   onPipeStatus: (callback: (connected: boolean) => void) => {
-    ipcRenderer.on('pipe-status', (_: unknown, connected: boolean) => callback(connected));
+    const wrapper = (_: unknown, connected: boolean) => callback(connected);
+    ipcRenderer.on('pipe-status', wrapper);
+    return () => ipcRenderer.removeListener('pipe-status', wrapper);
+  },
+  // pipe接続状態（現在値の問い合わせ）
+  getPipeStatus: (): Promise<boolean> => {
+    return ipcRenderer.invoke('get-pipe-status');
   },
   // 値書き込み
   writeValue: (target: string, value: number) => {
