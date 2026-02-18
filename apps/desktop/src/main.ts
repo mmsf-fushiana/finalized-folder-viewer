@@ -1,9 +1,12 @@
 import { app, BrowserWindow } from 'electron';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { PipeClient } from './pipeClient.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+let pipeClient: PipeClient | null = null;
 
 function createWindow() {
   const preloadPath = join(__dirname, 'preload.js');
@@ -29,6 +32,25 @@ function createWindow() {
   } else {
     mainWindow.loadFile(htmlPath);
   }
+
+  // Named Pipe クライアント開始
+  pipeClient = new PipeClient();
+
+  pipeClient.on('frame', (text: string) => {
+    mainWindow.webContents.send('pipe-data', text);
+  });
+
+  pipeClient.on('connected', () => {
+    console.log('[Main] Pipe connected');
+    mainWindow.webContents.send('pipe-status', true);
+  });
+
+  pipeClient.on('disconnected', () => {
+    console.log('[Main] Pipe disconnected');
+    mainWindow.webContents.send('pipe-status', false);
+  });
+
+  pipeClient.connect();
 }
 
 app.whenReady().then(() => {
@@ -42,6 +64,10 @@ app.whenReady().then(() => {
 });
 
 app.on('window-all-closed', () => {
+  if (pipeClient) {
+    pipeClient.disconnect();
+    pipeClient = null;
+  }
   if (process.platform !== 'darwin') {
     app.quit();
   }

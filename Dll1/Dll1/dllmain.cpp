@@ -361,72 +361,152 @@ uint8_t* FindMainRAMByHeapScan() {
 }
 
 // ========================================
-// チートスレッド
+// 全アドレス値をテキストで構築
+// ========================================
+
+std::string BuildAllValuesText() {
+    std::string result;
+    char line[128];
+
+    for (size_t i = 0; i < GAME_ADDRESS_COUNT; i++) {
+        const GameAddress& addr = GAME_ADDRESSES[i];
+        uint8_t* hostAddr = GetHostAddress(addr.dsAddress);
+        if (!hostAddr) continue;
+
+        uint32_t value = 0;
+        bool ok = false;
+        if (addr.size == 4) {
+            ok = SafeReadU32(hostAddr, &value);
+        } else if (addr.size == 2) {
+            uint16_t v16 = 0;
+            ok = SafeReadU16(hostAddr, &v16);
+            value = v16;
+        } else if (addr.size == 1) {
+            uint8_t v8 = 0;
+            ok = SafeReadU8(hostAddr, &v8);
+            value = v8;
+        }
+
+        if (ok) {
+            snprintf(line, sizeof(line), "%s=%u\n", addr.name, value);
+            result += line;
+        }
+    }
+
+    return result;
+}
+
+// ========================================
+// チートスレッド（Named Pipe Server）
 // ========================================
 
 void CheatThreadFunc() {
-    printf("[melonDS Cheat] チートスレッド開始\n");
-    printf("[melonDS Cheat] ゲームロードを待機中（15秒）...\n");
+    printf("[PipeServer] スレッド開始\n");
+    printf("[PipeServer] ゲームロード待機中（15秒）...\n");
     Sleep(15000);
 
     // ヒープスキャンでMainRAMを探す
     for (int attempt = 0; attempt < 20 && !g_mainRAM && g_running; attempt++) {
-        printf("[melonDS Cheat] === 検出試行 %d ===\n", attempt + 1);
+        printf("[PipeServer] === 検出試行 %d ===\n", attempt + 1);
         g_mainRAM = FindMainRAMByHeapScan();
         if (!g_mainRAM) {
-            printf("[melonDS Cheat] 見つからず、3秒後に再試行...\n");
+            printf("[PipeServer] 見つからず、3秒後に再試行...\n");
             Sleep(3000);
         }
     }
 
     if (!g_mainRAM) {
-        printf("[melonDS Cheat] エラー: MainRAMが見つかりません!\n");
-        printf("[melonDS Cheat] ゲームがロードされていることを確認してください。\n");
+        printf("[PipeServer] エラー: MainRAMが見つかりません!\n");
         return;
     }
 
-    printf("[melonDS Cheat] ==============================\n");
-    printf("[melonDS Cheat] MainRAM発見: %p\n", g_mainRAM);
-    printf("[melonDS Cheat] MainRAMMask: 0x%08X\n", g_mainRAMMask);
-    printf("[melonDS Cheat] ==============================\n");
+    printf("[PipeServer] MainRAM発見: %p (mask: 0x%08X)\n", g_mainRAM, g_mainRAMMask);
 
-    printf("[melonDS Cheat] Enterで全アドレス表示...\n");
+    // Named Pipe サーバーループ
+    const char* PIPE_NAME = "\\\\.\\pipe\\ssr3_viewer";
 
     while (g_running) {
-        // Enterキー待ち
-        getchar();
+        HANDLE hPipe = CreateNamedPipeA(
+            PIPE_NAME,
+            PIPE_ACCESS_DUPLEX | FILE_FLAG_OVERLAPPED,
+            PIPE_TYPE_BYTE | PIPE_READMODE_BYTE,
+            1,      // max instances
+            4096,   // out buffer
+            4096,   // in buffer
+            0, NULL
+        );
 
-        // 全アドレスを表示
-        printf("[melonDS Cheat] ==============================\n");
-        for (size_t i = 0; i < GAME_ADDRESS_COUNT; i++) {
-            const GameAddress& addr = GAME_ADDRESSES[i];
-            uint8_t* hostAddr = GetHostAddress(addr.dsAddress);
-            if (!hostAddr) continue;
+        if (hPipe == INVALID_HANDLE_VALUE) {
+            printf("[PipeServer] CreateNamedPipe失敗: %lu\n", GetLastError());
+            Sleep(1000);
+            continue;
+        }
 
-            if (addr.size == 4) {
-                uint32_t value;
-                if (SafeReadU32(hostAddr, &value)) {
-                    printf("%-10s 0x%08X = 0x%08X (%u)\n",
-                           addr.name, addr.dsAddress, value, value);
-                }
-            } else if (addr.size == 2) {
-                uint16_t value;
-                if (SafeReadU16(hostAddr, &value)) {
-                    printf("%-10s 0x%08X = 0x%04X (%u)\n",
-                           addr.name, addr.dsAddress, value, value);
-                }
-            } else if (addr.size == 1) {
-                uint8_t value;
-                if (SafeReadU8(hostAddr, &value)) {
-                    printf("%-10s 0x%08X = 0x%02X (%u)\n",
-                           addr.name, addr.dsAddress, value, value);
+        printf("[PipeServer] クライアント接続待機中...\n");
+
+        // Overlapped接続（g_runningチェック可能にする）
+        OVERLAPPED olConnect = {};
+        olConnect.hEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
+        ConnectNamedPipe(hPipe, &olConnect);
+        DWORD lastErr = GetLastError();
+
+        bool connected = false;
+        if (lastErr == ERROR_PIPE_CONNECTED) {
+            connected = true;
+        } else if (lastErr == ERROR_IO_PENDING) {
+            while (g_running) {
+                DWORD waitResult = WaitForSingleObject(olConnect.hEvent, 500);
+                if (waitResult == WAIT_OBJECT_0) {
+                    connected = true;
+                    break;
                 }
             }
         }
-        printf("[melonDS Cheat] ==============================\n");
+        CloseHandle(olConnect.hEvent);
+
+        if (!connected) {
+            CloseHandle(hPipe);
+            continue;
+        }
+
+        printf("[PipeServer] クライアント接続!\n");
+
+        // データ送信ループ（1秒間隔）
+        HANDLE hWriteEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
+
+        while (g_running) {
+            std::string text = BuildAllValuesText();
+            text += "\n"; // フレーム区切り（末尾の\nと合わせて\n\nになる）
+
+            OVERLAPPED olWrite = {};
+            olWrite.hEvent = hWriteEvent;
+            ResetEvent(hWriteEvent);
+
+            BOOL ok = WriteFile(hPipe, text.c_str(), (DWORD)text.size(), NULL, &olWrite);
+            if (!ok && GetLastError() != ERROR_IO_PENDING) {
+                printf("[PipeServer] 書き込み失敗、クライアント切断\n");
+                break;
+            }
+
+            DWORD written = 0;
+            if (!GetOverlappedResult(hPipe, &olWrite, &written, TRUE)) {
+                printf("[PipeServer] 書き込み完了失敗、クライアント切断\n");
+                break;
+            }
+
+            // 1秒待機（100ms刻みでg_runningチェック）
+            for (int i = 0; i < 10 && g_running; i++) {
+                Sleep(100);
+            }
+        }
+
+        CloseHandle(hWriteEvent);
+        DisconnectNamedPipe(hPipe);
+        CloseHandle(hPipe);
+        printf("[PipeServer] クライアント切断、再接続待機...\n");
     }
 
-    printf("[melonDS Cheat] チートスレッド停止\n");
+    printf("[PipeServer] スレッド停止\n");
 }
 
 // ========================================
@@ -509,7 +589,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
         printf("[melonDS Cheat] DLLアンロード中...\n");
         g_running = false;
         if (g_cheatThread.joinable()) {
-            g_cheatThread.join();
+            g_cheatThread.detach(); // プロセス終了時にブロックしないようdetach
         }
         if (g_originalDll) {
             FreeLibrary(g_originalDll);

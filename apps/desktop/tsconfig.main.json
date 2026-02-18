@@ -10,5 +10,5 @@
     "resolveJsonModule": true,
     "outDir": "./dist"
   },
-  "include": ["src/main.ts", "src/preload.ts"]
+  "include": ["src/main.ts", "src/preload.ts", "src/pipeClient.ts"]
 }
