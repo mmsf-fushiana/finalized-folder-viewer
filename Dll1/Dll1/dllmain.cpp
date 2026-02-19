@@ -50,6 +50,20 @@ struct GameAddress {
 
 // RJ版 (Red Joker / レッドジョーカー) アドレスリスト
 static const GameAddress RJ_ADDRESSES[] = {
+    // { "NOISE_RATE?",       0x0210B03C, 2 },
+    { "NOISE_RATE_1",       0x02193BA0, 2 }, // 表示上のノイズ率1
+    { "NOISE_RATE_2",       0x02193BA4, 2 }, // 表示上のノイズ率2
+    { "COMFIRM_LV_1",       0x021862A0, 2 }, // ファイナライズアクセスLv
+    { "COMFIRM_LV_2",       0x021862B0, 2 }, // ファイナライズアクセス確認画面に表示されるLv
+    
+    { "MY_REZON",       0x220F39BE, 1 },
+    { "REZON_L0",       0x220F3FFE, 1 },
+    { "REZON_L1",       0x220F463E, 1 },
+    { "REZON_L2",       0x220F4C7E, 1 },
+    { "REZON_R0",       0x220F52BE, 1 },
+    { "REZON_R1",       0x220F58FE, 1 },
+    { "REZON_R2",       0x220F5F3E, 1 },
+    
     { "ZENY",       0x020F3394, 4 },
     { "NOISE",      0x020F39C0, 1 },
     { "WARLOCK",    0x020F2CD0, 4 },

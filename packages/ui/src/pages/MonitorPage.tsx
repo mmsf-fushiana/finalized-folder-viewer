@@ -7,16 +7,26 @@ import { GameMonitor } from '../components/GameMonitor';
 
 type GameVersion = 'BA' | 'RJ';
 
-function WarlockTab() {
-  const warlock = useGameValue('WARLOCK');
-  const hex = warlock?.value ?? '';
+function ValueRow({ label }: { label: string }) {
+  const gv = useGameValue(label);
+  const hex = gv?.value ?? '';
   const dec = hex ? hexToNumber(hex) : 0;
   return (
-    <Box sx={{ p: 2, fontFamily: 'Consolas, monospace' }}>
-      <Typography variant="h6">WARLOCK</Typography>
-      <Typography variant="body1">
-        0x{hex || '---'} ({dec})
-      </Typography>
+    <Typography variant="body1">
+      {label}: 0x{hex || '---'} ({dec})
+    </Typography>
+  );
+}
+
+function WarlockTab() {
+  return (
+    <Box sx={{ p: 2, fontFamily: 'Consolas, monospace', display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+      <Typography variant="h6" sx={{ mb: 1 }}>Debug Values</Typography>
+      <ValueRow label="WARLOCK" />
+      <ValueRow label="NOISE_RATE_1" />
+      <ValueRow label="NOISE_RATE_2" />
+      <ValueRow label="COMFIRM_LV_1" />
+      <ValueRow label="COMFIRM_LV_2" />
     </Box>
   );
 }
