@@ -345,6 +345,7 @@
   },
   "monitor": {
     "selectVersion": "Select Version",
+    "romDetected": "ROM detected. Please select your version.",
     "pipeDisconnected": "Pipe Not Connected",
     "startDS": "Please start melonDS.",
     "waitingGame": "Waiting for Game",

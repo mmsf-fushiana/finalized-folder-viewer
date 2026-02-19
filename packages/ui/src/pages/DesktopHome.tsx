@@ -74,7 +74,7 @@ export function DesktopHome() {
   } else {
     statusLabel = t('monitor.selectVersion');
     statusColor = 'success';
-    hintMessage = '';
+    hintMessage = t('monitor.romDetected');
   }
 
   return (

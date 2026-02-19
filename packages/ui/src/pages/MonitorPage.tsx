@@ -56,7 +56,7 @@ export function MonitorPage() {
           </Tabs>
         </Box>
 
-        <Box sx={{ pt: 2 }}>
+        <Box sx={{ pt: 2, px: 2 }}>
           {activeTab === 0 && <GameMonitor version={gameVersion} />}
           {activeTab === 1 && (
             <Typography color="text.secondary" sx={{ p: 2 }}>

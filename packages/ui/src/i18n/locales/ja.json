@@ -346,13 +346,14 @@
   "monitor": {
     "selectVersion": "バージョンを選択",
     "pipeDisconnected": "Pipe未接続",
-    "startDS": "melonDSを起動してください。",
     "waitingGame": "ゲーム待機中",
-    "startGame": "流星のロックマン3を起動してください。",
+    "startDS": "melonDSが未検出です。起動して下さい。",
+    "startGame": "melonDSに流星のロックマン3を読み込んで下さい。",
+    "romDetected": "ROMの起動を確認しました。バージョンを選択して下さい。",
     "tab": {
-      "monitor": "モニター",
-      "tab2": "デバッグ",
-      "tab3": "設定"
+      "monitor": "デバッグ",
+      "tab2": "ファイナライズフォルダ",
+      "tab3": "構築ビューア"
     }
   },
   "ability": {
