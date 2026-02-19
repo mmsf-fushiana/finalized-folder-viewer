@@ -24,7 +24,7 @@ function formatTimestamp(ms: number): string {
   return `${hh}:${mm}:${ss}.${milli}`;
 }
 
-export function GameMonitor() {
+export function GameMonitor({ version }: { version: 'BA' | 'RJ' }) {
   const { state } = useGameState();
   const {
     pipeConnected,
@@ -57,7 +57,7 @@ export function GameMonitor() {
           Game Monitor
         </Typography>
         <Chip
-          label="RJ"
+          label={version}
           color="primary"
           size="small"
           variant="outlined"

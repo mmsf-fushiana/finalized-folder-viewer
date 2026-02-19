@@ -40,7 +40,7 @@ constexpr uint32_t NDS_MAIN_RAM_MASK = 0x003FFFFF;  // 4MBマスク
 constexpr uint32_t DSI_MAIN_RAM_MASK = 0x00FFFFFF;  // 16MBマスク
 
 // ========================================
-// ゲームアドレス定義（ここに追加していく）
+// バージョン別ゲームアドレス定義
 // ========================================
 struct GameAddress {
     const char* name;           // 識別名
@@ -48,8 +48,8 @@ struct GameAddress {
     uint8_t size;               // バイトサイズ (1, 2, or 4)
 };
 
-// アドレスリスト（ゲームごとに変更）
-static const GameAddress GAME_ADDRESSES[] = {
+// RJ版 (Red Joker / レッドジョーカー) アドレスリスト
+static const GameAddress RJ_ADDRESSES[] = {
     { "ZENY",       0x020F3394, 4 },
     { "NOISE",      0x020F39C0, 1 },
     { "WARLOCK",    0x020F2CD0, 4 },
@@ -86,11 +86,56 @@ static const GameAddress GAME_ADDRESSES[] = {
     { "REG",        0x020F3844, 2 },
     { "TAG1_2",     0x020F3842, 2 },
 };
-static constexpr size_t GAME_ADDRESS_COUNT = sizeof(GAME_ADDRESSES) / sizeof(GAME_ADDRESSES[0]);
+static constexpr size_t RJ_ADDRESS_COUNT = sizeof(RJ_ADDRESSES) / sizeof(RJ_ADDRESSES[0]);
+
+// BA版 (Black Ace / ブラックエース) アドレスリスト
+// TODO: 実際のBA版アドレスに更新してください
+static const GameAddress BA_ADDRESSES[] = {
+    { "ZENY",       0x020F3394, 4 },
+    { "NOISE",      0x020F39C0, 1 },
+    { "WARLOCK",    0x020F2CD0, 4 },
+    { "CARD01",     0x020F3806, 2 },
+    { "CARD02",     0x020F3808, 2 },
+    { "CARD03",     0x020F380A, 2 },
+    { "CARD04",     0x020F380C, 2 },
+    { "CARD05",     0x020F380E, 2 },
+    { "CARD06",     0x020F3810, 2 },
+    { "CARD07",     0x020F3812, 2 },
+    { "CARD08",     0x020F3814, 2 },
+    { "CARD09",     0x020F3816, 2 },
+    { "CARD10",     0x020F3818, 2 },
+    { "CARD11",     0x020F381A, 2 },
+    { "CARD12",     0x020F381C, 2 },
+    { "CARD13",     0x020F381E, 2 },
+    { "CARD14",     0x020F3820, 2 },
+    { "CARD15",     0x020F3822, 2 },
+    { "CARD16",     0x020F3824, 2 },
+    { "CARD17",     0x020F3826, 2 },
+    { "CARD18",     0x020F3828, 2 },
+    { "CARD19",     0x020F382A, 2 },
+    { "CARD20",     0x020F382C, 2 },
+    { "CARD21",     0x020F382E, 2 },
+    { "CARD22",     0x020F3830, 2 },
+    { "CARD23",     0x020F3832, 2 },
+    { "CARD24",     0x020F3834, 2 },
+    { "CARD25",     0x020F3836, 2 },
+    { "CARD26",     0x020F3838, 2 },
+    { "CARD27",     0x020F383A, 2 },
+    { "CARD28",     0x020F383C, 2 },
+    { "CARD29",     0x020F383E, 2 },
+    { "CARD30",     0x020F3840, 2 },
+    { "REG",        0x020F3844, 2 },
+    { "TAG1_2",     0x020F3842, 2 },
+};
+static constexpr size_t BA_ADDRESS_COUNT = sizeof(BA_ADDRESSES) / sizeof(BA_ADDRESSES[0]);
 
 // melonDSのMainRAMポインタ（実行時に検出）
 static uint8_t* g_mainRAM = nullptr;
 static uint32_t g_mainRAMMask = 0;
+
+// バージョン選択状態（一度選択したら変更不可・再起動のみ）
+static std::atomic<bool> g_versionSelected{ false };
+static char g_selectedVersion[4] = "";  // "BA" or "RJ"
 
 // PipeServer & DeltaTracker
 static PipeServer g_pipeServer;
@@ -328,6 +373,39 @@ static void HandleCommand(const std::string& message) {
         jw.EndObject();
         g_pipeServer.Send(jw.GetString());
 
+    } else if (strcmp(cmd.cmd, "setVersion") == 0) {
+        // バージョン設定（一度だけ有効。再起動しないと変更不可）
+        if (g_versionSelected) {
+            printf("[DLL] setVersion: 既にバージョン選択済み (%s)\n", g_selectedVersion);
+            return;
+        }
+        const GameAddress* addresses = nullptr;
+        size_t count = 0;
+        if (strcmp(cmd.target, "RJ") == 0) {
+            addresses = RJ_ADDRESSES;
+            count = RJ_ADDRESS_COUNT;
+            strncpy_s(g_selectedVersion, "RJ", 3);
+        } else if (strcmp(cmd.target, "BA") == 0) {
+            addresses = BA_ADDRESSES;
+            count = BA_ADDRESS_COUNT;
+            strncpy_s(g_selectedVersion, "BA", 3);
+        } else {
+            printf("[DLL] setVersion: 不明なバージョン: %s\n", cmd.target);
+            return;
+        }
+        for (size_t i = 0; i < count; i++) {
+            g_deltaTracker.RegisterAddress(addresses[i].name, addresses[i].dsAddress, addresses[i].size);
+        }
+        g_versionSelected = true;
+        printf("[DLL] バージョン設定: %s (%zu アドレス)\n", g_selectedVersion, count);
+
+        // フルステート送信（MainRAM検出済みなら即時）
+        if (g_mainRAM) {
+            g_deltaTracker.Update(ReadMemory);
+            g_pipeServer.Send(g_deltaTracker.BuildFullStateJson());
+            g_deltaTracker.ResetChangeFlags();
+        }
+
     } else if (strcmp(cmd.cmd, "refresh") == 0) {
         // 現在のstatus送信
         {
@@ -342,8 +420,8 @@ static void HandleCommand(const std::string& message) {
             jw.EndObject();
             g_pipeServer.Send(jw.GetString());
         }
-        // フルステート再送
-        if (g_mainRAM) {
+        // フルステート再送（バージョン選択済みの場合のみ）
+        if (g_mainRAM && g_versionSelected) {
             g_deltaTracker.Update(ReadMemory);
             std::string fullJson = g_deltaTracker.BuildFullStateJson();
             g_pipeServer.Send(fullJson);
@@ -395,16 +473,8 @@ static void HandleCommand(const std::string& message) {
 void MainThreadFunc() {
     printf("[DLL] メインスレッド開始\n");
 
-    // DeltaTrackerにアドレス登録
-    for (size_t i = 0; i < GAME_ADDRESS_COUNT; i++) {
-        g_deltaTracker.RegisterAddress(
-            GAME_ADDRESSES[i].name,
-            GAME_ADDRESSES[i].dsAddress,
-            GAME_ADDRESSES[i].size
-        );
-    }
-
     // PipeServerコールバック設定
+    // ※ アドレス登録は setVersion コマンド受信後に行う
     g_pipeServer.OnMessage = HandleCommand;
     g_pipeServer.OnConnect = []() {
         printf("[DLL] クライアント接続 → hello送信\n");
@@ -421,10 +491,12 @@ void MainThreadFunc() {
             jw.EndObject();
             g_pipeServer.Send(jw.GetString());
 
-            // フルステート送信
-            g_deltaTracker.Update(ReadMemory);
-            g_pipeServer.Send(g_deltaTracker.BuildFullStateJson());
-            g_deltaTracker.ResetChangeFlags();
+            // バージョン選択済みならフルステート送信
+            if (g_versionSelected) {
+                g_deltaTracker.Update(ReadMemory);
+                g_pipeServer.Send(g_deltaTracker.BuildFullStateJson());
+                g_deltaTracker.ResetChangeFlags();
+            }
         }
     };
     g_pipeServer.OnDisconnect = []() {
@@ -481,7 +553,7 @@ void MainThreadFunc() {
 
     printf("[DLL] MainRAM発見: %p (mask: 0x%08X)\n", g_mainRAM, g_mainRAMMask);
 
-    // 接続中ならstatus + フルステート送信
+    // 接続中ならstatus送信（ゲーム検出通知）
     if (g_pipeServer.IsConnected()) {
         JsonWriter jw;
         jw.BeginObject();
@@ -491,11 +563,19 @@ void MainThreadFunc() {
         jw.PtrField("mainram", g_mainRAM);
         jw.EndObject();
         g_pipeServer.Send(jw.GetString());
-
-        g_deltaTracker.Update(ReadMemory);
-        g_pipeServer.Send(g_deltaTracker.BuildFullStateJson());
-        g_deltaTracker.ResetChangeFlags();
+        // フルステートはバージョン選択後に setVersion ハンドラが送信する
     }
+
+    // バージョン選択待機（フロントエンドからの setVersion コマンドを待つ）
+    printf("[DLL] バージョン選択待機中...\n");
+    while (g_running && !g_versionSelected) {
+        Sleep(100);
+    }
+    if (!g_running) {
+        g_pipeServer.Stop();
+        return;
+    }
+    printf("[DLL] バージョン確定: %s\n", g_selectedVersion);
 
     // ========================================
     // メインポーリングループ (50ms間隔)

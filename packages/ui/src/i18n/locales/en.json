@@ -343,6 +343,18 @@
       "burai": "Burai"
     }
   },
+  "monitor": {
+    "selectVersion": "Select Version",
+    "pipeDisconnected": "Pipe Not Connected",
+    "startDS": "Please start melonDS.",
+    "waitingGame": "Waiting for Game",
+    "startGame": "Please load Mega Man Star Force 3.",
+    "tab": {
+      "monitor": "Monitor",
+      "tab2": "Debug",
+      "tab3": "Settings"
+    }
+  },
   "ability": {
     "name": {
       "hp50": "HP+50",

@@ -76,6 +76,11 @@ export class PipeClient extends EventEmitter {
     this.send({ cmd: 'refresh' });
   }
 
+  /** バージョン設定（BA / RJ） */
+  setVersion(version: string): void {
+    this.send({ cmd: 'setVersion', target: version });
+  }
+
   /** ping送信 */
   ping(): void {
     this.send({ cmd: 'ping' });

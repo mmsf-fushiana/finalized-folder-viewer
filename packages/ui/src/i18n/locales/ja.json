@@ -343,6 +343,18 @@
       "burai": "ブライ"
     }
   },
+  "monitor": {
+    "selectVersion": "バージョンを選択",
+    "pipeDisconnected": "Pipe未接続",
+    "startDS": "melonDSを起動してください。",
+    "waitingGame": "ゲーム待機中",
+    "startGame": "流星のロックマン3を起動してください。",
+    "tab": {
+      "monitor": "モニター",
+      "tab2": "デバッグ",
+      "tab3": "設定"
+    }
+  },
   "ability": {
     "name": {
       "hp50": "HP50",

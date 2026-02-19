@@ -41,6 +41,10 @@ contextBridge.exposeInMainWorld('gameAPI', {
   ping: () => {
     ipcRenderer.send('game-ping');
   },
+  // バージョン設定 (BA / RJ)
+  setVersion: (version: string) => {
+    ipcRenderer.send('game-setVersion', version);
+  },
 });
 
 console.log('preload.js finished!');

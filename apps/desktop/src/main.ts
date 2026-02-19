@@ -82,6 +82,12 @@ function createWindow() {
       pipeClient.ping();
     }
   });
+
+  ipcMain.on('game-setVersion', (_event, version: string) => {
+    if (pipeClient) {
+      pipeClient.setVersion(version);
+    }
+  });
 }
 
 app.whenReady().then(() => {
