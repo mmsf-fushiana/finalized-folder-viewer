@@ -1,7 +1,7 @@
 // gameStore.ts : DLLからのゲームデータ状態管理
-// React Context による差分マージ・リアルタイム更新
+// Zustand によるグローバルステート + セレクターフック
 
-import { createContext, useContext } from 'react';
+import { create } from 'zustand';
 
 // ========================================
 // 型定義
@@ -79,10 +79,18 @@ export type GameMessage =
   | PongMessage;
 
 // ========================================
-// 初期状態
+// Zustand Store
 // ========================================
 
-export const initialGameState: GameState = {
+interface GameActions {
+  setPipeConnected: (connected: boolean) => void;
+  handleMessage: (msg: GameMessage) => void;
+  reset: () => void;
+}
+
+type GameStore = GameState & GameActions;
+
+const initialState: GameState = {
   pipeConnected: false,
   gameActive: false,
   mainram: '',
@@ -93,132 +101,180 @@ export const initialGameState: GameState = {
   lastError: null,
 };
 
-// ========================================
-// Reducer
-// ========================================
+export const useGameStore = create<GameStore>()((set, get) => ({
+  ...initialState,
 
-export type GameAction =
-  | { type: 'PIPE_CONNECTED' }
-  | { type: 'PIPE_DISCONNECTED' }
-  | { type: 'MESSAGE'; payload: GameMessage };
+  setPipeConnected: (connected) =>
+    set(
+      connected
+        ? { pipeConnected: true }
+        : { pipeConnected: false, gameActive: false },
+    ),
 
-export function gameReducer(state: GameState, action: GameAction): GameState {
-  switch (action.type) {
-    case 'PIPE_CONNECTED':
-      return { ...state, pipeConnected: true };
+  handleMessage: (msg) => {
+    const now = Date.now();
 
-    case 'PIPE_DISCONNECTED':
-      return {
-        ...state,
-        pipeConnected: false,
-        gameActive: false,
-      };
+    switch (msg.type) {
+      case 'hello':
+        set({ lastReceivedTime: now });
+        break;
 
-    case 'MESSAGE':
-      return handleMessage(state, action.payload);
-
-    default:
-      return state;
-  }
-}
-
-function handleMessage(state: GameState, msg: GameMessage): GameState {
-  const now = Date.now();
-
-  switch (msg.type) {
-    case 'hello':
-      return { ...state, lastReceivedTime: now };
-
-    case 'full': {
-      const values: Record<string, GameValue> = {};
-      const changedKeys: string[] = [];
-      for (const [key, entry] of Object.entries(msg.data)) {
-        const existing = state.values[key];
-        const isChanged = existing !== undefined && existing.value !== entry.v;
-        values[key] = {
-          value: entry.v,
-          address: entry.a,
-          size: entry.s,
-          lastUpdated: isChanged ? now : (existing?.lastUpdated ?? now),
-        };
-        if (isChanged) changedKeys.push(key);
-      }
-      return {
-        ...state,
-        values,
-        // full受信時: 変化があったキーのみハイライト更新、変化なしなら既存のlastDeltaKeysを保持
-        ...(changedKeys.length > 0 ? { lastDeltaKeys: changedKeys, lastDeltaTime: now } : {}),
-        lastReceivedTime: now,
-      };
-    }
-
-    case 'delta': {
-      const updatedValues = { ...state.values };
-      const changedKeys: string[] = [];
-      for (const [key, entry] of Object.entries(msg.data)) {
-        const existing = updatedValues[key];
-        if (existing) {
-          updatedValues[key] = {
-            ...existing,
+      case 'full': {
+        const prev = get().values;
+        const values: Record<string, GameValue> = {};
+        const changedKeys: string[] = [];
+        for (const [key, entry] of Object.entries(msg.data)) {
+          const existing = prev[key];
+          const isChanged = existing !== undefined && existing.value !== entry.v;
+          values[key] = {
             value: entry.v,
-            lastUpdated: now,
+            address: entry.a,
+            size: entry.s,
+            lastUpdated: isChanged ? now : (existing?.lastUpdated ?? now),
           };
-        } else {
-          updatedValues[key] = {
-            value: entry.v,
-            address: '',
-            size: 0,
-            lastUpdated: now,
-          };
+          if (isChanged) changedKeys.push(key);
         }
-        changedKeys.push(key);
+        set({
+          values,
+          lastReceivedTime: now,
+          ...(changedKeys.length > 0
+            ? { lastDeltaKeys: changedKeys, lastDeltaTime: now }
+            : {}),
+        });
+        break;
       }
-      return {
-        ...state,
-        values: updatedValues,
-        lastDeltaKeys: changedKeys,
-        lastDeltaTime: now,
-        lastReceivedTime: now,
-      };
+
+      case 'delta': {
+        const prev = get().values;
+        const updatedValues = { ...prev };
+        const changedKeys: string[] = [];
+        for (const [key, entry] of Object.entries(msg.data)) {
+          const existing = updatedValues[key];
+          if (existing) {
+            updatedValues[key] = {
+              ...existing,
+              value: entry.v,
+              lastUpdated: now,
+            };
+          } else {
+            updatedValues[key] = {
+              value: entry.v,
+              address: '',
+              size: 0,
+              lastUpdated: now,
+            };
+          }
+          changedKeys.push(key);
+        }
+        set({
+          values: updatedValues,
+          lastDeltaKeys: changedKeys,
+          lastDeltaTime: now,
+          lastReceivedTime: now,
+        });
+        break;
+      }
+
+      case 'status':
+        set({
+          gameActive: msg.gameActive,
+          mainram: msg.mainram || get().mainram,
+          lastReceivedTime: now,
+        });
+        break;
+
+      case 'error':
+        set({
+          lastError: `[${msg.code}] ${msg.msg}`,
+          lastReceivedTime: now,
+        });
+        break;
+
+      case 'pong':
+        set({ lastReceivedTime: now });
+        break;
     }
+  },
 
-    case 'status':
-      return {
-        ...state,
-        gameActive: msg.gameActive,
-        mainram: msg.mainram || state.mainram,
-        lastReceivedTime: now,
-      };
+  reset: () => set(initialState),
+}));
 
-    case 'error':
-      return {
-        ...state,
-        lastError: `[${msg.code}] ${msg.msg}`,
-        lastReceivedTime: now,
-      };
+// ========================================
+// セレクターフック
+// ========================================
 
-    case 'pong':
-      return { ...state, lastReceivedTime: now };
+/** 特定キーの GameValue をリアルタイム取得 */
+export function useGameValue(key: string): GameValue | undefined {
+  return useGameStore((s) => s.values[key]);
+}
 
-    default:
-      return state;
-  }
+/** 特定キーの数値をリアルタイム取得 (undefinedなら0) */
+export function useGameNumber(key: string): number {
+  return useGameStore((s) => {
+    const v = s.values[key];
+    return v ? hexToNumber(v.value) : 0;
+  });
+}
+
+/** 特定キーの16進文字列をリアルタイム取得 */
+export function useGameHex(key: string): string {
+  return useGameStore((s) => s.values[key]?.value ?? '');
+}
+
+/** 特定キーが最後の差分に含まれているか */
+export function useIsChanged(key: string): boolean {
+  return useGameStore((s) => s.lastDeltaKeys.includes(key));
+}
+
+/** Pipe接続状態 */
+export function usePipeStatus(): boolean {
+  return useGameStore((s) => s.pipeConnected);
+}
+
+/** ゲーム検出状態 */
+export function useGameActive(): boolean {
+  return useGameStore((s) => s.gameActive);
 }
 
 // ========================================
-// Context
+// IPC購読 (Electron gameAPI → Zustand)
 // ========================================
 
-export interface GameContextType {
-  state: GameState;
-  dispatch: React.Dispatch<GameAction>;
+let unsubscribers: (() => void)[] = [];
+
+/**
+ * window.gameAPI のイベントを Zustand ストアに接続する。
+ * MonitorPage マウント時に呼び出し、アンマウント時に返却関数で解除する。
+ */
+export function subscribeGameAPI(gameVersion: string): () => void {
+  unsubscribeGameAPI(); // 二重購読防止
+
+  const api = window.gameAPI;
+  if (!api) return () => {};
+
+  const { setPipeConnected, handleMessage } = useGameStore.getState();
+
+  const removeMessage = api.onMessage((msg: GameMessage) => {
+    handleMessage(msg);
+  });
+  unsubscribers.push(removeMessage);
+
+  const removePipeStatus = api.onPipeStatus((connected: boolean) => {
+    setPipeConnected(connected);
+  });
+  unsubscribers.push(removePipeStatus);
+
+  // バージョン通知 → フルステート要求
+  api.setVersion(gameVersion);
+  api.getPipeStatus().then((connected) => {
+    setPipeConnected(connected);
+    if (connected) api.requestRefresh();
+  });
+
+  return unsubscribeGameAPI;
 }
 
-export const GameContext = createContext<GameContextType>({
-  state: initialGameState,
-  dispatch: () => {},
-});
-
-export function useGameState() {
-  return useContext(GameContext);
+function unsubscribeGameAPI() {
+  for (const unsub of unsubscribers) unsub();
+  unsubscribers = [];
 }

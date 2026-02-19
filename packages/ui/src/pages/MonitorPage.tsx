@@ -1,75 +1,60 @@
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Box, Tab, Tabs, Typography } from '@mui/material';
-import {
-  gameReducer,
-  GameContext,
-  initialGameState,
-} from '../stores/gameStore';
-import type { GameMessage } from '../stores/gameStore';
+import { subscribeGameAPI, useGameStore, useGameValue, hexToNumber } from '../stores/gameStore';
 import { GameMonitor } from '../components/GameMonitor';
 
 type GameVersion = 'BA' | 'RJ';
+
+function WarlockTab() {
+  const warlock = useGameValue('WARLOCK');
+  const hex = warlock?.value ?? '';
+  const dec = hex ? hexToNumber(hex) : 0;
+  return (
+    <Box sx={{ p: 2, fontFamily: 'Consolas, monospace' }}>
+      <Typography variant="h6">WARLOCK</Typography>
+      <Typography variant="body1">
+        0x{hex || '---'} ({dec})
+      </Typography>
+    </Box>
+  );
+}
 
 export function MonitorPage() {
   const { t } = useTranslation();
   const { version } = useParams<{ version: string }>();
   const gameVersion = (version === 'BA' || version === 'RJ' ? version : 'RJ') as GameVersion;
 
-  const [state, dispatch] = useReducer(gameReducer, initialGameState);
   const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {
-    const api = window.gameAPI;
-    if (!api) return;
-
-    const removeMessage = api.onMessage((msg: GameMessage) => {
-      dispatch({ type: 'MESSAGE', payload: msg });
-    });
-
-    const removePipeStatus = api.onPipeStatus((connected: boolean) => {
-      dispatch({ type: connected ? 'PIPE_CONNECTED' : 'PIPE_DISCONNECTED' });
-    });
-
-    // バージョン通知 → フルステート要求
-    api.setVersion(gameVersion);
-    api.getPipeStatus().then((connected) => {
-      dispatch({ type: connected ? 'PIPE_CONNECTED' : 'PIPE_DISCONNECTED' });
-      if (connected) api.requestRefresh();
-    });
-
+    const unsubscribe = subscribeGameAPI(gameVersion);
     return () => {
-      removeMessage();
-      removePipeStatus();
+      unsubscribe();
+      useGameStore.getState().reset();
     };
   }, [gameVersion]);
 
   return (
-    <GameContext.Provider value={{ state, dispatch }}>
-      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <Tabs value={activeTab} onChange={(_, v) => setActiveTab(v)}>
-            <Tab label={t('monitor.tab.monitor')} />
-            <Tab label={t('monitor.tab.tab2')} />
-            <Tab label={t('monitor.tab.tab3')} />
-          </Tabs>
-        </Box>
-
-        <Box sx={{ pt: 2, px: 2 }}>
-          {activeTab === 0 && <GameMonitor version={gameVersion} />}
-          {activeTab === 1 && (
-            <Typography color="text.secondary" sx={{ p: 2 }}>
-              {t('monitor.tab.tab2')} (Coming soon)
-            </Typography>
-          )}
-          {activeTab === 2 && (
-            <Typography color="text.secondary" sx={{ p: 2 }}>
-              {t('monitor.tab.tab3')} (Coming soon)
-            </Typography>
-          )}
-        </Box>
+    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Tabs value={activeTab} onChange={(_, v) => setActiveTab(v)}>
+          <Tab label={t('monitor.tab.monitor')} />
+          <Tab label={t('monitor.tab.tab2')} />
+          <Tab label={t('monitor.tab.tab3')} />
+        </Tabs>
       </Box>
-    </GameContext.Provider>
+
+      <Box sx={{ pt: 2, px: 2 }}>
+        {activeTab === 0 && <GameMonitor version={gameVersion} />}
+        {activeTab === 1 && <WarlockTab />}
+        {activeTab === 2 && (
+          <Typography color="text.secondary" sx={{ p: 2 }}>
+            {t('monitor.tab.tab3')} (Coming soon)
+          </Typography>
+        )}
+      </Box>
+    </Box>
   );
 }

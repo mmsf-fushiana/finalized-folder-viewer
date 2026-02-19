@@ -11,7 +11,7 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
-import { useGameState, hexToNumber } from '../stores/gameStore';
+import { useGameStore, hexToNumber } from '../stores/gameStore';
 
 /** ミリ秒付きタイムスタンプ文字列 */
 function formatTimestamp(ms: number): string {
@@ -25,17 +25,14 @@ function formatTimestamp(ms: number): string {
 }
 
 export function GameMonitor({ version }: { version: 'BA' | 'RJ' }) {
-  const { state } = useGameState();
-  const {
-    pipeConnected,
-    gameActive,
-    mainram,
-    values,
-    lastDeltaKeys,
-    lastDeltaTime,
-    lastReceivedTime,
-    lastError,
-  } = state;
+  const pipeConnected = useGameStore((s) => s.pipeConnected);
+  const gameActive = useGameStore((s) => s.gameActive);
+  const mainram = useGameStore((s) => s.mainram);
+  const values = useGameStore((s) => s.values);
+  const lastDeltaKeys = useGameStore((s) => s.lastDeltaKeys);
+  const lastDeltaTime = useGameStore((s) => s.lastDeltaTime);
+  const lastReceivedTime = useGameStore((s) => s.lastReceivedTime);
+  const lastError = useGameStore((s) => s.lastError);
 
   // テーブル行データ
   const rows = useMemo(() => {

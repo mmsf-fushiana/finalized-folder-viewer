@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Box, Button, Chip, Typography } from '@mui/material';
+import { useGameStore, usePipeStatus, useGameActive } from '../stores/gameStore';
 import type { GameMessage } from '../stores/gameStore';
 
 type GameVersion = 'BA' | 'RJ';
@@ -24,22 +25,21 @@ export function DesktopHome() {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const [pipeConnected, setPipeConnected] = useState(false);
-  const [gameActive, setGameActive] = useState(false);
+  const pipeConnected = usePipeStatus();
+  const gameActive = useGameActive();
 
   useEffect(() => {
     const api = window.gameAPI;
     if (!api) return;
 
+    const { setPipeConnected, handleMessage } = useGameStore.getState();
+
     const removePipeStatus = api.onPipeStatus((connected) => {
       setPipeConnected(connected);
-      if (!connected) setGameActive(false);
     });
 
     const removeMessage = api.onMessage((msg: GameMessage) => {
-      if (msg.type === 'status') {
-        setGameActive(msg.gameActive);
-      }
+      handleMessage(msg);
     });
 
     api.getPipeStatus().then((connected) => {
