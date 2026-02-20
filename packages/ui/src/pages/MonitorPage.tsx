@@ -7,6 +7,7 @@ import {
   useRezonAttackStarSum, useRezonFinalizeTurnSum, useRezonAccessLvSum,
 } from '../stores/gameStore';
 import { GameMonitor } from '../components/GameMonitor';
+import { FolderTab } from './FolderTab';
 
 type GameVersion = 'BA' | 'RJ';
 
@@ -46,7 +47,7 @@ function WarlockTab() {
       <ValueRow label="NOISE_RATE_2" />
       <ValueRow label="COMFIRM_LV_1" />
       <ValueRow label="COMFIRM_LV_2" />
-      
+
       <ValueRow label="MY_REZON" />
       <ValueRow label="REZON_L0" />
       <ValueRow label="REZON_L1" />
@@ -59,8 +60,8 @@ function WarlockTab() {
       <ValueRow label="SELECTED_SSS_VAL_2" />
       <ValueRow label="SSS_CURSOR" />
       <ValueRow label="CURRENT_CARD" />
-      
-      
+
+
     </Box>
   );
 }
@@ -93,11 +94,7 @@ export function MonitorPage() {
       <Box sx={{ pt: 2, px: 2 }}>
         {activeTab === 0 && <GameMonitor version={gameVersion} />}
         {activeTab === 1 && <WarlockTab />}
-        {activeTab === 2 && (
-          <Typography color="text.secondary" sx={{ p: 2 }}>
-            (Coming soon)
-          </Typography>
-        )}
+        {activeTab === 2 && <FolderTab version={gameVersion} />}
       </Box>
     </Box>
   );

@@ -19,7 +19,6 @@ const desktopRoot: RouteObject = {
   children: [
     { index: true, element: <DesktopHome /> },
     { path: 'monitor/:version', element: <MonitorPage /> },
-    { path: ':version/:level', element: <FolderDetail /> },
     { path: 'settings', element: <Settings /> },
   ],
 };
