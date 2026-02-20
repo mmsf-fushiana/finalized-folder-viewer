@@ -53,8 +53,15 @@ static const GameAddress RJ_ADDRESSES[] = {
     // { "NOISE_RATE?",       0x0210B03C, 2 },
     { "NOISE_RATE_1",       0x02193BA0, 2 }, // 表示上のノイズ率1
     { "NOISE_RATE_2",       0x02193BA4, 2 }, // 表示上のノイズ率2
+    
     { "COMFIRM_LV_1",       0x021862A0, 2 }, // ファイナライズアクセスLv
     { "COMFIRM_LV_2",       0x021862B0, 2 }, // ファイナライズアクセス確認画面に表示されるLv
+    
+    { "SELECTED_SSS_VAL_1", 0x020F1E4C, 2 }, // SSS選択時サーバーアドレスの値: 1-56 (サテライトLv 1-32, メテオLv 1-24)
+    { "SELECTED_SSS_VAL_2", 0x021862A0, 2 }, // SSS選択時サーバーアドレスの値: 1-56 (サテライトLv 1-32, メテオLv 1-24)
+    { "SSS_CURSOR",         0x0218741F, 1 }, // SSS選択 A/B/Cのカーソル位置: 0-2
+
+    { "CURRENT_CARD",       0x020F1E24, 1 }, // カーソル選択中のカード？
     
     { "MY_REZON",       0x220F39BE, 1 },
     { "REZON_L0",       0x220F3FFE, 1 },

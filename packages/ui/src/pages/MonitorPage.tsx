@@ -2,7 +2,10 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Box, Tab, Tabs, Typography } from '@mui/material';
-import { subscribeGameAPI, useGameStore, useGameValue, hexToNumber } from '../stores/gameStore';
+import {
+  subscribeGameAPI, useGameStore, useGameValue, hexToNumber,
+  useRezonAttackStarSum, useRezonFinalizeTurnSum, useRezonAccessLvSum,
+} from '../stores/gameStore';
 import { GameMonitor } from '../components/GameMonitor';
 
 type GameVersion = 'BA' | 'RJ';
@@ -18,6 +21,22 @@ function ValueRow({ label }: { label: string }) {
   );
 }
 
+function RezonSummary() {
+  const attackStarSum = useRezonAttackStarSum();
+  const finalizeTurnSum = useRezonFinalizeTurnSum();
+  const accessLvSum = useRezonAccessLvSum();
+
+  return (
+    <>
+      <Typography variant="body1">
+        attackStar: {Object.entries(attackStarSum).map(([attr, count]) => `${attr}:${count}`).join(', ') || '---'}
+      </Typography>
+      <Typography variant="body1">finalizeTurn: {finalizeTurnSum}</Typography>
+      <Typography variant="body1">accessLv: {accessLvSum}</Typography>
+    </>
+  );
+}
+
 function WarlockTab() {
   return (
     <Box sx={{ p: 2, fontFamily: 'Consolas, monospace', display: 'flex', flexDirection: 'column', gap: 0.5 }}>
@@ -27,6 +46,21 @@ function WarlockTab() {
       <ValueRow label="NOISE_RATE_2" />
       <ValueRow label="COMFIRM_LV_1" />
       <ValueRow label="COMFIRM_LV_2" />
+      
+      <ValueRow label="MY_REZON" />
+      <ValueRow label="REZON_L0" />
+      <ValueRow label="REZON_L1" />
+      <ValueRow label="REZON_L2" />
+      <ValueRow label="REZON_R0" />
+      <ValueRow label="REZON_R1" />
+      <ValueRow label="REZON_R2" />
+      <RezonSummary />
+      <ValueRow label="SELECTED_SSS_VAL_1" />
+      <ValueRow label="SELECTED_SSS_VAL_2" />
+      <ValueRow label="SSS_CURSOR" />
+      <ValueRow label="CURRENT_CARD" />
+      
+      
     </Box>
   );
 }
@@ -61,7 +95,7 @@ export function MonitorPage() {
         {activeTab === 1 && <WarlockTab />}
         {activeTab === 2 && (
           <Typography color="text.secondary" sx={{ p: 2 }}>
-            {t('monitor.tab.tab3')} (Coming soon)
+            (Coming soon)
           </Typography>
         )}
       </Box>

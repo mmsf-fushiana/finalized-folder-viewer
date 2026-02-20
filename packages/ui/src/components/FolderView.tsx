@@ -241,37 +241,11 @@ function findAvailableGA(cards: Card[], gaList: GalaxyAdvance[]) {
   return availableGAs;
 }
 
-// 0, 3, 6 にスナップ
-function snapRating(value: number | null): number {
-  if (value === null || value <= 1) return 0;
-  if (value <= 3) return 3;
-  return 6;
-}
-
 interface SnapRatingProps {
   value: number;
   onChange: (value: number) => void;
 }
 
-// MUI Rating版（未使用）
-function SnapRatingMUI({ value, onChange }: SnapRatingProps) {
-  const [hoverValue, setHoverValue] = useState<number>(-1);
-
-  const displayValue = hoverValue !== -1 ? snapRating(hoverValue) : value;
-
-  return (
-    <Rating
-      value={displayValue}
-      max={6}
-      size="small"
-      onChange={(_, newValue) => onChange(snapRating(newValue))}
-      onChangeActive={(_, newHover) => setHoverValue(newHover)}
-      sx={{
-        '& .MuiRating-icon': { fontSize: 16 },
-      }}
-    />
-  );
-}
 
 // 自作スナップRatingコンポーネント
 function SnapRating({ value, onChange }: SnapRatingProps) {

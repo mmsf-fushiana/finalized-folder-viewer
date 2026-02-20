@@ -2,6 +2,8 @@
 // Zustand によるグローバルステート + セレクターフック
 
 import { create } from 'zustand';
+import { useShallow } from 'zustand/react/shallow';
+import rezonMapping from '@data/rezon_mapping.json';
 
 // ========================================
 // 型定義
@@ -234,6 +236,72 @@ export function usePipeStatus(): boolean {
 /** ゲーム検出状態 */
 export function useGameActive(): boolean {
   return useGameStore((s) => s.gameActive);
+}
+
+// ========================================
+// レゾン派生セレクター
+// ========================================
+
+interface RezonEntry {
+  attackStar: Record<string, number>;
+  finalizeTurn: number;
+  accessLv: number;
+}
+
+const REZON_KEYS = [
+  'MY_REZON', 'REZON_L0', 'REZON_L1', 'REZON_L2',
+  'REZON_R0', 'REZON_R1', 'REZON_R2',
+] as const;
+
+const rezonMap = rezonMapping as Record<string, RezonEntry>;
+
+/** 各レゾンのエントリを取得するヘルパー */
+function getActiveRezonEntries(values: Record<string, GameValue>): RezonEntry[] {
+  const entries: RezonEntry[] = [];
+  for (const key of REZON_KEYS) {
+    const hex = values[key]?.value;
+    if (!hex) continue;
+    const entry = rezonMap[hex];
+    if (entry) entries.push(entry);
+  }
+  return entries;
+}
+
+/** 全レゾンの attackStar 属性別合計 */
+export function useRezonAttackStarSum(): Record<string, number> {
+  return useGameStore(
+    useShallow((s) => {
+      const result: Record<string, number> = {};
+      for (const entry of getActiveRezonEntries(s.values)) {
+        for (const [attr, count] of Object.entries(entry.attackStar)) {
+          result[attr] = (result[attr] ?? 0) + count;
+        }
+      }
+      return result;
+    }),
+  );
+}
+
+/** 全レゾンの finalizeTurn 合計 */
+export function useRezonFinalizeTurnSum(): number {
+  return useGameStore((s) => {
+    let sum = 0;
+    for (const entry of getActiveRezonEntries(s.values)) {
+      sum += entry.finalizeTurn;
+    }
+    return sum;
+  });
+}
+
+/** 全レゾンの accessLv 合計 */
+export function useRezonAccessLvSum(): number {
+  return useGameStore((s) => {
+    let sum = 0;
+    for (const entry of getActiveRezonEntries(s.values)) {
+      sum += entry.accessLv;
+    }
+    return sum;
+  });
 }
 
 // ========================================
