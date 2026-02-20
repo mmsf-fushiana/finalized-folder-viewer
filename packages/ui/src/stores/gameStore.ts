@@ -304,6 +304,18 @@ export function useRezonAccessLvSum(): number {
   });
 }
 
+/** NOISE_RATE_1/2 が一致かつ 0-9999 なら先頭3桁を返す */
+export function useConfirmedNoiseRate(): number | null {
+  return useGameStore((s) => {
+    const hex1 = s.values['NOISE_RATE_1']?.value;
+    const hex2 = s.values['NOISE_RATE_2']?.value;
+    if (!hex1 || !hex2 || hex1 !== hex2) return null;
+    const num = hexToNumber(hex1);
+    if (num < 0 || num > 9999) return null;
+    return parseInt(num.toString().slice(0, 3), 10);
+  });
+}
+
 // ========================================
 // IPC購読 (Electron gameAPI → Zustand)
 // ========================================
