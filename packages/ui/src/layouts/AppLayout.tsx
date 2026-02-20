@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 
 export function AppLayout() {
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: "rgb(60,90,99)" }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: "white" }}>
         {/* 
         
         rgb(49,74,90)
