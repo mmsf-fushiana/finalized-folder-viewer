@@ -39,19 +39,25 @@ function createWindow() {
   pipeClient = new PipeClient();
 
   pipeClient.on('message', (msg: PipeMessage) => {
-    mainWindow.webContents.send('game-message', msg);
+    if (!mainWindow.isDestroyed()) {
+      mainWindow.webContents.send('game-message', msg);
+    }
   });
 
   pipeClient.on('connected', () => {
     console.log('[Main] Pipe connected');
     pipeConnected = true;
-    mainWindow.webContents.send('pipe-status', true);
+    if (!mainWindow.isDestroyed()) {
+      mainWindow.webContents.send('pipe-status', true);
+    }
   });
 
   pipeClient.on('disconnected', () => {
     console.log('[Main] Pipe disconnected');
     pipeConnected = false;
-    mainWindow.webContents.send('pipe-status', false);
+    if (!mainWindow.isDestroyed()) {
+      mainWindow.webContents.send('pipe-status', false);
+    }
   });
 
   // Rendererロード完了後に現在のpipe状態を再送（ロード前の接続イベント対策）
