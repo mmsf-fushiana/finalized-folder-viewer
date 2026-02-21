@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Typography, Switch, FormControlLabel } from '@mui/material';
+import { Typography, Switch, FormControlLabel, Chip, Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { FolderView, initialRatings } from '../components';
 import type { RatingType, TypeRatings } from '../components';
@@ -81,8 +81,28 @@ export function FolderTab({ version }: { version: Version }) {
         label="ファイナライズ選択時に更新する"
         sx={{ px: 2, mb: 0.5 }}
       />
+      <Box sx={{ px: 2, mb: 0.5, display: 'flex', alignItems: 'center', gap: 1 }}>
+        <Typography variant="caption">ノイズ率:　</Typography>
+        <Chip
+          label={noiseRate >= 0 && noiseRate <= 999 ? `${noiseRate}%` : '---'}
+          size="small"
+          sx={{
+            bgcolor: noiseRate >= 0 && noiseRate <= 999
+              ? noiseRate < 50 ? '#2e7d32' : noiseRate < 200 ? '#e65100' : '#d50000'
+              : '#9e9e9e',
+            color: 'white',
+            fontSize: 14,
+            height: 22,
+            letterSpacing: '0.09em',
+            borderRadius: 1,
+            '& .MuiChip-label': { px: 0.5 },
+          }}
+        />
+      </Box>
+
+            
       {/* デバッグ表示 */}
-      <Typography variant="caption" component="div" sx={{ px: 2, py: 0.5, fontFamily: 'Consolas, monospace', color: 'text.secondary', bgcolor: '#f5f5f5', borderRadius: 1, mb: 1 }}>
+      {/* <Typography variant="caption" component="div" sx={{ px: 2, py: 0.5, fontFamily: 'Consolas, monospace', color: 'text.secondary', bgcolor: '#f5f5f5', borderRadius: 1, mb: 1 }}>
         noiseRate: {noiseRate}
         lockedLevel: {lockedLevel ?? 'null'} | 
         ロックフラグ: {String(folderFinalized)}
@@ -94,7 +114,7 @@ export function FolderTab({ version }: { version: Version }) {
         {' | '}noiseRate: {noiseRate}
         {' | '}captured: {capturedNoiseRate ?? 'null'} | finalized: {String(folderFinalized)}
         {' | '}accessLvSum: {accessLvSum}
-      </Typography>
+      </Typography> */}
       <FolderView
         version={version}
         level={effectiveLevel}
