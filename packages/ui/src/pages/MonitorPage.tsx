@@ -93,8 +93,9 @@ export function MonitorPage() {
 
       <Box sx={{ pt: 2, px: 2 }}>
         {activeTab === 0 && <GameMonitor version={gameVersion} />}
-        {activeTab === 1 && <WarlockTab />}
-        {activeTab === 2 && <FolderTab version={gameVersion} />}
+        {/* {activeTab === 1 && <WarlockTab />} */}
+        {activeTab === 1 && <FolderTab version={gameVersion} />}
+        {activeTab === 2 && <WarlockTab />}
       </Box>
     </Box>
   );

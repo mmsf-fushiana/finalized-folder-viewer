@@ -351,9 +351,9 @@
     "waitingGame": "Waiting for Game",
     "startGame": "Please load Mega Man Star Force 3.",
     "tab": {
-      "monitor": "Monitor",
-      "tab2": "Debug",
-      "tab3": "Settings"
+      "monitor": "Debug",
+      "tab2": "Folder Viewer",
+      "tab3": "Build Viewer"
     }
   },
   "ability": {
