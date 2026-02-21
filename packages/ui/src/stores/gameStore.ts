@@ -4,6 +4,8 @@
 import { create } from 'zustand';
 import { useShallow } from 'zustand/react/shallow';
 import rezonMapping from '@data/rezon_mapping.json';
+import { getNoiseLevel } from '../utils/noiseLevel';
+import type { Level } from '../types';
 
 // ========================================
 // 型定義
@@ -35,6 +37,9 @@ export interface GameState {
   lastReceivedTime: number;    // 最後にデータを受信した時刻
   // エラー
   lastError: string | null;
+  // フォルダレベルロック（内部ステート）
+  _capturedNoiseRate: number | null; // フラグA: COMFIRM一致時にキャプチャしたNOISE_RATE (非null=フラグA ON)
+  _folderFinalized: boolean;         // ロックフラグ: ノイズ→0遷移でON、COMFIRM両方0でのみOFF
 }
 
 // DLL→Electronメッセージ型
@@ -101,6 +106,8 @@ const initialState: GameState = {
   lastDeltaTime: 0,
   lastReceivedTime: 0,
   lastError: null,
+  _capturedNoiseRate: null,
+  _folderFinalized: false,
 };
 
 export const useGameStore = create<GameStore>()((set, get) => ({
@@ -115,6 +122,59 @@ export const useGameStore = create<GameStore>()((set, get) => ({
 
   handleMessage: (msg) => {
     const now = Date.now();
+
+    // フォルダレベルロック遷移検出
+    // prevValues: 更新前の values, newValues: 更新後の values
+    const checkFolderLock = (
+      prevValues: Record<string, GameValue>,
+      newValues: Record<string, GameValue>,
+    ) => {
+      const state = get();
+      const hexVal = (vals: Record<string, GameValue>, key: string) => {
+        const h = vals[key]?.value;
+        return h ? hexToNumber(h) : 0;
+      };
+
+      const newConfirm1 = hexVal(newValues, 'COMFIRM_LV_1');
+      const newConfirm2 = hexVal(newValues, 'COMFIRM_LV_2');
+      const prevNoise = hexVal(prevValues, 'NOISE_RATE_1');
+      const newNoise = hexVal(newValues, 'NOISE_RATE_1');
+
+      // リセット: COMFIRM 両方 0 → フラグOFF
+      if (newConfirm1 === 0 && newConfirm2 === 0) {
+        if (state._folderFinalized || state._capturedNoiseRate !== null) {
+          set({ _folderFinalized: false, _capturedNoiseRate: null });
+        }
+        return;
+      }
+
+      // キャプチャ (フラグA ON): COMFIRM_LV_1 === COMFIRM_LV_2 (1-12範囲) → NOISE_RATE_1 を保持
+      if (newConfirm1 === newConfirm2 && newConfirm1 >= 1 && newConfirm1 <= 12) {
+        const captured = newNoise > 0
+          ? Math.trunc(newNoise / 10)
+          : null;
+        if (captured !== null && captured !== state._capturedNoiseRate) {
+          set({ _capturedNoiseRate: captured });
+        }
+      }
+
+      const capturedNoise = get()._capturedNoiseRate;
+
+      // ロックフラグON: フラグA中にNOISE_RATE_1が0に遷移 & 変化前がキャプチャ値と一致
+      if (capturedNoise !== null && newNoise === 0 && prevNoise !== 0) {
+        const prevRate = Math.trunc(prevNoise / 10);
+        if (prevRate === capturedNoise && !get()._folderFinalized) {
+          set({ _folderFinalized: true });
+        }
+      }
+
+      // フラグA OFF: NOISE_RATE_1が0以外かつキャプチャ値と異なる
+      if (capturedNoise !== null && newNoise !== 0) {
+        if (Math.trunc(newNoise / 10) !== capturedNoise) {
+          set({ _capturedNoiseRate: null });
+        }
+      }
+    };
 
     switch (msg.type) {
       case 'hello':
@@ -143,6 +203,7 @@ export const useGameStore = create<GameStore>()((set, get) => ({
             ? { lastDeltaKeys: changedKeys, lastDeltaTime: now }
             : {}),
         });
+        checkFolderLock(prev, values);
         break;
       }
 
@@ -174,6 +235,7 @@ export const useGameStore = create<GameStore>()((set, get) => ({
           lastDeltaTime: now,
           lastReceivedTime: now,
         });
+        checkFolderLock(prev, updatedValues);
         break;
       }
 
@@ -304,7 +366,7 @@ export function useRezonAccessLvSum(): number {
   });
 }
 
-/** NOISE_RATE_1/2 が一致かつ 0-9999 なら先頭3桁を返す */
+/** NOISE_RATE_1/2 が一致かつ 0-9999 なら末尾1桁を落とした値を返す */
 export function useConfirmedNoiseRate(): number | null {
   return useGameStore((s) => {
     const hex1 = s.values['NOISE_RATE_1']?.value;
@@ -312,7 +374,26 @@ export function useConfirmedNoiseRate(): number | null {
     if (!hex1 || !hex2 || hex1 !== hex2) return null;
     const num = hexToNumber(hex1);
     if (num < 0 || num > 9999) return null;
-    return parseInt(num.toString().slice(0, 3), 10);
+    return Math.trunc(num / 10);
+  });
+}
+
+/**
+ * フォルダレベルロック: 確定フォルダ突入中のレベルを返す
+ * _folderFinalized が true の間、capturedNoiseRate + accessLvSum からレベルを算出
+ * ロック中でなければ null
+ */
+export function useLockedFolderLevel(): Level | null {
+  return useGameStore((s) => {
+    if (!s._folderFinalized || s._capturedNoiseRate === null) return null;
+
+    let accessLvSum = 0;
+    for (const entry of getActiveRezonEntries(s.values)) {
+      accessLvSum += entry.accessLv;
+    }
+
+    const level = getNoiseLevel(s._capturedNoiseRate, accessLvSum);
+    return level as Level;
   });
 }
 
