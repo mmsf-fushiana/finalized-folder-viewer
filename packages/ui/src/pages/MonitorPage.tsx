@@ -86,19 +86,19 @@ export function MonitorPage() {
     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={activeTab} onChange={(_, v) => setActiveTab(v)}>
-          <Tab label={t('monitor.tab.monitor')} />
           <Tab label={t('monitor.tab.tab2')} />
           <Tab label={t('monitor.tab.tab3')} />
+          <Tab label={t('monitor.tab.monitor')} />
         </Tabs>
       </Box>
 
       {/* <Box sx={{ pt: 2, px: 0.5 }}> */}
       <Box sx={{  }}>
-        {activeTab === 0 && <GameMonitor version={gameVersion} />}
+        {activeTab === 2 && <GameMonitor version={gameVersion} />}
         {/* {activeTab === 1 && <WarlockTab />} */}
-        {activeTab === 1 && <FolderTab version={gameVersion} />}
-        {activeTab === 2 && <BuildTab />}
-        {activeTab === 3 && <WarlockTab />}
+        {activeTab === 0 && <FolderTab version={gameVersion} />}
+        {activeTab === 1 && <BuildTab />}
+        {/* {activeTab === 3 && <WarlockTab />} */}
       </Box>
     </Box>
   );
