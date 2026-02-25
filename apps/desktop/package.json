@@ -7,7 +7,7 @@
   "type": "module",
   "main": "dist/main.js",
   "scripts": {
-    "dev": "concurrently \"yarn dev:main\" \"yarn dev:renderer\"",
+    "dev": "concurrently --kill-others \"yarn dev:main\" \"yarn dev:renderer\"",
     "dev:main": "tsc -p tsconfig.main.json && electron .",
     "dev:renderer": "vite",
     "build": "tsc -p tsconfig.main.json && vite build",
