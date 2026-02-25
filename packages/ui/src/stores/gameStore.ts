@@ -46,8 +46,9 @@ export interface GameState {
   // エラー
   lastError: string | null;
   // フォルダレベルロック（内部ステート）
-  _capturedNoiseRate: number | null; // フラグA: COMFIRM一致時にキャプチャしたNOISE_RATE (非null=フラグA ON)
-  _folderFinalized: boolean;         // ロックフラグ: ノイズ→0遷移でON、COMFIRM両方0でのみOFF
+  _capturedNoiseRate: number | null;   // COMFIRM一致時にキャプチャしたノイズ率 (非null=キャプチャ中)
+  _folderFinalized: boolean;           // ロックフラグ: F_Turn_Remaining>0でON、COMFIRM両方0でOFF
+  _confirmedFolderLevel: Level | null; // COMFIRM一致時の確定レベル
 }
 
 // DLL→Electronメッセージ型
@@ -116,6 +117,7 @@ const initialState: GameState = {
   lastError: null,
   _capturedNoiseRate: null,
   _folderFinalized: false,
+  _confirmedFolderLevel: null,
 };
 
 export const useGameStore = create<GameStore>()((set, get) => ({
@@ -132,9 +134,12 @@ export const useGameStore = create<GameStore>()((set, get) => ({
     const now = Date.now();
 
     // フォルダレベルロック遷移検出
-    // prevValues: 更新前の values, newValues: 更新後の values
+    // 1. COMFIRM一致(1-12) → ノイズ率・レベルをキャプチャ
+    // 2. ノイズ率変動 → キャプチャ解除
+    // 3. キャプチャ中に F_Turn_Remaining > 0 → ロック確定
+    // 4. COMFIRM両方0 → 全解除
     const checkFolderLock = (
-      prevValues: Record<string, GameValue>,
+      _prevValues: Record<string, GameValue>,
       newValues: Record<string, GameValue>,
     ) => {
       const state = get();
@@ -145,42 +150,43 @@ export const useGameStore = create<GameStore>()((set, get) => ({
 
       const newConfirm1 = hexVal(newValues, 'COMFIRM_LV_1');
       const newConfirm2 = hexVal(newValues, 'COMFIRM_LV_2');
-      const prevNoise = hexVal(prevValues, 'NOISE_RATE_1');
       const newNoise = hexVal(newValues, 'NOISE_RATE_1');
+      const newFTurn = hexVal(newValues, 'F_Turn_Remaining');
 
-      // リセット: COMFIRM 両方 0 → フラグOFF
+      // リセット: COMFIRM 両方 0 → 全フラグOFF
       if (newConfirm1 === 0 && newConfirm2 === 0) {
-        if (state._folderFinalized || state._capturedNoiseRate !== null) {
-          set({ _folderFinalized: false, _capturedNoiseRate: null });
+        if (state._folderFinalized || state._capturedNoiseRate !== null || state._confirmedFolderLevel !== null) {
+          set({ _folderFinalized: false, _capturedNoiseRate: null, _confirmedFolderLevel: null });
         }
         return;
       }
 
-      // キャプチャ (フラグA ON): COMFIRM_LV_1 === COMFIRM_LV_2 (1-12範囲) → NOISE_RATE_1 を保持
+      // ロック済みなら以降スキップ
+      if (state._folderFinalized) return;
+
+      // キャプチャ: COMFIRM_LV_1 === COMFIRM_LV_2 (1-12範囲) → ノイズ率・確定レベル記録
       if (newConfirm1 === newConfirm2 && newConfirm1 >= 1 && newConfirm1 <= 12) {
-        const captured = newNoise > 0
-          ? Math.trunc(newNoise / 10)
-          : null;
-        if (captured !== null && captured !== state._capturedNoiseRate) {
-          set({ _capturedNoiseRate: captured });
+        const noiseRate = newNoise > 0 ? Math.trunc(newNoise / 10) : null;
+        if (noiseRate !== null && noiseRate !== state._capturedNoiseRate) {
+          set({ _capturedNoiseRate: noiseRate });
+        }
+        if (newConfirm1 !== state._confirmedFolderLevel) {
+          set({ _confirmedFolderLevel: newConfirm1 as Level });
         }
       }
 
+      // ノイズ率変動チェック: キャプチャ済みかつノイズ率が変わった → キャプチャ解除
       const capturedNoise = get()._capturedNoiseRate;
-
-      // ロックフラグON: フラグA中にNOISE_RATE_1が0に遷移 & 変化前がキャプチャ値と一致
-      if (capturedNoise !== null && newNoise === 0 && prevNoise !== 0) {
-        const prevRate = Math.trunc(prevNoise / 10);
-        if (prevRate === capturedNoise && !get()._folderFinalized) {
-          set({ _folderFinalized: true });
+      if (capturedNoise !== null && newNoise > 0) {
+        if (Math.trunc(newNoise / 10) !== capturedNoise) {
+          set({ _capturedNoiseRate: null, _confirmedFolderLevel: null });
+          return;
         }
       }
 
-      // フラグA OFF: NOISE_RATE_1が0以外かつキャプチャ値と異なる
-      if (capturedNoise !== null && newNoise !== 0) {
-        if (Math.trunc(newNoise / 10) !== capturedNoise) {
-          set({ _capturedNoiseRate: null });
-        }
+      // ロック確定: キャプチャ中かつ F_Turn_Remaining > 0
+      if (get()._capturedNoiseRate !== null && newFTurn > 0) {
+        set({ _folderFinalized: true });
       }
     };
 
@@ -783,7 +789,7 @@ export function useSupportUse(): string | null {
       if (!hex || hex === '0000') continue;
       const card = noiseCardMap[hex];
       if (card?.effectDetail?.support) {
-        name = card.effectDetail.support as string;
+        name = `noiseCard.effect.s_${card.effectDetail.support}`;
       }
     }
 

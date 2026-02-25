@@ -51,14 +51,19 @@ export function FolderTab({ version }: { version: Version }) {
   // レベル自動決定
   useEffect(() => {
     if (folderFinalized) return; // ロック中はスキップ
+    // COMFIRM両方0（バトル開始時）→ 最低レベルにリセット
+    if (confirmLv1 === 0 && confirmLv2 === 0) {
+      setLevel(getNoiseLevel(200, accessLvSum) as Level);
+      return;
+    }
     if (updateOnFinalize) {
       // ファイナライズ選択時のみ: COMFIRM一致(1-12)でその値をレベルに
       if (confirmLv1 === confirmLv2 && confirmLv1 >= 1 && confirmLv1 <= 12) {
         setLevel(confirmLv1 as Level);
       }
     } else {
-      // リアルタイム: ノイズ率からレベル決定
-      if (noiseRate > 0) {
+      // リアルタイム: ノイズ率からレベル決定 (200未満はテーブル範囲外のため無視)
+      if (noiseRate >= 200) {
         const derived = getNoiseLevel(noiseRate, accessLvSum) as Level;
         setLevel(derived);
       }
@@ -68,7 +73,8 @@ export function FolderTab({ version }: { version: Version }) {
   // フォルダレベルロック
   const lockedLevel = useLockedFolderLevel();
   const capturedNoiseRate = useGameStore((s) => s._capturedNoiseRate);
-  const effectiveLevel = lockedLevel ?? level;
+  const confirmedLevel = useGameStore((s) => s._confirmedFolderLevel);
+  const effectiveLevel = folderFinalized ? (confirmedLevel ?? lockedLevel ?? level) : level;
 
   const cards = finalizationData?.[version]?.[`LV${effectiveLevel}` as keyof typeof finalizationData.BA] ?? [];
 
@@ -85,7 +91,7 @@ export function FolderTab({ version }: { version: Version }) {
           size="small"
           sx={{
             bgcolor: noiseRate >= 0 && noiseRate <= 999
-              ? noiseRate < 50 ? '#4fdf56' : noiseRate < 200 ? '#f69e46' : '#d50000'
+              ? noiseRate < 50 ? '#81ea86' : noiseRate < 200 ? '#f69e46' : '#d50000'
               : '#9e9e9e',
             color: 'white',
             fontSize: 14,
@@ -99,7 +105,7 @@ export function FolderTab({ version }: { version: Version }) {
           <>
             <Divider orientation="vertical" flexItem />
             <Chip
-              label="ファイナライズ中"
+              label={version}
               size="small"
               sx={{
                 bgcolor: VERSION_COLORS[version],
@@ -110,6 +116,21 @@ export function FolderTab({ version }: { version: Version }) {
                 '& .MuiChip-label': { px: 0.5 },
               }}
             />
+            {confirmedLevel && (
+              <Chip
+                label={`Lv. ${confirmedLevel}`}
+                size="small"
+                variant="outlined"
+                sx={{
+                  color: '#d50000',
+                  borderColor: '#d50000',
+                  fontSize: 14,
+                  height: 22,
+                  borderRadius: 1,
+                  '& .MuiChip-label': { px: 0.5 },
+                }}
+              />
+            )}
             <Typography variant="caption">残りターン: <b>{fTurnRemaining}</b></Typography>
             <Divider orientation="vertical" flexItem />
           
