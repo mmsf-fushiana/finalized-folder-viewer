@@ -851,7 +851,9 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
     switch (ul_reason_for_call) {
     case DLL_PROCESS_ATTACH:
         DisableThreadLibraryCalls(hModule);
-        InitConsole();
+        
+        // InitConsole(); // コンソール表示。デバッグ用
+        
         printf("[DLL] version.dll読み込み完了!\n");
         printf("[DLL] Named Pipe + DeltaTracker モード\n");
 
