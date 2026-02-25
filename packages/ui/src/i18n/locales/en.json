@@ -350,6 +350,11 @@
     "startDS": "Please start melonDS.",
     "waitingGame": "Waiting for Game",
     "startGame": "Please load Mega Man Star Force 3.",
+    "step": {
+      "connect": "Emulator",
+      "detect": "ROM Detected",
+      "select": "Select Version"
+    },
     "tab": {
       "monitor": "Debug",
       "tab2": "Folder Viewer",

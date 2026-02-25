@@ -1,9 +1,18 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Box, Button, Chip, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Link,
+  Step,
+  StepLabel,
+  Stepper,
+  Typography,
+} from '@mui/material';
 import { useGameStore, usePipeStatus, useGameActive } from '../stores/gameStore';
 import type { GameMessage } from '../stores/gameStore';
+import { VERSION_COLORS } from '../types';
 
 type GameVersion = 'BA' | 'RJ';
 
@@ -17,6 +26,9 @@ declare global {
       requestRefresh: () => void;
       ping: () => void;
       setVersion: (version: string) => void;
+    };
+    electronAPI?: {
+      openExternal: (url: string) => void;
     };
   }
 }
@@ -59,21 +71,21 @@ export function DesktopHome() {
 
   const canSelect = pipeConnected && gameActive;
 
-  let statusLabel: string;
-  let statusColor: 'error' | 'warning' | 'success';
-  let hintMessage: string;
+  // Stepper: 0=エミュレータ接続待ち, 1=ROM検出待ち, 2=バージョン選択可能
+  const activeStep = !pipeConnected ? 0 : !gameActive ? 1 : 2;
 
+  const steps = [
+    t('monitor.step.connect'),
+    t('monitor.step.detect'),
+    t('monitor.step.select'),
+  ];
+
+  let hintMessage: string;
   if (!pipeConnected) {
-    statusLabel = t('monitor.pipeDisconnected');
-    statusColor = 'error';
     hintMessage = t('monitor.startDS');
   } else if (!gameActive) {
-    statusLabel = t('monitor.waitingGame');
-    statusColor = 'warning';
     hintMessage = t('monitor.startGame');
   } else {
-    statusLabel = t('monitor.selectVersion');
-    statusColor = 'success';
     hintMessage = t('monitor.romDetected');
   }
 
@@ -92,18 +104,28 @@ export function DesktopHome() {
         流星のロックマン3 Viewer
       </Typography>
 
-      <Chip
-        label={statusLabel}
-        color={statusColor}
-        size="medium"
-        sx={{ fontSize: '0.95rem', px: 1 }}
-      />
+      <Stepper
+        activeStep={activeStep}
+        alternativeLabel
+        sx={{
+          width: '100%',
+          maxWidth: 480,
+          '& .MuiStepLabel-label': {
+            fontSize: '0.75rem',
+            color: 'text.secondary',
+          },
+        }}
+      >
+        {steps.map((label) => (
+          <Step key={label}>
+            <StepLabel>{label}</StepLabel>
+          </Step>
+        ))}
+      </Stepper>
 
-      {hintMessage && (
-        <Typography variant="body2" color="text.secondary">
-          {hintMessage}
-        </Typography>
-      )}
+      <Typography variant="body2" color={activeStep < 2 ? 'error' : 'text.primary'}>
+        {hintMessage}
+      </Typography>
 
       <Box sx={{ display: 'flex', gap: 3 }}>
         {(['BA', 'RJ'] as const).map((ver) => (
@@ -113,12 +135,35 @@ export function DesktopHome() {
             size="large"
             disabled={!canSelect}
             onClick={() => handleVersionSelect(ver)}
-            sx={{ minWidth: 140, fontSize: '1.1rem', py: 1.5 }}
+            sx={{
+              minWidth: 140,
+              fontSize: '1.1rem',
+              py: 1.5,
+              bgcolor: VERSION_COLORS[ver],
+              '&:hover': { bgcolor: VERSION_COLORS[ver], filter: 'brightness(1.2)' },
+            }}
           >
             {ver === 'BA' ? 'Black Ace' : 'Red Joker'}
           </Button>
         ))}
       </Box>
+
+      <Link
+        component="button"
+        onClick={() => {
+          const url = 'https://mmsf-fushiana.github.io/finalized-folder-viewer/';
+          if (window.electronAPI?.openExternal) {
+            window.electronAPI.openExternal(url);
+          } else {
+            window.open(url, '_blank', 'noopener,noreferrer');
+          }
+        }}
+        variant="body2"
+        color="text.secondary"
+        sx={{ mt: 2 }}
+      >
+        Web版 ファイナライズフォルダビューアを開く
+      </Link>
     </Box>
   );
 }

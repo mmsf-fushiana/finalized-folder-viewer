@@ -347,9 +347,14 @@
     "selectVersion": "バージョンを選択",
     "pipeDisconnected": "Pipe未接続",
     "waitingGame": "ゲーム待機中",
-    "startDS": "melonDSが未検出です。起動して下さい。",
-    "startGame": "melonDSに流星のロックマン3を読み込んで下さい。",
+    "startDS": "version.dllを差し替えたmelonDSを起動して下さい。",
+    "startGame": "起動中のmelonDSに流星のロックマン3を読み込んで下さい。",
     "romDetected": "ROMの起動を確認しました。バージョンを選択して下さい。",
+    "step": {
+      "connect": "version.dllを置いたmelonDSを起動する",
+      "detect": "ROMを読み込む",
+      "select": "バージョン選択する"
+    },
     "tab": {
       "monitor": "デバッグ",
       "tab2": "フォルダビューア",
