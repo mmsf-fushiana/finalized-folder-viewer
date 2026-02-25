@@ -50,7 +50,6 @@ struct GameAddress {
 
 // RJ版 (Red Joker / レッドジョーカー) アドレスリスト
 static const GameAddress RJ_ADDRESSES[] = {
-    // { "NOISE_RATE?",       0x0210B03C, 2 },
     { "NOISE_RATE_1",       0x02193BA0, 2 }, // 表示上のノイズ率1
     { "NOISE_RATE_2",       0x02193BA4, 2 }, // 表示上のノイズ率2
     
@@ -60,8 +59,9 @@ static const GameAddress RJ_ADDRESSES[] = {
     { "SELECTED_SSS_VAL_1", 0x020F1E4C, 2 }, // SSS選択時サーバーアドレスの値: 1-56 (サテライトLv 1-32, メテオLv 1-24)
     { "SELECTED_SSS_VAL_2", 0x021862A0, 2 }, // SSS選択時サーバーアドレスの値: 1-56 (サテライトLv 1-32, メテオLv 1-24)
     { "SSS_CURSOR",         0x0218741F, 1 }, // SSS選択 A/B/Cのカーソル位置: 0-2
-
     { "CURRENT_CARD",       0x020F1E24, 1 }, // カーソル選択中のカード？
+    
+    { "F_Turn_Remaining",   0x021C1A14, 1 }, // 残りファイナライズターン(バトル中に0=非変身)
     
     { "MY_REZON",       0x220F39BE, 1 },
     { "REZON_L0",       0x220F3FFE, 1 },
@@ -70,83 +70,237 @@ static const GameAddress RJ_ADDRESSES[] = {
     { "REZON_R0",       0x220F52BE, 1 },
     { "REZON_R1",       0x220F58FE, 1 },
     { "REZON_R2",       0x220F5F3E, 1 },
-    
+
+    // ブラザー1 (左上)
+    { "BRO1_NOISE", 0x220F4000, 1 },
+    { "BRO1_WC",    0x220F4001, 1 },
+    { "BRO1_MEGA",  0x120F459C, 2 },
+    { "BRO1_GIGA",  0x120F459E, 2 },
+    // ブラザー2 (左中)
+    { "BRO2_NOISE", 0x220F4640, 1 },
+    { "BRO2_WC",    0x220F4641, 1 },
+    { "BRO2_MEGA",  0x120F4BDC, 2 },
+    { "BRO2_GIGA",  0x120F4BDE, 2 },
+    // ブラザー3 (左下)
+    { "BRO3_NOISE", 0x220F4C80, 1 },
+    { "BRO3_WC",    0x220F4C81, 1 },
+    { "BRO3_MEGA",  0x120F521C, 2 },
+    { "BRO3_GIGA",  0x120F521E, 2 },
+    // ブラザー4 (右上)
+    { "BRO4_NOISE", 0x220F52C0, 1 },
+    { "BRO4_WC",    0x220F52C1, 1 },
+    { "BRO4_MEGA",  0x120F585C, 2 },
+    { "BRO4_GIGA",  0x120F585E, 2 },
+    // ブラザー5 (右中)
+    { "BRO5_NOISE", 0x220F5900, 1 },
+    { "BRO5_WC",    0x220F5901, 1 },
+    { "BRO5_MEGA",  0x120F5E9C, 2 },
+    { "BRO5_GIGA",  0x120F5E9E, 2 },
+    // ブラザー6 (右下)
+    { "BRO6_NOISE", 0x220F5F40, 1 },
+    { "BRO6_WC",    0x220F5F41, 1 },
+    { "BRO6_MEGA",  0x120F64DC, 2 },
+    { "BRO6_GIGA",  0x120F64DE, 2 },
+
+    // ノイズドカード
+    { "NOISED_CARD_1", 0x220FA114, 2 },
+    { "NOISED_CARD_2", 0x220FA116, 2 },
+    { "NOISED_CARD_3", 0x220FA118, 2 },
+    { "NOISED_CARD_4", 0x220FA11A, 2 },
+    { "NOISED_CARD_5", 0x220FA11C, 2 },
+
+    // アビリティ
+    { "ABILITY01",  0x020F2CEE, 2 },
+    { "ABILITY02",  0x020F2CF0, 2 },
+    { "ABILITY03",  0x020F2CF2, 2 },
+    { "ABILITY04",  0x020F2CF4, 2 },
+    { "ABILITY05",  0x020F2CF6, 2 },
+    { "ABILITY06",  0x020F2CF8, 2 },
+    { "ABILITY07",  0x020F2CFA, 2 },
+    { "ABILITY08",  0x020F2CFC, 2 },
+    { "ABILITY09",  0x020F2CFE, 2 },
+    { "ABILITY10",  0x020F2D00, 2 },
+    { "ABILITY11",  0x020F2D02, 2 },
+    { "ABILITY12",  0x020F2D04, 2 },
+    { "ABILITY13",  0x020F2D06, 2 },
+    { "ABILITY14",  0x020F2D08, 2 },
+    { "ABILITY15",  0x020F2D0A, 2 },
+    { "ABILITY16",  0x020F2D0C, 2 },
+    { "ABILITY17",  0x020F2D0E, 2 },
+    { "ABILITY18",  0x020F2D10, 2 },
+    { "ABILITY19",  0x020F2D12, 2 },
+    { "ABILITY20",  0x020F2D14, 2 },
+
     { "ZENY",       0x020F3394, 4 },
+   
+    { "BASE_HP",    0x0210C378, 2 },
+    // 自ノイズ
     { "NOISE",      0x020F39C0, 1 },
+    // ホワイトカードコード
+    { "WHITE_CARDS",0x220F39C1, 1 },
+    // ウォーロック装備
     { "WARLOCK",    0x020F2CD0, 4 },
-    { "CARD01",     0x020F3806, 2 },
-    { "CARD02",     0x020F3808, 2 },
-    { "CARD03",     0x020F380A, 2 },
-    { "CARD04",     0x020F380C, 2 },
-    { "CARD05",     0x020F380E, 2 },
-    { "CARD06",     0x020F3810, 2 },
-    { "CARD07",     0x020F3812, 2 },
-    { "CARD08",     0x020F3814, 2 },
-    { "CARD09",     0x020F3816, 2 },
-    { "CARD10",     0x020F3818, 2 },
-    { "CARD11",     0x020F381A, 2 },
-    { "CARD12",     0x020F381C, 2 },
-    { "CARD13",     0x020F381E, 2 },
-    { "CARD14",     0x020F3820, 2 },
-    { "CARD15",     0x020F3822, 2 },
-    { "CARD16",     0x020F3824, 2 },
-    { "CARD17",     0x020F3826, 2 },
-    { "CARD18",     0x020F3828, 2 },
-    { "CARD19",     0x020F382A, 2 },
-    { "CARD20",     0x020F382C, 2 },
-    { "CARD21",     0x020F382E, 2 },
-    { "CARD22",     0x020F3830, 2 },
-    { "CARD23",     0x020F3832, 2 },
-    { "CARD24",     0x020F3834, 2 },
-    { "CARD25",     0x020F3836, 2 },
-    { "CARD26",     0x020F3838, 2 },
-    { "CARD27",     0x020F383A, 2 },
-    { "CARD28",     0x020F383C, 2 },
-    { "CARD29",     0x020F383E, 2 },
-    { "CARD30",     0x020F3840, 2 },
+    
+    { "CARD01",     0x120F3806, 2 },
+    { "CARD02",     0x120F3808, 2 },
+    { "CARD03",     0x120F380A, 2 },
+    { "CARD04",     0x120F380C, 2 },
+    { "CARD05",     0x120F380E, 2 },
+    { "CARD06",     0x120F3810, 2 },
+    { "CARD07",     0x120F3812, 2 },
+    { "CARD08",     0x120F3814, 2 },
+    { "CARD09",     0x120F3816, 2 },
+    { "CARD10",     0x120F3818, 2 },
+    { "CARD11",     0x120F381A, 2 },
+    { "CARD12",     0x120F381C, 2 },
+    { "CARD13",     0x120F381E, 2 },
+    { "CARD14",     0x120F3820, 2 },
+    { "CARD15",     0x120F3822, 2 },
+    { "CARD16",     0x120F3824, 2 },
+    { "CARD17",     0x120F3826, 2 },
+    { "CARD18",     0x120F3828, 2 },
+    { "CARD19",     0x120F382A, 2 },
+    { "CARD20",     0x120F382C, 2 },
+    { "CARD21",     0x120F382E, 2 },
+    { "CARD22",     0x120F3830, 2 },
+    { "CARD23",     0x120F3832, 2 },
+    { "CARD24",     0x120F3834, 2 },
+    { "CARD25",     0x120F3836, 2 },
+    { "CARD26",     0x120F3838, 2 },
+    { "CARD27",     0x120F383A, 2 },
+    { "CARD28",     0x120F383C, 2 },
+    { "CARD29",     0x120F383E, 2 },
+    { "CARD30",     0x120F3840, 2 },
+    
     { "REG",        0x020F3844, 2 },
     { "TAG1_2",     0x020F3842, 2 },
 };
 static constexpr size_t RJ_ADDRESS_COUNT = sizeof(RJ_ADDRESSES) / sizeof(RJ_ADDRESSES[0]);
 
 // BA版 (Black Ace / ブラックエース) アドレスリスト
-// TODO: 実際のBA版アドレスに更新してください
 static const GameAddress BA_ADDRESSES[] = {
-    { "ZENY",       0x020F3394, 4 },
-    { "NOISE",      0x020F39C0, 1 },
-    { "WARLOCK",    0x020F2CD0, 4 },
-    { "CARD01",     0x020F3806, 2 },
-    { "CARD02",     0x020F3808, 2 },
-    { "CARD03",     0x020F380A, 2 },
-    { "CARD04",     0x020F380C, 2 },
-    { "CARD05",     0x020F380E, 2 },
-    { "CARD06",     0x020F3810, 2 },
-    { "CARD07",     0x020F3812, 2 },
-    { "CARD08",     0x020F3814, 2 },
-    { "CARD09",     0x020F3816, 2 },
-    { "CARD10",     0x020F3818, 2 },
-    { "CARD11",     0x020F381A, 2 },
-    { "CARD12",     0x020F381C, 2 },
-    { "CARD13",     0x020F381E, 2 },
-    { "CARD14",     0x020F3820, 2 },
-    { "CARD15",     0x020F3822, 2 },
-    { "CARD16",     0x020F3824, 2 },
-    { "CARD17",     0x020F3826, 2 },
-    { "CARD18",     0x020F3828, 2 },
-    { "CARD19",     0x020F382A, 2 },
-    { "CARD20",     0x020F382C, 2 },
-    { "CARD21",     0x020F382E, 2 },
-    { "CARD22",     0x020F3830, 2 },
-    { "CARD23",     0x020F3832, 2 },
-    { "CARD24",     0x020F3834, 2 },
-    { "CARD25",     0x020F3836, 2 },
-    { "CARD26",     0x020F3838, 2 },
-    { "CARD27",     0x020F383A, 2 },
-    { "CARD28",     0x020F383C, 2 },
-    { "CARD29",     0x020F383E, 2 },
-    { "CARD30",     0x020F3840, 2 },
-    { "REG",        0x020F3844, 2 },
-    { "TAG1_2",     0x020F3842, 2 },
+    { "NOISE_RATE_1",       0x02193B60, 2 }, // 表示上のノイズ率1
+    { "NOISE_RATE_2",       0x02193B64, 2 }, // 表示上のノイズ率2
+    { "COMFIRM_LV_1",       0x02186260, 2 }, // ファイナライズアクセスLv
+    { "COMFIRM_LV_2",       0x02186270, 2 }, // ファイナライズアクセス確認画面に表示されるLv
+    { "SELECTED_SSS_VAL_1", 0x02186264, 2 }, // SSS選択時サーバーアドレスの値: 1-56 (サテライトLv 1-32, メテオLv 1-24)
+    { "SELECTED_SSS_VAL_2", 0x02186260, 2 }, // SSS選択時サーバーアドレスの値: 1-56 (サテライトLv 1-32, メテオLv 1-24)
+    { "SSS_CURSOR",         0x021873DF, 1 }, // SSS選択 A/B/Cのカーソル位置: 0-2
+    { "CURRENT_CARD",       0x020F1E04, 1 }, // カーソル選択中のカード？
+    
+    { "F_Turn_Remaining",   0x021C19D4, 1 }, // 残りファイナライズターン(バトル中に0=非変身)
+
+    { "MY_REZON",       0x220F399E, 1 },
+    
+    // ここから
+    { "REZON_L0",       0x220F3FDE, 1 },
+    { "REZON_L1",       0x220F461E, 1 },
+    { "REZON_L2",       0x220F4C5E, 1 },
+    { "REZON_R0",       0x220F529E, 1 },
+    { "REZON_R1",       0x220F58DE, 1 },
+    { "REZON_R2",       0x220F5F1E, 1 },
+    // ブラザー1 (左上)
+    { "BRO1_NOISE", 0x220F3FE0, 1 },
+    { "BRO1_WC",    0x220F3FE1, 1 },
+    { "BRO1_MEGA",  0x120F457C, 2 },
+    { "BRO1_GIGA",  0x120F457E, 2 },
+    // ブラザー2 (左中)
+    { "BRO2_NOISE", 0x220F4620, 1 },
+    { "BRO2_WC",    0x220F4621, 1 },
+    { "BRO2_MEGA",  0x120F4BBC, 2 },
+    { "BRO2_GIGA",  0x120F4BBE, 2 },
+    // ブラザー3 (左下)
+    { "BRO3_NOISE", 0x220F4C60, 1 },
+    { "BRO3_WC",    0x220F4C61, 1 },
+    { "BRO3_MEGA",  0x120F51FC, 2 },
+    { "BRO3_GIGA",  0x120F51FE, 2 },
+    // ブラザー4 (右上)
+    { "BRO4_NOISE", 0x220F52A0, 1 },
+    { "BRO4_WC",    0x220F52A1, 1 },
+    { "BRO4_MEGA",  0x120F583C, 2 },
+    { "BRO4_GIGA",  0x120F583E, 2 },
+    // ブラザー5 (右中)
+    { "BRO5_NOISE", 0x220F58E0, 1 },
+    { "BRO5_WC",    0x220F58E1, 1 },
+    { "BRO5_MEGA",  0x120F5E7C, 2 },
+    { "BRO5_GIGA",  0x120F5E7E, 2 },
+    // ブラザー6 (右下)
+    { "BRO6_NOISE", 0x220F5F20, 1 },
+    { "BRO6_WC",    0x220F5F21, 1 },
+    { "BRO6_MEGA",  0x120F64BC, 2 },
+    { "BRO6_GIGA",  0x120F64BE, 2 },
+    // ノイズドカード
+    { "NOISED_CARD_1", 0x220FA0F4, 2 },
+    { "NOISED_CARD_2", 0x220FA0F6, 2 },
+    { "NOISED_CARD_3", 0x220FA0F8, 2 },
+    { "NOISED_CARD_4", 0x220FA0FA, 2 },
+    { "NOISED_CARD_5", 0x220FA0FC, 2 },
+    // アビリティ
+    { "ABILITY01",  0x020F2CCE, 2 },
+    { "ABILITY02",  0x020F2CD0, 2 },
+    { "ABILITY03",  0x020F2CD2, 2 },
+    { "ABILITY04",  0x020F2CD4, 2 },
+    { "ABILITY05",  0x020F2CD6, 2 },
+    { "ABILITY06",  0x020F2CD8, 2 },
+    { "ABILITY07",  0x020F2CDA, 2 },
+    { "ABILITY08",  0x020F2CDC, 2 },
+    { "ABILITY09",  0x020F2CDE, 2 },
+    { "ABILITY10",  0x020F2CE0, 2 },
+    { "ABILITY11",  0x020F2CE2, 2 },
+    { "ABILITY12",  0x020F2CE4, 2 },
+    { "ABILITY13",  0x020F2CE6, 2 },
+    { "ABILITY14",  0x020F2CE8, 2 },
+    { "ABILITY15",  0x020F2CEA, 2 },
+    { "ABILITY16",  0x020F2CEC, 2 },
+    { "ABILITY17",  0x020F2CEE, 2 },
+    { "ABILITY18",  0x020F2CF0, 2 },
+    { "ABILITY19",  0x020F2CF2, 2 },
+    { "ABILITY20",  0x020F2CF4, 2 },
+
+    { "ZENY",       0x020F3374, 4 },
+
+    { "BASE_HP",    0x0210C358, 2 },
+    // 自ノイズ
+    { "NOISE",      0x220F39A0, 1 },
+    // ホワイトカードコード
+    { "WHITE_CARDS",0x220F39A1, 1 },
+    // ウォーロック装備
+    { "WARLOCK",    0x020F2CB0, 4 },
+
+    { "CARD01",     0x120F37E6, 2 },
+    { "CARD02",     0x120F37E8, 2 },
+    { "CARD03",     0x120F37EA, 2 },
+    { "CARD04",     0x120F37EC, 2 },
+    { "CARD05",     0x120F37EE, 2 },
+    { "CARD06",     0x120F37F0, 2 },
+    { "CARD07",     0x120F37F2, 2 },
+    { "CARD08",     0x120F37F4, 2 },
+    { "CARD09",     0x120F37F6, 2 },
+    { "CARD10",     0x120F37F8, 2 },
+    { "CARD11",     0x120F37FA, 2 },
+    { "CARD12",     0x120F37FC, 2 },
+    { "CARD13",     0x120F37FE, 2 },
+    { "CARD14",     0x120F3800, 2 },
+    { "CARD15",     0x120F3802, 2 },
+    { "CARD16",     0x120F3804, 2 },
+    { "CARD17",     0x120F3806, 2 },
+    { "CARD18",     0x120F3808, 2 },
+    { "CARD19",     0x120F380A, 2 },
+    { "CARD20",     0x120F380C, 2 },
+    { "CARD21",     0x120F380E, 2 },
+    { "CARD22",     0x120F3810, 2 },
+    { "CARD23",     0x120F3812, 2 },
+    { "CARD24",     0x120F3814, 2 },
+    { "CARD25",     0x120F3816, 2 },
+    { "CARD26",     0x120F3818, 2 },
+    { "CARD27",     0x120F381A, 2 },
+    { "CARD28",     0x120F381C, 2 },
+    { "CARD29",     0x120F381E, 2 },
+    { "CARD30",     0x120F3820, 2 },
+
+    { "REG",        0x020F3824, 2 },
+    { "TAG1_2",     0x020F3822, 2 },
+
 };
 static constexpr size_t BA_ADDRESS_COUNT = sizeof(BA_ADDRESSES) / sizeof(BA_ADDRESSES[0]);
 
