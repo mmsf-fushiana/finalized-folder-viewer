@@ -101,6 +101,10 @@ export class PipeClient extends EventEmitter {
       this.reconnectTimer = null;
     }
     if (this.socket) {
+      // destroy() 前に removeAllListeners() を呼ぶと、
+      // destroy 後に発火する 'close' イベントも除去されてしまい
+      // 再接続ロジックが動かなくなるため意図的にコメントアウト
+      // this.socket.removeAllListeners();
       this.socket.destroy();
       this.socket = null;
     }
