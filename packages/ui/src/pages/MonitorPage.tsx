@@ -8,6 +8,7 @@ import {
 } from '../stores/gameStore';
 import { GameMonitor } from '../components/GameMonitor';
 import { FolderTab } from './FolderTab';
+import { BuildTab } from './BuildTab';
 
 type GameVersion = 'BA' | 'RJ';
 
@@ -91,11 +92,13 @@ export function MonitorPage() {
         </Tabs>
       </Box>
 
-      <Box sx={{ pt: 2, px: 2 }}>
+      {/* <Box sx={{ pt: 2, px: 0.5 }}> */}
+      <Box sx={{  }}>
         {activeTab === 0 && <GameMonitor version={gameVersion} />}
         {/* {activeTab === 1 && <WarlockTab />} */}
         {activeTab === 1 && <FolderTab version={gameVersion} />}
-        {activeTab === 2 && <WarlockTab />}
+        {activeTab === 2 && <BuildTab />}
+        {activeTab === 3 && <WarlockTab />}
       </Box>
     </Box>
   );
