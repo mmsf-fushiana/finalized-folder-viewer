@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Typography, Switch, FormControlLabel, Chip, Box } from '@mui/material';
+import { Typography, Switch, FormControlLabel, Chip, Box, Divider } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { FolderView, initialRatings } from '../components';
 import type { RatingType, TypeRatings } from '../components';
 import type { Level, Version } from '../types';
+import { VERSION_COLORS } from '../types';
 import { loadFinalizationData, loadGAList } from '../data';
 import {
   useRezonAttackStarSum, useRezonAccessLvSum,
@@ -45,6 +46,7 @@ export function FolderTab({ version }: { version: Version }) {
   const folderFinalized = useGameStore((s) => s._folderFinalized);
   const confirmLv1 = useGameNumber('COMFIRM_LV_1');
   const confirmLv2 = useGameNumber('COMFIRM_LV_2');
+  const fTurnRemaining = useGameNumber('F_Turn_Remaining');
 
   // レベル自動決定
   useEffect(() => {
@@ -76,19 +78,14 @@ export function FolderTab({ version }: { version: Version }) {
 
   return (
     <>
-      <FormControlLabel
-        control={<Switch checked={updateOnFinalize} onChange={(_, v) => setUpdateOnFinalize(v)} size="small" />}
-        label="ファイナライズ選択時に更新する"
-        sx={{ px: 2, mb: 0.5 }}
-      />
-      <Box sx={{ px: 2, mb: 0.5, display: 'flex', alignItems: 'center', gap: 1 }}>
-        <Typography variant="caption">ノイズ率:　</Typography>
+      <Box sx={{ pt: 1, px: 2, mb: 0.5, display: 'flex', alignItems: 'center', gap: 1, whiteSpace: 'nowrap' }}>
+        <Typography variant="caption">ノイズ率:</Typography>
         <Chip
           label={noiseRate >= 0 && noiseRate <= 999 ? `${noiseRate}%` : '---'}
           size="small"
           sx={{
             bgcolor: noiseRate >= 0 && noiseRate <= 999
-              ? noiseRate < 50 ? '#2e7d32' : noiseRate < 200 ? '#e65100' : '#d50000'
+              ? noiseRate < 50 ? '#4fdf56' : noiseRate < 200 ? '#f69e46' : '#d50000'
               : '#9e9e9e',
             color: 'white',
             fontSize: 14,
@@ -97,6 +94,32 @@ export function FolderTab({ version }: { version: Version }) {
             borderRadius: 1,
             '& .MuiChip-label': { px: 0.5 },
           }}
+        />
+        {fTurnRemaining > 0 && (
+          <>
+            <Divider orientation="vertical" flexItem />
+            <Chip
+              label="ファイナライズ中"
+              size="small"
+              sx={{
+                bgcolor: VERSION_COLORS[version],
+                color: 'white',
+                fontSize: 14,
+                height: 22,
+                borderRadius: 1,
+                '& .MuiChip-label': { px: 0.5 },
+              }}
+            />
+            <Typography variant="caption">残りターン: <b>{fTurnRemaining}</b></Typography>
+            <Divider orientation="vertical" flexItem />
+          
+          </>
+        )}
+        
+        <FormControlLabel
+          control={<Switch checked={updateOnFinalize} onChange={(_, v) => setUpdateOnFinalize(v)} size="small" />}
+          label="ファイナライズ選択時のみ自動更新する"
+          sx={{ m: 0, ml: 'auto', '& .MuiFormControlLabel-label': { fontSize: 12 } }}
         />
       </Box>
 
