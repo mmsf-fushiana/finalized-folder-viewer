@@ -4,6 +4,7 @@ console.log('preload.js is running!');
 
 contextBridge.exposeInMainWorld('electronAPI', {
   getUserDataPath: () => ipcRenderer.invoke('get-user-data-path'),
+  openExternal: (url: string) => ipcRenderer.send('open-external', url),
 });
 
 contextBridge.exposeInMainWorld('env', {

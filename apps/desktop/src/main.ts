@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, Menu } from 'electron';
+import { app, BrowserWindow, ipcMain, Menu, shell } from 'electron';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { PipeClient } from './pipeClient.js';
@@ -95,6 +95,10 @@ function createWindow() {
     if (pipeClient) {
       pipeClient.setVersion(version);
     }
+  });
+
+  ipcMain.on('open-external', (_event, url: string) => {
+    shell.openExternal(url);
   });
 }
 
