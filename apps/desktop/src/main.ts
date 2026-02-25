@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain } from 'electron';
+import { app, BrowserWindow, ipcMain, Menu } from 'electron';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { PipeClient } from './pipeClient.js';
@@ -16,6 +16,8 @@ function createWindow() {
   console.log('__dirname:', __dirname);
   console.log('preloadPath:', preloadPath);
   console.log('isPackaged:', app.isPackaged);
+
+  Menu.setApplicationMenu(null);
 
   const mainWindow = new BrowserWindow({
     width: 1200,
