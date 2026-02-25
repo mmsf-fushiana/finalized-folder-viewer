@@ -1,35 +1,35 @@
 {
-  "00000001": {
+  "01": {
     "name": "noise.name.libra"
   },
-  "00000002": {
+  "02": {
     "name": "noise.name.corvus"
   },
-  "00000003": {
+  "03": {
     "name": "noise.name.cancer"
   },
-  "00000004": {
+  "04": {
     "name": "noise.name.gemini"
   },
-  "00000005": {
+  "05": {
     "name": "noise.name.ophiuca"
   },
-  "00000006": {
+  "06": {
     "name": "noise.name.cygnus"
   },
-  "00000007": {
+  "07": {
     "name": "noise.name.ox"
   },
-  "00000008": {
+  "08": {
     "name": "noise.name.virgo"
   },
-  "00000009": {
+  "09": {
     "name": "noise.name.crown"
   },
-  "0000000A": {
+  "0A": {
     "name": "noise.name.wolf"
   },
-  "0000000B": {
+  "0B": {
     "name": "noise.name.burai"
   }
 }
