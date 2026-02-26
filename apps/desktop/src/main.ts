@@ -20,8 +20,8 @@ function createWindow() {
   Menu.setApplicationMenu(null);
 
   const mainWindow = new BrowserWindow({
-    width: 1200,
-    height: 800,
+    width: 680,
+    height: 460,
     webPreferences: {
       preload: preloadPath,
       contextIsolation: true,
@@ -99,6 +99,14 @@ function createWindow() {
 
   ipcMain.on('open-external', (_event, url: string) => {
     shell.openExternal(url);
+  });
+
+  // ウィンドウリサイズ
+  ipcMain.on('resize-window', (_event, width: number, height: number) => {
+    if (!mainWindow.isDestroyed()) {
+      mainWindow.setSize(width, height);
+      mainWindow.center();
+    }
   });
 }
 

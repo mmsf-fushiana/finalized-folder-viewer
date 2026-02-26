@@ -29,6 +29,7 @@ declare global {
     };
     electronAPI?: {
       openExternal: (url: string) => void;
+      resizeWindow: (width: number, height: number) => void;
     };
   }
 }
@@ -66,6 +67,7 @@ export function DesktopHome() {
   }, []);
 
   const handleVersionSelect = (version: GameVersion) => {
+    window.electronAPI?.resizeWindow(800, 1030);
     navigate(`/monitor/${version}`);
   };
 
@@ -96,7 +98,7 @@ export function DesktopHome() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '60vh',
+        pt: 5,
         gap: 4,
       }}
     >

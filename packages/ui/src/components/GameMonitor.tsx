@@ -47,7 +47,7 @@ export function GameMonitor({ version }: { version: 'BA' | 'RJ' }) {
   }, [values, lastDeltaKeys]);
 
   return (
-    <Box>
+    <Box sx={{p: 1}}>
       {/* ヘッダー: タイトル + 接続状態 */}
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 1 }}>
         <Typography variant="h5" component="h1">
