@@ -1,0 +1,10 @@
+/* 行番号 (1, 2, 3...) は hideIndex() でクラスが付与され非表示になる。
+   列ヘッダー (A, B, C...) も同時に非表示にする */
+.jsheet-container .jss_hidden_index > thead {
+  display: none !important;
+}
+
+/* コンテナ余白リセット */
+.jsheet-container .jss_container {
+  margin: 0;
+}

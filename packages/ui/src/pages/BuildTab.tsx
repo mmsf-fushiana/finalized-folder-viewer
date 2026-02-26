@@ -1,4 +1,4 @@
-import { useCallback, useRef, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Box, Button } from "@mui/material";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
@@ -18,6 +18,9 @@ import {
   useTagIndices,
   type RezonEntry,
 } from "../stores/gameStore";
+import { JSheet } from "../components/JSheet";
+import { buildHtmlDocument, type HtmlSection } from "../utils/buildHtmlTable";
+import { buildMarkdownDocument } from "../utils/buildMarkdownTable";
 
 export const palette = [
   "#E39A9A",
@@ -40,15 +43,6 @@ const SUIT_STYLE: Record<string, { icon: string; bg: string }> = {
   joker: { icon: "★", bg: "#828282" },
 };
 
-const tbl = { borderCollapse: "collapse" as const, fontSize: 13 };
-const th = {
-  border: "1px solid #ccc",
-  padding: "2px 8px",
-  background: "#f5f5f5",
-  textAlign: "left" as const,
-};
-const td = { border: "1px solid #ccc", padding: "2px 8px" };
-const tdR = { ...td, textAlign: "right" as const };
 const hdr = { fontWeight: "bold" as const, fontSize: 14, margin: "12px 0 4px" };
 
 const HP_ABILITY_RE = /^ability\.name\.hp(\d+)$/;
@@ -63,6 +57,13 @@ function groupNames(
   }
   return [...map.entries()].map(([name, count]) => ({ name, count }));
 }
+
+// 2列テーブル用の共通カラム定義
+const COLS_2 = [
+  { type: "html" as const, align: "left" as const, width: 340 },
+  { align: "right" as const, width: 80 },
+];
+const COLS_1 = [{ type: "html" as const, align: "left" as const, width: 420 }];
 
 export function BuildTab() {
   const { t } = useTranslation();
@@ -197,28 +198,194 @@ export function BuildTab() {
     myRezon,
   ]);
 
-  const contentRef = useRef<HTMLDivElement>(null);
+  // ─── JSheet 用データ変換 ───────────────────────────────────────
+
+  // ロックマン
+  const rockmanData = useMemo<string[][]>(
+    () => [
+      [myNoise ? t(myNoise.name) : "---", `HP: ${hp.baseHp}`],
+      ["サポート", supportUse ? t(supportUse) : "デフォルト"],
+      [
+        warlock ? t(warlock.name) : "---",
+        warlock
+          ? `アタック ${warlock.attack}Lv\nラピッド ${warlock.rapid}Lv\nチャージ ${warlock.charge}Lv`
+          : "---",
+      ],
+    ],
+    [myNoise, t, hp.baseHp, supportUse, warlock],
+  );
+
+  // ロックマン: ウォーロック装備セル（B3）に pre-wrap を適用
+  const rockmanStyle = useMemo<Record<string, string>>(() => {
+    const s: Record<string, string> = {};
+    if (warlock) s["B3"] = "white-space: pre-wrap;";
+    return s;
+  }, [warlock]);
+
+  // フォルダ
+  const folderData = useMemo<string[][]>(() => {
+    if (deckSummary.length === 0) return [["---", ""]];
+    return deckSummary.map((row) => {
+      const labels = cardLabels.get(row.card.name);
+      const labelHtml =
+        labels
+          ?.map(
+            (l) =>
+              `<b style="margin-left:4px;color:${l === "REG" ? "red" : "blue"}">${l}</b>`,
+          )
+          .join("") ?? "";
+      return [row.card.name + labelHtml, String(row.count)];
+    });
+  }, [deckSummary, cardLabels]);
+
+  // ホワイトカード（1セルに改行で結合）
+  const wcData = useMemo<string[][]>(
+    () => [[myWC.length > 0 ? myWC.map((card) => card?.name ?? "---").join("\n") : "---"]],
+    [myWC],
+  );
+  const wcStyle = useMemo<Record<string, string>>(() => {
+    const s: Record<string, string> = {};
+    if (myWC.length > 1) s["A1"] = "white-space: pre-wrap;";
+    return s;
+  }, [myWC.length]);
+
+  // ブラザー（ノイズ/WC/メガ/ギガ を1テーブルに結合）
+  const [brotherData, brotherStyle] = useMemo<
+    [string[][], Record<string, string>]
+  >(() => {
+    const rows: string[][] = [];
+    const style: Record<string, string> = {};
+
+    if (broNoises.length > 0) {
+      broNoises.forEach((g) => rows.push([t(g.name), String(g.count)]));
+    } else {
+      rows.push(["---", ""]);
+    }
+
+    if (broWCGroups.length > 0) {
+      broWCGroups.forEach((g) => {
+        const rowIdx = rows.length + 1; // 1-based
+        const names = g.names.map((n) => n ?? "---");
+        // 複数名は \n 結合 + pre-wrap でセル内改行
+        if (names.length > 1) style[`A${rowIdx}`] = "white-space: pre-wrap;";
+        rows.push([names.join("\n"), String(g.count)]);
+      });
+    } else {
+      rows.push(["---", ""]);
+    }
+
+    if (broMegas.length > 0) {
+      broMegas.forEach((g) => rows.push([g.name, String(g.count)]));
+    } else {
+      rows.push(["---", ""]);
+    }
+
+    if (broGigas.length > 0) {
+      broGigas.forEach((g) => rows.push([g.name, String(g.count)]));
+    } else {
+      rows.push(["---", ""]);
+    }
+
+    return [rows, style];
+  }, [t, broNoises, broWCGroups, broMegas, broGigas]);
+
+  // ノイズドカード（背景色付き）
+  const [noiseData, noiseStyle] = useMemo<
+    [string[][], Record<string, string>]
+  >(() => {
+    if (noiseCards.cards.length === 0) return [[["---"]], {}];
+    const data = noiseCards.cards.map((card) => {
+      const s = SUIT_STYLE[card.suit] ?? { icon: "?", bg: "#fff" };
+      return [`${s.icon}${card.number || " "} ${t(card.name)}/${t(card.effect)}`];
+    });
+    const style: Record<string, string> = {};
+    noiseCards.cards.forEach((card, i) => {
+      const s = SUIT_STYLE[card.suit] ?? { bg: "#fff" };
+      style[`A${i + 1}`] = `background-color: ${s.bg}; color: white;`;
+    });
+    return [data, style];
+  }, [noiseCards.cards, t]);
+
+  // アビリティ（合計行を太字）
+  const [abilityData, abilityStyle] = useMemo<
+    [string[][], Record<string, string>]
+  >(() => {
+    const data: string[][] = [
+      ...abilities.map((ab) => [t(ab.name), String(ab.capacity)]),
+      ["合計", String(totalCapacity)],
+    ];
+    const lastRow = data.length;
+    return [
+      data,
+      {
+        [`A${lastRow}`]: "font-weight: bold;",
+        [`B${lastRow}`]: "font-weight: bold;",
+      },
+    ];
+  }, [abilities, totalCapacity, t]);
+
+  // レゾン
+  const rezonData = useMemo<string[][]>(
+    () =>
+      rezonGroups.length > 0
+        ? rezonGroups.map((g) => [t("rezon.name." + g.name), String(g.count)])
+        : [["---", ""]],
+    [rezonGroups, t],
+  );
+
+  // レゾン効果（1列: "ラベル 値" を1セルに）
+  const rezonEffectData = useMemo<string[][]>(() => {
+    const rows: string[][] = [];
+    if (rezonEffect.finalizeTurn !== 0)
+      rows.push([`ファイナライズターン +${rezonEffect.finalizeTurn}`]);
+    if (rezonEffect.accessLv !== 0)
+      rows.push([`アクセスレベル +${rezonEffect.accessLv}`]);
+    if ((rezonEffect.attackStar["null"] ?? 0) > 0)
+      rows.push([`ノーマルスター +${rezonEffect.attackStar["null"]}`]);
+    if ((rezonEffect.attackStar["fire"] ?? 0) > 0)
+      rows.push([`ファイアスター +${rezonEffect.attackStar["fire"]}`]);
+    if ((rezonEffect.attackStar["aqua"] ?? 0) > 0)
+      rows.push([`アクアスター +${rezonEffect.attackStar["aqua"]}`]);
+    if ((rezonEffect.attackStar["elec"] ?? 0) > 0)
+      rows.push([`サンダースター +${rezonEffect.attackStar["elec"]}`]);
+    if ((rezonEffect.attackStar["wood"] ?? 0) > 0)
+      rows.push([`ウッドスター +${rezonEffect.attackStar["wood"]}`]);
+    if ((rezonEffect.attackStar["sword"] ?? 0) > 0)
+      rows.push([`ソードスター +${rezonEffect.attackStar["sword"]}`]);
+    if ((rezonEffect.attackStar["break"] ?? 0) > 0)
+      rows.push([`ブレイクスター +${rezonEffect.attackStar["break"]}`]);
+    if (rezonEffect.chargeShot != null)
+      rows.push([`チャージショット ${t("rezon.chargeShot." + rezonEffect.chargeShot)}`]);
+    if (rezonEffect.FBarrier != null)
+      rows.push([`F${t("rezon.FBarrier." + rezonEffect.FBarrier)}`]);
+    if (rezonEffect.FField != null)
+      rows.push([`F${t("rezon.FField." + rezonEffect.FField)}`]);
+    return rows.length > 0 ? rows : [["---"]];
+  }, [rezonEffect, t]);
+
+  // ─── コピー処理 ───────────────────────────────────────────────
+
+  const sections = useMemo<HtmlSection[]>(
+    () => [
+      { title: "ロックマン", data: rockmanData, columns: [{ type: "html", align: "left", width: 240 }, { align: "right", width: 180 }], style: rockmanStyle },
+      { title: "フォルダ", data: folderData, columns: COLS_2 },
+      { title: "ホワイトカード", data: wcData, columns: COLS_1, style: wcStyle },
+      { title: "ブラザー", data: brotherData, columns: COLS_2, style: brotherStyle },
+      { title: "ノイズドカード", data: noiseData, columns: COLS_1, style: noiseStyle },
+      { title: "アビリティ", data: abilityData, columns: COLS_2, style: abilityStyle },
+      { title: "レゾン", data: rezonData, columns: COLS_2 },
+      { title: "レゾン効果", data: rezonEffectData, columns: COLS_1 },
+    ],
+    [rockmanData, rockmanStyle, folderData, wcData, wcStyle, brotherData, brotherStyle, noiseData, noiseStyle, abilityData, abilityStyle, rezonData, rezonEffectData],
+  );
 
   const handleCopyHtml = useCallback(() => {
-    const el = contentRef.current;
-    if (!el) return;
-    const raw = el.outerHTML;
-    // prettify
-    let indent = 0;
-    const pretty = raw
-      .replace(/></g, ">\n<")
-      .split("\n")
-      .map((line) => {
-        line = line.trim();
-        if (line.startsWith("</")) indent--;
-        const out = "  ".repeat(Math.max(indent, 0)) + line;
-        if (line.startsWith("<") && !line.startsWith("</") && !line.endsWith("/>") && !line.includes("</"))
-          indent++;
-        return out;
-      })
-      .join("\n");
-    navigator.clipboard.writeText(pretty);
-  }, []);
+    navigator.clipboard.writeText(buildHtmlDocument(sections));
+  }, [sections]);
+
+  const handleCopyMarkdown = useCallback(() => {
+    navigator.clipboard.writeText(buildMarkdownDocument(sections));
+  }, [sections]);
 
   return (
     <Box
@@ -230,310 +397,67 @@ export function BuildTab() {
         gap: 0.5,
       }}
     >
-              <Button
-        variant="contained"
-        
-        startIcon={<ContentCopyIcon />}
-        onClick={handleCopyHtml}
-        sx={{ width: 250 }}
-      >
-        HTML形式でコピー
-      </Button>
-    <Box ref={contentRef}>
-      {/* ノイズ / HP / サポートユーズ / ウォーロック装備 */}
-      <div style={hdr}>ロックマン</div>
-      
-      <table style={tbl}>
-        <tbody>
-          <tr>
-            <td style={td}>{myNoise ? t(myNoise.name) : '---'}</td>
-            <td style={tdR}>HP: {hp.baseHp}</td>
-          </tr>
-          <tr>
-            <td style={td}>サポート</td>
-            <td style={tdR}>{supportUse ? t(supportUse) : 'デフォルト'}</td>
-          </tr>
-          <tr>
-            <td style={td}>{warlock ? t(warlock.name) : '---'}</td>
-            <td style={tdR}>
-              {warlock
-                ? <>アタック {warlock.attack}Lv<br />ラピッド {warlock.rapid}Lv<br />チャージ {warlock.charge}Lv</>
-                : '---'}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <Box sx={{ display: "flex", gap: 1 }}>
+        <Button
+          variant="contained"
+          startIcon={<ContentCopyIcon />}
+          onClick={handleCopyHtml}
+        >
+          HTML形式でコピー
+        </Button>
+        {/* <Button
+          variant="contained"
+          startIcon={<ContentCopyIcon />}
+          onClick={handleCopyMarkdown}
+        >
+          Markdown形式でコピー
+        </Button> */}
+      </Box>
+      <Box sx={{ fontSize: 11, color: "#aaa", mt: 0.5 }}>
+        テーブルは範囲選択してコピーが可能です。
+      </Box>
 
-      {/* デッキ一覧 */}
-      <div style={hdr}>フォルダ</div>
-      <table style={tbl}>
-        {/* <thead><tr><th style={th}>名称</th><th style={th}>枚数</th></tr></thead> */}
-        <tbody>
-          {deckSummary.map((row) => {
-            const labels = cardLabels.get(row.card.name);
-            return (
-              <tr key={row.card.name}>
-                <td style={td}>
-                  {row.card.name}
-                  {labels?.map((l) => (
-                    <b
-                      key={l}
-                      style={{
-                        marginLeft: 4,
-                        color: l === "REG" ? "red" : "blue",
-                      }}
-                    >
-                      {l}
-                    </b>
-                  ))}
-                </td>
-                <td style={tdR}>{row.count}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <Box>
+        {/* ノイズ / HP / サポートユーズ / ウォーロック装備 */}
+        <div style={hdr}>ロックマン</div>
+        <JSheet
+          data={rockmanData}
+          columns={[
+            { type: "html", align: "left", width: 240 },
+            { align: "right", width: 180 },
+          ]}
+          style={rockmanStyle}
+          initialSelection="A1"
+        />
 
-      {/* ホワイトカード */}
-      <div style={hdr}>ホワイトカード</div>
-      <table style={tbl}>
-        <tbody>
-          {myWC.length > 0 ? (
-            myWC.map((card, i) => (
-              <tr key={i}>
-                <td style={td}>{card?.name ?? "---"}</td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td style={td}>---</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-      
-            {/* ブラザー情報 */}
-      <div style={hdr}>ブラザー</div>
+        {/* デッキ一覧 */}
+        <div style={hdr}>フォルダ</div>
+        <JSheet data={folderData} columns={COLS_2} />
 
-      <table style={tbl}>
-        {/* <thead><tr><th style={th}>ノイズ</th><th style={th}>数</th></tr></thead> */}
-        <tbody>
-          {broNoises.length > 0 ? (
-            broNoises.map((g) => (
-              <tr key={g.name}>
-                <td style={td}>{t(g.name)}</td>
-                <td style={tdR}>{g.count}</td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td style={td} colSpan={2}>
-                ---
-              </td>
-            </tr>
-          )}
-          {broWCGroups.length > 0 ? (
-            broWCGroups.map((g, i) => (
-              <tr key={i}>
-                <td style={td}>
-                  {g.names.map((n, j) => (
-                    <div key={j}>{n ?? "---"}</div>
-                  ))}
-                </td>
-                <td style={tdR}>{g.count}</td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td style={td} colSpan={2}>
-                ---
-              </td>
-            </tr>
-          )}
-          {broMegas.length > 0 ? (
-            broMegas.map((g) => (
-              <tr key={g.name}>
-                <td style={td}>{g.name}</td>
-                <td style={tdR}>{g.count}</td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td style={td} colSpan={2}>
-                ---
-              </td>
-            </tr>
-          )}
-          {broGigas.length > 0 ? (
-            broGigas.map((g) => (
-              <tr key={g.name}>
-                <td style={td}>{g.name}</td>
-                <td style={tdR}>{g.count}</td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td style={td} colSpan={2}>
-                ---
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+        {/* ホワイトカード */}
+        <div style={hdr}>ホワイトカード</div>
+        <JSheet data={wcData} columns={COLS_1} style={wcStyle} />
 
-      {/* ノイズドカード */}
-      <div style={hdr}>ノイズドカード</div>
-      <table style={tbl}>
-        <tbody>
-          {noiseCards.cards.length > 0 ? (
-            noiseCards.cards.map((card, i) => {
-              const s = SUIT_STYLE[card.suit] ?? { icon: "?", bg: "#fff" };
-              return (
-                <tr key={i}>
-                  <td style={{ ...td, background: s.bg }}>
-                    {s.icon}
-                    {card.number || " "} {t(card.name)}/{t(card.effect)}
-                  </td>
-                </tr>
-              );
-            })
-          ) : (
-            <tr>
-              <td style={td}>---</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+        {/* ブラザー情報 */}
+        <div style={hdr}>ブラザー</div>
+        <JSheet data={brotherData} columns={COLS_2} style={brotherStyle} />
 
-      {/* アビリティ */}
-      <div style={hdr}>アビリティ</div>
-      <table style={tbl}>
-        {/* <thead>
-          <tr>
-            <th style={th}>名称</th>
-            <th style={th}>容量</th>
-          </tr>
-        </thead> */}
-        <tbody>
-          {abilities.map((ab, i) => (
-            <tr key={i}>
-              <td style={td}>{t(ab.name)}</td>
-              <td style={tdR}>{ab.capacity}</td>
-            </tr>
-          ))}
-          <tr>
-            <td style={{ ...td, fontWeight: "bold" }}>合計</td>
-            <td style={{ ...tdR, fontWeight: "bold" }}>{totalCapacity}</td>
-          </tr>
-        </tbody>
-      </table>
+        {/* ノイズドカード */}
+        <div style={hdr}>ノイズドカード</div>
+        <JSheet data={noiseData} columns={COLS_1} style={noiseStyle} />
 
-      {/* レゾン情報 */}
-      <div style={hdr}>レゾン</div>
-      <table style={tbl}>
-        {/* <thead><tr><th style={th}>名称</th><th style={th}>数</th></tr></thead> */}
-        <tbody>
-          {rezonGroups.length > 0 ? (
-            rezonGroups.map((g) => (
-              <tr key={g.name}>
-                <td style={td}>{t("rezon.name." + g.name)}</td>
-                <td style={tdR}>{g.count}</td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td style={td} colSpan={2}>
-                ---
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+        {/* アビリティ */}
+        <div style={hdr}>アビリティ</div>
+        <JSheet data={abilityData} columns={COLS_2} style={abilityStyle} />
 
-      {/* レゾン効果（マージ済み） */}
-      <div style={hdr}>レゾン効果</div>
-      <table style={tbl}>
-        {/* <thead><tr><th style={th}>項目</th><th style={th}>値</th></tr></thead> */}
-        <tbody>
-          {rezonEffect.finalizeTurn !== 0 && (
-            <tr>
-              <td style={td}>ファイナライズターン</td>
-              <td style={tdR}>{rezonEffect.finalizeTurn}</td>
-            </tr>
-          )}
-          {rezonEffect.accessLv !== 0 && (
-            <tr>
-              <td style={td}>アクセスレベル</td>
-              <td style={tdR}>+{rezonEffect.accessLv}</td>
-            </tr>
-          )}
-          {(rezonEffect.attackStar["null"] ?? 0) > 0 && (
-            <tr>
-              <td style={td}>ノーマルスター</td>
-              <td style={tdR}>+{rezonEffect.attackStar["null"]}</td>
-            </tr>
-          )}
-          {(rezonEffect.attackStar["fire"] ?? 0) > 0 && (
-            <tr>
-              <td style={td}>ファイアスター</td>
-              <td style={tdR}>+{rezonEffect.attackStar["fire"]}</td>
-            </tr>
-          )}
-          {(rezonEffect.attackStar["aqua"] ?? 0) > 0 && (
-            <tr>
-              <td style={td}>アクアスター</td>
-              <td style={tdR}>+{rezonEffect.attackStar["aqua"]}</td>
-            </tr>
-          )}
-          {(rezonEffect.attackStar["elec"] ?? 0) > 0 && (
-            <tr>
-              <td style={td}>サンダースター</td>
-              <td style={tdR}>{rezonEffect.attackStar["elec"]}</td>
-            </tr>
-          )}
-          {(rezonEffect.attackStar["wood"] ?? 0) > 0 && (
-            <tr>
-              <td style={td}>ウッドスター</td>
-              <td style={tdR}>+{rezonEffect.attackStar["wood"]}</td>
-            </tr>
-          )}
-          {(rezonEffect.attackStar["sword"] ?? 0) > 0 && (
-            <tr>
-              <td style={td}>ソードスター</td>
-              <td style={tdR}>+{rezonEffect.attackStar["sword"]}</td>
-            </tr>
-          )}
-          {(rezonEffect.attackStar["break"] ?? 0) > 0 && (
-            <tr>
-              <td style={td}>ブレイクスター</td>
-              <td style={tdR}>+{rezonEffect.attackStar["break"]}</td>
-            </tr>
-          )}
-          {rezonEffect.chargeShot != null && (
-            <tr>
-              <td style={td}>チャージショット</td>
-              <td style={tdR}>
-                {t("rezon.chargeShot." + rezonEffect.chargeShot)}
-              </td>
-            </tr>
-          )}
-          {rezonEffect.FBarrier != null && (
-            <tr>
-              <td style={td}>Fバリア</td>
-              <td style={tdR}>{t("rezon.FBarrier." + rezonEffect.FBarrier)}</td>
-            </tr>
-          )}
-          {rezonEffect.FField != null && (
-            <tr>
-              <td style={td}>Fフィールド</td>
-              <td style={tdR}>{t("rezon.FField." + rezonEffect.FField)}</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    </Box>
+        {/* レゾン情報 */}
+        <div style={hdr}>レゾン</div>
+        <JSheet data={rezonData} columns={COLS_2} />
 
-
+        {/* レゾン効果（マージ済み） */}
+        <div style={hdr}>レゾン効果</div>
+        <JSheet data={rezonEffectData} columns={COLS_1} />
+      </Box>
     </Box>
   );
 }
