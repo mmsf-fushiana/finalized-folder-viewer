@@ -355,6 +355,11 @@
       "detect": "ROMを読み込む",
       "select": "バージョン選択する"
     },
+    "title": "流星のロックマン3 Viewer",
+    "openWebViewer": "Web版 ファイナライズフォルダビューアを開く",
+    "noiseRate": "ノイズ率",
+    "remainingTurns": "残りターン: <1>{{count}}</1>",
+    "updateOnFinalize": "ファイナライズ選択時のみ自動更新する",
     "tab": {
       "monitor": "デバッグ",
       "tab2": "フォルダビューア",

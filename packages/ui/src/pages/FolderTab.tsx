@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Typography, Switch, FormControlLabel, Chip, Box, Divider } from '@mui/material';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { FolderView, initialRatings } from '../components';
 import type { RatingType, TypeRatings } from '../components';
 import type { Level, Version } from '../types';
@@ -85,13 +85,13 @@ export function FolderTab({ version }: { version: Version }) {
   return (
     <>
       <Box sx={{ pt: 1, px: 2, mb: 0.5, display: 'flex', alignItems: 'center', gap: 1, whiteSpace: 'nowrap' }}>
-        <Typography variant="caption">ノイズ率:</Typography>
+        <Typography variant="caption">{t('monitor.noiseRate')}:</Typography>
         <Chip
           label={noiseRate >= 0 && noiseRate <= 999 ? `${noiseRate}%` : '---'}
           size="small"
           sx={{
             bgcolor: noiseRate >= 0 && noiseRate <= 999
-              ? noiseRate < 50 ? '#81ea86' : noiseRate < 200 ? '#f69e46' : '#d50000'
+              ? noiseRate < 50 ? 'rgb(92, 185, 92)' : noiseRate < 200 ? '#f69e46' : '#d50000'
               : '#9e9e9e',
             color: 'white',
             fontSize: 14,
@@ -131,7 +131,7 @@ export function FolderTab({ version }: { version: Version }) {
                 }}
               />
             )}
-            <Typography variant="caption">残りターン: <b>{fTurnRemaining}</b></Typography>
+            <Typography variant="caption"><Trans i18nKey="monitor.remainingTurns" values={{ count: fTurnRemaining }} components={{ 1: <b /> }} /></Typography>
             <Divider orientation="vertical" flexItem />
           
           </>
@@ -139,7 +139,7 @@ export function FolderTab({ version }: { version: Version }) {
         
         <FormControlLabel
           control={<Switch checked={updateOnFinalize} onChange={(_, v) => setUpdateOnFinalize(v)} size="small" />}
-          label="ファイナライズ選択時のみ自動更新する"
+          label={t('monitor.updateOnFinalize')}
           sx={{ m: 0, ml: 'auto', '& .MuiFormControlLabel-label': { fontSize: 12 } }}
         />
       </Box>

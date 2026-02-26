@@ -13,6 +13,7 @@ import {
 import { useGameStore, usePipeStatus, useGameActive } from '../stores/gameStore';
 import type { GameMessage } from '../stores/gameStore';
 import { VERSION_COLORS } from '../types';
+import { LanguageSwitcher } from '../components/LanguageSwitcher';
 
 type GameVersion = 'BA' | 'RJ';
 
@@ -100,10 +101,14 @@ export function DesktopHome() {
         justifyContent: 'center',
         pt: 5,
         gap: 4,
+        position: 'relative',
       }}
     >
+      <Box sx={{ position: 'absolute', top: 8, right: 8 }}>
+        <LanguageSwitcher />
+      </Box>
       <Typography variant="h4" fontWeight="bold">
-        流星のロックマン3 Viewer
+        {t('monitor.title')}
       </Typography>
 
       <Stepper
@@ -164,7 +169,7 @@ export function DesktopHome() {
         color="text.secondary"
         sx={{ mt: 2 }}
       >
-        Web版 ファイナライズフォルダビューアを開く
+        {t('monitor.openWebViewer')}
       </Link>
     </Box>
   );

@@ -18,7 +18,7 @@ export function LanguageSwitcher() {
       sx={{
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
-        bgcolor: 'rgba(255, 255, 255, 0.15)',
+        bgcolor: 'action.hover',
         borderRadius: '50px',
         p: '2px',
       }}
@@ -38,8 +38,8 @@ export function LanguageSwitcher() {
           fontWeight: currentLang === 'ja' ? 700 : 400,
           cursor: 'pointer',
           transition: 'all 0.2s',
-          bgcolor: currentLang === 'ja' ? 'white' : 'transparent',
-          color: currentLang === 'ja' ? '#333' : 'rgba(255, 255, 255, 0.8)',
+          bgcolor: currentLang === 'ja' ? 'background.paper' : 'transparent',
+          color: currentLang === 'ja' ? 'text.primary' : 'text.secondary',
           '&:hover': {
             opacity: currentLang === 'ja' ? 1 : 0.7,
           },
@@ -62,8 +62,8 @@ export function LanguageSwitcher() {
           fontWeight: currentLang === 'en' ? 700 : 400,
           cursor: 'pointer',
           transition: 'all 0.2s',
-          bgcolor: currentLang === 'en' ? 'white' : 'transparent',
-          color: currentLang === 'en' ? '#333' : 'rgba(255, 255, 255, 0.8)',
+          bgcolor: currentLang === 'en' ? 'background.paper' : 'transparent',
+          color: currentLang === 'en' ? 'text.primary' : 'text.secondary',
           '&:hover': {
             opacity: currentLang === 'en' ? 1 : 0.7,
           },

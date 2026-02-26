@@ -355,6 +355,11 @@
       "detect": "ROM Detected",
       "select": "Select Version"
     },
+    "title": "Mega Man Star Force 3 Viewer",
+    "openWebViewer": "Open Web Finalized Folder Viewer",
+    "noiseRate": "Noise",
+    "remainingTurns": "Turns left: <1>{{count}}</1>",
+    "updateOnFinalize": "Update on Finalize confirm",
     "tab": {
       "monitor": "Debug",
       "tab2": "Folder Viewer",
