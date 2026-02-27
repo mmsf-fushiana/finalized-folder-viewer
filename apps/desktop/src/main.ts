@@ -22,6 +22,7 @@ function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 680,
     height: 460,
+    icon: join(__dirname, '..', 'resources', 'icon.png'),
     webPreferences: {
       preload: preloadPath,
       contextIsolation: true,
