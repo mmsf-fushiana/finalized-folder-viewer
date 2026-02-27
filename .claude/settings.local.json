@@ -40,7 +40,10 @@
       "Bash(for f in dllmain.cpp pipe_server.h pipe_server.cpp delta_tracker.h delta_tracker.cpp json_util.h)",
       "Bash(do printf \"$f: \")",
       "Bash(python3:*)",
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "Bash(ls:*)",
+      "Bash(yarn workspace:*)",
+      "WebFetch(domain:jspreadsheet.com)"
     ]
   },
   "enableAllProjectMcpServers": true,

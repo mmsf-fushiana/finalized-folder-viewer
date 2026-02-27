@@ -556,6 +556,86 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
+"@jspreadsheet/formula@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@jspreadsheet/formula/-/formula-2.0.2.tgz#e0529f275c086fd7d34179b50450a98aeb56fd58"
+  integrity sha512-PDQYf9REQA53I7tVYkvkeyQxrd5jcjUeHgItYnRpjN2QiIQwawSqBDtGGEVQTSboTG+JwgGCuhvOpj7FxeKwew==
+
+"@jsuites/utils@^6.0.3", "@jsuites/utils@^6.0.4":
+  version "6.0.4"
+  resolved "https://registry.yarnpkg.com/@jsuites/utils/-/utils-6.0.4.tgz#187a3e30cddba92b0174b500c1f204e18a6bae84"
+  integrity sha512-7iPXMP9/7LpdBbcK6QTEsMBVesJ9CK65R6Wl56qrcTWhsWke8F9jsznT+IbPmMxS8s3QFnFqSeH6+NmBoJZYjg==
+
+"@lemonadejs/calendar@^5.8.4":
+  version "5.8.4"
+  resolved "https://registry.yarnpkg.com/@lemonadejs/calendar/-/calendar-5.8.4.tgz#bdfa7c731bee42a5e23d38c098eb71698445d2d5"
+  integrity sha512-IVRsE8nu+oCANRhwai7NH2K5QlAMF/uCw39LtF9gFkE6VvEdqgYJES6oz1UsAnKfU07PV4SxhvcjFSHmPY897A==
+  dependencies:
+    "@jsuites/utils" "^6.0.3"
+    "@lemonadejs/modal" "^5.8.0"
+    lemonadejs "^5.3.6"
+
+"@lemonadejs/color@^5.8.0":
+  version "5.8.0"
+  resolved "https://registry.yarnpkg.com/@lemonadejs/color/-/color-5.8.0.tgz#98dfe3f5b97194a997529d155e6f5938bf166629"
+  integrity sha512-ep9yJAgRvRPrrx56p/3hGVctqcXgc5F3wJtefjvwKJv/CVMY19clZ3+vRoZm7Ndth6kN8h+Q6Pu5EkHkl/WLZQ==
+  dependencies:
+    "@lemonadejs/modal" "^5.8.0"
+    "@lemonadejs/tabs" "^5.8.0"
+    lemonadejs "^5.3.2"
+
+"@lemonadejs/contextmenu@^5.8.0", "@lemonadejs/contextmenu@^5.8.3":
+  version "5.8.3"
+  resolved "https://registry.yarnpkg.com/@lemonadejs/contextmenu/-/contextmenu-5.8.3.tgz#f1242e465544568e977857088b526889de2e41a8"
+  integrity sha512-AQtgGLEoBGKjaqS2tc936DqT6/lHsgCzkUm/fRccF9szraPqL5cYG43MgHY7Icfu2j2KsGLK8nIgg+issCMg+w==
+  dependencies:
+    "@lemonadejs/modal" "^5.8.2"
+    lemonadejs "^5.3.6"
+
+"@lemonadejs/dropdown@^5.8.2":
+  version "5.8.2"
+  resolved "https://registry.yarnpkg.com/@lemonadejs/dropdown/-/dropdown-5.8.2.tgz#af481054baf75bd375178c356e5b18e57fe720b2"
+  integrity sha512-QzbHCiF6G4juuIbo3EonYQU/bBcZPTeutyFZHZI3ppS18HVyf3TR3XXKBFRdJT61hilUJ+bX4vWWEgidpzY/Pg==
+  dependencies:
+    "@lemonadejs/modal" "^5.8.2"
+    lemonadejs "^5.3.6"
+
+"@lemonadejs/modal@^5.8.0", "@lemonadejs/modal@^5.8.2":
+  version "5.8.2"
+  resolved "https://registry.yarnpkg.com/@lemonadejs/modal/-/modal-5.8.2.tgz#7f51b2df9d8657d6976356251299769a6f16ff6a"
+  integrity sha512-wMsc6W+zf36/WcvUtfODG7IimAE/nEecvuHLKkfseGVgvPXlBB6OA4Kw+T3mmDwdWE1U8guSXcrcyvOoaUuqIQ==
+  dependencies:
+    lemonadejs "^5.3.6"
+
+"@lemonadejs/rating@^5.8.1":
+  version "5.8.1"
+  resolved "https://registry.yarnpkg.com/@lemonadejs/rating/-/rating-5.8.1.tgz#587f657c1ed21aea5e1c5a139da3ad59b12c888f"
+  integrity sha512-g/FJVJ/ay1BmcdqHDHX/2CHBQ1vBViJipWuEMdsqnwbnGGpkKf2q5Ml3xI2GMwCVw8ovvcy/++3UP1xs9GLyMQ==
+  dependencies:
+    lemonadejs "^5.3.2"
+
+"@lemonadejs/switch@^5.8.0":
+  version "5.8.0"
+  resolved "https://registry.yarnpkg.com/@lemonadejs/switch/-/switch-5.8.0.tgz#45a2160806e4626e9391cd98c8b5a34cb286fbdd"
+  integrity sha512-EpqK5iCpQj3o1bN8wW+jka6O4aMIKP5IbLXtD9iTv/ipasyQgxz2oZNkHD8yS6JrpGffSd87FNi37qm/XcJN3w==
+  dependencies:
+    lemonadejs "^5.3.2"
+
+"@lemonadejs/tabs@^5.8.0":
+  version "5.8.0"
+  resolved "https://registry.yarnpkg.com/@lemonadejs/tabs/-/tabs-5.8.0.tgz#7ea855680aeb6c634bf1015920a91cc9bf0f2dae"
+  integrity sha512-nyqHOVwqKnFvqOxwidT5VFzKuFJ/Bzdfvqs7QY30LK9CXK3MrQBgLrijpQOTL3Als1Qp6qp3Q0HRQqUsLARhyA==
+  dependencies:
+    lemonadejs "^5.3.2"
+
+"@lemonadejs/topmenu@^5.8.0":
+  version "5.8.0"
+  resolved "https://registry.yarnpkg.com/@lemonadejs/topmenu/-/topmenu-5.8.0.tgz#ecbc15a39af589edf307196f04953eb952718ad0"
+  integrity sha512-mkWnaiE+0c/i+wv9cz88d2U4GOTxVIVj4aEOad4rQ2JCKkQfw02sP6PS/NaXWJMgDsF1cJOMnO3BThnP5/BqVw==
+  dependencies:
+    "@lemonadejs/contextmenu" "^5.8.0"
+    lemonadejs "^5.3.2"
+
 "@malept/cross-spawn-promise@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@malept/cross-spawn-promise/-/cross-spawn-promise-2.0.0.tgz#d0772de1aa680a0bfb9ba2f32b4c828c7857cb9d"
@@ -2388,6 +2468,35 @@ jsonfile@^6.0.1:
   optionalDependencies:
     graceful-fs "^4.1.6"
 
+jspreadsheet-ce@^5.0.4:
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/jspreadsheet-ce/-/jspreadsheet-ce-5.0.4.tgz#e2794403baf3cd61930d8503c1b87798f6065499"
+  integrity sha512-ra1JI1n+tEGgRMzTzNkPZjG0HZz8W6bFGAiTiHl+eYarXdRmS5qDc/ua3l2ev7oZ6Og9kjfrXYHVLUWiVc308w==
+  dependencies:
+    "@jspreadsheet/formula" "^2.0.2"
+    jsuites "^5.12.0"
+
+jsuites@^5.12.0:
+  version "5.13.5"
+  resolved "https://registry.yarnpkg.com/jsuites/-/jsuites-5.13.5.tgz#d9db6f8c4f0f716d96bd9d1c243e894a8f2e2407"
+  integrity sha512-cvkcpy/v5I3+IAcNPE4UP38PFCEfUQw9JI5NN61dlcXLwkD+2UTIOsRPvgMLeqI1eDWHL4AHfrbcE/+TFciUsw==
+
+jsuites@^6.3.0:
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/jsuites/-/jsuites-6.3.0.tgz#ab049bb5576a4f4c00499b4e245eb3b454d4b275"
+  integrity sha512-0xhgP0YttEOKYdzWNZT9xC31vFtNjlzPhmrUywHyUlz0lrUd8aIeloUGhhBElnK+4tl0o0OV49Ir8r1i7VWJRQ==
+  dependencies:
+    "@jsuites/utils" "^6.0.4"
+    "@lemonadejs/calendar" "^5.8.4"
+    "@lemonadejs/color" "^5.8.0"
+    "@lemonadejs/contextmenu" "^5.8.3"
+    "@lemonadejs/dropdown" "^5.8.2"
+    "@lemonadejs/modal" "^5.8.2"
+    "@lemonadejs/rating" "^5.8.1"
+    "@lemonadejs/switch" "^5.8.0"
+    "@lemonadejs/tabs" "^5.8.0"
+    "@lemonadejs/topmenu" "^5.8.0"
+
 keyv@^4.0.0:
   version "4.5.4"
   resolved "https://registry.yarnpkg.com/keyv/-/keyv-4.5.4.tgz#a879a99e29452f942439f2a405e3af8b31d4de93"
@@ -2399,6 +2508,11 @@ lazy-val@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/lazy-val/-/lazy-val-1.0.5.tgz#6cf3b9f5bc31cee7ee3e369c0832b7583dcd923d"
   integrity sha512-0/BnGCCfyUMkBpeDgWihanIAF9JmZhHBgUhEqzvf+adhNGLoP6TaiI5oF8oyb3I45P+PcnrqihSf01M0l0G5+Q==
+
+lemonadejs@^5.3.2, lemonadejs@^5.3.6:
+  version "5.3.6"
+  resolved "https://registry.yarnpkg.com/lemonadejs/-/lemonadejs-5.3.6.tgz#10a5b1fb19c804e1617342b55ea160162041938d"
+  integrity sha512-GfmoZvCcnesiRsU9oC3OJDZ2VU+U4TsOJKD3A+rEV7dwm2IBO0xaBkLYtpgY3kcoFQjm7u5k9KSQXEtIkanjHQ==
 
 lines-and-columns@^1.1.6:
   version "1.2.4"
