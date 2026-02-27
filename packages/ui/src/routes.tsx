@@ -1,6 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import type { RouteObject } from 'react-router-dom';
 import { DesktopHome } from './pages/DesktopHome';
+import { MonitorPage } from './pages/MonitorPage';
 import { Health } from './pages/Health';
 import { Settings } from './pages/Settings';
 import { FolderDetail } from './pages/FolderDetail';
@@ -17,7 +18,7 @@ const desktopRoot: RouteObject = {
   element: <AppLayout />,
   children: [
     { index: true, element: <DesktopHome /> },
-    { path: ':version/:level', element: <FolderDetail /> },
+    { path: 'monitor/:version', element: <MonitorPage /> },
     { path: 'settings', element: <Settings /> },
   ],
 };

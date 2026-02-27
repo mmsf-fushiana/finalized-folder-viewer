@@ -61,7 +61,7 @@ export function getNoiseRangeForLevel(
 
   if (!range) {
     // デフォルトはLv.1の範囲を返す
-    return { min: 200, max: 249 };
+    return { min: NOISE_LEVELS[0].min, max: NOISE_LEVELS[0].max };
   }
 
   return { min: range.min, max: range.max };

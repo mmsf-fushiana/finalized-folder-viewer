@@ -9,7 +9,7 @@
     "attack": 40,
     "text": "Cannon atk 1 enmy",
     "image_url": "SF3_BC_001.png",
-    "id": "00000001"
+    "id": "0001"
   },
   {
     "class": "standard",
@@ -21,7 +21,7 @@
     "attack": 100,
     "text": "Cannon atk splits in + pattern",
     "image_url": "SF3_BC_002.png",
-    "id": "00000002"
+    "id": "0002"
   },
   {
     "class": "standard",
@@ -33,7 +33,7 @@
     "attack": 160,
     "text": "Cannon atk Splits Left, Right, back 3",
     "image_url": "SF3_BC_003.png",
-    "id": "00000003"
+    "id": "0003"
   },
   {
     "class": "standard",
@@ -50,7 +50,7 @@
     "attack": 240,
     "text": "Cannon atk spreads dmg to adj pnls",
     "image_url": "ImpctCanon.png",
-    "id": "00000110"
+    "id": "0110"
   },
   {
     "class": "standard",
@@ -62,7 +62,7 @@
     "attack": 30,
     "text": "Atk and paralyze 1 enemy",
     "image_url": "SF3_BC_004.png",
-    "id": "00000004"
+    "id": "0004"
   },
   {
     "class": "standard",
@@ -76,7 +76,7 @@
     "attack3": 190,
     "text": "Atk & prlyz 1 enemy for a long time",
     "image_url": "PlasmaGunX.png",
-    "id": "00000111"
+    "id": "0111"
   },
   {
     "class": "standard",
@@ -89,7 +89,7 @@
     "attack": 10,
     "text": "3-shot atk. Spreads dmg in V ptrn",
     "image_url": "SF3_BC_005.png",
-    "id": "00000005"
+    "id": "0005"
   },
   {
     "class": "standard",
@@ -102,7 +102,7 @@
     "attack": 20,
     "text": "3-shot atk. Spreads dmg in X ptrn",
     "image_url": "SF3_BC_006.png",
-    "id": "00000006"
+    "id": "0006"
   },
   {
     "class": "standard",
@@ -115,7 +115,7 @@
     "attack": 30,
     "text": "3-shot atk. Spreads dmg to adj pnls",
     "image_url": "SF3_BC_007.png",
-    "id": "00000007"
+    "id": "0007"
   },
   {
     "class": "standard",
@@ -128,7 +128,7 @@
     "attack": 50,
     "text": "3-shot atk. Spreads dmg to adj pnls",
     "image_url": "AirSpreadX.png",
-    "id": "00000112"
+    "id": "0112"
   },
   {
     "class": "standard",
@@ -140,7 +140,7 @@
     "attack": 10,
     "text": "5-shot Vlcn atk also ignites rear",
     "image_url": "SF3_BC_008.png",
-    "id": "00000066"
+    "id": "0066"
   },
   {
     "class": "standard",
@@ -152,7 +152,7 @@
     "attack": 10,
     "text": "8-shot Vlcn atk also ignites rear",
     "image_url": "SF3_BC_009.png",
-    "id": "00000067"
+    "id": "0067"
   },
   {
     "class": "standard",
@@ -164,7 +164,7 @@
     "attack": 10,
     "text": "12-shot Vlcn atk also ignites rear",
     "image_url": "SF3_BC_010.png",
-    "id": "00000068"
+    "id": "0068"
   },
   {
     "class": "standard",
@@ -176,7 +176,7 @@
     "attack": 10,
     "text": "15-shot Vlcn atk also ignites rear",
     "image_url": "MadVulcnX.png",
-    "id": "00000132"
+    "id": "0132"
   },
   {
     "class": "standard",
@@ -188,7 +188,7 @@
     "attack": 90,
     "text": "Blinding atk spreads dmg to adj pnls",
     "image_url": "SF3_BC_011.png",
-    "id": "0000001C"
+    "id": "001C"
   },
   {
     "class": "standard",
@@ -200,7 +200,7 @@
     "attack": 90,
     "text": "If hit emy, adj pnls trn into grass.",
     "image_url": "GreenInk.png",
-    "id": "000000F3"
+    "id": "00F3"
   },
   {
     "class": "standard",
@@ -212,7 +212,7 @@
     "attack": 110,
     "text": "If hit emy, adj pnls trn into ice.",
     "image_url": "BlueInk.png",
-    "id": "000000F4"
+    "id": "00F4"
   },
   {
     "class": "standard",
@@ -224,7 +224,7 @@
     "attack": 130,
     "text": "If hit emy, adj pnls trn into poison.",
     "image_url": "PurpleInk.png",
-    "id": "0000005F"
+    "id": "005F"
   },
   {
     "class": "standard",
@@ -236,7 +236,7 @@
     "attack": 10,
     "text": "Lob a 6-shot grenade at your enemy",
     "image_url": "SF3_BC_012.png",
-    "id": "00000008"
+    "id": "0008"
   },
   {
     "class": "standard",
@@ -248,7 +248,7 @@
     "attack": 120,
     "text": "Lob a 9-pnl fire grenade at enemy.",
     "image_url": "HeatGrnde.png",
-    "id": "000000E8"
+    "id": "00E8"
   },
   {
     "class": "standard",
@@ -260,7 +260,7 @@
     "attack": 100,
     "text": "Grenade that turns 9 pnls into grass.",
     "image_url": "WoodGrnde.png",
-    "id": "000000E9"
+    "id": "00E9"
   },
   {
     "class": "standard",
@@ -272,7 +272,7 @@
     "attack": 100,
     "text": "Grenade that turns 9 pnls into ice.",
     "image_url": "IceGrnde.png",
-    "id": "000000EA"
+    "id": "00EA"
   },
   {
     "class": "standard",
@@ -291,7 +291,7 @@
     "attack3": 140,
     "text": "3-hit atk dmgs all adj pnls if hits",
     "image_url": "BigGrenade.png",
-    "id": "00000113"
+    "id": "0113"
   },
   {
     "class": "standard",
@@ -304,7 +304,7 @@
     "attack": 80,
     "text": "Cuts emy in frnt of you",
     "image_url": "SF3_BC_013.png",
-    "id": "00000013"
+    "id": "0013"
   },
   {
     "class": "standard",
@@ -317,7 +317,7 @@
     "attack": 80,
     "text": "Cuts emies in row in frnt of you",
     "image_url": "SF3_BC_014.png",
-    "id": "00000014"
+    "id": "0014"
   },
   {
     "class": "standard",
@@ -330,7 +330,7 @@
     "attack": 80,
     "text": "Cuts emy in frnt of you. Rnge:2 pnls",
     "image_url": "SF3_BC_015.png",
-    "id": "00000015"
+    "id": "0015"
   },
   {
     "class": "standard",
@@ -343,7 +343,7 @@
     "attack": 110,
     "text": "Selct w/same card makes swrd strongr",
     "image_url": "SF3_BC_016.png",
-    "id": "00000060"
+    "id": "0060"
   },
   {
     "class": "standard",
@@ -356,7 +356,7 @@
     "attack": 140,
     "text": "Selct w/same card makes swrd strongr",
     "image_url": "SF3_BC_017.png",
-    "id": "00000061"
+    "id": "0061"
   },
   {
     "class": "standard",
@@ -371,7 +371,7 @@
     "attack3": 260,
     "text": "Selct w/same card makes swrd strongr",
     "image_url": "SF3_BC_018.png",
-    "id": "00000062"
+    "id": "0062"
   },
   {
     "class": "standard",
@@ -386,7 +386,7 @@
     "attack3": 290,
     "text": "Select w/same card makes swrd strongr",
     "image_url": "BushidoX.png",
-    "id": "00000130"
+    "id": "0130"
   },
   {
     "class": "standard",
@@ -401,7 +401,7 @@
     "attack3": 220,
     "text": "Elec swrd cut 'n prlyz emy in row",
     "image_url": "ElecSlash.png",
-    "id": "000000EF"
+    "id": "00EF"
   },
   {
     "class": "standard",
@@ -414,7 +414,7 @@
     "attack": 180,
     "text": "Wood swrd cuts emy in row in frnt",
     "image_url": "WoodSlash.png",
-    "id": "000000F0"
+    "id": "00F0"
   },
   {
     "class": "standard",
@@ -429,7 +429,7 @@
     "attack3": 270,
     "text": "Fire swrd cuts emy in row in frnt",
     "image_url": "FireSlash.png",
-    "id": "000000F1"
+    "id": "00F1"
   },
   {
     "class": "standard",
@@ -445,7 +445,7 @@
     "attack3": 290,
     "text": "Diag. saber atk. Cuts thru shield.",
     "image_url": "BreakSabre.png",
-    "id": "000000F2"
+    "id": "00F2"
   },
   {
     "class": "standard",
@@ -461,7 +461,7 @@
     "attack3": 340,
     "text": "Diag. saber atk. Cuts thru shield.",
     "image_url": "BreakSabrX.png",
-    "id": "00000143"
+    "id": "0143"
   },
   {
     "class": "standard",
@@ -476,7 +476,7 @@
     "attack3": 240,
     "text": "Swing Wood ax thru 3x2 pnls",
     "image_url": "SF3_BC_019.png",
-    "id": "00000016"
+    "id": "0016"
   },
   {
     "class": "standard",
@@ -491,7 +491,7 @@
     "attack3": 300,
     "text": "Swing giant fire ax thru 3x2 sqrs",
     "image_url": "SF3_BC_020.png",
-    "id": "0000007B"
+    "id": "007B"
   },
   {
     "class": "standard",
@@ -512,7 +512,7 @@
     "attack3": 420,
     "text": "Swing Guard-busting ax thru 3x2 pnl",
     "image_url": "GiantAxe.png",
-    "id": "00000117"
+    "id": "0117"
   },
   {
     "class": "standard",
@@ -525,7 +525,7 @@
     "attack": null,
     "text": "Sword Atk is as strong as you are weak",
     "image_url": "Muramasa.png",
-    "id": "000000FB"
+    "id": "00FB"
   },
   {
     "class": "standard",
@@ -538,7 +538,7 @@
     "attack": 50,
     "text": "Mad 3-slash sword attack",
     "image_url": "SwrdFghtr1.png",
-    "id": "00000105"
+    "id": "0105"
   },
   {
     "class": "standard",
@@ -551,7 +551,7 @@
     "attack": 50,
     "text": "Mad 4-slash sword attack",
     "image_url": "SwrdFghtr2.png",
-    "id": "00000106"
+    "id": "0106"
   },
   {
     "class": "standard",
@@ -566,7 +566,7 @@
     "attack3": 80,
     "text": "Mad 5-slash sword attack",
     "image_url": "SwrdFghtr3.png",
-    "id": "00000107"
+    "id": "0107"
   },
   {
     "class": "standard",
@@ -581,7 +581,7 @@
     "attack3": 90,
     "text": "Mad 5-slash sword attack",
     "image_url": "SwrdFghtrX.png",
-    "id": "00000141"
+    "id": "0141"
   },
   {
     "class": "standard",
@@ -594,7 +594,7 @@
     "attack": 90,
     "text": "Knock emy in frnt all the way back",
     "image_url": "SF3_BC_021.png",
-    "id": "0000000F"
+    "id": "000F"
   },
   {
     "class": "standard",
@@ -607,7 +607,7 @@
     "attack": 120,
     "text": "Knock emy in frnt all the way back",
     "image_url": "SF3_BC_022.png",
-    "id": "00000010"
+    "id": "0010"
   },
   {
     "class": "standard",
@@ -622,7 +622,7 @@
     "attack3": 230,
     "text": "Knock emy in frnt all the way back",
     "image_url": "SF3_BC_023.png",
-    "id": "00000011"
+    "id": "0011"
   },
   {
     "class": "standard",
@@ -637,7 +637,7 @@
     "attack3": 260,
     "text": "Knock emy in frnt all the way back",
     "image_url": "WindyAtkX.png",
-    "id": "00000116"
+    "id": "0116"
   },
   {
     "class": "standard",
@@ -649,7 +649,7 @@
     "attack": 100,
     "text": "Lft hook all of the same type of emy",
     "image_url": "SF3_BC_024.png",
-    "id": "00000017"
+    "id": "0017"
   },
   {
     "class": "standard",
@@ -661,7 +661,7 @@
     "attack": 130,
     "text": "Lft hook all of the same type of emy",
     "image_url": "SF3_BC_025.png",
-    "id": "00000018"
+    "id": "0018"
   },
   {
     "class": "standard",
@@ -675,7 +675,7 @@
     "attack3": 230,
     "text": "Lft hook all of the same type of emy",
     "image_url": "SF3_BC_026.png",
-    "id": "00000019"
+    "id": "0019"
   },
   {
     "class": "standard",
@@ -689,7 +689,7 @@
     "attack3": 260,
     "text": "Lft hook all of the same type of emy",
     "image_url": "SyncHookX.png",
-    "id": "00000118"
+    "id": "0118"
   },
   {
     "class": "standard",
@@ -701,7 +701,7 @@
     "attack": 130,
     "text": "Punch and paralyze emy in front!",
     "image_url": "StunKnukle.png",
-    "id": "000000EC"
+    "id": "00EC"
   },
   {
     "class": "standard",
@@ -713,7 +713,7 @@
     "attack": 150,
     "text": "Punch and HP bug emy in frnt of you!",
     "image_url": "PoisKnukle.png",
-    "id": "000000ED"
+    "id": "00ED"
   },
   {
     "class": "standard",
@@ -725,7 +725,7 @@
     "attack": 180,
     "text": "Punch and freez emy in frnt of you!",
     "image_url": "FrezKnukle.png",
-    "id": "000000EE"
+    "id": "00EE"
   },
   {
     "class": "standard",
@@ -738,7 +738,7 @@
     "attack": 140,
     "text": "In match, uprcut nulls 5 body abils",
     "image_url": "DstryUpper.png",
-    "id": "000000F9"
+    "id": "00F9"
   },
   {
     "class": "standard",
@@ -751,7 +751,7 @@
     "attack": 40,
     "text": "Atk 2 fwd pnls & knock emies bck 1",
     "image_url": "SF3_BC_027.png",
-    "id": "00000009"
+    "id": "0009"
   },
   {
     "class": "standard",
@@ -764,7 +764,7 @@
     "attack": 50,
     "text": "Atk 2 fwd pnls & knock emies bck 1",
     "image_url": "SF3_BC_028.png",
-    "id": "0000000A"
+    "id": "000A"
   },
   {
     "class": "standard",
@@ -777,7 +777,7 @@
     "attack": 60,
     "text": "Atk 2 fwd pnls & knock emies bck 1",
     "image_url": "SF3_BC_029.png",
-    "id": "0000000B"
+    "id": "000B"
   },
   {
     "class": "standard",
@@ -792,7 +792,7 @@
     "attack3": 120,
     "text": "Atk 2 fwd pnls & knock emies bck 1",
     "image_url": "DrillArmX.png",
-    "id": "00000114"
+    "id": "0114"
   },
   {
     "class": "standard",
@@ -807,7 +807,7 @@
     "attack3": 100,
     "text": "Spin twice, hit adj pnls with wind",
     "image_url": "SF3_BC_030.png",
-    "id": "00000075"
+    "id": "0075"
   },
   {
     "class": "standard",
@@ -822,7 +822,7 @@
     "attack3": 100,
     "text": "Spin 3 times, hit adj pnls with wind",
     "image_url": "SF3_BC_031.png",
-    "id": "00000076"
+    "id": "0076"
   },
   {
     "class": "standard",
@@ -842,7 +842,7 @@
     "attack3": 100,
     "text": "Spin 4 times hit adj pnls with wind",
     "image_url": "HurricaneDance.png",
-    "id": "00000137"
+    "id": "0137"
   },
   {
     "class": "standard",
@@ -854,7 +854,7 @@
     "attack": 50,
     "text": "Hit far 9 normal pnls w/ Meteors",
     "image_url": "SF3_BC_032.png",
-    "id": "0000001A"
+    "id": "001A"
   },
   {
     "class": "standard",
@@ -866,7 +866,7 @@
     "attack": 70,
     "text": "Hit far 9 normal pnls w/ Meteors",
     "image_url": "SF3_BC_033.png",
-    "id": "0000001B"
+    "id": "001B"
   },
   {
     "class": "standard",
@@ -883,7 +883,7 @@
     "attack": 90,
     "text": "Hit far 9 normal pnls w/Meteors.",
     "image_url": "PlatMeteor.png",
-    "id": "00000119"
+    "id": "0119"
   },
   {
     "class": "standard",
@@ -896,7 +896,7 @@
     "attack": 70,
     "text": "Rain Meteors down on far 9 panls",
     "image_url": "ExtiMeteor.png",
-    "id": "000000FC"
+    "id": "00FC"
   },
   {
     "class": "standard",
@@ -908,7 +908,7 @@
     "attack": 200,
     "text": "Missile atk. Targts Non-elm emies.",
     "image_url": "RaderMisil.png",
-    "id": "000000EB"
+    "id": "00EB"
   },
   {
     "class": "standard",
@@ -920,7 +920,7 @@
     "attack": 50,
     "text": "Piercing atk can change direc once",
     "image_url": "SF3_BC_034.png",
-    "id": "0000001E"
+    "id": "001E"
   },
   {
     "class": "standard",
@@ -932,7 +932,7 @@
     "attack": 80,
     "text": "Piercing atk can change direc once",
     "image_url": "SF3_BC_035.png",
-    "id": "0000001F"
+    "id": "001F"
   },
   {
     "class": "standard",
@@ -946,7 +946,7 @@
     "attack3": 200,
     "text": "Piercing atk can change direc once",
     "image_url": "SF3_BC_036.png",
-    "id": "00000020"
+    "id": "0020"
   },
   {
     "class": "standard",
@@ -960,7 +960,7 @@
     "attack3": 230,
     "text": "Piercing atk can change direc. once.",
     "image_url": "GrandWaVeX.png",
-    "id": "0000011A"
+    "id": "011A"
   },
   {
     "class": "standard",
@@ -974,7 +974,7 @@
     "attack": 90,
     "text": "Piercing strght line rush atk",
     "image_url": "SF3_BC_037.png",
-    "id": "00000021"
+    "id": "0021"
   },
   {
     "class": "standard",
@@ -988,7 +988,7 @@
     "attack": 120,
     "text": "Piercing strght line rush atk",
     "image_url": "SF3_BC_038.png",
-    "id": "00000022"
+    "id": "0022"
   },
   {
     "class": "standard",
@@ -1004,7 +1004,7 @@
     "attack3": 230,
     "text": "Piercing strght line rush atk",
     "image_url": "SF3_BC_039.png",
-    "id": "00000023"
+    "id": "0023"
   },
   {
     "class": "standard",
@@ -1020,7 +1020,7 @@
     "attack3": 260,
     "text": "Piercing strght line rush atk.",
     "image_url": "JetAttackX.png",
-    "id": "0000011B"
+    "id": "011B"
   },
   {
     "class": "standard",
@@ -1033,7 +1033,7 @@
     "attack": 130,
     "text": "3x3-pnl frontal Hammer atk",
     "image_url": "SF3_BC_040.png",
-    "id": "00000024"
+    "id": "0024"
   },
   {
     "class": "standard",
@@ -1046,7 +1046,7 @@
     "attack": 150,
     "text": "3x3-pnl frontal Hammer atk",
     "image_url": "SF3_BC_041.png",
-    "id": "00000025"
+    "id": "0025"
   },
   {
     "class": "standard",
@@ -1061,7 +1061,7 @@
     "attack3": 250,
     "text": "3x3-pnl frontal Hammer atk",
     "image_url": "SF3_BC_042.png",
-    "id": "00000026"
+    "id": "0026"
   },
   {
     "class": "standard",
@@ -1076,7 +1076,7 @@
     "attack3": 270,
     "text": "3x3-pnl frontal Hammer atk.",
     "image_url": "BukiX.png",
-    "id": "0000011C"
+    "id": "011C"
   },
   {
     "class": "standard",
@@ -1088,7 +1088,7 @@
     "attack": 30,
     "text": "Rain down coins on emy fwd 3 rows",
     "image_url": "SF3_BC_043.png",
-    "id": "00000027"
+    "id": "0027"
   },
   {
     "class": "standard",
@@ -1100,7 +1100,7 @@
     "attack": 40,
     "text": "Rain down coins on emy fwd 3 rows",
     "image_url": "SF3_BC_044.png",
-    "id": "00000028"
+    "id": "0028"
   },
   {
     "class": "standard",
@@ -1112,7 +1112,7 @@
     "attack": 50,
     "text": "Rain down coins on emy fwd 3 rows",
     "image_url": "SF3_BC_045.png",
-    "id": "00000029"
+    "id": "0029"
   },
   {
     "class": "standard",
@@ -1124,7 +1124,7 @@
     "attack": 60,
     "text": "Rain down coins on emy fwd 3 rows",
     "image_url": "SmileCoinX.png",
-    "id": "0000011D"
+    "id": "011D"
   },
   {
     "class": "standard",
@@ -1137,7 +1137,7 @@
     "attack": 140,
     "text": "Drop Ku'i on field, crack adacnt pnls",
     "image_url": "SF3_BC_046.png",
-    "id": "0000002A"
+    "id": "002A"
   },
   {
     "class": "standard",
@@ -1150,7 +1150,7 @@
     "attack": 180,
     "text": "Drop Ku'i on field, crack adacnt pnls",
     "image_url": "SF3_BC_047.png",
-    "id": "0000002B"
+    "id": "002B"
   },
   {
     "class": "standard",
@@ -1163,7 +1163,7 @@
     "attack": 220,
     "text": "Drop Ku'i on field, crack adacnt pnls",
     "image_url": "SF3_BC_048.png",
-    "id": "0000002C"
+    "id": "002C"
   },
   {
     "class": "standard",
@@ -1178,7 +1178,7 @@
     "attack3": 380,
     "text": "Drop Ku'i on field, crack adacnt pnls",
     "image_url": "BigDropX.png",
-    "id": "0000001E"
+    "id": "001E"
   },
   {
     "class": "standard",
@@ -1191,7 +1191,7 @@
     "attack": 100,
     "text": "Buzz Saw Atk turns once after thrown",
     "image_url": "SF3_BC_049.png",
-    "id": "0000005D"
+    "id": "005D"
   },
   {
     "class": "standard",
@@ -1204,7 +1204,7 @@
     "attack": 120,
     "text": "Buzz Saw Atk turns once after thrown",
     "image_url": "SF3_BC_050.png",
-    "id": "0000005E"
+    "id": "005E"
   },
   {
     "class": "standard",
@@ -1219,7 +1219,7 @@
     "attack3": 240,
     "text": "Buzz Saw Atk turns once after thrown",
     "image_url": "SF3_BC_051.png",
-    "id": "0000005F"
+    "id": "005F"
   },
   {
     "class": "standard",
@@ -1234,7 +1234,7 @@
     "attack3": 270,
     "text": "Buzz Saw Atk turns once after thrown",
     "image_url": "BuzzSawX.png",
-    "id": "0000012F"
+    "id": "012F"
   },
   {
     "class": "standard",
@@ -1246,7 +1246,7 @@
     "attack": 130,
     "text": "Skull Arrow imoblz emies back 3 pnls",
     "image_url": "SF3_BC_052.png",
-    "id": "00000063"
+    "id": "0063"
   },
   {
     "class": "standard",
@@ -1258,7 +1258,7 @@
     "attack": 150,
     "text": "Skull Arrow imoblz emies back 3 pnls",
     "image_url": "SF3_BC_053.png",
-    "id": "00000064"
+    "id": "0064"
   },
   {
     "class": "standard",
@@ -1272,7 +1272,7 @@
     "attack3": 250,
     "text": "Skull Arrow imoblz emies back 3 pnls",
     "image_url": "SF3_BC_054.png",
-    "id": "00000065"
+    "id": "0065"
   },
   {
     "class": "standard",
@@ -1286,7 +1286,7 @@
     "attack3": 270,
     "text": "Skull Arrow imoblz emies back 3 pnls",
     "image_url": "SkullArrwX.png",
-    "id": "00000131"
+    "id": "0131"
   },
   {
     "class": "standard",
@@ -1299,7 +1299,7 @@
     "attack": 50,
     "text": "3-shot laser gets stronger w/holey pnls",
     "image_url": "SF3_BC_055.png",
-    "id": "00000069"
+    "id": "0069"
   },
   {
     "class": "standard",
@@ -1312,7 +1312,7 @@
     "attack": 60,
     "text": "3-shot laser gets stronger w/holey pnls",
     "image_url": "SF3_BC_056.png",
-    "id": "0000006A"
+    "id": "006A"
   },
   {
     "class": "standard",
@@ -1325,7 +1325,7 @@
     "attack": 70,
     "text": "3-shot laser gets stronger w/holey pnls",
     "image_url": "SF3_BC_057.png",
-    "id": "0000006B"
+    "id": "006B"
   },
   {
     "class": "standard",
@@ -1338,7 +1338,7 @@
     "attack": 80,
     "text": "3-shot laser gets stronger w/holey pnls",
     "image_url": "MuTechX.png",
-    "id": "00000133"
+    "id": "0133"
   },
   {
     "class": "standard",
@@ -1352,7 +1352,7 @@
     "attack": 20,
     "text": "2nd fwd pnl Scythe atk. Max 3 hits.",
     "image_url": "Scythe1.png",
-    "id": "000000D0"
+    "id": "00D0"
   },
   {
     "class": "standard",
@@ -1366,7 +1366,7 @@
     "attack": 30,
     "text": "2nd fwd pnl Scythe atk. Max 3 hits.",
     "image_url": "Scythe2.png",
-    "id": "000000D1"
+    "id": "00D1"
   },
   {
     "class": "standard",
@@ -1380,7 +1380,7 @@
     "attack": 40,
     "text": "2nd fwd pnl Scythe atk. Max 3 hits.",
     "image_url": "Scythe3.png",
-    "id": "000000D2"
+    "id": "00D2"
   },
   {
     "class": "standard",
@@ -1394,7 +1394,7 @@
     "attack": 60,
     "text": "2nd fwd pnl Scythe atk. Max 3 hits.",
     "image_url": "ScytheX.png",
-    "id": "00000138"
+    "id": "0138"
   },
   {
     "class": "standard",
@@ -1406,7 +1406,7 @@
     "attack": 80,
     "text": "PuffBlast hits 2nd col ahead.",
     "image_url": "PuffBlast1.png",
-    "id": "000000E2"
+    "id": "00E2"
   },
   {
     "class": "standard",
@@ -1418,7 +1418,7 @@
     "attack": 100,
     "text": "PuffBlast hits 2nd col ahead.",
     "image_url": "PuffBlast2.png",
-    "id": "000000E3"
+    "id": "00E3"
   },
   {
     "class": "standard",
@@ -1430,7 +1430,7 @@
     "attack": 130,
     "text": "PuffBlast hits 2nd col ahead.",
     "image_url": "PuffBlast3.png",
-    "id": "000000E4"
+    "id": "00E4"
   },
   {
     "class": "standard",
@@ -1442,7 +1442,7 @@
     "attack": 160,
     "text": "PuffBlast hits 2nd col ahead.",
     "image_url": "PuffBlastX.png",
-    "id": "0000013E"
+    "id": "013E"
   },
   {
     "class": "standard",
@@ -1454,7 +1454,7 @@
     "attack": 130,
     "text": "Set bomb 2 pnls ahead. 3 sec timer",
     "image_url": "SF3_BC_058.png",
-    "id": "0000002D"
+    "id": "002D"
   },
   {
     "class": "standard",
@@ -1466,7 +1466,7 @@
     "attack": 160,
     "text": "Set bomb 2 pnls ahead. 3 sec timer",
     "image_url": "SF3_BC_059.png",
-    "id": "0000002E"
+    "id": "002E"
   },
   {
     "class": "standard",
@@ -1480,7 +1480,7 @@
     "attack3": 280,
     "text": "Set bomb 2 pnls ahead. 3 sec timer",
     "image_url": "SF3_BC_060.png",
-    "id": "0000003F"
+    "id": "003F"
   },
   {
     "class": "standard",
@@ -1494,7 +1494,7 @@
     "attack3": 320,
     "text": "Set bomb 2 pnls ahead. 3 sec timer.",
     "image_url": "TimeBombX.png",
-    "id": "0000011F"
+    "id": "011F"
   },
   {
     "class": "standard",
@@ -1507,7 +1507,7 @@
     "attack": 120,
     "text": "Hit 1 emy with a Flmng uppercut",
     "image_url": "SF3_BC_061.png",
-    "id": "00000030"
+    "id": "0030"
   },
   {
     "class": "standard",
@@ -1520,7 +1520,7 @@
     "attack": 150,
     "text": "Hit 1 emy with a Flmng uppercut",
     "image_url": "SF3_BC_062.png",
-    "id": "00000031"
+    "id": "0031"
   },
   {
     "class": "standard",
@@ -1533,7 +1533,7 @@
     "attack": 200,
     "text": "Hit 1 emy with a Flmng uppercut",
     "image_url": "SF3_BC_063.png",
-    "id": "00000032"
+    "id": "0032"
   },
   {
     "class": "standard",
@@ -1548,7 +1548,7 @@
     "attack3": 350,
     "text": "Flmng upper-cut knocks emies bck 1",
     "image_url": "HeatUpprX.png",
-    "id": "00000120"
+    "id": "0120"
   },
   {
     "class": "standard",
@@ -1560,7 +1560,7 @@
     "attack": 110,
     "text": "Flamethrowr. Missed pnls become holes",
     "image_url": "SF3_BC_064.png",
-    "id": "00000033"
+    "id": "0033"
   },
   {
     "class": "standard",
@@ -1572,7 +1572,7 @@
     "attack": 140,
     "text": "Flamethrowr. Missed pnls become holes",
     "image_url": "SF3_BC_065.png",
-    "id": "00000034"
+    "id": "0034"
   },
   {
     "class": "standard",
@@ -1586,7 +1586,7 @@
     "attack3": 260,
     "text": "Flamethrowr. Missed pnls become holes",
     "image_url": "SF3_BC_066.png",
-    "id": "00000035"
+    "id": "0035"
   },
   {
     "class": "standard",
@@ -1600,7 +1600,7 @@
     "attack3": 290,
     "text": "Flamethrowr. Missed pnls become holes",
     "image_url": "MechFlameX.png",
-    "id": "00000121"
+    "id": "0121"
   },
   {
     "class": "standard",
@@ -1612,7 +1612,7 @@
     "attack": 100,
     "text": "Fireball. If after guard, 3 shots",
     "image_url": "SF3_BC_067.png",
-    "id": "00000036"
+    "id": "0036"
   },
   {
     "class": "standard",
@@ -1624,7 +1624,7 @@
     "attack": 140,
     "text": "Fireball. If after guard, 3 shots",
     "image_url": "SF3_BC_068.png",
-    "id": "00000037"
+    "id": "0037"
   },
   {
     "class": "standard",
@@ -1636,7 +1636,7 @@
     "attack": 180,
     "text": "Fireball. If after guard, 3 shots",
     "image_url": "SF3_BC_069.png",
-    "id": "00000038"
+    "id": "0038"
   },
   {
     "class": "standard",
@@ -1648,7 +1648,7 @@
     "attack": 220,
     "text": "Fireball. If after guard, 3 shots",
     "image_url": "MadFireX.png",
-    "id": "00000122"
+    "id": "0122"
   },
   {
     "class": "standard",
@@ -1660,7 +1660,7 @@
     "attack": 140,
     "text": "Flamethrowr atk 3 pnls ahead.",
     "image_url": "DanceFire1.png",
-    "id": "000000D3"
+    "id": "00D3"
   },
   {
     "class": "standard",
@@ -1672,7 +1672,7 @@
     "attack": 160,
     "text": "Flamethrowr atk in a T shape.",
     "image_url": "DanceFire2.png",
-    "id": "000000D4"
+    "id": "00D4"
   },
   {
     "class": "standard",
@@ -1686,7 +1686,7 @@
     "attack3": 260,
     "text": "Flamethrowr radiating 3 pnls ahead.",
     "image_url": "DanceFire3.png",
-    "id": "000000D5"
+    "id": "00D5"
   },
   {
     "class": "standard",
@@ -1700,7 +1700,7 @@
     "attack3": 300,
     "text": "Flamethrowr radiating 3 pnls ahead.",
     "image_url": "DanceFireX.png",
-    "id": "00000139"
+    "id": "0139"
   },
   {
     "class": "standard",
@@ -1713,7 +1713,7 @@
     "attack": 150,
     "text": "Lobs bomb at emy if fire atk hits.",
     "image_url": "KiloBomb1.png",
-    "id": "000000D6"
+    "id": "00D6"
   },
   {
     "class": "standard",
@@ -1726,7 +1726,7 @@
     "attack": 200,
     "text": "Lobs bomb at emy if fire atk hits.",
     "image_url": "KiloBomb2.png",
-    "id": "000000D7"
+    "id": "00D7"
   },
   {
     "class": "standard",
@@ -1741,7 +1741,7 @@
     "attack3": 350,
     "text": "Lobs bomb at emy if fire atk hits.",
     "image_url": "KiloBomb3.png",
-    "id": "000000D8"
+    "id": "00D8"
   },
   {
     "class": "standard",
@@ -1756,7 +1756,7 @@
     "attack3": 400,
     "text": "Lobs bomb at emy if fire atk hits.",
     "image_url": "KiloBombX.png",
-    "id": "0000013A"
+    "id": "013A"
   },
   {
     "class": "standard",
@@ -1768,7 +1768,7 @@
     "attack": 70,
     "text": "Send out a waVe a row wide",
     "image_url": "SF3_BC_070.png",
-    "id": "00000039"
+    "id": "0039"
   },
   {
     "class": "standard",
@@ -1780,7 +1780,7 @@
     "attack": 90,
     "text": "Send out a waVe a row wide",
     "image_url": "SF3_BC_071.png",
-    "id": "0000003A"
+    "id": "003A"
   },
   {
     "class": "standard",
@@ -1792,7 +1792,7 @@
     "attack": 120,
     "text": "Send out a waVe a row wide",
     "image_url": "SF3_BC_072.png",
-    "id": "0000003B"
+    "id": "003B"
   },
   {
     "class": "standard",
@@ -1806,7 +1806,7 @@
     "attack3": 240,
     "text": "Send out a waVe a row wide!",
     "image_url": "WideWaVeX.png",
-    "id": "00000123"
+    "id": "0123"
   },
   {
     "class": "standard",
@@ -1818,7 +1818,7 @@
     "attack": 60,
     "text": "2-pnl bubble atk on 3 far side pnls",
     "image_url": "SF3_BC_073.png",
-    "id": "0000003C"
+    "id": "003C"
   },
   {
     "class": "standard",
@@ -1830,7 +1830,7 @@
     "attack": 80,
     "text": "2-pnl bubble atk on 3 far side pnls",
     "image_url": "SF3_BC_074.png",
-    "id": "0000003D"
+    "id": "003D"
   },
   {
     "class": "standard",
@@ -1844,7 +1844,7 @@
     "attack3": 170,
     "text": "2-pnl bubble atk on 3 far side pnls",
     "image_url": "SF3_BC_075.png",
-    "id": "0000003E"
+    "id": "003E"
   },
   {
     "class": "standard",
@@ -1858,7 +1858,7 @@
     "attack3": 190,
     "text": "2-pnl bubble atk on 3 far side pnls",
     "image_url": "BubblHookX.png",
-    "id": "00000124"
+    "id": "0124"
   },
   {
     "class": "standard",
@@ -1870,7 +1870,7 @@
     "attack": 70,
     "text": "Summons Blue Shark Atk on col ahead",
     "image_url": "SF3_BC_076.png",
-    "id": "0000003F"
+    "id": "003F"
   },
   {
     "class": "standard",
@@ -1882,7 +1882,7 @@
     "attack": 80,
     "text": "Summons Blue Shark Atk on col ahead",
     "image_url": "SF3_BC_077.png",
-    "id": "00000040"
+    "id": "0040"
   },
   {
     "class": "standard",
@@ -1896,7 +1896,7 @@
     "attack3": 165,
     "text": "Summons Blue Shark Atk on col ahead",
     "image_url": "SF3_BC_078.png",
-    "id": "00000041"
+    "id": "0041"
   },
   {
     "class": "standard",
@@ -1910,7 +1910,7 @@
     "attack3": 175,
     "text": "Summons Blue Shark Atk on col ahead",
     "image_url": "SharkAtkX.png",
-    "id": "00000125"
+    "id": "0125"
   },
   {
     "class": "standard",
@@ -1923,7 +1923,7 @@
     "attack": 70,
     "text": "Launches zig-zagging Spinguin",
     "image_url": "SF3_BC_079.png",
-    "id": "00000042"
+    "id": "0042"
   },
   {
     "class": "standard",
@@ -1936,7 +1936,7 @@
     "attack": 90,
     "text": "Launches zig-zagging Spinguin",
     "image_url": "SF3_BC_080.png",
-    "id": "00000043"
+    "id": "0043"
   },
   {
     "class": "standard",
@@ -1949,7 +1949,7 @@
     "attack": 110,
     "text": "Launches zig-zagging Spinguin",
     "image_url": "SF3_BC_081.png",
-    "id": "00000044"
+    "id": "0044"
   },
   {
     "class": "standard",
@@ -1962,7 +1962,7 @@
     "attack": 130,
     "text": "Launches zig-zagging Spinguin",
     "image_url": "IceSpinX.png",
-    "id": "00000126"
+    "id": "0126"
   },
   {
     "class": "standard",
@@ -1974,7 +1974,7 @@
     "attack": 100,
     "text": "Roll snoball that grows w/each hit.",
     "image_url": "SnoBall1.png",
-    "id": "000000D9"
+    "id": "00D9"
   },
   {
     "class": "standard",
@@ -1986,7 +1986,7 @@
     "attack": 120,
     "text": "Roll snoball that grows w/each hit.",
     "image_url": "SnoBall2.png",
-    "id": "000000DA"
+    "id": "00DA"
   },
   {
     "class": "standard",
@@ -1998,7 +1998,7 @@
     "attack": 150,
     "text": "Roll snoball that grows w/each hit.",
     "image_url": "SnoBall3.png",
-    "id": "000000DB"
+    "id": "00DB"
   },
   {
     "class": "standard",
@@ -2010,7 +2010,7 @@
     "attack": 180,
     "text": "Roll snoball that grows w/each hit.",
     "image_url": "SnoBallX.png",
-    "id": "0000013B"
+    "id": "013B"
   },
   {
     "class": "standard",
@@ -2022,7 +2022,7 @@
     "attack": 10,
     "text": "Piranha atk enemies from adj pnls",
     "image_url": "PiranKss1.png",
-    "id": "000000DC"
+    "id": "00DC"
   },
   {
     "class": "standard",
@@ -2034,7 +2034,7 @@
     "attack": 20,
     "text": "Piranha atk enemies from adj pnls",
     "image_url": "PiranKss2.png",
-    "id": "000000DD"
+    "id": "00DD"
   },
   {
     "class": "standard",
@@ -2046,7 +2046,7 @@
     "attack": 30,
     "text": "Piranha atk enemies from adj pnls",
     "image_url": "PiranKss3.png",
-    "id": "000000DE"
+    "id": "00DE"
   },
   {
     "class": "standard",
@@ -2058,7 +2058,7 @@
     "attack": 40,
     "text": "Piranha atk enemies from adj pnls",
     "image_url": "PiranKssX.png",
-    "id": "0000013C"
+    "id": "013C"
   },
   {
     "class": "standard",
@@ -2070,7 +2070,7 @@
     "attack": 40,
     "text": "3-shot laser atk to enemy w/highest HP",
     "image_url": "SF3_BC_082.png",
-    "id": "00000045"
+    "id": "0045"
   },
   {
     "class": "standard",
@@ -2082,7 +2082,7 @@
     "attack": 50,
     "text": "3-shot laser atk to enemy w/highest HP",
     "image_url": "SF3_BC_083.png",
-    "id": "00000046"
+    "id": "0046"
   },
   {
     "class": "standard",
@@ -2094,7 +2094,7 @@
     "attack": 60,
     "text": "3-shot laser atk to enemy w/highest HP",
     "image_url": "SF3_BC_084.png",
-    "id": "00000047"
+    "id": "0047"
   },
   {
     "class": "standard",
@@ -2106,7 +2106,7 @@
     "attack": 70,
     "text": "3-shot laser atk to enemy w/highest HP",
     "image_url": "StlthLazrX.png",
-    "id": "00000127"
+    "id": "0127"
   },
   {
     "class": "standard",
@@ -2118,7 +2118,7 @@
     "attack": 120,
     "text": "Mummy Hand Parlyzes 3x2 panels ahead",
     "image_url": "SF3_BC_085.png",
-    "id": "00000048"
+    "id": "0048"
   },
   {
     "class": "standard",
@@ -2130,7 +2130,7 @@
     "attack": 150,
     "text": "Mummy Hand Parlyzes 3x2 panels ahead",
     "image_url": "SF3_BC_086.png",
-    "id": "00000049"
+    "id": "0049"
   },
   {
     "class": "standard",
@@ -2142,7 +2142,7 @@
     "attack": 170,
     "text": "Mummy Hand Parlyzes 3x2 panels ahead",
     "image_url": "SF3_BC_087.png",
-    "id": "0000004A"
+    "id": "004A"
   },
   {
     "class": "standard",
@@ -2154,7 +2154,7 @@
     "attack": 200,
     "text": "Atk around MegaMan 5x5. Paralyze.",
     "image_url": "MummyHandX.png",
-    "id": "00000128"
+    "id": "0128"
   },
   {
     "class": "standard",
@@ -2166,7 +2166,7 @@
     "attack": 150,
     "text": "Rdmly rain down thunder on 3x3 area",
     "image_url": "SF3_BC_088.png",
-    "id": "0000004B"
+    "id": "004B"
   },
   {
     "class": "standard",
@@ -2178,7 +2178,7 @@
     "attack": 180,
     "text": "Rdmly rain down thunder on 3x3 area",
     "image_url": "SF3_BC_089.png",
-    "id": "0000004C"
+    "id": "004C"
   },
   {
     "class": "standard",
@@ -2190,7 +2190,7 @@
     "attack": 230,
     "text": "Rdmly rain down thunder on 3x3 area",
     "image_url": "SF3_BC_090.png",
-    "id": "0000004D"
+    "id": "004D"
   },
   {
     "class": "standard",
@@ -2202,7 +2202,7 @@
     "attack": 260,
     "text": "Rdmly rain down thunder on 3x3 area",
     "image_url": "ThndrHeadX.png",
-    "id": "00000129"
+    "id": "0129"
   },
   {
     "class": "standard",
@@ -2214,7 +2214,7 @@
     "attack": 10,
     "text": "5-shot Flash Strike atk 2 rows ahead",
     "image_url": "SF3_BC_091.png",
-    "id": "0000004E"
+    "id": "004E"
   },
   {
     "class": "standard",
@@ -2226,7 +2226,7 @@
     "attack": 20,
     "text": "5-shot Flash Strike atk 2 rows ahead",
     "image_url": "SF3_BC_092.png",
-    "id": "0000004F"
+    "id": "004F"
   },
   {
     "class": "standard",
@@ -2240,7 +2240,7 @@
     "attack3": 70,
     "text": "5-shot Flash Strike atk 2 rows ahead",
     "image_url": "SF3_BC_093.png",
-    "id": "00000050"
+    "id": "0050"
   },
   {
     "class": "standard",
@@ -2254,7 +2254,7 @@
     "attack3": 80,
     "text": "5-shot Flash Strike atk 2 rows ahead",
     "image_url": "FlashStrkX.png",
-    "id": "0000012A"
+    "id": "012A"
   },
   {
     "class": "standard",
@@ -2266,7 +2266,7 @@
     "attack": 30,
     "text": "ThndrBalls come up from holes. 9 max",
     "image_url": "Earthundr1.png",
-    "id": "00000102"
+    "id": "0102"
   },
   {
     "class": "standard",
@@ -2278,7 +2278,7 @@
     "attack": 40,
     "text": "ThndrBalls come up from holes. 9 max",
     "image_url": "Earthundr2.png",
-    "id": "00000103"
+    "id": "0103"
   },
   {
     "class": "standard",
@@ -2290,7 +2290,7 @@
     "attack": 50,
     "text": "ThndrBalls come up from holes. 9 max",
     "image_url": "Earthundr3.png",
-    "id": "00000104"
+    "id": "0104"
   },
   {
     "class": "standard",
@@ -2302,7 +2302,7 @@
     "attack": 60,
     "text": "ThndrBalls come up from holes. 9 max",
     "image_url": "EarthundrX.png",
-    "id": "00000140"
+    "id": "0140"
   },
   {
     "class": "standard",
@@ -2314,7 +2314,7 @@
     "attack": 40,
     "text": "Arachnid atk from aboVe, confuses emy",
     "image_url": "SF3_BC_094.png",
-    "id": "00000051"
+    "id": "0051"
   },
   {
     "class": "standard",
@@ -2326,7 +2326,7 @@
     "attack": 50,
     "text": "Arachnid atk from aboVe, confuses emy",
     "image_url": "SF3_BC_095.png",
-    "id": "00000052"
+    "id": "0052"
   },
   {
     "class": "standard",
@@ -2340,7 +2340,7 @@
     "attack3": 120,
     "text": "Arachnid atk from aboVe, confuses emy",
     "image_url": "SF3_BC_096.png",
-    "id": "00000053"
+    "id": "0053"
   },
   {
     "class": "standard",
@@ -2354,7 +2354,7 @@
     "attack3": 130,
     "text": "Arachnid atk from aboVe, confuses emy",
     "image_url": "ArachAtkX.png",
-    "id": "0000012B"
+    "id": "012B"
   },
   {
     "class": "standard",
@@ -2367,7 +2367,7 @@
     "attack": 100,
     "text": "Shuriken whiz around battlefield",
     "image_url": "SF3_BC_097.png",
-    "id": "00000054"
+    "id": "0054"
   },
   {
     "class": "standard",
@@ -2380,7 +2380,7 @@
     "attack": 120,
     "text": "Shuriken whiz around battlefield",
     "image_url": "SF3_BC_098.png",
-    "id": "00000055"
+    "id": "0055"
   },
   {
     "class": "standard",
@@ -2395,7 +2395,7 @@
     "attack3": 220,
     "text": "Shuriken whiz around battlefield",
     "image_url": "SF3_BC_099.png",
-    "id": "00000056"
+    "id": "0056"
   },
   {
     "class": "standard",
@@ -2409,7 +2409,7 @@
     "attack3": 240,
     "text": "Shuriken whiz around battlefield",
     "image_url": "ShurikenX.png",
-    "id": "0000012C"
+    "id": "012C"
   },
   {
     "class": "standard",
@@ -2421,7 +2421,7 @@
     "attack": 120,
     "text": "Pollen Shot emies on fwd grass pnls",
     "image_url": "SF3_BC_100.png",
-    "id": "00000057"
+    "id": "0057"
   },
   {
     "class": "standard",
@@ -2433,7 +2433,7 @@
     "attack": 140,
     "text": "Pollen Shot emies on fwd grass pnls",
     "image_url": "SF3_BC_101.png",
-    "id": "00000058"
+    "id": "0058"
   },
   {
     "class": "standard",
@@ -2445,7 +2445,7 @@
     "attack": 160,
     "text": "Pollen Shot emies on fwd grass pnls",
     "image_url": "SF3_BC_102.png",
-    "id": "00000059"
+    "id": "0059"
   },
   {
     "class": "standard",
@@ -2457,7 +2457,7 @@
     "attack": 180,
     "text": "Pollen Shot emies on fwd grass pnls",
     "image_url": "PollnShotX.png",
-    "id": "0000012D"
+    "id": "012D"
   },
   {
     "class": "standard",
@@ -2469,7 +2469,7 @@
     "attack": 100,
     "text": "+Control Pad up & explode Acorn Bomb",
     "image_url": "SF3_BC_103.png",
-    "id": "0000005A"
+    "id": "005A"
   },
   {
     "class": "standard",
@@ -2481,7 +2481,7 @@
     "attack": 120,
     "text": "+Control Pad up & explode Acorn Bomb",
     "image_url": "SF3_BC_104.png",
-    "id": "0000005B"
+    "id": "005B"
   },
   {
     "class": "standard",
@@ -2493,7 +2493,7 @@
     "attack": 140,
     "text": "+Control Pad up & explode Acorn Bomb",
     "image_url": "SF3_BC_105.png",
-    "id": "0000005C"
+    "id": "005C"
   },
   {
     "class": "standard",
@@ -2505,7 +2505,7 @@
     "attack": 160,
     "text": "+Control Pad up & explode Acorn Bomb",
     "image_url": "AcornBombX.png",
-    "id": "0000012E"
+    "id": "012E"
   },
   {
     "class": "standard",
@@ -2518,7 +2518,7 @@
     "attack": 10,
     "text": "Max 8-hit wind atk 2 pnls ahead.",
     "image_url": "Squall1.png",
-    "id": "000000DF"
+    "id": "00DF"
   },
   {
     "class": "standard",
@@ -2531,7 +2531,7 @@
     "attack": 20,
     "text": "Max 8-hit wind atk 2 pnls ahead.",
     "image_url": "Squall2.png",
-    "id": "000000E0"
+    "id": "00E0"
   },
   {
     "class": "standard",
@@ -2546,7 +2546,7 @@
     "attack3": 60,
     "text": "Max 8-hit wind atk 2 pnls ahead.",
     "image_url": "Squall3.png",
-    "id": "000000E1"
+    "id": "00E1"
   },
   {
     "class": "standard",
@@ -2561,7 +2561,7 @@
     "attack3": 70,
     "text": "Max 8-hit wind atk 2 pnls ahead.",
     "image_url": "SquallX.png",
-    "id": "0000013D"
+    "id": "013D"
   },
   {
     "class": "standard",
@@ -2573,7 +2573,7 @@
     "attack": 20,
     "text": "9-shot atk across 3 columns!",
     "image_url": "VulcnSeed1.png",
-    "id": "000000F6"
+    "id": "00F6"
   },
   {
     "class": "standard",
@@ -2585,7 +2585,7 @@
     "attack": 30,
     "text": "9-shot atk across 3 columns!",
     "image_url": "VulcnSeed2.png",
-    "id": "000000F7"
+    "id": "00F7"
   },
   {
     "class": "standard",
@@ -2599,7 +2599,7 @@
     "attack3": 70,
     "text": "9-shot atk across 3 columns!",
     "image_url": "VulcnSeed3.png",
-    "id": "000000F8"
+    "id": "00F8"
   },
   {
     "class": "standard",
@@ -2613,7 +2613,7 @@
     "attack3": 80,
     "text": "9-shot atk across 3 columns!",
     "image_url": "VulcnSeedX.png",
-    "id": "0000013F"
+    "id": "013F"
   },
   {
     "class": "standard",
@@ -2626,7 +2626,7 @@
     "attack": 100,
     "text": "Mega slashes fwd 3x2 pnls",
     "image_url": "SF3_BC_106.png",
-    "id": "0000000C"
+    "id": "000C"
   },
   {
     "class": "standard",
@@ -2639,7 +2639,7 @@
     "attack": 140,
     "text": "Mega slashes fwd 3x2 pnls",
     "image_url": "SF3_BC_107.png",
-    "id": "0000000D"
+    "id": "000D"
   },
   {
     "class": "standard",
@@ -2652,7 +2652,7 @@
     "attack": 200,
     "text": "Mega slashes fwd 3x2 pnls",
     "image_url": "SF3_BC_108.png",
-    "id": "0000000E"
+    "id": "000E"
   },
   {
     "class": "standard",
@@ -2665,7 +2665,7 @@
     "attack": 240,
     "text": "Mega slashes fwd 3x2 pnls",
     "image_url": "BeastSlapX.png",
-    "id": "00000015"
+    "id": "0015"
   },
   {
     "class": "standard",
@@ -2678,7 +2678,7 @@
     "attack": 120,
     "text": "Noise Wizard atks far row from outside",
     "image_url": "SF3_BC_109.png",
-    "id": "0000006C"
+    "id": "006C"
   },
   {
     "class": "standard",
@@ -2691,7 +2691,7 @@
     "attack": 150,
     "text": "Noise Wizard atks far row from outside",
     "image_url": "SF3_BC_110.png",
-    "id": "0000006D"
+    "id": "006D"
   },
   {
     "class": "standard",
@@ -2704,7 +2704,7 @@
     "attack": 180,
     "text": "Noise Wizard atks far row from outside",
     "image_url": "SF3_BC_111.png",
-    "id": "0000006E"
+    "id": "006E"
   },
   {
     "class": "standard",
@@ -2717,7 +2717,7 @@
     "attack": 210,
     "text": "Noise Wizard atks far row from outside",
     "image_url": "NoiseWzrdX.png",
-    "id": "00000134"
+    "id": "0134"
   },
   {
     "class": "standard",
@@ -2729,7 +2729,7 @@
     "attack": 180,
     "text": "Mal Wizard prlyz whip atk 2 pnls",
     "image_url": "SF3_BC_112.png",
-    "id": "0000006F"
+    "id": "006F"
   },
   {
     "class": "standard",
@@ -2741,7 +2741,7 @@
     "attack": 210,
     "text": "Mal Wizard prlyz whip atk 2 pnls",
     "image_url": "SF3_BC_113.png",
-    "id": "00000070"
+    "id": "0070"
   },
   {
     "class": "standard",
@@ -2753,7 +2753,7 @@
     "attack": 250,
     "text": "Mal Wizard prlyz whip atk 2 pnls",
     "image_url": "SF3_BC_114.png",
-    "id": "00000071"
+    "id": "0071"
   },
   {
     "class": "standard",
@@ -2765,7 +2765,7 @@
     "attack": 290,
     "text": "Mal Wizard prlyz whip atk 2 pnls",
     "image_url": "MalWizardX.png",
-    "id": "00000135"
+    "id": "0135"
   },
   {
     "class": "standard",
@@ -2778,7 +2778,7 @@
     "attack": 120,
     "text": "SpinBlade cuts diag across field",
     "image_url": "SpinBlade1.png",
-    "id": "00000108"
+    "id": "0108"
   },
   {
     "class": "standard",
@@ -2791,7 +2791,7 @@
     "attack": 150,
     "text": "SpinBlade cuts diag across field",
     "image_url": "SpinBlade2.png",
-    "id": "00000109"
+    "id": "0109"
   },
   {
     "class": "standard",
@@ -2806,7 +2806,7 @@
     "attack3": 240,
     "text": "SpinBlade cuts diag across field",
     "image_url": "SpinBlade3.png",
-    "id": "0000010A"
+    "id": "010A"
   },
   {
     "class": "standard",
@@ -2821,7 +2821,7 @@
     "attack3": 270,
     "text": "SpinBlade cuts diag across field",
     "image_url": "SpinBladeX.png",
-    "id": "00000142"
+    "id": "0142"
   },
   {
     "class": "standard",
@@ -2833,7 +2833,7 @@
     "attack": null,
     "text": "Emy w/ less than 100 HP are deleted",
     "image_url": "SF3_BC_115.png",
-    "id": "00000072"
+    "id": "0072"
   },
   {
     "class": "standard",
@@ -2845,7 +2845,7 @@
     "attack": null,
     "text": "Emy w/ less than 130 HP are deleted",
     "image_url": "SF3_BC_116.png",
-    "id": "00000073"
+    "id": "0073"
   },
   {
     "class": "standard",
@@ -2857,7 +2857,7 @@
     "attack": null,
     "text": "Emy w/ less than 160 HP are deleted",
     "image_url": "SF3_BC_117.png",
-    "id": "00000074"
+    "id": "0074"
   },
   {
     "class": "standard",
@@ -2869,7 +2869,7 @@
     "attack": null,
     "text": "Emy w/ less than 190 HP are deleted.",
     "image_url": "BlackHoleX.png",
-    "id": "00000136"
+    "id": "0136"
   },
   {
     "class": "standard",
@@ -2882,7 +2882,7 @@
     "attack": 30,
     "text": "Atk using grass pnls on field.",
     "image_url": "JngleStorm.png",
-    "id": "000000E5"
+    "id": "00E5"
   },
   {
     "class": "standard",
@@ -2895,7 +2895,7 @@
     "attack": 35,
     "text": "Atk using ice pnls on field.",
     "image_url": "SnoStorm.png",
-    "id": "000000E6"
+    "id": "00E6"
   },
   {
     "class": "standard",
@@ -2908,7 +2908,7 @@
     "attack": 40,
     "text": "Atk using poison pnls on field.",
     "image_url": "PoisnStorm.png",
-    "id": "000000E7"
+    "id": "00E7"
   },
   {
     "class": "standard",
@@ -2920,7 +2920,7 @@
     "attack": null,
     "text": "Cmd settings let you put 2 stones",
     "image_url": "SF3_BC_118.png",
-    "id": "00000077"
+    "id": "0077"
   },
   {
     "class": "standard",
@@ -2932,7 +2932,7 @@
     "attack": 200,
     "text": "Blow up all obstcls, dmg adj pnls",
     "image_url": "SF3_BC_119.png",
-    "id": "00000078"
+    "id": "0078"
   },
   {
     "class": "standard",
@@ -2944,7 +2944,7 @@
     "attack": null,
     "text": "Make row in front of you holes 3 trns",
     "image_url": "SF3_BC_120.png",
-    "id": "00000079"
+    "id": "0079"
   },
   {
     "class": "standard",
@@ -2956,7 +2956,7 @@
     "attack": null,
     "text": "For 3 turns, cut 2 rows from field",
     "image_url": "SF3_BC_121.png",
-    "id": "0000001D"
+    "id": "001D"
   },
   {
     "class": "standard",
@@ -2968,7 +2968,7 @@
     "attack": null,
     "text": "Make all pnls on field normal",
     "image_url": "SF3_BC_122.png",
-    "id": "0000007A"
+    "id": "007A"
   },
   {
     "class": "standard",
@@ -2980,7 +2980,7 @@
     "attack": null,
     "text": "Confuses emies on normal pnls 8 secs",
     "image_url": "SF3_BC_123.png",
-    "id": "00000012"
+    "id": "0012"
   },
   {
     "class": "standard",
@@ -2992,7 +2992,7 @@
     "attack": null,
     "text": "RecoVer 10 HP",
     "image_url": "SF3_BC_124.png",
-    "id": "0000007E"
+    "id": "007E"
   },
   {
     "class": "standard",
@@ -3004,7 +3004,7 @@
     "attack": null,
     "text": "RecoVer 30 HP",
     "image_url": "SF3_BC_125.png",
-    "id": "0000007F"
+    "id": "007F"
   },
   {
     "class": "standard",
@@ -3016,7 +3016,7 @@
     "attack": null,
     "text": "RecoVer 50 HP",
     "image_url": "SF3_BC_126.png",
-    "id": "00000080"
+    "id": "0080"
   },
   {
     "class": "standard",
@@ -3028,7 +3028,7 @@
     "attack": null,
     "text": "RecoVer 80 HP",
     "image_url": "SF3_BC_127.png",
-    "id": "00000081"
+    "id": "0081"
   },
   {
     "class": "standard",
@@ -3040,7 +3040,7 @@
     "attack": null,
     "text": "RecoVer 120 HP",
     "image_url": "SF3_BC_128.png",
-    "id": "00000082"
+    "id": "0082"
   },
   {
     "class": "standard",
@@ -3052,7 +3052,7 @@
     "attack": null,
     "text": "RecoVer 150 HP",
     "image_url": "SF3_BC_129.png",
-    "id": "00000083"
+    "id": "0083"
   },
   {
     "class": "standard",
@@ -3064,7 +3064,7 @@
     "attack": null,
     "text": "RecoVer 200 HP",
     "image_url": "SF3_BC_130.png",
-    "id": "00000084"
+    "id": "0084"
   },
   {
     "class": "standard",
@@ -3076,7 +3076,7 @@
     "attack": null,
     "text": "RecoVer 300 HP",
     "image_url": "SF3_BC_131.png",
-    "id": "00000085"
+    "id": "0085"
   },
   {
     "class": "standard",
@@ -3088,7 +3088,7 @@
     "attack": null,
     "text": "Barrier blocks most atks 1 time",
     "image_url": "SF3_BC_132.png",
-    "id": "00000086"
+    "id": "0086"
   },
   {
     "class": "standard",
@@ -3100,7 +3100,7 @@
     "attack": null,
     "text": "Barrier blocks most atks 5 times",
     "image_url": "SF3_BC_133.png",
-    "id": "00000087"
+    "id": "0087"
   },
   {
     "class": "standard",
@@ -3112,7 +3112,7 @@
     "attack": null,
     "text": "Absorbs all dmg less than 100",
     "image_url": "SF3_BC_134.png",
-    "id": "00000088"
+    "id": "0088"
   },
   {
     "class": "standard",
@@ -3124,7 +3124,7 @@
     "attack": null,
     "text": "Temp inVis. Most atks ineffectiVe",
     "image_url": "SF3_BC_135.png",
-    "id": "00000089"
+    "id": "0089"
   },
   {
     "class": "standard",
@@ -3136,7 +3136,7 @@
     "attack": null,
     "text": "Take no dmg during a Mega atk",
     "image_url": "MegaBoost.png",
-    "id": "0000010F"
+    "id": "010F"
   },
   {
     "class": "standard",
@@ -3148,7 +3148,7 @@
     "attack": null,
     "text": "Speeds up Custom Gauge",
     "image_url": "QuickGauge.png",
-    "id": "0000010B"
+    "id": "010B"
   },
   {
     "class": "standard",
@@ -3160,7 +3160,7 @@
     "attack": null,
     "text": "Restore norml Custom Gauge speed",
     "image_url": "NormlGauge.png",
-    "id": "0000010C"
+    "id": "010C"
   },
   {
     "class": "standard",
@@ -3172,7 +3172,7 @@
     "attack": null,
     "text": "Slows down Custom Gauge",
     "image_url": "SlowGauge.png",
-    "id": "0000010D"
+    "id": "010D"
   },
   {
     "class": "standard",
@@ -3184,7 +3184,7 @@
     "attack": null,
     "text": "MaxBstr & SprArmr. But also, HP Bug",
     "image_url": "WrrirSoul.png",
-    "id": "000000FA"
+    "id": "00FA"
   },
   {
     "class": "standard",
@@ -3197,7 +3197,7 @@
     "attack": null,
     "text": "Call all enemies to you",
     "image_url": "SF3_BC_136.png",
-    "id": "0000008A"
+    "id": "008A"
   },
   {
     "class": "standard",
@@ -3209,7 +3209,7 @@
     "attack": null,
     "text": "w/holey pnl copy last summon atk",
     "image_url": "CardReViVe.png",
-    "id": "0000010E"
+    "id": "010E"
   },
   {
     "class": "standard",
@@ -3221,7 +3221,7 @@
     "attack": null,
     "text": "Make opp M cards unusable Vs only",
     "image_url": "SF3_BC_137.png",
-    "id": "0000007C"
+    "id": "007C"
   },
   {
     "class": "standard",
@@ -3233,7 +3233,7 @@
     "attack": 150,
     "text": "VS only. Use Elmnt S card to unleash",
     "image_url": "SF3_BC_138.png",
-    "id": "0000008B"
+    "id": "008B"
   },
   {
     "class": "standard",
@@ -3245,7 +3245,7 @@
     "attack": 120,
     "text": "VS only. Use swrd crd trap sprngs",
     "image_url": "SF3_BC_139.png",
-    "id": "0000008C"
+    "id": "008C"
   },
   {
     "class": "standard",
@@ -3257,7 +3257,7 @@
     "attack": null,
     "text": "VS only. Use rcVr crd trap sprngs",
     "image_url": "SF3_BC_140.png",
-    "id": "0000008D"
+    "id": "008D"
   },
   {
     "class": "standard",
@@ -3269,7 +3269,7 @@
     "attack": null,
     "text": "VS only. M Summon crd trap sprngs",
     "image_url": "SF3_BC_141.png",
-    "id": "0000008E"
+    "id": "008E"
   },
   {
     "class": "standard",
@@ -3281,7 +3281,7 @@
     "attack": 300,
     "text": "VS only. Use Giga crd trap sprngs",
     "image_url": "SF3_BC_142.png",
-    "id": "0000008F"
+    "id": "008F"
   },
   {
     "class": "standard",
@@ -3293,7 +3293,7 @@
     "attack": null,
     "text": "Farthest 3x3 pnls change into grass",
     "image_url": "SF3_BC_143.png",
-    "id": "00000090"
+    "id": "0090"
   },
   {
     "class": "standard",
@@ -3305,7 +3305,7 @@
     "attack": null,
     "text": "Farthest 3x3 pnls change into ice",
     "image_url": "SF3_BC_144.png",
-    "id": "00000091"
+    "id": "0091"
   },
   {
     "class": "standard",
@@ -3317,7 +3317,7 @@
     "attack": null,
     "text": "Paralyze atk on far 3x3 panels",
     "image_url": "SF3_BC_145.png",
-    "id": "00000092"
+    "id": "0092"
   },
   {
     "class": "standard",
@@ -3329,7 +3329,7 @@
     "attack": null,
     "text": "Current pnl becomes 1/2 dmg HolyPnl",
     "image_url": "SF3_BC_146.png",
-    "id": "00000093"
+    "id": "0093"
   },
   {
     "class": "standard",
@@ -3341,7 +3341,7 @@
     "attack": null,
     "text": "Use crd when on pnl Atk pwr +10",
     "image_url": "SF3_BC_147.png",
-    "id": "00000094"
+    "id": "0094"
   },
   {
     "class": "standard",
@@ -3353,7 +3353,7 @@
     "attack": null,
     "text": "Turn entire field into poisn panels",
     "image_url": "AllPoison.png",
-    "id": "000000FD"
+    "id": "00FD"
   },
   {
     "class": "standard",
@@ -3365,7 +3365,7 @@
     "attack": null,
     "text": "If preVious is atk card, add imoblz",
     "image_url": "SF3_BC_148.png",
-    "id": "0000007D"
+    "id": "007D"
   },
   {
     "class": "standard",
@@ -3377,7 +3377,7 @@
     "attack": null,
     "text": "If preVious is atk card, add paralyz",
     "image_url": "SF3_BC_149.png",
-    "id": "00000095"
+    "id": "0095"
   },
   {
     "class": "standard",
@@ -3389,7 +3389,7 @@
     "attack": null,
     "text": "If preVious is atk card, +10 to atk",
     "image_url": "SF3_BC_150.png",
-    "id": "00000096"
+    "id": "0096"
   },
   {
     "class": "standard",
@@ -3401,7 +3401,7 @@
     "attack": null,
     "text": "+30 atk pwr to Fire elm cards",
     "image_url": "Fire_30.png",
-    "id": "000000FE"
+    "id": "00FE"
   },
   {
     "class": "standard",
@@ -3413,7 +3413,7 @@
     "attack": null,
     "text": "+30 atk pwr to Aqua elm cards",
     "image_url": "Aqua_30.png",
-    "id": "000000FF"
+    "id": "00FF"
   },
   {
     "class": "standard",
@@ -3425,7 +3425,7 @@
     "attack": null,
     "text": "+30 atk pwr to Elec elm cards",
     "image_url": "Elec_30.png",
-    "id": "00000100"
+    "id": "0100"
   },
   {
     "class": "standard",
@@ -3437,7 +3437,7 @@
     "attack": null,
     "text": "+30 atk pwr to Wood elm cards",
     "image_url": "Wood_30.png",
-    "id": "00000101"
+    "id": "0101"
   },
   {
     "class": "mega",
@@ -3450,7 +3450,7 @@
     "attack": 60,
     "text": "SpadeMgnes slices twice max 2 hits",
     "image_url": "SF3_BC_M001.png",
-    "id": "00000097"
+    "id": "0097"
   },
   {
     "class": "mega",
@@ -3463,7 +3463,7 @@
     "attack": 90,
     "text": "SpadeMgnes slices twice max 2 hits",
     "image_url": "SF3_BC_M002.png",
-    "id": "00000098"
+    "id": "0098"
   },
   {
     "class": "mega",
@@ -3476,7 +3476,7 @@
     "attack": 130,
     "text": "SpadeMgnes slices twice max 2 hits",
     "image_url": "SF3_BC_M003.png",
-    "id": "00000099"
+    "id": "0099"
   },
   {
     "class": "mega",
@@ -3489,7 +3489,7 @@
     "attack": 170,
     "text": "SpadeMgnes slices twice max 2 hits",
     "image_url": "Xxx_spade_magnetsX.png",
-    "id": "00000168"
+    "id": "0168"
   },
   {
     "class": "mega",
@@ -3502,7 +3502,7 @@
     "attack": 40,
     "text": "Diamond Dust diagonal 3-hit atk",
     "image_url": "SF3_BC_M004.png",
-    "id": "0000009A"
+    "id": "009A"
   },
   {
     "class": "mega",
@@ -3515,7 +3515,7 @@
     "attack": 50,
     "text": "Diamond Dust diagonal 3-hit atk",
     "image_url": "SF3_BC_M005.png",
-    "id": "0000009B"
+    "id": "009B"
   },
   {
     "class": "mega",
@@ -3528,7 +3528,7 @@
     "attack": 80,
     "text": "Diamond Dust diagonal 3-hit atk",
     "image_url": "SF3_BC_M006.png",
-    "id": "0000009C"
+    "id": "009C"
   },
   {
     "class": "mega",
@@ -3541,7 +3541,7 @@
     "attack": 100,
     "text": "Diamond Dust diagonal 3-hit atk",
     "image_url": "Xxx_diamond_iceX.png",
-    "id": "00000169"
+    "id": "0169"
   },
   {
     "class": "mega",
@@ -3554,7 +3554,7 @@
     "attack": 20,
     "text": "SwingStrmAtk that pwrs up on grass pnl",
     "image_url": "SF3_BC_M007.png",
-    "id": "0000009D"
+    "id": "009D"
   },
   {
     "class": "mega",
@@ -3567,7 +3567,7 @@
     "attack": 25,
     "text": "SwingStrmAtk that pwrs up on grass pnl",
     "image_url": "SF3_BC_M008.png",
-    "id": "0000009E"
+    "id": "009E"
   },
   {
     "class": "mega",
@@ -3580,7 +3580,7 @@
     "attack": 40,
     "text": "SwingStrmAtk that pwrs up on grass pnl",
     "image_url": "SF3_BC_M009.png",
-    "id": "0000009F"
+    "id": "009F"
   },
   {
     "class": "mega",
@@ -3593,7 +3593,7 @@
     "attack": 50,
     "text": "SwingStrmAtk that pwrs up on grass pnl",
     "image_url": "Xxx_club_strongX.png",
-    "id": "0000016A"
+    "id": "016A"
   },
   {
     "class": "mega",
@@ -3606,7 +3606,7 @@
     "attack": 60,
     "text": "HydroDrgnAtk hits more w/ proximity",
     "image_url": "SF3_BC_M010.png",
-    "id": "000000A0"
+    "id": "00A0"
   },
   {
     "class": "mega",
@@ -3619,7 +3619,7 @@
     "attack": 80,
     "text": "HydroDrgnAtk hits more w/ proximity",
     "image_url": "SF3_BC_M011.png",
-    "id": "000000A1"
+    "id": "00A1"
   },
   {
     "class": "mega",
@@ -3632,7 +3632,7 @@
     "attack": 100,
     "text": "HydroDrgnAtk hits more w/ proximity",
     "image_url": "SF3_BC_M012.png",
-    "id": "000000A2"
+    "id": "00A2"
   },
   {
     "class": "mega",
@@ -3645,7 +3645,7 @@
     "attack": 120,
     "text": "HydroDrgnAtk hits more w/ proximity",
     "image_url": "Xxx_queen_VirgoX.png",
-    "id": "0000016B"
+    "id": "016B"
   },
   {
     "class": "mega",
@@ -3657,7 +3657,7 @@
     "attack": 150,
     "text": "2-pnl claw atk on 3 far side cols",
     "image_url": "SF3_BC_M013.png",
-    "id": "000000A3"
+    "id": "00A3"
   },
   {
     "class": "mega",
@@ -3669,7 +3669,7 @@
     "attack": 180,
     "text": "2-pnl claw atk on 3 far side cols",
     "image_url": "SF3_BC_M014.png",
-    "id": "000000A4"
+    "id": "00A4"
   },
   {
     "class": "mega",
@@ -3681,7 +3681,7 @@
     "attack": 300,
     "text": "2-pnl claw atk on 3 far side cols",
     "image_url": "SF3_BC_M015.png",
-    "id": "000000A5"
+    "id": "00A5"
   },
   {
     "class": "mega",
@@ -3693,7 +3693,7 @@
     "attack": 380,
     "text": "2-pnl claw atk on 3 far side cols",
     "image_url": "Xxx_jack_corVus_X.png",
-    "id": "0000016C"
+    "id": "016C"
   },
   {
     "class": "mega",
@@ -3706,7 +3706,7 @@
     "attack": 160,
     "text": "Atk w/ total of 3 gigaton buildings",
     "image_url": "SF3_BC_M016.png",
-    "id": "000000A6"
+    "id": "00A6"
   },
   {
     "class": "mega",
@@ -3719,7 +3719,7 @@
     "attack": 190,
     "text": "Atk w/ total of 3 gigaton buildings",
     "image_url": "SF3_BC_M017.png",
-    "id": "000000A7"
+    "id": "00A7"
   },
   {
     "class": "mega",
@@ -3732,7 +3732,7 @@
     "attack": 270,
     "text": "Atk w/ total of 3 gigaton buildings",
     "image_url": "SF3_BC_M018.png",
-    "id": "000000A8"
+    "id": "00A8"
   },
   {
     "class": "mega",
@@ -3745,7 +3745,7 @@
     "attack": 350,
     "text": "Atk w/ total of 3 gigaton buildings",
     "image_url": "Xxx_dread_jokerX.png",
-    "id": "0000016D"
+    "id": "016D"
   },
   {
     "class": "mega",
@@ -3759,7 +3759,7 @@
     "attack": 140,
     "text": "Slash 1 emy w/ lock-on sword",
     "image_url": "SF3_BC_M019.png",
-    "id": "000000A9"
+    "id": "00A9"
   },
   {
     "class": "mega",
@@ -3773,7 +3773,7 @@
     "attack": 170,
     "text": "Slash 1 emy w/ lock-on sword",
     "image_url": "SF3_BC_M020.png",
-    "id": "000000AA"
+    "id": "00AA"
   },
   {
     "class": "mega",
@@ -3787,7 +3787,7 @@
     "attack": 220,
     "text": "Slash 1 emy w/ lock-on sword",
     "image_url": "SF3_BC_M021.png",
-    "id": "000000AB"
+    "id": "00AB"
   },
   {
     "class": "mega",
@@ -3801,7 +3801,7 @@
     "attack": 280,
     "text": "Slash 1 emy w/ lock-on sword",
     "image_url": "Xxx_acid_aceX.png",
-    "id": "0000016E"
+    "id": "016E"
   },
   {
     "class": "mega",
@@ -3813,7 +3813,7 @@
     "attack": 100,
     "text": "TaurusFire coVers field in flames",
     "image_url": "SF3_BC_M022.png",
-    "id": "000000AC"
+    "id": "00AC"
   },
   {
     "class": "mega",
@@ -3825,7 +3825,7 @@
     "attack": 150,
     "text": "TaurusFire coVers field in flames",
     "image_url": "SF3_BC_M023.png",
-    "id": "000000AD"
+    "id": "00AD"
   },
   {
     "class": "mega",
@@ -3837,7 +3837,7 @@
     "attack": 220,
     "text": "TaurusFire coVers field in flames",
     "image_url": "SF3_BC_M024.png",
-    "id": "000000AE"
+    "id": "00AE"
   },
   {
     "class": "mega",
@@ -3849,7 +3849,7 @@
     "attack": 280,
     "text": "TaurusFire coVers field in flames",
     "image_url": "Xxx_taurus_fireX.png",
-    "id": "0000016F"
+    "id": "016F"
   },
   {
     "class": "mega",
@@ -3863,7 +3863,7 @@
     "attack": 130,
     "text": "CygnusWing dances round field edge",
     "image_url": "SF3_BC_M025.png",
-    "id": "000000AF"
+    "id": "00AF"
   },
   {
     "class": "mega",
@@ -3877,7 +3877,7 @@
     "attack": 170,
     "text": "CygnusWing dances round field edge",
     "image_url": "SF3_BC_M026.png",
-    "id": "000000B0"
+    "id": "00B0"
   },
   {
     "class": "mega",
@@ -3891,7 +3891,7 @@
     "attack": 240,
     "text": "CygnusWing dances round field edge",
     "image_url": "SF3_BC_M027.png",
-    "id": "000000B1"
+    "id": "00B1"
   },
   {
     "class": "mega",
@@ -3905,7 +3905,7 @@
     "attack": 300,
     "text": "CygnusWing dances round field edge",
     "image_url": "Xxx_cygnus_wingX.png",
-    "id": "00000170"
+    "id": "0170"
   },
   {
     "class": "mega",
@@ -3918,7 +3918,7 @@
     "attack": 80,
     "text": "Dart to emy, slice row, then upper",
     "image_url": "SF3_BC_M028.png",
-    "id": "000000B2"
+    "id": "00B2"
   },
   {
     "class": "mega",
@@ -3931,7 +3931,7 @@
     "attack": 100,
     "text": "Dart to emy, slice row, then upper",
     "image_url": "SF3_BC_M029.png",
-    "id": "000000B3"
+    "id": "00B3"
   },
   {
     "class": "mega",
@@ -3944,7 +3944,7 @@
     "attack": 140,
     "text": "Dart to emy, slice row, then upper",
     "image_url": "SF3_BC_M030.png",
-    "id": "000000B4"
+    "id": "00B4"
   },
   {
     "class": "mega",
@@ -3957,7 +3957,7 @@
     "attack": 180,
     "text": "Dart to emy, slice row, then upper",
     "image_url": "Xxx_wolf_woodsX.png",
-    "id": "00000171"
+    "id": "0171"
   },
   {
     "class": "mega",
@@ -3969,7 +3969,7 @@
     "attack": 130,
     "text": "Phantom atks fwd pnl with Phantom Claw",
     "image_url": "SF3_BC_M031.png",
-    "id": "000000B5"
+    "id": "00B5"
   },
   {
     "class": "mega",
@@ -3981,7 +3981,7 @@
     "attack": 200,
     "text": "Phantom atks fwd pnl with Phantom Claw",
     "image_url": "SF3_BC_M032.png",
-    "id": "000000B6"
+    "id": "00B6"
   },
   {
     "class": "mega",
@@ -3993,7 +3993,7 @@
     "attack": 300,
     "text": "Phantom atks fwd pnl with Phantom Claw",
     "image_url": "SF3_BC_M033.png",
-    "id": "000000B7"
+    "id": "00B7"
   },
   {
     "class": "mega",
@@ -4005,7 +4005,7 @@
     "attack": 350,
     "text": "Phantom atks fwd pnl with Phantom Claw",
     "image_url": "Xxx_dark_phantomX.png",
-    "id": "00000172"
+    "id": "0172"
   },
   {
     "class": "mega",
@@ -4018,7 +4018,7 @@
     "attack": 40,
     "text": "4-shot consecutiVe fwd attack",
     "image_url": "SF3_BC_M034.png",
-    "id": "000000B8"
+    "id": "00B8"
   },
   {
     "class": "mega",
@@ -4031,7 +4031,7 @@
     "attack": 50,
     "text": "4-shot consecutiVe fwd attack",
     "image_url": "SF3_BC_M035.png",
-    "id": "000000B9"
+    "id": "00B9"
   },
   {
     "class": "mega",
@@ -4044,7 +4044,7 @@
     "attack": 70,
     "text": "4-shot consecutiVe fwd attack",
     "image_url": "SF3_BC_M036.png",
-    "id": "000000BA"
+    "id": "00BA"
   },
   {
     "class": "mega",
@@ -4057,7 +4057,7 @@
     "attack": 90,
     "text": "4-shot consecutiVe fwd attack",
     "image_url": "Xxx_rogueX.png",
-    "id": "00000173"
+    "id": "0173"
   },
   {
     "class": "mega",
@@ -4070,7 +4070,7 @@
     "attack": 100,
     "text": "Lft 3-col or right 1-col cutter atk",
     "image_url": "SF3_BC_M037.png",
-    "id": "000000BB"
+    "id": "00BB"
   },
   {
     "class": "mega",
@@ -4083,7 +4083,7 @@
     "attack": 120,
     "text": "Lft 3-col or right 1-col cutter atk",
     "image_url": "SF3_BC_M038.png",
-    "id": "000000BC"
+    "id": "00BC"
   },
   {
     "class": "mega",
@@ -4096,7 +4096,7 @@
     "attack": 140,
     "text": "Lft 3-col or right 1-col cutter atk",
     "image_url": "SF3_BC_M039.png",
-    "id": "000000BD"
+    "id": "00BD"
   },
   {
     "class": "mega",
@@ -4109,7 +4109,7 @@
     "attack": 180,
     "text": "Lft 3-col or right 1-col cutter atk",
     "image_url": "Xxx_moon_destroyerX.png",
-    "id": "00000174"
+    "id": "0174"
   },
   {
     "class": "mega",
@@ -4121,7 +4121,7 @@
     "attack": 170,
     "text": "Solar Flare atk on fwd 3x3 pnls",
     "image_url": "SF3_BC_M040.png",
-    "id": "000000BE"
+    "id": "00BE"
   },
   {
     "class": "mega",
@@ -4133,7 +4133,7 @@
     "attack": 200,
     "text": "Solar Flare atk on fwd 3x3 pnls",
     "image_url": "SF3_BC_M041.png",
-    "id": "000000BF"
+    "id": "00BF"
   },
   {
     "class": "mega",
@@ -4145,7 +4145,7 @@
     "attack": 250,
     "text": "Solar Flare atk on fwd 3x3 pnls",
     "image_url": "SF3_BC_M042.png",
-    "id": "000000C0"
+    "id": "00C0"
   },
   {
     "class": "mega",
@@ -4157,7 +4157,7 @@
     "attack": 330,
     "text": "Fwd 3x3 Solar Flare attack",
     "image_url": "Xxx_apollo_flameX.png",
-    "id": "00000175"
+    "id": "0175"
   },
   {
     "class": "mega",
@@ -4169,7 +4169,7 @@
     "attack": 120,
     "text": "Satellite Blazer atk on 3x4 pnls",
     "image_url": "SF3_BC_M043.png",
-    "id": "000000C1"
+    "id": "00C1"
   },
   {
     "class": "mega",
@@ -4181,7 +4181,7 @@
     "attack": 160,
     "text": "Satellite Blazer atk on 3x4 pnls",
     "image_url": "SF3_BC_M044.png",
-    "id": "000000C2"
+    "id": "00C2"
   },
   {
     "class": "mega",
@@ -4193,7 +4193,7 @@
     "attack": 200,
     "text": "Satellite Blazer atk on 3x4 pnls",
     "image_url": "SF3_BC_M045.png",
-    "id": "000000C3"
+    "id": "00C3"
   },
   {
     "class": "mega",
@@ -4205,7 +4205,7 @@
     "attack": 250,
     "text": "Satellite Blazer atk on 3x4 pnls",
     "image_url": "Xxx_sirusX.png",
-    "id": "00000176"
+    "id": "0176"
   },
   {
     "class": "mega",
@@ -4217,7 +4217,7 @@
     "attack": null,
     "text": "3 rdm shots frm out-of-ctrl Acid",
     "image_url": "BC_Mega_AcidArrest.png",
-    "id": "000000CF"
+    "id": "00CF"
   },
   {
     "class": "mega",
@@ -4229,7 +4229,7 @@
     "attack": 120,
     "text": "Atk 3x3 pnls w/ 6 snoball rounds",
     "image_url": "Xxx_yeti_blizzard.png",
-    "id": "00000144"
+    "id": "0144"
   },
   {
     "class": "mega",
@@ -4241,7 +4241,7 @@
     "attack": 150,
     "text": "Atk 3x3 pnls w/ 6 snoball rounds",
     "image_url": "Xxx_yeti_blizzardV2.png",
-    "id": "00000145"
+    "id": "0145"
   },
   {
     "class": "mega",
@@ -4253,7 +4253,7 @@
     "attack": 200,
     "text": "Atk 3x3 pnls w/ 6 snoball rounds",
     "image_url": "Xxx_yeti_blizzardV3.png",
-    "id": "00000146"
+    "id": "0146"
   },
   {
     "class": "mega",
@@ -4265,7 +4265,7 @@
     "attack": 250,
     "text": "Atk 3x3 pnls w/ 6 snoball rounds",
     "image_url": "Xxx_yeti_blizzardX.png",
-    "id": "00000177"
+    "id": "0177"
   },
   {
     "class": "mega",
@@ -4277,7 +4277,7 @@
     "attack": 150,
     "text": "Hit nearest emy's row w/Aqua Fang",
     "image_url": "Xxx_plesio_surf.png",
-    "id": "00000147"
+    "id": "0147"
   },
   {
     "class": "mega",
@@ -4289,7 +4289,7 @@
     "attack": 200,
     "text": "Hit nearest emy's row w/Aqua Fang",
     "image_url": "Xxx_plesio_surfV2.png",
-    "id": "00000148"
+    "id": "0148"
   },
   {
     "class": "mega",
@@ -4301,7 +4301,7 @@
     "attack": 250,
     "text": "Hit nearest emy's row w/Aqua Fang",
     "image_url": "Xxx_plesio_surfV3.png",
-    "id": "00000149"
+    "id": "0149"
   },
   {
     "class": "mega",
@@ -4313,7 +4313,7 @@
     "attack": 320,
     "text": "Hit nearest emy's row w/Aqua Fang",
     "image_url": "Xxx_plesio_surfX.png",
-    "id": "00000178"
+    "id": "0178"
   },
   {
     "class": "mega",
@@ -4325,7 +4325,7 @@
     "attack": 40,
     "text": "3-shot misle atk straight down 3 rows",
     "image_url": "Xxx_terra_condor.png",
-    "id": "0000014A"
+    "id": "014A"
   },
   {
     "class": "mega",
@@ -4337,7 +4337,7 @@
     "attack": 60,
     "text": "3-shot misle atk straight down 3 rows",
     "image_url": "Xxx_terra_condorV2.png",
-    "id": "0000014B"
+    "id": "014B"
   },
   {
     "class": "mega",
@@ -4349,7 +4349,7 @@
     "attack": 80,
     "text": "3-shot misle atk straight down 3 rows",
     "image_url": "Xxx_terra_condorV3.png",
-    "id": "0000014C"
+    "id": "014C"
   },
   {
     "class": "mega",
@@ -4361,7 +4361,7 @@
     "attack": 100,
     "text": "3-shot misle atk straight down 3 rows",
     "image_url": "Xxx_terra_condorX.png",
-    "id": "00000179"
+    "id": "0179"
   },
   {
     "class": "mega",
@@ -4374,7 +4374,7 @@
     "attack": 140,
     "text": "2 columns atk. Left 2 if frm cntr.",
     "image_url": "Xxx_queen_ophiuca.png",
-    "id": "0000014D"
+    "id": "014D"
   },
   {
     "class": "mega",
@@ -4387,7 +4387,7 @@
     "attack": 180,
     "text": "2 columns atk. Left 2 if frm cntr",
     "image_url": "Xxx_queen_ophiucaV2.png",
-    "id": "0000014E"
+    "id": "014E"
   },
   {
     "class": "mega",
@@ -4400,7 +4400,7 @@
     "attack": 230,
     "text": "2 columns atk. Left 2 if frm cntr.",
     "image_url": "Xxx_queen_ophiucaV3.png",
-    "id": "0000014F"
+    "id": "014F"
   },
   {
     "class": "mega",
@@ -4413,7 +4413,7 @@
     "attack": 300,
     "text": "2 columns atk. Left 2 if frm cntr",
     "image_url": "Xxx_queen_ophiucaX.png",
-    "id": "0000017A"
+    "id": "017A"
   },
   {
     "class": "mega",
@@ -4427,7 +4427,7 @@
     "attack": 70,
     "text": "GeminiSpark tagteam pnch and slice",
     "image_url": "Xxx_gemini_spark.png",
-    "id": "00000150"
+    "id": "0150"
   },
   {
     "class": "mega",
@@ -4441,7 +4441,7 @@
     "attack": 80,
     "text": "GeminiSpark tagteam pnch and slice",
     "image_url": "Xxx_gemini_sparkV2.png",
-    "id": "00000151"
+    "id": "0151"
   },
   {
     "class": "mega",
@@ -4455,7 +4455,7 @@
     "attack": 100,
     "text": "GeminiSpark tagteam pnch and slice",
     "image_url": "Xxx_gemini_sparkV3.png",
-    "id": "00000152"
+    "id": "0152"
   },
   {
     "class": "mega",
@@ -4469,7 +4469,7 @@
     "attack": 150,
     "text": "GeminiSpark tagteam pnch and slice",
     "image_url": "Xxx_gemini_sparkX.png",
-    "id": "0000017B"
+    "id": "017B"
   },
   {
     "class": "mega",
@@ -4481,7 +4481,7 @@
     "attack": 130,
     "text": "From nearest enemy, 3x2 tidal waVe",
     "image_url": "Xxx_cancer_bubble.png",
-    "id": "00000153"
+    "id": "0153"
   },
   {
     "class": "mega",
@@ -4493,7 +4493,7 @@
     "attack": 170,
     "text": "From nearest enemy, 3x2 tidal waVe",
     "image_url": "Xxx_cancer_bubbleV2.png",
-    "id": "00000154"
+    "id": "0154"
   },
   {
     "class": "mega",
@@ -4505,7 +4505,7 @@
     "attack": 220,
     "text": "From nearest enemy, 3x2 tidal waVe",
     "image_url": "Xxx_cancer_bubbleV3.png",
-    "id": "00000155"
+    "id": "0155"
   },
   {
     "class": "mega",
@@ -4517,7 +4517,7 @@
     "attack": 280,
     "text": "From nearest enemy, 3x2 tidal waVe",
     "image_url": "Xxx_cancer_bubbleX.png",
-    "id": "0000017C"
+    "id": "017C"
   },
   {
     "class": "mega",
@@ -4530,7 +4530,7 @@
     "attack": 140,
     "text": "Unblockable 3-column rush attack",
     "image_url": "Xxx_general_auriga.png",
-    "id": "00000156"
+    "id": "0156"
   },
   {
     "class": "mega",
@@ -4543,7 +4543,7 @@
     "attack": 180,
     "text": "Unblockable 3-column rush attack",
     "image_url": "Xxx_general_aurigaV2.png",
-    "id": "00000157"
+    "id": "0157"
   },
   {
     "class": "mega",
@@ -4556,7 +4556,7 @@
     "attack": 220,
     "text": "Unblockable 3-column rush attack",
     "image_url": "Xxx_general_aurigaV3.png",
-    "id": "00000158"
+    "id": "0158"
   },
   {
     "class": "mega",
@@ -4569,7 +4569,7 @@
     "attack": 300,
     "text": "Unblockable 3-column rush attack",
     "image_url": "Xxx_general_aurigaX.png",
-    "id": "0000017D"
+    "id": "017D"
   },
   {
     "class": "mega",
@@ -4581,7 +4581,7 @@
     "attack": 70,
     "text": "2-hit Fire, Aqua on last and 1st row",
     "image_url": "Xxx_libra_scales.png",
-    "id": "00000159"
+    "id": "0159"
   },
   {
     "class": "mega",
@@ -4593,7 +4593,7 @@
     "attack": 90,
     "text": "2-hit Fire, Aqua on last and 1st row",
     "image_url": "Xxx_libra_scalesV2.png",
-    "id": "0000015A"
+    "id": "015A"
   },
   {
     "class": "mega",
@@ -4605,7 +4605,7 @@
     "attack": 120,
     "text": "2-hit Fire, Aqua on last and 1st row",
     "image_url": "Xxx_libra_scalesV3.png",
-    "id": "0000015B"
+    "id": "015B"
   },
   {
     "class": "mega",
@@ -4617,7 +4617,7 @@
     "attack": 160,
     "text": "2-hit Fire, Aqua on last and 1st row",
     "image_url": "Xxx_libra_scalesX.png",
-    "id": "0000017E"
+    "id": "017E"
   },
   {
     "class": "mega",
@@ -4629,7 +4629,7 @@
     "attack": 150,
     "text": "2nd to last row center, X lightng atk",
     "image_url": "Xxx_crown_thunder.png",
-    "id": "0000015C"
+    "id": "015C"
   },
   {
     "class": "mega",
@@ -4641,7 +4641,7 @@
     "attack": 200,
     "text": "2nd to last row center, X lightng atk",
     "image_url": "Xxx_crown_thunderV2.png",
-    "id": "0000015D"
+    "id": "015D"
   },
   {
     "class": "mega",
@@ -4653,7 +4653,7 @@
     "attack": 300,
     "text": "2nd to last row center, X lightng atk",
     "image_url": "Xxx_crown_thunderV3.png",
-    "id": "0000015E"
+    "id": "015E"
   },
   {
     "class": "mega",
@@ -4665,7 +4665,7 @@
     "attack": 400,
     "text": "2nd to last row center, X lightng atk",
     "image_url": "Xxx_crown_thunderX.png",
-    "id": "0000017F"
+    "id": "017F"
   },
   {
     "class": "mega",
@@ -4678,7 +4678,7 @@
     "attack": 160,
     "text": "Rush atk w/RocktLnch &GraVRockt",
     "image_url": "Xxx_rocket_launch.png",
-    "id": "0000015F"
+    "id": "015F"
   },
   {
     "class": "mega",
@@ -4691,7 +4691,7 @@
     "attack": 210,
     "text": "Rush atk w/RocktLnch &GraVRockt",
     "image_url": "Xxx_rocket_launchV2.png",
-    "id": "00000160"
+    "id": "0160"
   },
   {
     "class": "mega",
@@ -4704,7 +4704,7 @@
     "attack": 260,
     "text": "Rush atk w/RocktLnch &GraVRockt",
     "image_url": "Xxx_rocket_launchV3.png",
-    "id": "00000161"
+    "id": "0161"
   },
   {
     "class": "mega",
@@ -4717,7 +4717,7 @@
     "attack": 340,
     "text": "Rush atk w/RocktLnch &GraVRockt",
     "image_url": "Xxx_rocket_launchX.png",
-    "id": "00000180"
+    "id": "0180"
   },
   {
     "class": "mega",
@@ -4730,7 +4730,7 @@
     "attack": 200,
     "text": "HeaVily Dmg 1 emy w/ DiamndIceHmr",
     "image_url": "Xxx_ice_hammer.png",
-    "id": "00000162"
+    "id": "0162"
   },
   {
     "class": "mega",
@@ -4743,7 +4743,7 @@
     "attack": 250,
     "text": "HeaVily Dmg 1 emy w/ DiamndIceHmr",
     "image_url": "Xxx_ice_hammerV2.png",
-    "id": "00000163"
+    "id": "0163"
   },
   {
     "class": "mega",
@@ -4756,7 +4756,7 @@
     "attack": 300,
     "text": "HeaVily Dmg 1 emy w/ DiamndIceHmr",
     "image_url": "Xxx_ice_hammerV3.png",
-    "id": "00000164"
+    "id": "0164"
   },
   {
     "class": "mega",
@@ -4769,7 +4769,7 @@
     "attack": 370,
     "text": "HeaVily Dmg 1 emy w/ DiamndIceHmr",
     "image_url": "Xxx_ice_hammerX.png",
-    "id": "00000181"
+    "id": "0181"
   },
   {
     "class": "mega",
@@ -4782,7 +4782,7 @@
     "attack": 50,
     "text": "Smack fwd 3 rows a total of 10 times",
     "image_url": "Xxx_strong_swing.png",
-    "id": "00000165"
+    "id": "0165"
   },
   {
     "class": "mega",
@@ -4795,7 +4795,7 @@
     "attack": 60,
     "text": "Smack fwd 3 rows a total of 10 times",
     "image_url": "Xxx_strong_swingV2.png",
-    "id": "00000166"
+    "id": "0166"
   },
   {
     "class": "mega",
@@ -4808,7 +4808,7 @@
     "attack": 70,
     "text": "Smack fwd 3 rows a total of 10 times",
     "image_url": "Xxx_strong_swingV3.png",
-    "id": "00000167"
+    "id": "0167"
   },
   {
     "class": "mega",
@@ -4821,7 +4821,7 @@
     "attack": 90,
     "text": "Smack fwd 3 rows a total of 10 times",
     "image_url": "Xxx_strong_swingX.png",
-    "id": "00000182"
+    "id": "0182"
   },
   {
     "class": "giga",
@@ -5087,7 +5087,7 @@
     "attack": 450,
     "text": "3-pnl wide fwd center break attack",
     "image_url": "BC_Giga_WingBlade.png",
-    "id": "000000C4"
+    "id": "00C4"
   },
   {
     "class": "giga",
@@ -5099,7 +5099,7 @@
     "attack": null,
     "text": "Del if below 250HP:Virus,500HP:boss.",
     "image_url": "G2a_darknesshole.png",
-    "id": "000000C5"
+    "id": "00C5"
   },
   {
     "class": "giga",
@@ -5127,7 +5127,7 @@
     "attack": 20,
     "text": "Mad 24-shot MilliKick attack.",
     "image_url": "G3a_thousandkick.png",
-    "id": "000000C6"
+    "id": "00C6"
   },
   {
     "class": "giga",
@@ -5139,7 +5139,7 @@
     "attack": 600,
     "text": "Set unblockable bmb atk 2 pnls ahd.",
     "image_url": "G4a_breakcountbomb.png",
-    "id": "00000C7"
+    "id": "00C7"
   },
   {
     "class": "giga",
@@ -5168,7 +5168,7 @@
     "attack": null,
     "text": "Regenerate wall of Mu w/each moVe",
     "image_url": "G5a_murejection.png",
-    "id": "000000C8"
+    "id": "00C8"
   },
   {
     "class": "giga",
@@ -5180,7 +5180,7 @@
     "attack": 30,
     "text": "Crack 3 fwd pnls w/DreadMeteorLaser",
     "image_url": "G1j_gmeteorlaser.png",
-    "id": "000000C9"
+    "id": "00C9"
   },
   {
     "class": "giga",
@@ -5192,7 +5192,7 @@
     "attack": 50,
     "text": "Hit all enemies on normal pnls",
     "image_url": "G2j_destroymissile.png",
-    "id": "000000CA"
+    "id": "00CA"
   },
   {
     "class": "giga",
@@ -5220,7 +5220,7 @@
     "attack": null,
     "text": "Rapd & Chrg: max pwr. atk: max+",
     "image_url": "G3j_bustermax.png",
-    "id": "000000CB"
+    "id": "00CB"
   },
   {
     "class": "giga",
@@ -5232,7 +5232,7 @@
     "attack": 520,
     "text": "OxTackle all enemies in 1 column.",
     "image_url": "G4j_oxtackle.png",
-    "id": "000000CC"
+    "id": "00CC"
   },
   {
     "class": "giga",
@@ -5261,7 +5261,7 @@
     "attack": null,
     "text": "Mirror sucks HP of emies on same col",
     "image_url": "G5j_dopplemirror.png",
-    "id": "000000CD"
+    "id": "00CD"
   },
   {
     "class": "giga",
@@ -5273,7 +5273,7 @@
     "attack": 300,
     "text": "Dbl shot of CrimsnDragn DstryrBreath",
     "image_url": "BC_Giga_CrmsnMteor.png",
-    "id": "000000CE"
+    "id": "00CE"
   },
   {
     "class": "giga",
@@ -5484,7 +5484,7 @@
     "attack": 450,
     "text": "Pegasus Freeze far 3x3 panels!",
     "image_url": "Sf3_pegasus_magicGX.PNG",
-    "id": "00000183"
+    "id": "0183"
   },
   {
     "class": "giga",
@@ -5496,7 +5496,7 @@
     "attack": 40,
     "text": "Leo Blazer far 3x3 panels!",
     "image_url": "Sf3_leo_kingdomGX.PNG",
-    "id": "00000184"
+    "id": "0184"
   },
   {
     "class": "giga",
@@ -5509,7 +5509,7 @@
     "attack": 50,
     "text": "Dragon Cyclone far 3x3 panels!",
     "image_url": "Sf3_dragon_skyGX.PNG",
-    "id": "00000185"
+    "id": "0185"
   },
   {
     "class": "giga",
@@ -5521,7 +5521,7 @@
     "attack": 550,
     "text": "Shoot a laser beam dwn a col.",
     "image_url": "Sf3_Gorgon_eye.PNG",
-    "id": "00000186"
+    "id": "0186"
   },
   {
     "class": "giga",
@@ -5549,7 +5549,7 @@
     "attack": 400,
     "text": "Gemini Thunder cntr col!",
     "image_url": "Sf3_gemini_thunder.PNG",
-    "id": "00000187"
+    "id": "0187"
   },
   {
     "class": "giga",
@@ -5579,7 +5579,7 @@
     "attack": 450,
     "text": "Far 3x3 pnl sword attack RogueBreak.",
     "image_url": "Sf3_Rogue_break.PNG",
-    "id": "00000188"
+    "id": "0188"
   },
   {
     "class": "giga",
@@ -5609,7 +5609,7 @@
     "attack": 80,
     "text": "Wipe out entire field w/AValanche.",
     "image_url": "Sf3_aValanche.PNG",
-    "id": "00000189"
+    "id": "0189"
   },
   {
     "class": "giga",
@@ -5638,7 +5638,7 @@
     "attack": 500,
     "text": "2-column high-speed ram attack.",
     "image_url": "Sf3_Flying_impact.PNG",
-    "id": "0000018A"
+    "id": "018A"
   },
   {
     "class": "giga",
@@ -5667,7 +5667,7 @@
     "attack": 400,
     "text": "Tidal waVe wash all obj from field.",
     "image_url": "Sf3_turrent_waVe.PNG",
-    "id": "0000018B"
+    "id": "018B"
   },
   {
     "class": "giga",
@@ -5695,7 +5695,7 @@
     "attack": 90,
     "text": "Emerge 3 pnl ahead & atk adjacnt pnls",
     "image_url": "Xxx_holy_light_ga.png",
-    "id": "0000018C"
+    "id": "018C"
   },
   {
     "class": "giga",
@@ -5723,7 +5723,7 @@
     "attack": 100,
     "text": "Unleash 12 WickdFlam on far 3 rows",
     "image_url": "Sf3_jack_corVus_giga.PNG",
-    "id": "0000018D"
+    "id": "018D"
   },
   {
     "class": "giga",

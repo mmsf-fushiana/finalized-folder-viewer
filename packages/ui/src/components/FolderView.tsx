@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
-import { Box, Typography, Paper, Chip, IconButton, Tooltip, Rating } from '@mui/material';
+import { Box, Typography, Paper, Chip, IconButton, Tooltip } from '@mui/material';
 import { ChevronLeft, ChevronRight } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -11,15 +11,19 @@ import { getNoiseRangeForLevel } from '../utils/noiseLevel';
 import { getCardOrder } from '../data';
 
 // 風以外の属性（Rating対象）
-const RATING_TYPES = ['無', '電気', '火', '水', '木', 'ソード', 'ブレイク'] as const;
-type RatingType = typeof RATING_TYPES[number];
-type TypeRatings = Record<RatingType, number>;
+export const RATING_TYPES = ['無', '電気', '火', '水', '木', 'ソード', 'ブレイク'] as const;
+export type RatingType = typeof RATING_TYPES[number];
+export type TypeRatings = Record<RatingType, number>;
 
 interface FolderViewProps {
   version: Version;
   level: Level;
   cards: Card[];
   gaList: GalaxyAdvance[];
+  ratings?: TypeRatings;
+  onRatingChange?: (type: RatingType, value: number) => void;
+  onLevelChange?: (level: Level) => void;
+  accessLvSum?: number;
 }
 
 const ALL_TYPES = ['無', '電気', '火', '水', '木', '風', 'ソード', 'ブレイク'] as const;
@@ -241,37 +245,11 @@ function findAvailableGA(cards: Card[], gaList: GalaxyAdvance[]) {
   return availableGAs;
 }
 
-// 0, 3, 6 にスナップ
-function snapRating(value: number | null): number {
-  if (value === null || value <= 1) return 0;
-  if (value <= 3) return 3;
-  return 6;
-}
-
 interface SnapRatingProps {
   value: number;
   onChange: (value: number) => void;
 }
 
-// MUI Rating版（未使用）
-function SnapRatingMUI({ value, onChange }: SnapRatingProps) {
-  const [hoverValue, setHoverValue] = useState<number>(-1);
-
-  const displayValue = hoverValue !== -1 ? snapRating(hoverValue) : value;
-
-  return (
-    <Rating
-      value={displayValue}
-      max={6}
-      size="small"
-      onChange={(_, newValue) => onChange(snapRating(newValue))}
-      onChangeActive={(_, newHover) => setHoverValue(newHover)}
-      sx={{
-        '& .MuiRating-icon': { fontSize: 16 },
-      }}
-    />
-  );
-}
 
 // 自作スナップRatingコンポーネント
 function SnapRating({ value, onChange }: SnapRatingProps) {
@@ -425,7 +403,7 @@ function GAList({
   );
 }
 
-const initialRatings: TypeRatings = {
+export const initialRatings: TypeRatings = {
   '無': 0, '電気': 0, '火': 0, '水': 0, '木': 0, 'ソード': 0, 'ブレイク': 0,
 };
 
@@ -451,19 +429,19 @@ function getEffectiveAttack(card: Card, ratings: TypeRatings): { attack: number;
   return { attack: card.attack, boosted: false };
 }
 
-export function FolderView({ version, level, cards, gaList }: FolderViewProps) {
+export function FolderView({ version, level, cards, gaList, ratings: ratingsProp, onRatingChange: onRatingChangeProp, onLevelChange, accessLvSum = 0 }: FolderViewProps) {
   const { t } = useTranslation();
+  const [internalRatings, setInternalRatings] = useState<TypeRatings>(initialRatings);
+  const ratings: TypeRatings = ratingsProp ?? internalRatings;
+  const onRatingChange: (type: RatingType, value: number) => void = onRatingChangeProp ?? ((type, value) => {
+    setInternalRatings(prev => ({ ...prev, [type]: value }));
+  });
   const [selectedTypes, setSelectedTypes] = useState<Set<string>>(new Set());
-  const [typeRatings, setTypeRatings] = useState<TypeRatings>(initialRatings);
 
   // Reset selection when page changes
   useEffect(() => {
     setSelectedTypes(new Set());
   }, [version, level]);
-
-  const handleRatingChange = (type: RatingType, value: number) => {
-    setTypeRatings(prev => ({ ...prev, [type]: value }));
-  };
 
   const handleTypeClick = (type: string) => {
     setSelectedTypes(prev => {
@@ -515,8 +493,8 @@ export function FolderView({ version, level, cards, gaList }: FolderViewProps) {
 
   // Attack calculation function for CardGrid
   const getAttack = useMemo(() => {
-    return (card: Card) => getEffectiveAttack(card, typeRatings);
-  }, [typeRatings]);
+    return (card: Card) => getEffectiveAttack(card, ratings);
+  }, [ratings]);
 
   if (!cards) {
     return <Typography color="error">{t('card.noData')}</Typography>;
@@ -526,12 +504,16 @@ export function FolderView({ version, level, cards, gaList }: FolderViewProps) {
   const nextLevel = level < 12 ? level + 1 : null;
 
   // ノイズ率の範囲を取得
-  const noiseRange = getNoiseRangeForLevel(level);
-  const noiseRangeLabel = noiseRange === 'Over'
-    ? 'over'
-    : noiseRange.min === noiseRange.max
-      ? `${noiseRange.min}%`
-      : `${noiseRange.min}~${noiseRange.max}%`;
+  const minAccessLevel = 1 + accessLvSum;
+  const isInaccessible = level < minAccessLevel;
+  const noiseRange = getNoiseRangeForLevel(level - accessLvSum);
+  const noiseRangeLabel = isInaccessible
+    ? 'None'
+    : noiseRange === 'Over'
+      ? 'over'
+      : noiseRange.min === noiseRange.max
+        ? `${noiseRange.min}%`
+        : `${noiseRange.min}~${noiseRange.max}%`;
 
   return (
     <Box sx={{p: 2, pl: 3}}>
@@ -541,13 +523,15 @@ export function FolderView({ version, level, cards, gaList }: FolderViewProps) {
         {/* Navigation with fixed width container to prevent shifting */}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Box sx={{ width: 32, visibility: prevLevel ? 'visible' : 'hidden' }}>
-            <IconButton
-              component={Link}
-              to={`/${version}/${prevLevel ?? 1}`}
-              size="small"
-            >
-              <ChevronLeft />
-            </IconButton>
+            {onLevelChange ? (
+              <IconButton onClick={() => onLevelChange(prevLevel as Level)} size="small">
+                <ChevronLeft />
+              </IconButton>
+            ) : (
+              <IconButton component={Link} to={`/${version}/${prevLevel ?? 1}`} size="small">
+                <ChevronLeft />
+              </IconButton>
+            )}
           </Box>
 
           {/* Level info container */}
@@ -574,7 +558,7 @@ export function FolderView({ version, level, cards, gaList }: FolderViewProps) {
               label={noiseRangeLabel}
               size="small"
               sx={{
-                bgcolor: '#d50000',
+                bgcolor: isInaccessible ? '#9e9e9e' : '#d50000',
                 color: 'white',
                 fontSize: 11,
                 height: 20,
@@ -588,13 +572,15 @@ export function FolderView({ version, level, cards, gaList }: FolderViewProps) {
           </Box>
 
           <Box sx={{ width: 32, visibility: nextLevel ? 'visible' : 'hidden' }}>
-            <IconButton
-              component={Link}
-              to={`/${version}/${nextLevel ?? 12}`}
-              size="small"
-            >
-              <ChevronRight />
-            </IconButton>
+            {onLevelChange ? (
+              <IconButton onClick={() => onLevelChange(nextLevel as Level)} size="small">
+                <ChevronRight />
+              </IconButton>
+            ) : (
+              <IconButton component={Link} to={`/${version}/${nextLevel ?? 12}`} size="small">
+                <ChevronRight />
+              </IconButton>
+            )}
           </Box>
         </Box>
       </Box>
@@ -615,8 +601,8 @@ export function FolderView({ version, level, cards, gaList }: FolderViewProps) {
           />
           <ClassStats cards={cards} />
           <AttributeRating
-            ratings={typeRatings}
-            onRatingChange={handleRatingChange}
+            ratings={ratings}
+            onRatingChange={onRatingChange}
           />
           <GAList cards={cards} gaList={gaList ?? []} />
         </Box>

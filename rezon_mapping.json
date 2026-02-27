@@ -1,5 +1,5 @@
 {
-  "00000000": {
+  "00": {
     "name": "ultimate_battle_master",
     "chargeShot": "mad_vulcan_cf",
     "finalizeTurn": 0,
@@ -10,7 +10,7 @@
     "accessLv": 0,
     "FBarrier": null
   },
-  "00000001": {
+  "01": {
     "name": "ultimate_fire_master",
     "chargeShot": "mech_flame_cf",
     "finalizeTurn": 0,
@@ -21,7 +21,7 @@
     "accessLv": 0,
     "FBarrier": null
   },
-  "00000002": {
+  "02": {
     "name": "ultimate_aqua_master",
     "chargeShot": null,
     "finalizeTurn": 0,
@@ -32,7 +32,7 @@
     "accessLv": 0,
     "FBarrier": null
   },
-  "00000003": {
+  "03": {
     "name": "ultimate_elec_master",
     "chargeShot": null,
     "finalizeTurn": 0,
@@ -43,7 +43,7 @@
     "accessLv": 0,
     "FBarrier": null
   },
-  "00000004": {
+  "04": {
     "name": "ultimate_wood_master",
     "chargeShot": null,
     "finalizeTurn": 0,
@@ -54,7 +54,7 @@
     "accessLv": 0,
     "FBarrier": null
   },
-  "00000005": {
+  "05": {
     "name": "ultimate_sword_master",
     "chargeShot": null,
     "finalizeTurn": 0,
@@ -65,7 +65,7 @@
     "accessLv": 0,
     "FBarrier": "super_barrier"
   },
-  "00000006": {
+  "06": {
     "name": "ultimate_break_master",
     "chargeShot": "drill_arm_cf",
     "finalizeTurn": 0,
@@ -76,7 +76,7 @@
     "accessLv": 0,
     "FBarrier": null
   },
-  "00000007": {
+  "07": {
     "name": "ultimate_guard_master",
     "chargeShot": null,
     "finalizeTurn": 1,
@@ -85,7 +85,7 @@
     "accessLv": 0,
     "FBarrier": "aura"
   },
-  "00000008": {
+  "08": {
     "name": "ultimate_paralyze_master",
     "chargeShot": "plasma_spread_cf",
     "finalizeTurn": 0,
@@ -94,7 +94,7 @@
     "accessLv": 0,
     "FBarrier": null
   },
-  "00000009": {
+  "09": {
     "name": "ultimate_finalize",
     "chargeShot": "cannon_cf",
     "finalizeTurn": 2,

@@ -1,16 +1,16 @@
-import { Outlet, Link as RouterLink } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, Container, Box, Button } from '@mui/material';
+import { Outlet } from 'react-router-dom';
+import { Box } from '@mui/material';
 
 export function AppLayout() {
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: "rgb(60,90,99)" }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: "white" }}>
         {/* 
         
         rgb(49,74,90)
         rgb(181,33,57)
         */}
         
-      <AppBar position="static">
+      {/* <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Finalized Folder Viewer
@@ -22,10 +22,10 @@ export function AppLayout() {
             Settings
           </Button>
         </Toolbar>
-      </AppBar>
-      <Container component="main" sx={{ flex: 1, py: 3 }}>
+      </AppBar> */}
+      <Box component="main" sx={{ flex: 1 }}>
         <Outlet />
-      </Container>
+      </Box>
     </Box>
   );
 }
