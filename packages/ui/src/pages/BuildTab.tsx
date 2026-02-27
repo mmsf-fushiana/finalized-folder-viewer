@@ -66,7 +66,14 @@ const COLS_2 = [
 const COLS_1 = [{ type: "html" as const, align: "left" as const, width: 420 }];
 
 export function BuildTab() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  // カード名の多言語切替ヘルパー
+  const cn = useCallback(
+    (card: { name: string; name_en?: string } | null | undefined): string | null =>
+      card ? (i18n.language === "en" ? card.name_en || card.name : card.name) : null,
+    [i18n.language],
+  );
   const deckSummary = useDeckCardSummary();
   const noiseGv = useGameValue("NOISE");
   const wcGv = useGameValue("WHITE_CARDS");
@@ -120,7 +127,7 @@ export function BuildTab() {
     for (const bro of brothers) {
       const wc = bro.cards.slice(0, 4);
       if (wc.every((c) => c === null)) continue;
-      const names = wc.map((c) => c?.name ?? null);
+      const names = wc.map((c) => cn(c) ?? null);
       const key = names.join("|");
       const existing = map.get(key);
       if (existing) existing.count++;
@@ -130,8 +137,8 @@ export function BuildTab() {
   })();
 
   // ブラザー: メガ/ギガ グルーピング
-  const broMegas = groupNames(brothers.map((b) => b.cards[4]?.name));
-  const broGigas = groupNames(brothers.map((b) => b.cards[5]?.name));
+  const broMegas = groupNames(brothers.map((b) => cn(b.cards[4])));
+  const broGigas = groupNames(brothers.map((b) => cn(b.cards[5])));
 
   // レゾン グルーピング (MY_REZON + ブラザー6)
   const myRezon = myRezonGv?.value ? getRezonEntry(myRezonGv.value) : null;
@@ -204,11 +211,11 @@ export function BuildTab() {
   const rockmanData = useMemo<string[][]>(
     () => [
       [myNoise ? t(myNoise.name) : "---", `HP: ${hp.baseHp}`],
-      ["サポート", supportUse ? t(supportUse) : "デフォルト"],
+      [t("build.support"), supportUse ? t(supportUse) : t("build.supportDefault")],
       [
         warlock ? t(warlock.name) : "---",
         warlock
-          ? `アタック ${warlock.attack}Lv\nラピッド ${warlock.rapid}Lv\nチャージ ${warlock.charge}Lv`
+          ? t("build.warlockStats", { attack: warlock.attack, rapid: warlock.rapid, charge: warlock.charge })
           : "---",
       ],
     ],
@@ -234,14 +241,14 @@ export function BuildTab() {
               `<b style="margin-left:4px;color:${l === "REG" ? "red" : "blue"}">${l}</b>`,
           )
           .join("") ?? "";
-      return [row.card.name + labelHtml, String(row.count)];
+      return [(cn(row.card) ?? row.card.name) + labelHtml, String(row.count)];
     });
-  }, [deckSummary, cardLabels]);
+  }, [deckSummary, cardLabels, cn]);
 
   // ホワイトカード（1セルに改行で結合）
   const wcData = useMemo<string[][]>(
-    () => [[myWC.length > 0 ? myWC.map((card) => card?.name ?? "---").join("\n") : "---"]],
-    [myWC],
+    () => [[myWC.length > 0 ? myWC.map((card) => cn(card) ?? "---").join("\n") : "---"]],
+    [myWC, cn],
   );
   const wcStyle = useMemo<Record<string, string>>(() => {
     const s: Record<string, string> = {};
@@ -312,7 +319,7 @@ export function BuildTab() {
   >(() => {
     const data: string[][] = [
       ...abilities.map((ab) => [t(ab.name), String(ab.capacity)]),
-      ["合計", String(totalCapacity)],
+      [t("build.total"), String(totalCapacity)],
     ];
     const lastRow = data.length;
     return [
@@ -337,29 +344,20 @@ export function BuildTab() {
   const rezonEffectData = useMemo<string[][]>(() => {
     const rows: string[][] = [];
     if (rezonEffect.finalizeTurn !== 0)
-      rows.push([`ファイナライズターン +${rezonEffect.finalizeTurn}`]);
+      rows.push([t("rezon.effect.finalizeTurn", { value: rezonEffect.finalizeTurn })]);
     if (rezonEffect.accessLv !== 0)
-      rows.push([`アクセスレベル +${rezonEffect.accessLv}`]);
-    if ((rezonEffect.attackStar["null"] ?? 0) > 0)
-      rows.push([`ノーマルスター +${rezonEffect.attackStar["null"]}`]);
-    if ((rezonEffect.attackStar["fire"] ?? 0) > 0)
-      rows.push([`ファイアスター +${rezonEffect.attackStar["fire"]}`]);
-    if ((rezonEffect.attackStar["aqua"] ?? 0) > 0)
-      rows.push([`アクアスター +${rezonEffect.attackStar["aqua"]}`]);
-    if ((rezonEffect.attackStar["elec"] ?? 0) > 0)
-      rows.push([`サンダースター +${rezonEffect.attackStar["elec"]}`]);
-    if ((rezonEffect.attackStar["wood"] ?? 0) > 0)
-      rows.push([`ウッドスター +${rezonEffect.attackStar["wood"]}`]);
-    if ((rezonEffect.attackStar["sword"] ?? 0) > 0)
-      rows.push([`ソードスター +${rezonEffect.attackStar["sword"]}`]);
-    if ((rezonEffect.attackStar["break"] ?? 0) > 0)
-      rows.push([`ブレイクスター +${rezonEffect.attackStar["break"]}`]);
+      rows.push([t("rezon.effect.accessLv", { value: rezonEffect.accessLv })]);
+    const starKeys = ["null", "fire", "aqua", "elec", "wood", "sword", "break"] as const;
+    for (const key of starKeys) {
+      if ((rezonEffect.attackStar[key] ?? 0) > 0)
+        rows.push([t("rezon.effect.attackStar", { type: t("starType." + key), value: rezonEffect.attackStar[key] })]);
+    }
     if (rezonEffect.chargeShot != null)
-      rows.push([`チャージショット ${t("rezon.chargeShot." + rezonEffect.chargeShot)}`]);
+      rows.push([t("rezon.effect.chargeShot", { shot: t("rezon.chargeShot." + rezonEffect.chargeShot) })]);
     if (rezonEffect.FBarrier != null)
-      rows.push([`F${t("rezon.FBarrier." + rezonEffect.FBarrier)}`]);
+      rows.push([t("rezon.effect.FBarrier", { barrier: t("rezon.FBarrier." + rezonEffect.FBarrier) })]);
     if (rezonEffect.FField != null)
-      rows.push([`F${t("rezon.FField." + rezonEffect.FField)}`]);
+      rows.push([t("rezon.effect.FField", { field: t("rezon.FField." + rezonEffect.FField) })]);
     return rows.length > 0 ? rows : [["---"]];
   }, [rezonEffect, t]);
 
@@ -367,16 +365,16 @@ export function BuildTab() {
 
   const sections = useMemo<HtmlSection[]>(
     () => [
-      { title: "ロックマン", data: rockmanData, columns: [{ type: "html", align: "left", width: 240 }, { align: "right", width: 180 }], style: rockmanStyle },
-      { title: "フォルダ", data: folderData, columns: COLS_2 },
-      { title: "ホワイトカード", data: wcData, columns: COLS_1, style: wcStyle },
-      { title: "ブラザー", data: brotherData, columns: COLS_2, style: brotherStyle },
-      { title: "ノイズドカード", data: noiseData, columns: COLS_1, style: noiseStyle },
-      { title: "アビリティ", data: abilityData, columns: COLS_2, style: abilityStyle },
-      { title: "レゾン", data: rezonData, columns: COLS_2 },
-      { title: "レゾン効果", data: rezonEffectData, columns: COLS_1 },
+      { title: t("build.rockman"), data: rockmanData, columns: [{ type: "html", align: "left", width: 240 }, { align: "right", width: 180 }], style: rockmanStyle },
+      { title: t("build.folder"), data: folderData, columns: COLS_2 },
+      { title: t("build.whiteCard"), data: wcData, columns: COLS_1, style: wcStyle },
+      { title: t("build.brother"), data: brotherData, columns: COLS_2, style: brotherStyle },
+      { title: t("build.noisedCard"), data: noiseData, columns: COLS_1, style: noiseStyle },
+      { title: t("build.ability"), data: abilityData, columns: COLS_2, style: abilityStyle },
+      { title: t("build.rezon"), data: rezonData, columns: COLS_2 },
+      { title: t("build.rezonEffect"), data: rezonEffectData, columns: COLS_1 },
     ],
-    [rockmanData, rockmanStyle, folderData, wcData, wcStyle, brotherData, brotherStyle, noiseData, noiseStyle, abilityData, abilityStyle, rezonData, rezonEffectData],
+    [t, rockmanData, rockmanStyle, folderData, wcData, wcStyle, brotherData, brotherStyle, noiseData, noiseStyle, abilityData, abilityStyle, rezonData, rezonEffectData],
   );
 
   const handleCopyHtml = useCallback(() => {
@@ -403,7 +401,7 @@ export function BuildTab() {
           startIcon={<ContentCopyIcon />}
           onClick={handleCopyHtml}
         >
-          HTML形式でコピー
+          {t("build.copyHtml")}
         </Button>
         {/* <Button
           variant="contained"
@@ -414,12 +412,12 @@ export function BuildTab() {
         </Button> */}
       </Box>
       <Box sx={{ fontSize: 11, color: "#aaa", mt: 0.5 }}>
-        テーブルは範囲選択してコピーが可能です。
+        {t("build.tableHint")}
       </Box>
 
       <Box>
         {/* ノイズ / HP / サポートユーズ / ウォーロック装備 */}
-        <div style={hdr}>ロックマン</div>
+        <div style={hdr}>{t("build.rockman")}</div>
         <JSheet
           data={rockmanData}
           columns={[
@@ -431,31 +429,31 @@ export function BuildTab() {
         />
 
         {/* デッキ一覧 */}
-        <div style={hdr}>フォルダ</div>
+        <div style={hdr}>{t("build.folder")}</div>
         <JSheet data={folderData} columns={COLS_2} />
 
         {/* ホワイトカード */}
-        <div style={hdr}>ホワイトカード</div>
+        <div style={hdr}>{t("build.whiteCard")}</div>
         <JSheet data={wcData} columns={COLS_1} style={wcStyle} />
 
         {/* ブラザー情報 */}
-        <div style={hdr}>ブラザー</div>
+        <div style={hdr}>{t("build.brother")}</div>
         <JSheet data={brotherData} columns={COLS_2} style={brotherStyle} />
 
         {/* ノイズドカード */}
-        <div style={hdr}>ノイズドカード</div>
+        <div style={hdr}>{t("build.noisedCard")}</div>
         <JSheet data={noiseData} columns={COLS_1} style={noiseStyle} />
 
         {/* アビリティ */}
-        <div style={hdr}>アビリティ</div>
+        <div style={hdr}>{t("build.ability")}</div>
         <JSheet data={abilityData} columns={COLS_2} style={abilityStyle} />
 
         {/* レゾン情報 */}
-        <div style={hdr}>レゾン</div>
+        <div style={hdr}>{t("build.rezon")}</div>
         <JSheet data={rezonData} columns={COLS_2} />
 
         {/* レゾン効果（マージ済み） */}
-        <div style={hdr}>レゾン効果</div>
+        <div style={hdr}>{t("build.rezonEffect")}</div>
         <JSheet data={rezonEffectData} columns={COLS_1} />
       </Box>
     </Box>
