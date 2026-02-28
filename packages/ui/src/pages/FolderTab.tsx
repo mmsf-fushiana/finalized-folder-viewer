@@ -7,8 +7,9 @@ import type { Level, Version } from '../types';
 import { VERSION_COLORS } from '../types';
 import { loadFinalizationData, loadGAList } from '../data';
 import {
-  useRezonAttackStarSum, useRezonAccessLvSum,
+  useRezonAttackStarSum, useRezonAccessLvSum, useRezonFinalizeTurnSum,
   useLockedFolderLevel, useGameNumber, useGameStore,
+  useNoiseCards,
 } from '../stores/gameStore';
 import { TYPE_NAME_MAP } from '../i18n';
 import { getNoiseLevel } from '../utils/noiseLevel';
@@ -29,6 +30,7 @@ export function FolderTab({ version }: { version: Version }) {
   // レゾン同期（Zustand ストアからアタックスターを自動適用）
   const attackStarSum = useRezonAttackStarSum();
   const accessLvSum = useRezonAccessLvSum();
+  const finalizeTurnSum = useRezonFinalizeTurnSum();
   useEffect(() => {
     const override: Record<string, number> = {};
     for (const [engKey, value] of Object.entries(attackStarSum)) {
@@ -69,6 +71,9 @@ export function FolderTab({ version }: { version: Version }) {
       }
     }
   }, [noiseRate, accessLvSum, folderFinalized, updateOnFinalize, confirmLv1, confirmLv2]);
+
+  // ノイズカードのtype_plusボーナス
+  const noiseCards = useNoiseCards();
 
   // フォルダレベルロック
   const lockedLevel = useLockedFolderLevel();
@@ -168,6 +173,10 @@ export function FolderTab({ version }: { version: Version }) {
         onRatingChange={handleRatingChange}
         onLevelChange={setLevel}
         accessLvSum={accessLvSum}
+        typePlus={noiseCards.effectDetail.type_plus}
+        gaPlus={noiseCards.effectDetail.ga_plus}
+        showRezon
+        finalizeTurnSum={finalizeTurnSum}
       />
     </>
   );

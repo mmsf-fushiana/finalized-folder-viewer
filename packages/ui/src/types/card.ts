@@ -13,6 +13,7 @@ export interface Card {
 
 export interface GalaxyAdvance extends Card {
   source_cards: string[];
+  'attack_ga+': number;
 }
 
 export interface FinalizationSet {

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import type { Card, GalaxyAdvance, Version, Level } from '../types';
 import { TYPE_COLORS, TYPE_IMAGES, VERSION_COLORS } from '../types';
-import { TYPE_KEY_MAP } from '../i18n';
+import { TYPE_KEY_MAP, TYPE_NAME_MAP } from '../i18n';
 import { CardGrid } from './CardGrid';
 import { getNoiseRangeForLevel } from '../utils/noiseLevel';
 import { getCardOrder } from '../data';
@@ -24,6 +24,10 @@ interface FolderViewProps {
   onRatingChange?: (type: RatingType, value: number) => void;
   onLevelChange?: (level: Level) => void;
   accessLvSum?: number;
+  typePlus?: Record<string, number>;
+  gaPlus?: Record<string, number>;
+  showRezon?: boolean;
+  finalizeTurnSum?: number;
 }
 
 const ALL_TYPES = ['無', '電気', '火', '水', '木', '風', 'ソード', 'ブレイク'] as const;
@@ -408,28 +412,62 @@ export const initialRatings: TypeRatings = {
 };
 
 // カードの有効攻撃力を計算
-function getEffectiveAttack(card: Card, ratings: TypeRatings): { attack: number; boosted: boolean } {
-  if (!card.types || card.types.length === 0) {
-    return { attack: card.attack, boosted: false };
+function getEffectiveAttack(card: Card, ratings: TypeRatings, typePlus?: Record<string, number>, gaPlus?: Record<string, number>, gaList?: GalaxyAdvance[]): { attack: number; boosted: boolean } {
+  let baseAttack = card.attack;
+  let boosted = false;
+
+  // GA+適用: GAカードかつ対応する属性のga_plusが1以上ならattack_ga+を使用
+  if (gaPlus && gaList) {
+    const gaEntry = gaList.find(ga => ga.name_en === card.name_en || ga.name === card.name);
+    if (gaEntry && gaEntry['attack_ga+'] != null) {
+      const hasGaBoost = (card.types ?? []).some(type => {
+        const engKey = TYPE_KEY_MAP[type];
+        return engKey && (gaPlus[engKey] ?? 0) >= 1;
+      });
+      if (hasGaBoost) {
+        baseAttack = gaEntry['attack_ga+'];
+        boosted = true;
+      }
+    }
   }
 
-  // カードの属性に対応するRatingの合計（風は除外）
-  const totalRating = card.types
-    .filter((t): t is RatingType => RATING_TYPES.includes(t as RatingType))
-    .reduce((sum, type) => sum + ratings[type], 0);
+  if (card.types && card.types.length > 0) {
+    // カードの属性に対応するRatingの合計（風は除外）
+    const totalRating = card.types
+      .filter((t): t is RatingType => RATING_TYPES.includes(t as RatingType))
+      .reduce((sum, type) => sum + ratings[type], 0);
 
-  // 最大6でキャップ
-  const effectiveRating = Math.min(totalRating, 6);
+    // 最大6でキャップ
+    const effectiveRating = Math.min(totalRating, 6);
 
-  if (effectiveRating >= 6 && card.attack3) {
-    return { attack: card.attack3, boosted: true };
-  } else if (effectiveRating >= 3 && card.attack2) {
-    return { attack: card.attack2, boosted: true };
+    if (effectiveRating >= 6 && card.attack3) {
+      baseAttack = card.attack3;
+      boosted = true;
+    } else if (effectiveRating >= 3 && card.attack2) {
+      baseAttack = card.attack2;
+      boosted = true;
+    }
   }
-  return { attack: card.attack, boosted: false };
+
+  // ノイズカードのtype_plusボーナスを加算
+  if (typePlus) {
+    let bonus = 0;
+    for (const type of card.types ?? []) {
+      const engKey = TYPE_KEY_MAP[type];
+      if (engKey && typePlus[engKey]) {
+        bonus += typePlus[engKey];
+      }
+    }
+    if (bonus > 0) {
+      baseAttack += bonus;
+      boosted = true;
+    }
+  }
+
+  return { attack: baseAttack, boosted };
 }
 
-export function FolderView({ version, level, cards, gaList, ratings: ratingsProp, onRatingChange: onRatingChangeProp, onLevelChange, accessLvSum = 0 }: FolderViewProps) {
+export function FolderView({ version, level, cards, gaList, ratings: ratingsProp, onRatingChange: onRatingChangeProp, onLevelChange, accessLvSum = 0, typePlus, gaPlus, showRezon = false, finalizeTurnSum = 0 }: FolderViewProps) {
   const { t } = useTranslation();
   const [internalRatings, setInternalRatings] = useState<TypeRatings>(initialRatings);
   const ratings: TypeRatings = ratingsProp ?? internalRatings;
@@ -493,8 +531,8 @@ export function FolderView({ version, level, cards, gaList, ratings: ratingsProp
 
   // Attack calculation function for CardGrid
   const getAttack = useMemo(() => {
-    return (card: Card) => getEffectiveAttack(card, ratings);
-  }, [ratings]);
+    return (card: Card) => getEffectiveAttack(card, ratings, typePlus, gaPlus, gaList);
+  }, [ratings, typePlus, gaPlus, gaList]);
 
   if (!cards) {
     return <Typography color="error">{t('card.noData')}</Typography>;
@@ -594,16 +632,77 @@ export function FolderView({ version, level, cards, gaList, ratings: ratingsProp
 
         {/* Stats panel */}
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: 256 }}>
+          {showRezon && (
+            <Paper elevation={2} sx={{ p: 1.5, borderRadius: 2, width: 256 }}>
+              <Typography variant="subtitle2" gutterBottom>
+                {t('rezon.title')}
+              </Typography>
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.25 }}>
+                <Typography variant="body2" sx={{ fontSize: 12 }}>
+                  {t('rezon.effect.finalizeTurn', { value: finalizeTurnSum })}
+                </Typography>
+                {accessLvSum !== 0 && (
+                  <Typography variant="body2" sx={{ fontSize: 12 }}>
+                    {t('rezon.effect.accessLv', { value: accessLvSum })}
+                  </Typography>
+                )}
+                {/* アタックスター */}
+                {RATING_TYPES.map(type => {
+                  const val = ratings[type];
+                  if (!val) return null;
+                  const engKey = TYPE_KEY_MAP[type];
+                  return (
+                    <Box key={type} sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                      <Box component="img" src={TYPE_IMAGES[type]} alt={type} sx={{ width: 14, height: 14 }} />
+                      <Typography variant="body2" sx={{ fontSize: 12 }}>
+                        {t('rezon.effect.attackStar', { type: t(`starType.${engKey}`), value: val })}
+                      </Typography>
+                    </Box>
+                  );
+                })}
+                {/* 属性+ */}
+                {typePlus && Object.entries(typePlus).map(([engKey, val]) => {
+                  if (!val) return null;
+                  const jpType = TYPE_NAME_MAP[engKey];
+                  if (!jpType) return null;
+                  return (
+                    <Box key={`tp-${engKey}`} sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                      <Box component="img" src={TYPE_IMAGES[jpType]} alt={jpType} sx={{ width: 14, height: 14 }} />
+                      <Typography variant="body2" sx={{ fontSize: 12 }}>
+                        {t('rezon.effect.typePlus', { type: t(`starType.${engKey}`), value: val })}
+                      </Typography>
+                    </Box>
+                  );
+                })}
+                {/* GA+ */}
+                {gaPlus && Object.entries(gaPlus).map(([engKey, val]) => {
+                  if (!val) return null;
+                  const jpType = TYPE_NAME_MAP[engKey];
+                  if (!jpType) return null;
+                  return (
+                    <Box key={`ga-${engKey}`} sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                      <Box component="img" src={TYPE_IMAGES[jpType]} alt={jpType} sx={{ width: 14, height: 14 }} />
+                      <Typography variant="body2" sx={{ fontSize: 12 }}>
+                        {t('rezon.effect.gaPlus', { type: t(`starType.${engKey}`) })}
+                      </Typography>
+                    </Box>
+                  );
+                })}
+              </Box>
+            </Paper>
+          )}
           <TypeStats
             cards={cards}
             selectedTypes={selectedTypes}
             onTypeClick={handleTypeClick}
           />
           <ClassStats cards={cards} />
-          <AttributeRating
-            ratings={ratings}
-            onRatingChange={onRatingChange}
-          />
+          {showRezon && (
+            <AttributeRating
+              ratings={ratings}
+              onRatingChange={onRatingChange}
+            />
+          )}
           <GAList cards={cards} gaList={gaList ?? []} />
         </Box>
       </Box>
