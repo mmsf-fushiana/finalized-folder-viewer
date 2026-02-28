@@ -1,5 +1,6 @@
 {
   "rezon": {
+    "title": "レゾン",
     "name": {
       "ultimate_battle_master": "アルティメットバトルマスター",
       "ultimate_fire_master": "アルティメットファイアマスター",
@@ -36,7 +37,9 @@
       "attackStar": "{{type}}スター +{{value}}",
       "FField": "F{{field}}",
       "FBarrier": "F{{barrier}}",
-      "chargeShot": "CF{{shot}}"
+      "chargeShot": "CF{{shot}}",
+      "typePlus": "{{type}}+{{value}}",
+      "gaPlus": "{{type}}G.A+"
     }
   },
   "typeStats": {

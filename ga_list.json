@@ -12,6 +12,7 @@
       "無"
     ],
     "attack": 240,
+    "attack_ga+": 240,
     "text": "Cannon atk spreads dmg to adj pnls",
     "image_url": "ImpctCanon.png"
   },
@@ -28,6 +29,7 @@
       "無"
     ],
     "attack": 60,
+    "attack_ga+": 60,
     "text": "3-hit dmgs all adj pnls if hits",
     "image_url": "BigGrenade.png"
   },
@@ -46,6 +48,7 @@
       "ブレイク"
     ],
     "attack": 320,
+    "attack_ga+": 320,
     "text": "Swing Guard-busting ax thru 3x2 pnl",
     "image_url": "GiantAxe.png"
   },
@@ -63,6 +66,7 @@
       "風"
     ],
     "attack": 60,
+    "attack_ga+": 60,
     "text": "Spin 4 times, hit adj panels with wind!",
     "image_url": "HurricaneDance.png"
   },
@@ -79,6 +83,7 @@
       "無"
     ],
     "attack": 90,
+    "attack_ga+": 90,
     "text": "Hit far 9 normal pnls w/ Meteors.",
     "image_url": "PlatMeteor.png"
   },
@@ -96,6 +101,7 @@
       "ソード"
     ],
     "attack": 220,
+    "attack_ga+": 220,
     "text": "SpadeMgnes slices twice max 2 hits",
     "image_url": "Xxx_spade_magnes_ga.png"
   },
@@ -113,6 +119,7 @@
       "風"
     ],
     "attack": 130,
+    "attack_ga+": 130,
     "text": "Diamond Dust diagonal 3-hit atk",
     "image_url": "Xxx_diamond_ice_ga.png"
   },
@@ -130,6 +137,7 @@
       "風"
     ],
     "attack": 70,
+    "attack_ga+": 70,
     "text": "SwingStrmAtk that pwrs up on grass pnl",
     "image_url": "Xxx_club_strong_ga.png"
   },
@@ -147,6 +155,7 @@
       "ブレイク"
     ],
     "attack": 150,
+    "attack_ga+": 150,
     "text": "HydroDrgnAtk hits more w/ proximity",
     "image_url": "Xxx_queen_virgo_ga.png"
   },
@@ -163,6 +172,7 @@
       "火"
     ],
     "attack": 480,
+    "attack_ga+": 480,
     "text": "2-pnl claw atk on 3 far side cols",
     "image_url": "Xxx_jack_corvus_ga.png"
   },
@@ -180,6 +190,7 @@
       "ブレイク"
     ],
     "attack": 450,
+    "attack_ga+": 450,
     "text": "Atk w/ total of 3 gigaton buildings",
     "image_url": "Xxx_dread_joker_ga.png"
   },
@@ -198,6 +209,7 @@
       "ブレイク"
     ],
     "attack": 350,
+    "attack_ga+": 350,
     "text": "Slash 1 emy w/ lock-on sword",
     "image_url": "Xxx_acid_ace_ga.png"
   },
@@ -214,6 +226,7 @@
       "火"
     ],
     "attack": 380,
+    "attack_ga+": 380,
     "text": "TaurusFire covers field in flames!",
     "image_url": "Xxx_taurus_fire_ga.png"
   },
@@ -232,6 +245,7 @@
       "風"
     ],
     "attack": 400,
+    "attack_ga+": 400,
     "text": "CygnusWing dances round field edge!",
     "image_url": "Xxx_cygnus_wing_ga.png"
   },
@@ -249,6 +263,7 @@
       "ソード"
     ],
     "attack": 240,
+    "attack_ga+": 240,
     "text": "Dart to emy, slice row, then upper!",
     "image_url": "Xxx_wolf_woods_ga.png"
   },
@@ -265,6 +280,7 @@
       "無"
     ],
     "attack": 450,
+    "attack_ga+": 450,
     "text": "Phantom atks fwd pnl with Phantom Claw",
     "image_url": "Xxx_dark_phantom_ga.png"
   },
@@ -282,6 +298,7 @@
       "ブレイク"
     ],
     "attack": 100,
+    "attack_ga+": 140,
     "text": "4-shot consecutive fwd attack.",
     "image_url": "Xxx_rogue_ga.png"
   },
@@ -299,6 +316,7 @@
       "ソード"
     ],
     "attack": 250,
+    "attack_ga+": 250,
     "text": "Lft 3-col or right 1-col cutter atk",
     "image_url": "Xxx_moon_destroy_ga.png"
   },
@@ -315,6 +333,7 @@
       "無"
     ],
     "attack": 180,
+    "attack_ga+": 220,
     "text": "2-hit Fire, Aqua on last and 1st row.",
     "image_url": "Xxx_libra_scales_ga.png"
   },
@@ -332,6 +351,7 @@
       "ブレイク"
     ],
     "attack": 330,
+    "attack_ga+": 400,
     "text": "2 columns atk. Left 2 if frm cntr.",
     "image_url": "Xxx_queen_ophiuca_ga.png"
   },
@@ -350,6 +370,7 @@
       "ブレイク"
     ],
     "attack": 170,
+    "attack_ga+": 210,
     "text": "GeminiSpark tagteam pnch and slice!",
     "image_url": "Xxx_gemini_spark_ga.png"
   },
@@ -366,6 +387,7 @@
       "水"
     ],
     "attack": 320,
+    "attack_ga+": 380,
     "text": "From nearest enemy, 3x2 tidal wave!",
     "image_url": "Xxx_cancer_bubble_ga.png"
   },
@@ -382,6 +404,7 @@
       "電気"
     ],
     "attack": 420,
+    "attack_ga+": 500,
     "text": "2nd to last row center, X lightng atk.",
     "image_url": "Xxx_crown_thunder_ga.png"
   },
@@ -398,6 +421,7 @@
       "水"
     ],
     "attack": 270,
+    "attack_ga+": 350,
     "text": "Atk 3x3 pnls w/ 6 snoball rounds.",
     "image_url": "Xxx_yeti_blizzard_ga.png"
   },
@@ -414,6 +438,7 @@
       "水"
     ],
     "attack": 350,
+    "attack_ga+": 450,
     "text": "Hit nearest emy's row w/Aqua Fang.",
     "image_url": "Xxx_plesio_surf_ga.png"
   },
@@ -430,6 +455,7 @@
       "無"
     ],
     "attack": 110,
+    "attack_ga+": 150,
     "text": "3-shot misle atk straight down 3 rows.",
     "image_url": "Xxx_terra_condor_ga.png"
   },
@@ -447,6 +473,7 @@
       "ブレイク"
     ],
     "attack": 340,
+    "attack_ga+": 420,
     "text": "Unblockable 3-column rush attack.",
     "image_url": "Xxx_general_auriga_ga.png"
   },
@@ -463,6 +490,7 @@
       "火"
     ],
     "attack": 360,
+    "attack_ga+": 420,
     "text": "Fwd 3x3 Solar Flare attack!",
     "image_url": "Xxx_apollo_flame_ga.png"
   },
@@ -479,6 +507,7 @@
       "無"
     ],
     "attack": 280,
+    "attack_ga+": 340,
     "text": "Satellite Blazer atk on 3x4 pnls",
     "image_url": "Xxx_sirius_ga.png"
   },
@@ -496,6 +525,7 @@
       "ブレイク"
     ],
     "attack": 370,
+    "attack_ga+": 430,
     "text": "Rush atk w/RocktLnch & GravRockt",
     "image_url": "Xxx_rocket_launch_ga.png"
   },
@@ -513,6 +543,7 @@
       "ブレイク"
     ],
     "attack": 400,
+    "attack_ga+": 470,
     "text": "Heavily Dmg 1 emy w/ DiamndIceHmr",
     "image_url": "Xxx_ice_hammer_ga.png"
   },
@@ -530,6 +561,7 @@
       "ブレイク"
     ],
     "attack": 100,
+    "attack_ga+": 130,
     "text": "Smack fwd 3 rows a total of 10 times",
     "image_url": "Xxx_strong_swing_ga.png"
   },
@@ -546,6 +578,7 @@
       "無"
     ],
     "attack": 510,
+    "attack_ga+": 620,
     "text": "Del if below 255HP:virus,510HP:boss.",
     "image_url": "Xxx_darkness_hole_ga.png"
   },
@@ -562,6 +595,7 @@
       "無"
     ],
     "attack": 55,
+    "attack_ga+": 70,
     "text": "Hit all enemies on normal pnls.",
     "image_url": "Xxx_destroy_missile_ga.png"
   },
@@ -579,6 +613,7 @@
       "ブレイク"
     ],
     "attack": 630,
+    "attack_ga+": 750,
     "text": "Set unblockable bmb atk 2 pnls ahd.",
     "image_url": "Xxx_break_time_bomb_ga.png"
   },
@@ -596,6 +631,7 @@
       "ブレイク"
     ],
     "attack": 570,
+    "attack_ga+": 740,
     "text": "OxTackle all enemies in 1 column.",
     "image_url": "Ox_Tackle_GA.png"
   },
@@ -612,6 +648,7 @@
       "木"
     ],
     "attack": 580,
+    "attack_ga+": 700,
     "text": "Shoot a laser beam dwn a col.",
     "image_url": "Xxx_gorgon_eye_ga.png"
   },
@@ -628,6 +665,7 @@
       "電気"
     ],
     "attack": 430,
+    "attack_ga+": 500,
     "text": "Gemini Thunder cntr col!",
     "image_url": "Xxx_gemini_thunder_ga.png"
   },
@@ -644,6 +682,7 @@
       "水"
     ],
     "attack": 90,
+    "attack_ga+": 130,
     "text": "Wipe out entire field w/Avalanche.",
     "image_url": "Xxx_avalanche_ga.png"
   },
@@ -660,6 +699,7 @@
       "水"
     ],
     "attack": 430,
+    "attack_ga+": 550,
     "text": "Tidal wave wash all obj from field.",
     "image_url": "Xxx_turrent_wave_ga.png"
   },
@@ -677,6 +717,7 @@
       "ブレイク"
     ],
     "attack": 530,
+    "attack_ga+": 650,
     "text": "2-column high-speed ram attack.",
     "image_url": "Xxx_flying_impact_ga.png"
   },
@@ -695,6 +736,7 @@
       "ブレイク"
     ],
     "attack": 480,
+    "attack_ga+": 600,
     "text": "Far 3x3 pnl sword attack RogueBreak.",
     "image_url": "Xxx_rogue_break_ga.png"
   },
@@ -711,6 +753,7 @@
       "無"
     ],
     "attack": 100,
+    "attack_ga+": 140,
     "text": "Emerge 3 pnl ahead & atk adjacnt pnls",
     "image_url": "Xxx_holy_light_ga.png"
   },
@@ -727,6 +770,7 @@
       "火"
     ],
     "attack": 120,
+    "attack_ga+": 150,
     "text": "Unleash 12 WickdFlam on far 3 rows",
     "image_url": "Xxx_wicked_flame_ga.png"
   }

@@ -1,5 +1,6 @@
 {
   "rezon": {
+    "title": "Rezon",
     "name": {
       "ultimate_battle_master": "Ultimate Battle Master",
       "ultimate_fire_master": "Ultimate Fire Master",
@@ -36,7 +37,9 @@
       "attackStar": "{{type}} Star +{{value}}",
       "FField": "{{field}} on Finalize",
       "FBarrier": "{{barrier}} on Finalize",
-      "chargeShot": "Charge Shot: {{shot}}"
+      "chargeShot": "Charge Shot: {{shot}}",
+      "typePlus": "{{type}} +{{value}}",
+      "gaPlus": "{{type}} G.A.+"
     }
   },
   "typeStats": {
