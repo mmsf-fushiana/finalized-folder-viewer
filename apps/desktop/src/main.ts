@@ -20,9 +20,10 @@ function createWindow() {
   Menu.setApplicationMenu(null);
 
   const mainWindow = new BrowserWindow({
+    title: 'SSR3 Viewer 0.9.0-rc.1',
     width: 680,
     height: 460,
-    icon: join(__dirname, '..', 'resources', 'icon.png'),
+    icon: join(__dirname, '..', 'resources', 'icon.ico'),
     webPreferences: {
       preload: preloadPath,
       contextIsolation: true,
