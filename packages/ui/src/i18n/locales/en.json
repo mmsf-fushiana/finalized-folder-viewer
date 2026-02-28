@@ -369,6 +369,22 @@
       "tab3": "Build Viewer"
     }
   },
+  "build": {
+    "rockman": "Mega Man",
+    "folder": "Folder",
+    "whiteCard": "White Card",
+    "brother": "Brother",
+    "noisedCard": "Noised Card",
+    "ability": "Ability",
+    "rezon": "Rezon",
+    "rezonEffect": "Rezon Effect",
+    "support": "Support",
+    "supportDefault": "Default",
+    "warlockStats": "Attack {{attack}}Lv\nRapid {{rapid}}Lv\nCharge {{charge}}Lv",
+    "total": "Total",
+    "copyHtml": "Copy as HTML",
+    "tableHint": "You can select and copy table ranges."
+  },
   "ability": {
     "name": {
       "hp50": "HP+50",

@@ -369,6 +369,22 @@
       "tab3": "構築ビューア"
     }
   },
+  "build": {
+    "rockman": "ロックマン",
+    "folder": "フォルダ",
+    "whiteCard": "ホワイトカード",
+    "brother": "ブラザー",
+    "noisedCard": "ノイズドカード",
+    "ability": "アビリティ",
+    "rezon": "レゾン",
+    "rezonEffect": "レゾン効果",
+    "support": "サポート",
+    "supportDefault": "デフォルト",
+    "warlockStats": "アタック {{attack}}Lv\nラピッド {{rapid}}Lv\nチャージ {{charge}}Lv",
+    "total": "合計",
+    "copyHtml": "HTML形式でコピー",
+    "tableHint": "テーブルは範囲選択してコピーが可能です。"
+  },
   "ability": {
     "name": {
       "hp50": "HP50",
