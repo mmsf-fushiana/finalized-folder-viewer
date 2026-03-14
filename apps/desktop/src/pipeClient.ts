@@ -86,6 +86,11 @@ export class PipeClient extends EventEmitter {
     this.send({ cmd: 'ping' });
   }
 
+  /** MainRAM再スキャン要求 */
+  rescan(): void {
+    this.send({ cmd: 'rescan' });
+  }
+
   private scheduleReconnect(): void {
     if (this.stopped || this.reconnectTimer) return;
     this.reconnectTimer = setTimeout(() => {
