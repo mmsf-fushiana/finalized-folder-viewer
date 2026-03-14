@@ -23,6 +23,7 @@ interface FolderViewProps {
   ratings?: TypeRatings;
   onRatingChange?: (type: RatingType, value: number) => void;
   onLevelChange?: (level: Level) => void;
+  locked?: boolean;
   accessLvSum?: number;
   typePlus?: Record<string, number>;
   gaPlus?: Record<string, number>;
@@ -467,7 +468,7 @@ function getEffectiveAttack(card: Card, ratings: TypeRatings, typePlus?: Record<
   return { attack: baseAttack, boosted };
 }
 
-export function FolderView({ version, level, cards, gaList, ratings: ratingsProp, onRatingChange: onRatingChangeProp, onLevelChange, accessLvSum = 0, typePlus, gaPlus, showRezon = false, finalizeTurnSum = 0 }: FolderViewProps) {
+export function FolderView({ version, level, cards, gaList, ratings: ratingsProp, onRatingChange: onRatingChangeProp, onLevelChange, locked = false, accessLvSum = 0, typePlus, gaPlus, showRezon = false, finalizeTurnSum = 0 }: FolderViewProps) {
   const { t } = useTranslation();
   const [internalRatings, setInternalRatings] = useState<TypeRatings>(initialRatings);
   const ratings: TypeRatings = ratingsProp ?? internalRatings;
@@ -560,13 +561,13 @@ export function FolderView({ version, level, cards, gaList, ratings: ratingsProp
 
         {/* Navigation with fixed width container to prevent shifting */}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Box sx={{ width: 32, visibility: prevLevel ? 'visible' : 'hidden' }}>
+          <Box sx={{ width: 32, visibility: prevLevel && !locked ? 'visible' : 'hidden' }}>
             {onLevelChange ? (
-              <IconButton onClick={() => onLevelChange(prevLevel as Level)} size="small">
+              <IconButton onClick={() => onLevelChange(prevLevel as Level)} size="small" disabled={locked}>
                 <ChevronLeft />
               </IconButton>
             ) : (
-              <IconButton component={Link} to={`/${version}/${prevLevel ?? 1}`} size="small">
+              <IconButton component={Link} to={`/${version}/${prevLevel ?? 1}`} size="small" disabled={locked}>
                 <ChevronLeft />
               </IconButton>
             )}
@@ -609,13 +610,13 @@ export function FolderView({ version, level, cards, gaList, ratings: ratingsProp
             />
           </Box>
 
-          <Box sx={{ width: 32, visibility: nextLevel ? 'visible' : 'hidden' }}>
+          <Box sx={{ width: 32, visibility: nextLevel && !locked ? 'visible' : 'hidden' }}>
             {onLevelChange ? (
-              <IconButton onClick={() => onLevelChange(nextLevel as Level)} size="small">
+              <IconButton onClick={() => onLevelChange(nextLevel as Level)} size="small" disabled={locked}>
                 <ChevronRight />
               </IconButton>
             ) : (
-              <IconButton component={Link} to={`/${version}/${nextLevel ?? 12}`} size="small">
+              <IconButton component={Link} to={`/${version}/${nextLevel ?? 12}`} size="small" disabled={locked}>
                 <ChevronRight />
               </IconButton>
             )}
