@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Typography, Switch, FormControlLabel, Chip, Box, Divider } from '@mui/material';
 import { Trans, useTranslation } from 'react-i18next';
 import { FolderView, initialRatings } from '../components';
@@ -50,9 +50,31 @@ export function FolderTab({ version }: { version: Version }) {
   const confirmLv2 = useGameNumber('COMFIRM_LV_2');
   const fTurnRemaining = useGameNumber('F_Turn_Remaining');
 
+  // 起動時ファイナライズ中の初期レベル設定（一度だけ）
+  const initialLevelSet = useRef(false);
+  useEffect(() => {
+    if (initialLevelSet.current) return;
+    if (fTurnRemaining > 0) {
+      initialLevelSet.current = true;
+      if (confirmLv1 >= 1 && confirmLv1 <= 12) {
+        setLevel(confirmLv1 as Level);
+      } else if (noiseRate >= 200) {
+        setLevel(getNoiseLevel(noiseRate, accessLvSum) as Level);
+      }
+    }
+  }, [fTurnRemaining, confirmLv1, noiseRate, accessLvSum]);
+
   // レベル自動決定
   useEffect(() => {
     if (folderFinalized) return; // ロック中はスキップ
+    // 起動時ファイナライズ中 → 自動決定をスキップ（左右で自由に切り替え可能にする）
+    // F_Turn_Remaining が 0 になった（ファイナライズ解除）で通常モードに復帰
+    if (initialLevelSet.current) {
+      if (fTurnRemaining === 0) {
+        initialLevelSet.current = false; // 通常モードに復帰
+      }
+      return;
+    }
     // COMFIRM両方0（バトル開始時）→ 最低レベルにリセット
     if (confirmLv1 === 0 && confirmLv2 === 0) {
       setLevel(getNoiseLevel(200, accessLvSum) as Level);
@@ -70,7 +92,7 @@ export function FolderTab({ version }: { version: Version }) {
         setLevel(derived);
       }
     }
-  }, [noiseRate, accessLvSum, folderFinalized, updateOnFinalize, confirmLv1, confirmLv2]);
+  }, [noiseRate, accessLvSum, folderFinalized, updateOnFinalize, confirmLv1, confirmLv2, fTurnRemaining]);
 
   // ノイズカードのtype_plusボーナス
   const noiseCards = useNoiseCards();
@@ -172,6 +194,7 @@ export function FolderTab({ version }: { version: Version }) {
         ratings={typeRatings}
         onRatingChange={handleRatingChange}
         onLevelChange={setLevel}
+        locked={folderFinalized}
         accessLvSum={accessLvSum}
         typePlus={noiseCards.effectDetail.type_plus}
         gaPlus={noiseCards.effectDetail.ga_plus}

@@ -49,6 +49,7 @@ export interface GameState {
   _capturedNoiseRate: number | null;   // COMFIRM一致時にキャプチャしたノイズ率 (非null=キャプチャ中)
   _folderFinalized: boolean;           // ロックフラグ: F_Turn_Remaining>0でON、COMFIRM両方0でOFF
   _confirmedFolderLevel: Level | null; // COMFIRM一致時の確定レベル
+  _initialized: boolean;               // 初回fullメッセージ処理済みフラグ（起動時ロック防止用）
 }
 
 // DLL→Electronメッセージ型
@@ -118,6 +119,7 @@ const initialState: GameState = {
   _capturedNoiseRate: null,
   _folderFinalized: false,
   _confirmedFolderLevel: null,
+  _initialized: false,
 };
 
 export const useGameStore = create<GameStore>()((set, get) => ({
@@ -153,11 +155,17 @@ export const useGameStore = create<GameStore>()((set, get) => ({
       const newNoise = hexVal(newValues, 'NOISE_RATE_1');
       const newFTurn = hexVal(newValues, 'F_Turn_Remaining');
 
-      // リセット: COMFIRM 両方 0 → 全フラグOFF
+      // リセット: COMFIRM 両方 0（バトル開始）→ 全フラグOFF
       if (newConfirm1 === 0 && newConfirm2 === 0) {
         if (state._folderFinalized || state._capturedNoiseRate !== null || state._confirmedFolderLevel !== null) {
           set({ _folderFinalized: false, _capturedNoiseRate: null, _confirmedFolderLevel: null });
         }
+        return;
+      }
+
+      // ファイナライズ解除: F_Turn_Remaining が 0 になった → ロック解除
+      if (state._folderFinalized && newFTurn === 0) {
+        set({ _folderFinalized: false, _capturedNoiseRate: null, _confirmedFolderLevel: null });
         return;
       }
 
@@ -185,7 +193,8 @@ export const useGameStore = create<GameStore>()((set, get) => ({
       }
 
       // ロック確定: キャプチャ中かつ F_Turn_Remaining > 0
-      if (get()._capturedNoiseRate !== null && newFTurn > 0) {
+      // 初回fullメッセージ（アプリ起動時）はロックしない（遷移を観測した場合のみ）
+      if (get()._capturedNoiseRate !== null && newFTurn > 0 && state._initialized) {
         set({ _folderFinalized: true });
       }
     };
@@ -218,6 +227,7 @@ export const useGameStore = create<GameStore>()((set, get) => ({
             : {}),
         });
         checkFolderLock(prev, values);
+        if (!get()._initialized) set({ _initialized: true });
         break;
       }
 
