@@ -2,7 +2,7 @@ import * as net from 'net';
 import { EventEmitter } from 'events';
 
 const PIPE_NAME = '\\\\.\\pipe\\ssr3_viewer';
-const RECONNECT_INTERVAL = 2000;
+const RECONNECT_INTERVAL = 100;
 
 export interface PipeMessage {
   type: string;
