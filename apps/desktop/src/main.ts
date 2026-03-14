@@ -99,6 +99,12 @@ function createWindow() {
     }
   });
 
+  ipcMain.on('game-rescan', () => {
+    if (pipeClient) {
+      pipeClient.rescan();
+    }
+  });
+
   ipcMain.on('open-external', (_event, url: string) => {
     shell.openExternal(url);
   });

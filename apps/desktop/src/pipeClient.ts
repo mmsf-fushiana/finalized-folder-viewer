@@ -2,7 +2,7 @@ import * as net from 'net';
 import { EventEmitter } from 'events';
 
 const PIPE_NAME = '\\\\.\\pipe\\ssr3_viewer';
-const RECONNECT_INTERVAL = 2000;
+const RECONNECT_INTERVAL = 100;
 
 export interface PipeMessage {
   type: string;
@@ -84,6 +84,11 @@ export class PipeClient extends EventEmitter {
   /** ping送信 */
   ping(): void {
     this.send({ cmd: 'ping' });
+  }
+
+  /** MainRAM再スキャン要求 */
+  rescan(): void {
+    this.send({ cmd: 'rescan' });
   }
 
   private scheduleReconnect(): void {
