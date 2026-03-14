@@ -27,6 +27,7 @@ declare global {
       requestRefresh: () => void;
       ping: () => void;
       setVersion: (version: string) => void;
+      rescan: () => void;
     };
     electronAPI?: {
       openExternal: (url: string) => void;
@@ -66,6 +67,15 @@ export function DesktopHome() {
       removeMessage();
     };
   }, []);
+
+  // パイプ接続済み＋ROM未検出の間、500msごとにrescanリクエスト
+  useEffect(() => {
+    if (!pipeConnected || gameActive) return;
+    const id = setInterval(() => {
+      window.gameAPI?.rescan();
+    }, 500);
+    return () => clearInterval(id);
+  }, [pipeConnected, gameActive]);
 
   const handleVersionSelect = (version: GameVersion) => {
     window.electronAPI?.resizeWindow(800, 1030);

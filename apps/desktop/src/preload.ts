@@ -47,6 +47,10 @@ contextBridge.exposeInMainWorld('gameAPI', {
   setVersion: (version: string) => {
     ipcRenderer.send('game-setVersion', version);
   },
+  // MainRAM再スキャン要求
+  rescan: () => {
+    ipcRenderer.send('game-rescan');
+  },
 });
 
 console.log('preload.js finished!');

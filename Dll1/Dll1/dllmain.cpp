@@ -629,6 +629,23 @@ static void HandleCommand(const std::string& message) {
             g_pipeServer.Send(jw.GetString());
         }
 
+    } else if (strcmp(cmd.cmd, "rescan") == 0) {
+        // MainRAM再スキャン（未検出時のみ実行）
+        if (!g_mainRAM) {
+            g_mainRAM = FindMainRAMByHeapScan();
+        }
+        JsonWriter jw;
+        jw.BeginObject();
+        jw.StringField("type", "status");
+        jw.BoolField("connected", true);
+        jw.BoolField("gameActive", g_mainRAM != nullptr);
+        if (g_mainRAM) {
+            jw.PtrField("mainram", g_mainRAM);
+        }
+        jw.EndObject();
+        g_pipeServer.Send(jw.GetString());
+        printf("[DLL] rescan実行: %s\n", g_mainRAM ? "検出成功" : "未検出");
+
     } else {
         printf("[DLL] 不明コマンド: %s\n", cmd.cmd);
         JsonWriter jw;
@@ -655,23 +672,21 @@ void MainThreadFunc() {
         printf("[DLL] クライアント接続 → hello送信\n");
         g_pipeServer.Send(g_deltaTracker.BuildHelloJson());
 
-        // MainRAM検出済みならstatus送信
-        if (g_mainRAM) {
-            JsonWriter jw;
-            jw.BeginObject();
-            jw.StringField("type", "status");
-            jw.BoolField("connected", true);
-            jw.BoolField("gameActive", true);
-            jw.PtrField("mainram", g_mainRAM);
-            jw.EndObject();
-            g_pipeServer.Send(jw.GetString());
+        // 現在の状態を即時返す
+        JsonWriter jw;
+        jw.BeginObject();
+        jw.StringField("type", "status");
+        jw.BoolField("connected", true);
+        jw.BoolField("gameActive", g_mainRAM != nullptr);
+        if (g_mainRAM) jw.PtrField("mainram", g_mainRAM);
+        jw.EndObject();
+        g_pipeServer.Send(jw.GetString());
 
-            // バージョン選択済みならフルステート送信
-            if (g_versionSelected) {
-                g_deltaTracker.Update(ReadMemory);
-                g_pipeServer.Send(g_deltaTracker.BuildFullStateJson());
-                g_deltaTracker.ResetChangeFlags();
-            }
+        // MainRAM検出済み＋バージョン選択済みならフルステート送信
+        if (g_mainRAM && g_versionSelected) {
+            g_deltaTracker.Update(ReadMemory);
+            g_pipeServer.Send(g_deltaTracker.BuildFullStateJson());
+            g_deltaTracker.ResetChangeFlags();
         }
     };
     g_pipeServer.OnDisconnect = []() {
@@ -681,66 +696,7 @@ void MainThreadFunc() {
     // PipeServer開始
     g_pipeServer.Start("\\\\.\\pipe\\ssr3_viewer");
 
-    // ゲームロード待機
-    printf("[DLL] ゲームロード待機中（15秒）...\n");
-    Sleep(15000);
-
-    // MainRAM検出
-    for (int attempt = 0; attempt < 20 && !g_mainRAM && g_running; attempt++) {
-        printf("[DLL] === 検出試行 %d ===\n", attempt + 1);
-        g_mainRAM = FindMainRAMByHeapScan();
-        if (!g_mainRAM) {
-            printf("[DLL] 見つからず、3秒後に再試行...\n");
-
-            // 接続中ならエラー通知
-            if (g_pipeServer.IsConnected()) {
-                JsonWriter jw;
-                jw.BeginObject();
-                jw.StringField("type", "status");
-                jw.BoolField("connected", true);
-                jw.BoolField("gameActive", false);
-                jw.EndObject();
-                g_pipeServer.Send(jw.GetString());
-            }
-
-            Sleep(3000);
-        }
-    }
-
-    if (!g_mainRAM) {
-        printf("[DLL] エラー: MainRAMが見つかりません!\n");
-        if (g_pipeServer.IsConnected()) {
-            JsonWriter jw;
-            jw.BeginObject();
-            jw.StringField("type", "error");
-            jw.StringField("code", "MAINRAM_NOT_FOUND");
-            jw.StringField("msg", "MainRAM detection failed");
-            jw.EndObject();
-            g_pipeServer.Send(jw.GetString());
-        }
-        // PipeServerは動かし続ける（再接続に備える）
-        while (g_running) {
-            Sleep(500);
-        }
-        g_pipeServer.Stop();
-        return;
-    }
-
-    printf("[DLL] MainRAM発見: %p (mask: 0x%08X)\n", g_mainRAM, g_mainRAMMask);
-
-    // 接続中ならstatus送信（ゲーム検出通知）
-    if (g_pipeServer.IsConnected()) {
-        JsonWriter jw;
-        jw.BeginObject();
-        jw.StringField("type", "status");
-        jw.BoolField("connected", true);
-        jw.BoolField("gameActive", true);
-        jw.PtrField("mainram", g_mainRAM);
-        jw.EndObject();
-        g_pipeServer.Send(jw.GetString());
-        // フルステートはバージョン選択後に setVersion ハンドラが送信する
-    }
-
+    // MainRAM検出はクライアントからの rescan コマンドで行う
     // バージョン選択待機（フロントエンドからの setVersion コマンドを待つ）
     printf("[DLL] バージョン選択待機中...\n");
     while (g_running && !g_versionSelected) {
@@ -759,25 +715,28 @@ void MainThreadFunc() {
     DWORD lastFullSend = GetTickCount();
 
     while (g_running) {
+        if (!g_pipeServer.IsConnected()) {
+            Sleep(50);
+            continue;
+        }
+
         // メモリ読み取り＆差分検知
         g_deltaTracker.Update(ReadMemory);
 
-        if (g_pipeServer.IsConnected()) {
-            // 定期的にフルステート送信 (30秒ごと)
-            DWORD now = GetTickCount();
-            if (now - lastFullSend >= 30000) {
-                g_pipeServer.Send(g_deltaTracker.BuildFullStateJson());
-                g_deltaTracker.ResetChangeFlags();
-                lastFullSend = now;
+        // 定期的にフルステート送信 (30秒ごと)
+        DWORD now = GetTickCount();
+        if (now - lastFullSend >= 30000) {
+            g_pipeServer.Send(g_deltaTracker.BuildFullStateJson());
+            g_deltaTracker.ResetChangeFlags();
+            lastFullSend = now;
+        }
+        // 差分があれば送信
+        else if (g_deltaTracker.HasChanges()) {
+            std::string deltaJson = g_deltaTracker.BuildDeltaJson();
+            if (!deltaJson.empty()) {
+                g_pipeServer.Send(deltaJson);
             }
-            // 差分があれば送信
-            else if (g_deltaTracker.HasChanges()) {
-                std::string deltaJson = g_deltaTracker.BuildDeltaJson();
-                if (!deltaJson.empty()) {
-                    g_pipeServer.Send(deltaJson);
-                }
-                g_deltaTracker.ResetChangeFlags();
-            }
+            g_deltaTracker.ResetChangeFlags();
         }
 
         Sleep(50);
