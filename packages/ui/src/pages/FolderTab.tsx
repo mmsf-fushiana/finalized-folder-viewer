@@ -94,6 +94,12 @@ export function FolderTab({ version }: { version: Version }) {
     }
   }, [noiseRate, accessLvSum, folderFinalized, updateOnFinalize, confirmLv1, confirmLv2, fTurnRemaining]);
 
+  // レゾン読み込みによる最低レベル保証（ロック状態に関係なく常に適用）
+  useEffect(() => {
+    const minLevel = Math.min(1 + accessLvSum, 12) as Level;
+    setLevel(prev => (prev < minLevel ? minLevel : prev) as Level);
+  }, [accessLvSum]);
+
   // ノイズカードのtype_plusボーナス
   const noiseCards = useNoiseCards();
 
