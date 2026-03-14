@@ -2,6 +2,7 @@ import { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Box, Button } from "@mui/material";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import {
   useGameNumber,
   useGameValue,
@@ -10,6 +11,7 @@ import {
   getNoise,
   getWhiteCards,
   useNoiseCards,
+  useNoisedCardHexIds,
   useActiveAbilities,
   useBrotherInfo,
   getRezonEntry,
@@ -21,6 +23,7 @@ import {
 import { JSheet } from "../components/JSheet";
 import { buildHtmlDocument, type HtmlSection } from "../utils/buildHtmlTable";
 import { buildMarkdownDocument } from "../utils/buildMarkdownTable";
+import { buildOrganizerJson } from "../utils/buildOrganizerJson";
 
 export const palette = [
   "#E39A9A",
@@ -65,7 +68,9 @@ const COLS_2 = [
 ];
 const COLS_1 = [{ type: "html" as const, align: "left" as const, width: 420 }];
 
-export function BuildTab() {
+type Version = 'BA' | 'RJ';
+
+export function BuildTab({ version }: { version: Version }) {
   const { t, i18n } = useTranslation();
 
   // カード名の多言語切替ヘルパー
@@ -89,6 +94,7 @@ export function BuildTab() {
   const supportUse = useSupportUse();
   const warlock = useWarlockWeapon();
   const baseHp = useGameNumber("BASE_HP");
+  const noisedCardHexIds = useNoisedCardHexIds();
 
   // REG / TAG1 / TAG2 (すべて CARD配列の 0-based インデックス)
   const deckCards = useDeckCards();
@@ -385,6 +391,46 @@ export function BuildTab() {
     navigator.clipboard.writeText(buildMarkdownDocument(sections));
   }, [sections]);
 
+  const handleExportJson = useCallback(() => {
+    // 日本語翻訳を固定で取得（Organizer は日本語名ベース）
+    const tJa = (key: string) => t(key, { lng: 'ja' });
+
+    const json = buildOrganizerJson({
+      version,
+      noiseName: myNoise ? tJa(myNoise.name) : '',
+      warlockWeaponName: warlock ? tJa(warlock.name) : '',
+      deckCards: deckSummary.map((row) => ({
+        name: row.card.name,
+        count: row.count,
+        isRegular: deckCards.indexOf(row.card) === regIdx,
+      })),
+      abilities: abilities.map((ab) => ({
+        name: tJa(ab.name),
+        capacity: ab.capacity,
+      })),
+      noisedCardHexIds,
+      whiteCardSetHex: wcGv?.value?.padStart(8, '0').slice(-2) ?? '00',
+      brothers: brothers.map((bro) => ({
+        noiseName: bro.noise ? tJa(bro.noise.name) : '',
+        rezonName: bro.rezon ? tJa('rezon.name.' + bro.rezon.name) : '',
+        whiteCardSetHex: bro.wcHex.slice(-2),
+        megaCardHex: bro.megaCardHex,
+        gigaCardHex: bro.gigaCardHex,
+      })),
+      myRezonName: myRezon ? tJa('rezon.name.' + myRezon.name) : '',
+    });
+
+    const blob = new Blob([JSON.stringify(json, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const now = new Date();
+    const ts = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}-${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}${String(now.getSeconds()).padStart(2, '0')}`;
+    a.href = url;
+    a.download = `build-${version.toLowerCase()}-${ts}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }, [version, myNoise, warlock, deckSummary, deckCards, regIdx, abilities, noisedCardHexIds, wcGv, brothers, myRezon, t]);
+
   return (
     <Box
       sx={{
@@ -403,13 +449,13 @@ export function BuildTab() {
         >
           {t("build.copyHtml")}
         </Button>
-        {/* <Button
+        <Button
           variant="contained"
-          startIcon={<ContentCopyIcon />}
-          onClick={handleCopyMarkdown}
+          startIcon={<FileDownloadIcon />}
+          onClick={handleExportJson}
         >
-          Markdown形式でコピー
-        </Button> */}
+          {t("build.exportJson")}
+        </Button>
       </Box>
       <Box sx={{ fontSize: 11, color: "#aaa", mt: 0.5 }}>
         {t("build.tableHint")}

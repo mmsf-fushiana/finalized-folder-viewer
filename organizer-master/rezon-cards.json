@@ -1,0 +1,12 @@
+[
+  { "value": "00", "label": "バトル" },
+  { "value": "01", "label": "ファイア" },
+  { "value": "02", "label": "アクア" },
+  { "value": "03", "label": "サンダー" },
+  { "value": "04", "label": "ウッド" },
+  { "value": "05", "label": "ソード" },
+  { "value": "06", "label": "ブレイク" },
+  { "value": "07", "label": "ガード" },
+  { "value": "08", "label": "パラライズ" },
+  { "value": "09", "label": "ファイナライズ" }
+]

@@ -772,6 +772,14 @@ export function useNoiseCards(): NoiseCardResult {
   }, [hexKey]);
 }
 
+/** ノイズドカード5枚の hex ID (4桁) を返す */
+export function useNoisedCardHexIds(): string[] {
+  const hexKey = useGameStore((s) =>
+    NOISED_CARD_KEYS.map(k => s.values[k]?.value ?? '').join(','),
+  );
+  return useMemo(() => hexKey.split(',').filter(Boolean), [hexKey]);
+}
+
 // ========================================
 // サポートユーズ派生セレクター
 // ========================================
@@ -898,6 +906,12 @@ export interface BrotherInfo {
   noise: NoiseForm | null;
   cards: (Card | null)[];
   rezon: RezonEntry | null;
+  /** ホワイトカードセット hex (8桁zero-padded) */
+  wcHex: string;
+  /** メガカード hex ID (4桁) */
+  megaCardHex: string;
+  /** ギガカード hex ID (4桁) */
+  gigaCardHex: string;
 }
 
 /** スロット番号(1-6)のブラザー情報を返す */
@@ -916,7 +930,12 @@ export function useBrotherInfo(slot: BrotherSlot): BrotherInfo {
     const cards = [...wcCards, megaCard, gigaCard];
     const rezon = rezonHex ? (rezonMap[rezonHex] ?? null) : null;
 
-    return { noise, cards, rezon };
+    return {
+      noise, cards, rezon,
+      wcHex: wcHex ? wcHex.padStart(8, '0') : '00000000',
+      megaCardHex: megaHex ? megaHex.padStart(4, '0').toUpperCase() : '',
+      gigaCardHex: gigaHex ? gigaHex.padStart(4, '0').toUpperCase() : '',
+    };
   }, [hexKey]);
 }
 

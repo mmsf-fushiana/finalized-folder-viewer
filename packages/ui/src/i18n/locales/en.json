@@ -383,7 +383,8 @@
     "warlockStats": "Attack {{attack}}Lv\nRapid {{rapid}}Lv\nCharge {{charge}}Lv",
     "total": "Total",
     "copyHtml": "Copy as HTML",
-    "tableHint": "You can select and copy table ranges."
+    "tableHint": "You can select and copy table ranges.",
+    "exportJson": "Export JSON"
   },
   "ability": {
     "name": {

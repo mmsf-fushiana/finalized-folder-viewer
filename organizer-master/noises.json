@@ -1,0 +1,14 @@
+[
+  { "value": "00", "label": "初期" },
+  { "value": "01", "label": "リブラ" },
+  { "value": "02", "label": "コーヴァス" },
+  { "value": "03", "label": "キャンサー" },
+  { "value": "04", "label": "ジェミニ" },
+  { "value": "05", "label": "オヒュカス" },
+  { "value": "06", "label": "キグナス" },
+  { "value": "07", "label": "オックス" },
+  { "value": "08", "label": "ヴァルゴ" },
+  { "value": "09", "label": "クラウン" },
+  { "value": "0A", "label": "ウルフ" },
+  { "value": "0B", "label": "ブライ" }
+]

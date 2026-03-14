@@ -97,7 +97,7 @@ export function MonitorPage() {
         {activeTab === 2 && <GameMonitor version={gameVersion} />}
         {/* {activeTab === 1 && <WarlockTab />} */}
         {activeTab === 0 && <FolderTab version={gameVersion} />}
-        {activeTab === 1 && <BuildTab />}
+        {activeTab === 1 && <BuildTab version={gameVersion} />}
         {/* {activeTab === 3 && <WarlockTab />} */}
       </Box>
     </Box>

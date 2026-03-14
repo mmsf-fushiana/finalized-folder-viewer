@@ -383,7 +383,8 @@
     "warlockStats": "アタック {{attack}}Lv\nラピッド {{rapid}}Lv\nチャージ {{charge}}Lv",
     "total": "合計",
     "copyHtml": "HTML形式でコピー",
-    "tableHint": "テーブルは範囲選択してコピーが可能です。"
+    "tableHint": "テーブルは範囲選択してコピーが可能です。",
+    "exportJson": "JSON書き出し"
   },
   "ability": {
     "name": {
