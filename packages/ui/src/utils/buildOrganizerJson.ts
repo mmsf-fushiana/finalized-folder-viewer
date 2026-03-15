@@ -7,6 +7,8 @@
  */
 
 import nameMapping from '@data/organizer-master/name-mapping.json';
+import noiseMaster from '@data/organizer-master/noises.json';
+import rezonMaster from '@data/organizer-master/rezon-cards.json';
 
 // ──────────────────────────────────────────
 // 型定義
@@ -38,6 +40,8 @@ export interface OrganizerExportParams {
   }[];
   /** 自分のレゾン日本語名 (t("rezon.name." + key))。未設定時は空文字 */
   myRezonName: string;
+  /** タイトル用ノイズ名 (ユーザー言語)。省略時は noiseName を使用 */
+  noiseDisplayName?: string;
 }
 
 // ──────────────────────────────────────────
@@ -61,6 +65,16 @@ function toFullWidth(str: string): string {
     // A-Z (0x41-0x5A) → Ａ-Ｚ (0xFF21-0xFF3A)
     return String.fromCharCode(code - 0x41 + 0xFF21);
   });
+}
+
+/**
+ * 半角英字のみ → 全角変換 (アビリティ名用)
+ * A-Z → Ａ-Ｚ (数字はそのまま)
+ */
+function toFullWidthLetters(str: string): string {
+  return str.replace(/[A-Z]/g, (ch) =>
+    String.fromCharCode(ch.charCodeAt(0) - 0x41 + 0xFF21),
+  );
 }
 
 /** カード名変換: アプリ → Organizer */
@@ -91,10 +105,39 @@ function mapRezonName(appName: string): string {
   return rezonNameMap[appName] ?? appName;
 }
 
-/** ノイズドカード hex 変換: ゲーム内4桁 → Organizer 2桁 */
+/** ノイズラベル → Organizer ID (e.g. "オヒュカス" → "05") */
+const noiseLabelToId = Object.fromEntries(
+  noiseMaster.map((n) => [n.label, n.value]),
+) as Record<string, string>;
+
+/** レゾンラベル → Organizer ID (e.g. "ファイナライズ" → "09") */
+const rezonLabelToId = Object.fromEntries(
+  rezonMaster.map((r) => [r.label, r.value]),
+) as Record<string, string>;
+
+/** ノイズ名 → Organizer ID。マッチしなければ空文字 */
+function mapNoiseToId(label: string): string {
+  return noiseLabelToId[label] ?? '';
+}
+
+/** レゾン名 → Organizer ID。マッチしなければ空文字 */
+function mapRezonToId(label: string): string {
+  return rezonLabelToId[label] ?? '';
+}
+
+/** ノイズドカード hex 変換: ゲーム内4桁 → Organizer 2桁(大文字) */
 function mapNoisedCardHex(gameHex: string): string {
+  if (!gameHex || gameHex === '0000') return '';
   const num = parseInt(gameHex, 16);
-  return num.toString(16).padStart(2, '0');
+  return num.toString(16).toUpperCase().padStart(2, '0');
+}
+
+/** メガ/ギガカード hex 変換: ゲーム内4桁 → Organizer 3桁(大文字) */
+function mapMegaGigaCardHex(gameHex: string): string {
+  if (!gameHex) return '';
+  const num = parseInt(gameHex, 16);
+  if (num === 0) return '';
+  return num.toString(16).toUpperCase().padStart(3, '0');
 }
 
 // ──────────────────────────────────────────
@@ -122,19 +165,42 @@ const BROTHER_POSITIONS = [
   'btm_left', 'btm_right',
 ] as const;
 
+/** ギガカードhexからブラザーのバージョンを判定 (RJ専用ギガ → red-joker, それ以外 → black-ace) */
+const RJ_GIGA_HEXES = new Set(['0C9', '0CA', '0CB', '0CC', '0CD']);
+
+function resolveBrotherVersion(gigaCardHex: string): 'black-ace' | 'red-joker' {
+  const hex = mapMegaGigaCardHex(gigaCardHex);
+  return RJ_GIGA_HEXES.has(hex) ? 'red-joker' : 'black-ace';
+}
+
 function buildBrotherSlot(
   bro: OrganizerExportParams['brothers'][number],
   position: string,
 ) {
+  const hasData = !!(bro.noiseName || bro.rezonName || bro.megaCardHex || bro.gigaCardHex || bro.whiteCardSetHex);
   return {
-    id: uuid(),
     position,
-    noiseId: bro.noiseName || '',
-    rezonCardId: bro.rezonName ? mapRezonName(bro.rezonName) : '',
-    whiteCardSetId: bro.whiteCardSetHex || '00',
-    megaCardId: bro.megaCardHex || '',
-    gigaCardId: bro.gigaCardHex || '',
+    slotType: 'brother',
+    sssLevel: '',
+    version: hasData ? resolveBrotherVersion(bro.gigaCardHex) : '',
+    noise: bro.noiseName ? mapNoiseToId(bro.noiseName) : '',
+    rezon: bro.rezonName ? mapRezonToId(mapRezonName(bro.rezonName)) : '',
+    whiteCardSetId: bro.whiteCardSetHex || '',
+    gigaCard: mapMegaGigaCardHex(bro.gigaCardHex),
+    megaCard: mapMegaGigaCardHex(bro.megaCardHex),
   };
+}
+
+// ──────────────────────────────────────────
+// タイトル生成
+// ──────────────────────────────────────────
+
+/** "BA_ヴァルゴ_20260315191218" 形式のタイトルを生成 */
+function buildTitle(version: Version, noiseName: string, now: Date): string {
+  const noise = noiseName.replace(/ノイズ$/, '').replace(/\s*Noise$/i, '');
+  const pad = (n: number) => String(n).padStart(2, '0');
+  const ts = `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}`;
+  return `${version}_${noise}_${ts}`;
 }
 
 // ──────────────────────────────────────────
@@ -146,6 +212,7 @@ export function buildOrganizerJson(params: OrganizerExportParams): object {
     version, noiseName, warlockWeaponName,
     deckCards, abilities, noisedCardHexIds,
     whiteCardSetHex, brothers, myRezonName,
+    noiseDisplayName,
   } = params;
 
   // カード
@@ -163,7 +230,7 @@ export function buildOrganizerJson(params: OrganizerExportParams): object {
     const orgName = mapAbilityName(ab.name, version);
     return {
       id: uuid(),
-      name: `${orgName}/${ab.capacity}`,
+      name: `${toFullWidthLetters(orgName)}/${ab.capacity}`,
       quantity: 1,
       isRegular: false,
       notes: '',
@@ -178,10 +245,19 @@ export function buildOrganizerJson(params: OrganizerExportParams): object {
 
   // ブラザールーレットスロット
   const brotherRouletteSlots = BROTHER_POSITIONS.map((pos, i) =>
-    buildBrotherSlot(brothers[i] ?? { noiseName: '', rezonName: '', whiteCardSetHex: '00', megaCardHex: '', gigaCardHex: '' }, pos),
+    buildBrotherSlot(brothers[i] ?? { noiseName: '', rezonName: '', whiteCardSetHex: '', megaCardHex: '', gigaCardHex: '' }, pos),
   );
 
-  // レゾンカード
+  // PGM: アビリティからエースPGM/ジョーカーPGMを検出
+  const pgms: string[] = [];
+  for (const ab of abilities) {
+    const orgName = mapAbilityName(ab.name, version);
+    if (orgName === 'エースPGM' || orgName === 'ジョーカーPGM') {
+      pgms.push(toFullWidthLetters(orgName));
+    }
+  }
+
+  // レゾンカード (トップレベルはラベルで管理)
   const rezonCards: string[] = [];
   if (myRezonName) {
     rezonCards.push(mapRezonName(myRezonName));
@@ -195,37 +271,68 @@ export function buildOrganizerJson(params: OrganizerExportParams): object {
     }
   }
 
+  const now = new Date();
+  const title = buildTitle(version, noiseDisplayName || noiseName, now);
+
   return {
     id: uuid(),
-    title: '',
+    title,
     game: 'mmsf3',
     version: version === 'BA' ? 'black-ace' : 'red-joker',
     commonSections: {
+      overview: '',
+      tags: [],
       cards,
+      cardSources: [],
       abilities: abilityEntries,
+      abilitySources: [],
+      brothers: [],
+      strategyName: '',
+      strategyNote: '',
     },
     gameSpecificSections: {
       mmsf1: {
-        starForce: { leo: 0, pegasus: 0, dragon: 0 },
-        brotherCards: [],
-        favoriteCards: [],
+        enhancement: '',
+        warRockWeapon: '',
+        warRockWeaponSources: [],
+        brotherBandMode: '',
+        versionFeature: '',
+        crossBrotherNotes: '',
+        notes: '',
       },
       mmsf2: {
-        tribeOn: { thunder: '', fire: '', grass: '' },
-        linkForce: [],
-        abilityWave: [],
+        starCards: [],
+        blankCards: [],
+        defaultTribeAbilityEnabled: true,
+        enhancement: '',
+        warRockWeapon: '',
+        warRockWeaponSources: [],
+        kokouNoKakera: false,
+        notes: '',
       },
       mmsf3: {
         noise: noiseName || 'ノーマルロックマン',
         warRockWeapon: warlockWeaponName ? mapWarlockWeapon(warlockWeaponName) : '',
+        warRockWeaponSources: [],
+        pgms,
+        noiseAbilities: [],
         noiseCardIds,
-        whiteCardSetId: whiteCardSetHex || '00',
         brotherRouletteSlots,
+        sssLevels: ['', '', ''],
+        nfb: '',
+        mergeNoiseTarget: '',
+        whiteCardSetId: whiteCardSetHex || '00',
+        megaCards: [],
+        gigaCards: [],
+        teamSize: 0,
         rezonCards,
-        pgms: [],
-        sssLevels: [],
-        nfb: [],
+        rivalNoise: '',
+        rouletteNotes: '',
+        notes: '',
       },
     },
+    strategyTemplateId: null,
+    createdAt: now,
+    updatedAt: now,
   };
 }

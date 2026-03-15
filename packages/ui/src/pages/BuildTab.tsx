@@ -418,6 +418,7 @@ export function BuildTab({ version }: { version: Version }) {
         gigaCardHex: bro.gigaCardHex,
       })),
       myRezonName: myRezon ? tJa('rezon.name.' + myRezon.name) : '',
+      noiseDisplayName: myNoise ? t(myNoise.name) : '',
     });
 
     const blob = new Blob([JSON.stringify(json, null, 2)], { type: 'application/json' });
