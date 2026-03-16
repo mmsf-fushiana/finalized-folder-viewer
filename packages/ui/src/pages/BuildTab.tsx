@@ -372,13 +372,13 @@ export function BuildTab({ version }: { version: Version }) {
   const sections = useMemo<HtmlSection[]>(
     () => [
       { title: t("build.rockman"), data: rockmanData, columns: [{ type: "html", align: "left", width: 160 }, { align: "right", width: 160 }], style: rockmanStyle },
-      { title: t("build.folder"), data: folderData, columns: COLS_2 },
-      { title: t("build.whiteCard"), data: wcData, columns: COLS_1, style: wcStyle },
-      { title: t("build.brother"), data: brotherData, columns: COLS_2, style: brotherStyle },
-      { title: t("build.noisedCard"), data: noiseData, columns: COLS_1, style: noiseStyle },
-      { title: t("build.ability"), data: abilityData, columns: COLS_2, style: abilityStyle },
-      { title: t("build.rezon"), data: rezonData, columns: COLS_2 },
-      { title: t("build.rezonEffect"), data: rezonEffectData, columns: COLS_1 },
+      { title: t("build.folder"), data: folderData, columns: COLS_2, headers: [t("build.header.cardName"), t("build.header.count")] },
+      { title: t("build.whiteCard"), data: wcData, columns: COLS_1, style: wcStyle, headers: [t("build.header.cardName")] },
+      { title: t("build.brother"), data: brotherData, columns: COLS_2, style: brotherStyle, headers: [t("build.header.name"), t("build.header.people")] },
+      { title: t("build.noisedCard"), data: noiseData, columns: COLS_1, style: noiseStyle, headers: [t("build.header.card")] },
+      { title: t("build.ability"), data: abilityData, columns: COLS_2, style: abilityStyle, headers: [t("build.header.ability"), t("build.header.capacity")] },
+      { title: t("build.rezon"), data: rezonData, columns: COLS_2, headers: [t("build.header.rezon"), t("build.header.people")] },
+      { title: t("build.rezonEffect"), data: rezonEffectData, columns: COLS_1, headers: [t("build.header.effect")] },
     ],
     [t, rockmanData, rockmanStyle, folderData, wcData, wcStyle, brotherData, brotherStyle, noiseData, noiseStyle, abilityData, abilityStyle, rezonData, rezonEffectData],
   );
@@ -451,6 +451,13 @@ export function BuildTab({ version }: { version: Version }) {
           onClick={handleCopyHtml}
         >
           {t("build.copyHtml")}
+        </Button>
+        <Button
+          variant="contained"
+          startIcon={<ContentCopyIcon />}
+          onClick={handleCopyMarkdown}
+        >
+          {t("build.copyMarkdown")}
         </Button>
         <Button
           variant="contained"

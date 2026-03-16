@@ -383,8 +383,20 @@
     "warlockStats": "Attack {{attack}}Lv\nRapid {{rapid}}Lv\nCharge {{charge}}Lv",
     "total": "Total",
     "copyHtml": "Copy as HTML",
+    "copyMarkdown": "Copy as Markdown",
     "tableHint": "You can select and copy table ranges.",
-    "exportJson": "Export JSON"
+    "exportJson": "Export JSON",
+    "header": {
+      "cardName": "Card",
+      "count": "Qty",
+      "name": "Name",
+      "people": "Count",
+      "card": "Card",
+      "ability": "Ability",
+      "capacity": "Cap",
+      "rezon": "Rezon",
+      "effect": "Effect"
+    }
   },
   "ability": {
     "name": {

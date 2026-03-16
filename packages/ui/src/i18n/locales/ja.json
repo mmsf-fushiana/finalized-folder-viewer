@@ -383,8 +383,20 @@
     "warlockStats": "アタック {{attack}}Lv\nラピッド {{rapid}}Lv\nチャージ {{charge}}Lv",
     "total": "合計",
     "copyHtml": "HTML形式でコピー",
+    "copyMarkdown": "Markdown形式でコピー",
     "tableHint": "テーブルは範囲選択してコピーが可能です。",
-    "exportJson": "JSON書き出し"
+    "exportJson": "JSON書き出し",
+    "header": {
+      "cardName": "カード名",
+      "count": "枚数",
+      "name": "名前",
+      "people": "人数",
+      "card": "カード",
+      "ability": "アビリティ",
+      "capacity": "容量",
+      "rezon": "レゾン",
+      "effect": "効果"
+    }
   },
   "ability": {
     "name": {
