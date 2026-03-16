@@ -784,7 +784,7 @@ export function useNoisedCardHexIds(): string[] {
 // サポートユーズ派生セレクター
 // ========================================
 
-const SUPPORT_ABILITY_HEX = new Set(['3832', '3836', '382B']);
+const SUPPORT_ABILITY_HEX = new Set(['3831', '3832', '3836']);
 
 /** サポートユーズ名称を返す（アビリティ→ノイズドカードsupportで上書き） */
 export function useSupportUse(): string | null {

@@ -29,6 +29,7 @@ interface FolderViewProps {
   gaPlus?: Record<string, number>;
   showRezon?: boolean;
   finalizeTurnSum?: number;
+  rezonAttackStar?: Record<string, number>;
 }
 
 const ALL_TYPES = ['無', '電気', '火', '水', '木', '風', 'ソード', 'ブレイク'] as const;
@@ -468,7 +469,7 @@ function getEffectiveAttack(card: Card, ratings: TypeRatings, typePlus?: Record<
   return { attack: baseAttack, boosted };
 }
 
-export function FolderView({ version, level, cards, gaList, ratings: ratingsProp, onRatingChange: onRatingChangeProp, onLevelChange, locked = false, accessLvSum = 0, typePlus, gaPlus, showRezon = false, finalizeTurnSum = 0 }: FolderViewProps) {
+export function FolderView({ version, level, cards, gaList, ratings: ratingsProp, onRatingChange: onRatingChangeProp, onLevelChange, locked = false, accessLvSum = 0, typePlus, gaPlus, showRezon = false, finalizeTurnSum = 0, rezonAttackStar }: FolderViewProps) {
   const { t } = useTranslation();
   const [internalRatings, setInternalRatings] = useState<TypeRatings>(initialRatings);
   const ratings: TypeRatings = ratingsProp ?? internalRatings;
@@ -647,11 +648,11 @@ export function FolderView({ version, level, cards, gaList, ratings: ratingsProp
                     {t('rezon.effect.accessLv', { value: accessLvSum })}
                   </Typography>
                 )}
-                {/* アタックスター */}
-                {RATING_TYPES.map(type => {
-                  const val = ratings[type];
-                  if (!val) return null;
+                {/* アタックスター（メモリ由来） */}
+                {rezonAttackStar && RATING_TYPES.map(type => {
                   const engKey = TYPE_KEY_MAP[type];
+                  const val = engKey ? (rezonAttackStar[engKey] ?? 0) : 0;
+                  if (!val) return null;
                   return (
                     <Box key={type} sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                       <Box component="img" src={TYPE_IMAGES[type]} alt={type} sx={{ width: 14, height: 14 }} />

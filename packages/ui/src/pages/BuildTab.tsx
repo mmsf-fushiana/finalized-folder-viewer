@@ -46,7 +46,7 @@ const SUIT_STYLE: Record<string, { icon: string; bg: string }> = {
   joker: { icon: "★", bg: "#828282" },
 };
 
-const hdr = { fontWeight: "bold" as const, fontSize: 14, margin: "12px 0 4px" };
+const hdr = { fontWeight: "bold" as const, fontSize: 14 };
 
 const HP_ABILITY_RE = /^ability\.name\.hp(\d+)$/;
 
@@ -63,10 +63,10 @@ function groupNames(
 
 // 2列テーブル用の共通カラム定義
 const COLS_2 = [
-  { type: "html" as const, align: "left" as const, width: 340 },
+  { type: "html" as const, align: "left" as const, width: 240 },
   { align: "right" as const, width: 80 },
 ];
-const COLS_1 = [{ type: "html" as const, align: "left" as const, width: 420 }];
+const COLS_1 = [{ type: "html" as const, align: "left" as const, width: 320 }];
 
 type Version = 'BA' | 'RJ';
 
@@ -371,7 +371,7 @@ export function BuildTab({ version }: { version: Version }) {
 
   const sections = useMemo<HtmlSection[]>(
     () => [
-      { title: t("build.rockman"), data: rockmanData, columns: [{ type: "html", align: "left", width: 240 }, { align: "right", width: 180 }], style: rockmanStyle },
+      { title: t("build.rockman"), data: rockmanData, columns: [{ type: "html", align: "left", width: 160 }, { align: "right", width: 160 }], style: rockmanStyle },
       { title: t("build.folder"), data: folderData, columns: COLS_2 },
       { title: t("build.whiteCard"), data: wcData, columns: COLS_1, style: wcStyle },
       { title: t("build.brother"), data: brotherData, columns: COLS_2, style: brotherStyle },
@@ -436,13 +436,15 @@ export function BuildTab({ version }: { version: Version }) {
     <Box
       sx={{
         p: 2,
+        // pb: 4,
         fontFamily: "Consolas, monospace",
         display: "flex",
         flexDirection: "column",
-        gap: 0.5,
+        gap: 0,
+        userSelect: "none",
       }}
     >
-      <Box sx={{ display: "flex", gap: 1 }}>
+      <Box sx={{ display: "flex", gap: 1, mb: 0.5 }}>
         <Button
           variant="contained"
           startIcon={<ContentCopyIcon />}
@@ -458,50 +460,50 @@ export function BuildTab({ version }: { version: Version }) {
           {t("build.exportJson")}
         </Button>
       </Box>
-      <Box sx={{ fontSize: 11, color: "#aaa", mt: 0.5 }}>
+      <Box sx={{ fontSize: 11, color: "#aaa", mb: 1 }}>
         {t("build.tableHint")}
       </Box>
 
-      <Box>
-        {/* ノイズ / HP / サポートユーズ / ウォーロック装備 */}
-        <div style={hdr}>{t("build.rockman")}</div>
-        <JSheet
-          data={rockmanData}
-          columns={[
-            { type: "html", align: "left", width: 240 },
-            { align: "right", width: 180 },
-          ]}
-          style={rockmanStyle}
-          initialSelection="A1"
-        />
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Box sx={{ display: "flex", gap: 3, boxShadow: 3, borderRadius: 2, p: 2 }}>
+          {/* 左カラム: ロックマン〜ブラザー */}
+          <Box sx={{ flex: "0 0 auto" }}>
+            <div style={hdr}>{t("build.rockman")}</div>
+            <JSheet
+              data={rockmanData}
+              columns={[
+                { type: "html", align: "left", width: 160 },
+                { align: "right", width: 160 },
+              ]}
+              style={rockmanStyle}
+              initialSelection="A1"
+            />
 
-        {/* デッキ一覧 */}
-        <div style={hdr}>{t("build.folder")}</div>
-        <JSheet data={folderData} columns={COLS_2} />
+            <div style={hdr}>{t("build.folder")}</div>
+            <JSheet data={folderData} columns={COLS_2} />
 
-        {/* ホワイトカード */}
-        <div style={hdr}>{t("build.whiteCard")}</div>
-        <JSheet data={wcData} columns={COLS_1} style={wcStyle} />
+            <div style={hdr}>{t("build.whiteCard")}</div>
+            <JSheet data={wcData} columns={COLS_1} style={wcStyle} />
 
-        {/* ブラザー情報 */}
-        <div style={hdr}>{t("build.brother")}</div>
-        <JSheet data={brotherData} columns={COLS_2} style={brotherStyle} />
+            <div style={hdr}>{t("build.brother")}</div>
+            <JSheet data={brotherData} columns={COLS_2} style={brotherStyle} />
+          </Box>
 
-        {/* ノイズドカード */}
-        <div style={hdr}>{t("build.noisedCard")}</div>
-        <JSheet data={noiseData} columns={COLS_1} style={noiseStyle} />
+          {/* 右カラム: ノイズドカード〜レゾン効果 */}
+          <Box sx={{ flex: "0 0 auto" }}>
+            <div style={hdr}>{t("build.noisedCard")}</div>
+            <JSheet data={noiseData} columns={COLS_1} style={noiseStyle} />
 
-        {/* アビリティ */}
-        <div style={hdr}>{t("build.ability")}</div>
-        <JSheet data={abilityData} columns={COLS_2} style={abilityStyle} />
+            <div style={hdr}>{t("build.ability")}</div>
+            <JSheet data={abilityData} columns={COLS_2} style={abilityStyle} />
 
-        {/* レゾン情報 */}
-        <div style={hdr}>{t("build.rezon")}</div>
-        <JSheet data={rezonData} columns={COLS_2} />
+            <div style={hdr}>{t("build.rezon")}</div>
+            <JSheet data={rezonData} columns={COLS_2} />
 
-        {/* レゾン効果（マージ済み） */}
-        <div style={hdr}>{t("build.rezonEffect")}</div>
-        <JSheet data={rezonEffectData} columns={COLS_1} />
+            <div style={hdr}>{t("build.rezonEffect")}</div>
+            <JSheet data={rezonEffectData} columns={COLS_1} />
+          </Box>
+        </Box>
       </Box>
     </Box>
   );
