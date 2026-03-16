@@ -206,6 +206,7 @@ export function FolderTab({ version }: { version: Version }) {
         gaPlus={noiseCards.effectDetail.ga_plus}
         showRezon
         finalizeTurnSum={finalizeTurnSum}
+        rezonAttackStar={attackStarSum}
       />
     </>
   );
