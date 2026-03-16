@@ -14,6 +14,7 @@ export class PipeClient extends EventEmitter {
   private buffer = '';
   private reconnectTimer: ReturnType<typeof setTimeout> | null = null;
   private stopped = false;
+  private wasConnected = false;
 
   connect(): void {
     this.stopped = false;
@@ -25,6 +26,7 @@ export class PipeClient extends EventEmitter {
 
     this.socket = net.createConnection(PIPE_NAME, () => {
       console.log('[PipeClient] Connected to DLL pipe');
+      this.wasConnected = true;
       this.emit('connected');
     });
 
@@ -55,7 +57,12 @@ export class PipeClient extends EventEmitter {
     this.socket.on('close', () => {
       console.log('[PipeClient] Disconnected');
       this.emit('disconnected');
-      this.scheduleReconnect();
+      if (this.wasConnected) {
+        // 一度接続した後の切断はDS終了とみなし、再接続しない
+        console.log('[PipeClient] DS terminated. No reconnection.');
+      } else {
+        this.scheduleReconnect();
+      }
     });
   }
 
