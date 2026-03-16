@@ -3,8 +3,10 @@ import type { HtmlSection } from "./buildHtmlTable";
 /** <b>text</b> → **text** に変換し、残りのHTMLタグは除去 */
 function htmlToMarkdown(text: string): string {
   return text
-    .replace(/<b[^>]*>(.*?)<\/b>/gi, "**$1**")
-    .replace(/<[^>]+>/g, "");
+    .replace(/<b[^>]*>(.*?)<\/b>/gi, " **$1**")
+    .replace(/<[^>]+>/g, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
 }
 
 /** Markdown テーブルのセル内で特殊文字をエスケープ */
@@ -24,6 +26,36 @@ function separator(align?: "left" | "right" | "center"): string {
   }
 }
 
+/** データ行1行を Markdown セル配列に変換 */
+function rowToCells(
+  row: (string | number | null)[],
+  cols: { type?: string; align?: string }[],
+  style?: Record<string, string>,
+  rowIndex?: number,
+): string[] {
+  return cols.map((col, c) => {
+    const raw = row[c] ?? "";
+    let text = String(raw);
+
+    // セル内改行を " / " 区切りに変換
+    text = text.replace(/\n/g, " / ");
+
+    // html 列は markdown 変換、それ以外はパイプだけエスケープ
+    text = col.type === "html" ? escPipe(htmlToMarkdown(text)) : escPipe(text);
+
+    // font-weight: bold スタイルがあれば太字化
+    if (style && rowIndex != null) {
+      const cellKey = `${String.fromCharCode(65 + c)}${rowIndex + 1}`;
+      const cellCss = style[cellKey];
+      if (cellCss && /font-weight\s*:\s*bold/i.test(cellCss)) {
+        text = `**${text}**`;
+      }
+    }
+
+    return text;
+  });
+}
+
 /** 1セクションを Markdown テーブル文字列に変換 */
 function sectionToMarkdown(sec: HtmlSection): string {
   const cols = sec.columns ?? [{ align: "left" }];
@@ -32,32 +64,23 @@ function sectionToMarkdown(sec: HtmlSection): string {
   // 区切り行
   const sep = "| " + cols.map((c) => separator(c.align)).join(" | ") + " |";
 
-  for (let r = 0; r < sec.data.length; r++) {
-    const row = sec.data[r];
-    const cells = cols.map((col, c) => {
-      const raw = row[c] ?? "";
-      let text = String(raw);
+  if (sec.headers) {
+    // 明示的ヘッダーがある場合: headersをヘッダー行、全dataをボディ行
+    const headerCells = sec.headers.map((h) => escPipe(h));
+    lines.push("| " + headerCells.join(" | ") + " |");
+    lines.push(sep);
 
-      // セル内改行を <br> に
-      text = text.replace(/\n/g, "<br>");
-
-      // html 列は markdown 変換、それ以外はパイプだけエスケープ
-      text = col.type === "html" ? escPipe(htmlToMarkdown(text)) : escPipe(text);
-
-      // font-weight: bold スタイルがあれば太字化
-      const cellKey = `${String.fromCharCode(65 + c)}${r + 1}`;
-      const cellCss = sec.style?.[cellKey];
-      if (cellCss && /font-weight\s*:\s*bold/i.test(cellCss)) {
-        text = `**${text}**`;
-      }
-
-      return text;
-    });
-
-    lines.push("| " + cells.join(" | ") + " |");
-
-    // 1行目の直後に区切り行を挿入
-    if (r === 0) lines.push(sep);
+    for (let r = 0; r < sec.data.length; r++) {
+      const cells = rowToCells(sec.data[r], cols, sec.style, r);
+      lines.push("| " + cells.join(" | ") + " |");
+    }
+  } else {
+    // 従来動作: data[0]がヘッダー扱い
+    for (let r = 0; r < sec.data.length; r++) {
+      const cells = rowToCells(sec.data[r], cols, sec.style, r);
+      lines.push("| " + cells.join(" | ") + " |");
+      if (r === 0) lines.push(sep);
+    }
   }
 
   return lines.join("\n");
@@ -72,6 +95,7 @@ export function buildMarkdownDocument(sections: HtmlSection[]): string {
 
   for (const sec of sections) {
     lines.push(`### ${sec.title}`);
+    lines.push("");
     lines.push(sectionToMarkdown(sec));
     lines.push("");
   }
