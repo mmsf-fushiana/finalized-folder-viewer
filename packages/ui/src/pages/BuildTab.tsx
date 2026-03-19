@@ -7,6 +7,7 @@ import {
   useGameNumber,
   useGameValue,
   useDeckCards,
+  useDeckCardsSlotted,
   useDeckCardSummary,
   getNoise,
   getWhiteCards,
@@ -14,6 +15,7 @@ import {
   useNoisedCardHexIds,
   useActiveAbilities,
   useBrotherInfo,
+  useSSSInfo,
   getRezonEntry,
   useSupportUse,
   useWarlockWeapon,
@@ -67,6 +69,10 @@ const COLS_2 = [
   { align: "right" as const, width: 80 },
 ];
 const COLS_1 = [{ type: "html" as const, align: "left" as const, width: 320 }];
+const COLS_SSS = [
+  { type: "html" as const, align: "left" as const, width: 160 },
+  { type: "html" as const, align: "left" as const, width: 160 },
+];
 
 type Version = 'BA' | 'RJ';
 
@@ -90,6 +96,12 @@ export function BuildTab({ version }: { version: Version }) {
   const bro4 = useBrotherInfo(4);
   const bro5 = useBrotherInfo(5);
   const bro6 = useBrotherInfo(6);
+  const sss1 = useSSSInfo(1);
+  const sss2 = useSSSInfo(2);
+  const sss3 = useSSSInfo(3);
+  const sss4 = useSSSInfo(4);
+  const sss5 = useSSSInfo(5);
+  const sss6 = useSSSInfo(6);
   const myRezonGv = useGameValue("MY_REZON");
   const supportUse = useSupportUse();
   const warlock = useWarlockWeapon();
@@ -98,6 +110,7 @@ export function BuildTab({ version }: { version: Version }) {
 
   // REG / TAG1 / TAG2 (すべて CARD配列の 0-based インデックス)
   const deckCards = useDeckCards();
+  const deckCardsSlotted = useDeckCardsSlotted();
   const regGv = useGameValue("REG");
   const tagIndices = useTagIndices();
 
@@ -302,6 +315,25 @@ export function BuildTab({ version }: { version: Version }) {
     return [rows, style];
   }, [t, broNoises, broWCGroups, broMegas, broGigas]);
 
+  // SSS (2列 x 3行: 左=slot1-3, 右=slot4-6)
+  const sssSlots = [sss1, sss2, sss3, sss4, sss5, sss6];
+  const sssCount = sssSlots.filter((s) => s.active).length;
+  const formatSSS = (s: typeof sss1) =>
+    s.active && s.name && s.group != null && s.level != null
+      ? `${s.group}. Lv${s.level} ${t(s.name)}`
+      : "";
+  const sssData = useMemo<string[][]>(() => {
+    const left = [sss1, sss2, sss3];
+    const right = [sss4, sss5, sss6];
+    const rows: string[][] = [];
+    for (let i = 0; i < 3; i++) {
+      const l = formatSSS(left[i]);
+      const r = formatSSS(right[i]);
+      if (l || r) rows.push([l, r]);
+    }
+    return rows;
+  }, [t, sss1, sss2, sss3, sss4, sss5, sss6]);
+
   // ノイズドカード（背景色付き）
   const [noiseData, noiseStyle] = useMemo<
     [string[][], Record<string, string>]
@@ -375,12 +407,13 @@ export function BuildTab({ version }: { version: Version }) {
       { title: t("build.folder"), data: folderData, columns: COLS_2, headers: [t("build.header.cardName"), t("build.header.count")] },
       { title: t("build.whiteCard"), data: wcData, columns: COLS_1, style: wcStyle, headers: [t("build.header.cardName")] },
       { title: t("build.brother"), data: brotherData, columns: COLS_2, style: brotherStyle, headers: [t("build.header.name"), t("build.header.people")] },
+      ...(sssCount > 0 ? [{ title: t("build.sss"), data: sssData, columns: COLS_SSS }] : []),
       { title: t("build.noisedCard"), data: noiseData, columns: COLS_1, style: noiseStyle, headers: [t("build.header.card")] },
       { title: t("build.ability"), data: abilityData, columns: COLS_2, style: abilityStyle, headers: [t("build.header.ability"), t("build.header.capacity")] },
       { title: t("build.rezon"), data: rezonData, columns: COLS_2, headers: [t("build.header.rezon"), t("build.header.people")] },
       { title: t("build.rezonEffect"), data: rezonEffectData, columns: COLS_1, headers: [t("build.header.effect")] },
     ],
-    [t, rockmanData, rockmanStyle, folderData, wcData, wcStyle, brotherData, brotherStyle, noiseData, noiseStyle, abilityData, abilityStyle, rezonData, rezonEffectData],
+    [t, rockmanData, rockmanStyle, folderData, wcData, wcStyle, brotherData, brotherStyle, sssCount, sssData, noiseData, noiseStyle, abilityData, abilityStyle, rezonData, rezonEffectData],
   );
 
   const handleCopyHtml = useCallback(() => {
@@ -399,11 +432,8 @@ export function BuildTab({ version }: { version: Version }) {
       version,
       noiseName: myNoise ? tJa(myNoise.name) : '',
       warlockWeaponName: warlock ? tJa(warlock.name) : '',
-      deckCards: deckSummary.map((row) => ({
-        name: row.card.name,
-        count: row.count,
-        isRegular: deckCards.indexOf(row.card) === regIdx,
-      })),
+      deckSlots: deckCardsSlotted.map((c) => c?.name ?? null),
+      regSlotIndex: regIdx,
       abilities: abilities.map((ab) => ({
         name: tJa(ab.name),
         capacity: ab.capacity,
@@ -417,6 +447,7 @@ export function BuildTab({ version }: { version: Version }) {
         megaCardHex: bro.megaCardHex,
         gigaCardHex: bro.gigaCardHex,
       })),
+      sssSlots: sssSlots.map((s) => ({ active: s.active, id: s.id })),
       myRezonName: myRezon ? tJa('rezon.name.' + myRezon.name) : '',
       noiseDisplayName: myNoise ? t(myNoise.name) : '',
     });
@@ -430,7 +461,7 @@ export function BuildTab({ version }: { version: Version }) {
     a.download = `build-${version.toLowerCase()}-${ts}.json`;
     a.click();
     URL.revokeObjectURL(url);
-  }, [version, myNoise, warlock, deckSummary, deckCards, regIdx, abilities, noisedCardHexIds, wcGv, brothers, myRezon, t]);
+  }, [version, myNoise, warlock, deckCardsSlotted, regIdx, abilities, noisedCardHexIds, wcGv, brothers, sssSlots, myRezon, t]);
 
   return (
     <Box
@@ -494,6 +525,13 @@ export function BuildTab({ version }: { version: Version }) {
 
             <div style={hdr}>{t("build.brother")}</div>
             <JSheet data={brotherData} columns={COLS_2} style={brotherStyle} />
+
+            {sssCount > 0 && (
+              <>
+                <div style={hdr}>{t("build.sss")}</div>
+                <JSheet data={sssData} columns={COLS_SSS} />
+              </>
+            )}
           </Box>
 
           {/* 右カラム: ノイズドカード〜レゾン効果 */}

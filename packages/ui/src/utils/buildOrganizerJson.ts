@@ -22,8 +22,10 @@ export interface OrganizerExportParams {
   noiseName: string;
   /** ウォーロック装備日本語名 (t(warlock.name))。未装備時は空文字 */
   warlockWeaponName: string;
-  /** デッキカード (card.name = アプリ側の日本語名) */
-  deckCards: { name: string; count: number; isRegular: boolean }[];
+  /** デッキカード 30スロット (null=空スロット) */
+  deckSlots: (string | null)[];
+  /** REGカードのスロットインデックス (0-29, -1=未指定) */
+  regSlotIndex: number;
   /** アビリティ (name = t(ab.name) の出力、capacity = 数値) */
   abilities: { name: string; capacity: number }[];
   /** ノイズドカード5枚の hex (ゲーム内4桁hex e.g. "0000") */
@@ -37,6 +39,11 @@ export interface OrganizerExportParams {
     whiteCardSetHex: string;
     megaCardHex: string;
     gigaCardHex: string;
+  }[];
+  /** SSS情報6枠 (ブラザーと同じ順序) */
+  sssSlots: {
+    active: boolean;
+    id: string | null;
   }[];
   /** 自分のレゾン日本語名 (t("rezon.name." + key))。未設定時は空文字 */
   myRezonName: string;
@@ -159,10 +166,14 @@ function uuid(): string {
 // ブラザールーレットスロット
 // ──────────────────────────────────────────
 
+/**
+ * アプリのスロット順 (brothers配列のインデックス) → Organizer の position
+ *   slot1=左上(L0)→top_left, slot2=左中(L1)→mid_left, slot3=左下(L2)→btm_left,
+ *   slot4=右上(R0)→top_right, slot5=右中(R1)→mid_right, slot6=右下(R2)→btm_right
+ */
 const BROTHER_POSITIONS = [
-  'top_left', 'top_right',
-  'mid_left', 'mid_right',
-  'btm_left', 'btm_right',
+  'top_left', 'mid_left', 'btm_left',
+  'top_right', 'mid_right', 'btm_right',
 ] as const;
 
 /** ギガカードhexからブラザーのバージョンを判定 (RJ専用ギガ → red-joker, それ以外 → black-ace) */
@@ -176,7 +187,21 @@ function resolveBrotherVersion(gigaCardHex: string): 'black-ace' | 'red-joker' {
 function buildBrotherSlot(
   bro: OrganizerExportParams['brothers'][number],
   position: string,
+  sss: OrganizerExportParams['sssSlots'][number],
 ) {
+  if (sss.active && sss.id) {
+    return {
+      position,
+      slotType: 'sss',
+      sssLevel: sss.id,
+      version: '',
+      noise: '',
+      rezon: '',
+      whiteCardSetId: '',
+      gigaCard: '',
+      megaCard: '',
+    };
+  }
   const hasData = !!(bro.noiseName || bro.rezonName || bro.megaCardHex || bro.gigaCardHex || bro.whiteCardSetHex);
   return {
     position,
@@ -210,20 +235,25 @@ function buildTitle(version: Version, noiseName: string, now: Date): string {
 export function buildOrganizerJson(params: OrganizerExportParams): object {
   const {
     version, noiseName, warlockWeaponName,
-    deckCards, abilities, noisedCardHexIds,
-    whiteCardSetHex, brothers, myRezonName,
+    deckSlots, regSlotIndex, abilities, noisedCardHexIds,
+    whiteCardSetHex, brothers, sssSlots, myRezonName,
     noiseDisplayName,
   } = params;
 
-  // カード
-  const cards = deckCards.map((c) => ({
-    id: uuid(),
-    name: mapCardName(c.name),
-    quantity: c.count,
-    isRegular: c.isRegular,
-    notes: '',
-    favoriteCount: 0,
-  }));
+  // カード (30スロット個別、空スロットはスキップ)
+  const cards = deckSlots
+    .map((name, i) => {
+      if (!name) return null;
+      return {
+        id: uuid(),
+        name: mapCardName(name),
+        quantity: 1,
+        isRegular: i === regSlotIndex,
+        notes: '',
+        favoriteCount: 0,
+      };
+    })
+    .filter((c): c is NonNullable<typeof c> => c !== null);
 
   // アビリティ
   const abilityEntries = abilities.map((ab) => {
@@ -244,8 +274,10 @@ export function buildOrganizerJson(params: OrganizerExportParams): object {
   while (noiseCardIds.length < 5) noiseCardIds.push('');
 
   // ブラザールーレットスロット
+  const defaultBro = { noiseName: '', rezonName: '', whiteCardSetHex: '', megaCardHex: '', gigaCardHex: '' };
+  const defaultSSS = { active: false, id: null };
   const brotherRouletteSlots = BROTHER_POSITIONS.map((pos, i) =>
-    buildBrotherSlot(brothers[i] ?? { noiseName: '', rezonName: '', whiteCardSetHex: '', megaCardHex: '', gigaCardHex: '' }, pos),
+    buildBrotherSlot(brothers[i] ?? defaultBro, pos, sssSlots[i] ?? defaultSSS),
   );
 
   // PGM: アビリティからエースPGM/ジョーカーPGMを検出
@@ -318,7 +350,7 @@ export function buildOrganizerJson(params: OrganizerExportParams): object {
         noiseAbilities: [],
         noiseCardIds,
         brotherRouletteSlots,
-        sssLevels: ['', '', ''],
+        sssLevels: sssSlots.filter(s => s.active && s.id).map(s => s.id!).slice(0, 3).concat(['', '', '']).slice(0, 3),
         nfb: '',
         mergeNoiseTarget: '',
         whiteCardSetId: whiteCardSetHex || '00',
