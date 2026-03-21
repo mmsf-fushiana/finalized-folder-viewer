@@ -48,7 +48,7 @@ const SUIT_STYLE: Record<string, { icon: string; bg: string }> = {
   joker: { icon: "★", bg: "#828282" },
 };
 
-const hdr = { fontWeight: "bold" as const, fontSize: 14 };
+const hdr = { fontWeight: "bold" as const, fontSize: 14, userSelect: "text" as const };
 
 const HP_ABILITY_RE = /^ability\.name\.hp(\d+)$/;
 
@@ -69,6 +69,10 @@ const COLS_2 = [
   { align: "right" as const, width: 80 },
 ];
 const COLS_1 = [{ type: "html" as const, align: "left" as const, width: 320 }];
+const COLS_2N = [
+  { type: "html" as const, align: "left" as const, width: 280 },
+  { align: "right" as const, width: 40 },
+];
 const COLS_SSS = [
   { type: "html" as const, align: "left" as const, width: 160 },
   { type: "html" as const, align: "left" as const, width: 160 },
@@ -404,13 +408,13 @@ export function BuildTab({ version }: { version: Version }) {
   const sections = useMemo<HtmlSection[]>(
     () => [
       { title: t("build.rockman"), data: rockmanData, columns: [{ type: "html", align: "left", width: 160 }, { align: "right", width: 160 }], style: rockmanStyle },
-      { title: t("build.folder"), data: folderData, columns: COLS_2, headers: [t("build.header.cardName"), t("build.header.count")] },
+      { title: t("build.folder"), data: folderData, columns: COLS_2N, headers: [t("build.header.cardName"), t("build.header.count")] },
       { title: t("build.whiteCard"), data: wcData, columns: COLS_1, style: wcStyle, headers: [t("build.header.cardName")] },
-      { title: t("build.brother"), data: brotherData, columns: COLS_2, style: brotherStyle, headers: [t("build.header.name"), t("build.header.people")] },
+      { title: t("build.brother"), data: brotherData, columns: COLS_2N, style: brotherStyle, headers: [t("build.header.name"), t("build.header.people")] },
       ...(sssCount > 0 ? [{ title: t("build.sss"), data: sssData, columns: COLS_SSS }] : []),
       { title: t("build.noisedCard"), data: noiseData, columns: COLS_1, style: noiseStyle, headers: [t("build.header.card")] },
       { title: t("build.ability"), data: abilityData, columns: COLS_2, style: abilityStyle, headers: [t("build.header.ability"), t("build.header.capacity")] },
-      { title: t("build.rezon"), data: rezonData, columns: COLS_2, headers: [t("build.header.rezon"), t("build.header.people")] },
+      { title: t("build.rezon"), data: rezonData, columns: COLS_2N, headers: [t("build.header.rezon"), t("build.header.people")] },
       { title: t("build.rezonEffect"), data: rezonEffectData, columns: COLS_1, headers: [t("build.header.effect")] },
     ],
     [t, rockmanData, rockmanStyle, folderData, wcData, wcStyle, brotherData, brotherStyle, sssCount, sssData, noiseData, noiseStyle, abilityData, abilityStyle, rezonData, rezonEffectData],
@@ -475,31 +479,39 @@ export function BuildTab({ version }: { version: Version }) {
         userSelect: "none",
       }}
     >
-      <Box sx={{ display: "flex", gap: 1, mb: 0.5 }}>
-        <Button
-          variant="contained"
-          startIcon={<ContentCopyIcon />}
-          onClick={handleCopyHtml}
-        >
-          {t("build.copyHtml")}
-        </Button>
-        <Button
-          variant="contained"
-          startIcon={<ContentCopyIcon />}
-          onClick={handleCopyMarkdown}
-        >
-          {t("build.copyMarkdown")}
-        </Button>
-        <Button
-          variant="contained"
-          startIcon={<FileDownloadIcon />}
-          onClick={handleExportJson}
-        >
-          {t("build.exportJson")}
-        </Button>
-      </Box>
-      <Box sx={{ fontSize: 11, color: "#aaa", mb: 1 }}>
-        {t("build.tableHint")}
+      <Box sx={{ display: "flex", alignItems: "flex-start", mb: 1 }}>
+        <Box>
+          <Box sx={{ display: "flex", gap: 1 }}>
+            <Button variant="contained" size="small" startIcon={<ContentCopyIcon />} onClick={handleCopyHtml}>
+              {t("build.copyHtml")}
+            </Button>
+            <Button variant="contained" size="small" startIcon={<ContentCopyIcon />} onClick={handleCopyMarkdown}>
+              {t("build.copyMarkdown")}
+            </Button>
+          </Box>
+          <Box sx={{ fontSize: 11, color: "#aaa", mt: 0.5 }}>
+            {t("build.tableHint")}
+          </Box>
+        </Box>
+        <Box sx={{ flex: 1 }} />
+        <Box sx={{ textAlign: "right" }}>
+          <Button variant="contained" size="small" startIcon={<FileDownloadIcon />} onClick={handleExportJson}>
+            {t("build.exportJson")}
+          </Button>
+          <Box
+            sx={{ fontSize: 13, mt: 0.5, color: "#88f", cursor: "pointer", "&:hover": { textDecoration: "underline" } }}
+            onClick={() => {
+              const url = "https://mmsf-perfect-battle-organizer.vercel.app/builds";
+              if ((window as any).electronAPI?.openExternal) {
+                (window as any).electronAPI.openExternal(url);
+              } else {
+                window.open(url, "_blank", "noopener,noreferrer");
+              }
+            }}
+          >
+            {t("build.organizerLink")}
+          </Box>
+        </Box>
       </Box>
 
       <Box sx={{ display: "flex", justifyContent: "center" }}>
@@ -518,13 +530,13 @@ export function BuildTab({ version }: { version: Version }) {
             />
 
             <div style={hdr}>{t("build.folder")}</div>
-            <JSheet data={folderData} columns={COLS_2} />
+            <JSheet data={folderData} columns={COLS_2N} />
 
             <div style={hdr}>{t("build.whiteCard")}</div>
             <JSheet data={wcData} columns={COLS_1} style={wcStyle} />
 
             <div style={hdr}>{t("build.brother")}</div>
-            <JSheet data={brotherData} columns={COLS_2} style={brotherStyle} />
+            <JSheet data={brotherData} columns={COLS_2N} style={brotherStyle} />
 
             {sssCount > 0 && (
               <>
@@ -543,7 +555,7 @@ export function BuildTab({ version }: { version: Version }) {
             <JSheet data={abilityData} columns={COLS_2} style={abilityStyle} />
 
             <div style={hdr}>{t("build.rezon")}</div>
-            <JSheet data={rezonData} columns={COLS_2} />
+            <JSheet data={rezonData} columns={COLS_2N} />
 
             <div style={hdr}>{t("build.rezonEffect")}</div>
             <JSheet data={rezonEffectData} columns={COLS_1} />

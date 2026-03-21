@@ -425,9 +425,9 @@
     "remainingTurns": "残りターン: <1>{{count}}</1>",
     "updateOnFinalize": "ファイナライズ選択時のみ自動更新する",
     "tab": {
-      "monitor": "デバッグ",
-      "tab2": "フォルダビューア",
-      "tab3": "構築ビューア"
+      "monitor": "メモリモニタ",
+      "tab2": "ファイナライズフォルダ",
+      "tab3": "ロックマン/フォルダ構築"
     }
   },
   "build": {
@@ -435,7 +435,7 @@
     "folder": "フォルダ",
     "whiteCard": "ホワイトカード",
     "brother": "ブラザー",
-    "sss": "SSS",
+    "sss": "シークレットサテライトサーバー",
     "noisedCard": "ノイズドカード",
     "ability": "アビリティ",
     "rezon": "レゾン",
@@ -444,10 +444,11 @@
     "supportDefault": "デフォルト",
     "warlockStats": "アタック {{attack}}Lv\nラピッド {{rapid}}Lv\nチャージ {{charge}}Lv",
     "total": "合計",
-    "copyHtml": "HTML形式でコピー",
-    "copyMarkdown": "Markdown形式でコピー",
+    "copyHtml": "HTMLでコピー",
+    "copyMarkdown": "マークダウンでコピー",
     "tableHint": "テーブルは範囲選択してコピーが可能です。",
-    "exportJson": "JSON書き出し",
+    "exportJson": "JSONエクスポート",
+    "organizerLink": "流星のロックマン パーフェクトバトルオーガナイザー",
     "header": {
       "cardName": "カード名",
       "count": "枚数",

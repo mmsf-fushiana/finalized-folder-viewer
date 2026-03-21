@@ -425,9 +425,9 @@
     "remainingTurns": "Turns left: <1>{{count}}</1>",
     "updateOnFinalize": "Update on Finalize confirm",
     "tab": {
-      "monitor": "Debug",
-      "tab2": "Folder Viewer",
-      "tab3": "Build Viewer"
+      "monitor": "Memory",
+      "tab2": "Finalized Folder",
+      "tab3": "Mega Man/Folder"
     }
   },
   "build": {
@@ -448,6 +448,7 @@
     "copyMarkdown": "Copy as Markdown",
     "tableHint": "You can select and copy table ranges.",
     "exportJson": "Export JSON",
+    "organizerLink": "MMSF Battle Organizer",
     "header": {
       "cardName": "Card",
       "count": "Qty",
