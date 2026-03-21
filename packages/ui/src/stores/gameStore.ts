@@ -13,7 +13,7 @@ import rockEquipmentMapping from '@data/rock_equipment.json';
 import wcMapping from '@data/wc_mapping.json';
 import noiseMapping from '@data/noise.json';
 import sssMapping from '@data/sss.json';
-import { getNoiseLevel } from '../utils/noiseLevel';
+import { getNoiseLevel, isFinalized } from '../utils/noiseLevel';
 import type { Card, Level } from '../types';
 
 // ========================================
@@ -165,7 +165,7 @@ export const useGameStore = create<GameStore>()((set, get) => ({
       }
 
       // ファイナライズ解除: F_Turn_Remaining が 0 になった → ロック解除
-      if (state._folderFinalized && newFTurn === 0) {
+      if (state._folderFinalized && !isFinalized(newFTurn)) {
         set({ _folderFinalized: false, _capturedNoiseRate: null, _confirmedFolderLevel: null });
         return;
       }
@@ -195,7 +195,7 @@ export const useGameStore = create<GameStore>()((set, get) => ({
 
       // ロック確定: キャプチャ中かつ F_Turn_Remaining > 0
       // 初回fullメッセージ（アプリ起動時）はロックしない（遷移を観測した場合のみ）
-      if (get()._capturedNoiseRate !== null && newFTurn > 0 && state._initialized) {
+      if (get()._capturedNoiseRate !== null && isFinalized(newFTurn) && state._initialized) {
         set({ _folderFinalized: true });
       }
     };

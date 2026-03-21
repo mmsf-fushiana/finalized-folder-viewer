@@ -44,6 +44,12 @@ export function getNoiseLevel(noiseRate: number, plus?: number): number {
 }
 
 /**
+ * F_Turn_Remaining がファイナライズ中を示す値かどうか判定
+ * 1〜98 が有効な変身中ターン数。0 = 非変身、99以上 = 無効値として扱う
+ */
+export const isFinalized = (fTurn: number) => fTurn > 0 && fTurn < 99;
+
+/**
  * レベルからノイズ率の範囲を取得
  * @param level レベル (1-12)
  * @returns ノイズ率の範囲 or 'Over'（Lv.12の場合）
