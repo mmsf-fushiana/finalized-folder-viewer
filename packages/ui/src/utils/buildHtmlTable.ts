@@ -6,6 +6,8 @@ export interface HtmlSection {
   data: (string | number | null)[][];
   columns?: JSheetColumn[];
   style?: Record<string, string>;
+  /** Markdown出力専用: テーブルのヘッダー行 */
+  headers?: string[];
 }
 
 /** A1, B3 などのセルキーを行・列インデックス (0-based) に変換 */

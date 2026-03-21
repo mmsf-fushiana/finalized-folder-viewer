@@ -36,7 +36,7 @@
   },
   "build": {
     "appId": "com.ssr3-viewer.desktop",
-    "productName": "Finalized Folder Viewer",
+    "productName": "SSR3 melonDS Viewer",
     "asar": false,
     "directories": {
       "output": "release"

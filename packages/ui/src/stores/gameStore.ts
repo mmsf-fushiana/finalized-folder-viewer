@@ -12,7 +12,8 @@ import noiseCardMapping from '@data/noise_card.json';
 import rockEquipmentMapping from '@data/rock_equipment.json';
 import wcMapping from '@data/wc_mapping.json';
 import noiseMapping from '@data/noise.json';
-import { getNoiseLevel } from '../utils/noiseLevel';
+import sssMapping from '@data/sss.json';
+import { getNoiseLevel, isFinalized } from '../utils/noiseLevel';
 import type { Card, Level } from '../types';
 
 // ========================================
@@ -164,7 +165,7 @@ export const useGameStore = create<GameStore>()((set, get) => ({
       }
 
       // ファイナライズ解除: F_Turn_Remaining が 0 になった → ロック解除
-      if (state._folderFinalized && newFTurn === 0) {
+      if (state._folderFinalized && !isFinalized(newFTurn)) {
         set({ _folderFinalized: false, _capturedNoiseRate: null, _confirmedFolderLevel: null });
         return;
       }
@@ -194,7 +195,7 @@ export const useGameStore = create<GameStore>()((set, get) => ({
 
       // ロック確定: キャプチャ中かつ F_Turn_Remaining > 0
       // 初回fullメッセージ（アプリ起動時）はロックしない（遷移を観測した場合のみ）
-      if (get()._capturedNoiseRate !== null && newFTurn > 0 && state._initialized) {
+      if (get()._capturedNoiseRate !== null && isFinalized(newFTurn) && state._initialized) {
         set({ _folderFinalized: true });
       }
     };
@@ -363,10 +364,29 @@ const REZON_KEYS = REZON_PRIORITY_KEYS;
 
 const rezonMap = rezonMapping as Record<string, RezonEntry>;
 
-/** 各レゾンのエントリを取得するヘルパー */
+/** レゾンキー → SSSキーの対応 (MY_REZONにはSSS判定なし) */
+const REZON_TO_SSS: Record<string, { val1: string; serverId: string; val2: string } | null> = {
+  'REZON_L0': { val1: 'SSS_VAL1_L1', serverId: 'SSS_SERVER_ID_L1', val2: 'SSS_VAL2_L1' },
+  'REZON_L1': { val1: 'SSS_VAL1_L2', serverId: 'SSS_SERVER_ID_L2', val2: 'SSS_VAL2_L2' },
+  'REZON_L2': { val1: 'SSS_VAL1_L3', serverId: 'SSS_SERVER_ID_L3', val2: 'SSS_VAL2_L3' },
+  'REZON_R0': { val1: 'SSS_VAL1_R1', serverId: 'SSS_SERVER_ID_R1', val2: 'SSS_VAL2_R1' },
+  'REZON_R1': { val1: 'SSS_VAL1_R2', serverId: 'SSS_SERVER_ID_R2', val2: 'SSS_VAL2_R2' },
+  'REZON_R2': { val1: 'SSS_VAL1_R3', serverId: 'SSS_SERVER_ID_R3', val2: 'SSS_VAL2_R3' },
+  'MY_REZON': null,
+};
+
+/** 各レゾンのエントリを取得するヘルパー（SSS設定スロットはスキップ） */
 function getActiveRezonEntries(values: Record<string, GameValue>): RezonEntry[] {
   const entries: RezonEntry[] = [];
   for (const key of REZON_KEYS) {
+    // SSS設定中のスロットのレゾンはカウントしない
+    const sssKeys = REZON_TO_SSS[key];
+    if (sssKeys) {
+      const v1 = values[sssKeys.val1]?.value ?? '';
+      const sid = values[sssKeys.serverId]?.value ?? '';
+      const v2 = values[sssKeys.val2]?.value ?? '';
+      if (isSSSActive(v1, sid, v2)) continue;
+    }
     const hex = values[key]?.value;
     if (!hex) continue;
     const entry = rezonMap[hex];
@@ -375,14 +395,27 @@ function getActiveRezonEntries(values: Record<string, GameValue>): RezonEntry[] 
   return entries;
 }
 
-/** 全レゾンの attackStar 属性別合計 */
+/** 全レゾンの attackStar 属性別合計（SSS設定スロットはスキップ） */
 export function useRezonAttackStarSum(): Record<string, number> {
   const hexKey = useGameStore((s) =>
-    REZON_PRIORITY_KEYS.map(k => s.values[k]?.value ?? '').join(','),
+    REZON_PRIORITY_KEYS.map(k => s.values[k]?.value ?? '').join(',')
+    + '|' + Object.values(REZON_TO_SSS).map(ssk => {
+      if (!ssk) return '';
+      return `${s.values[ssk.val1]?.value ?? ''}.${s.values[ssk.serverId]?.value ?? ''}.${s.values[ssk.val2]?.value ?? ''}`;
+    }).join(','),
   );
   return useMemo(() => {
     const result: Record<string, number> = {};
-    for (const hex of hexKey.split(',')) {
+    const [rezonPart, sssPart] = hexKey.split('|');
+    const rezonHexes = rezonPart.split(',');
+    const sssStates = sssPart.split(',');
+
+    for (let i = 0; i < rezonHexes.length; i++) {
+      // SSS判定 (MY_REZONは最後でSSS対応なし → sssStates[6]は空文字)
+      const sssVals = sssStates[i]?.split('.') ?? [];
+      if (sssVals[0] && isSSSActive(sssVals[0], sssVals[1], sssVals[2])) continue;
+
+      const hex = rezonHexes[i];
       if (!hex) continue;
       const entry = rezonMap[hex];
       if (!entry) continue;
@@ -490,7 +523,7 @@ export interface DeckCardRow {
   count: number;
 }
 
-/** CARD01-CARD30 の30枚カードオブジェクト配列を返す */
+/** CARD01-CARD30 の30枚カードオブジェクト配列を返す（空スロットはスキップ） */
 export function useDeckCards(): Card[] {
   const hexKey = useGameStore((s) =>
     CARD_KEYS.map(k => s.values[k]?.value ?? '').join(','),
@@ -503,6 +536,19 @@ export function useDeckCards(): Card[] {
       if (card) result.push(card);
     }
     return result;
+  }, [hexKey]);
+}
+
+/** CARD01-CARD30 の30スロット固定配列を返す（空スロットは null） */
+export function useDeckCardsSlotted(): (Card | null)[] {
+  const hexKey = useGameStore((s) =>
+    CARD_KEYS.map(k => s.values[k]?.value ?? '').join(','),
+  );
+  return useMemo(() => {
+    return hexKey.split(',').map((hex) => {
+      if (!hex) return null;
+      return cardById.get(hex.toUpperCase()) ?? null;
+    });
   }, [hexKey]);
 }
 
@@ -772,6 +818,14 @@ export function useNoiseCards(): NoiseCardResult {
   }, [hexKey]);
 }
 
+/** ノイズドカード5枚の hex ID (4桁) を返す */
+export function useNoisedCardHexIds(): string[] {
+  const hexKey = useGameStore((s) =>
+    NOISED_CARD_KEYS.map(k => s.values[k]?.value ?? '').join(','),
+  );
+  return useMemo(() => hexKey.split(',').filter(Boolean), [hexKey]);
+}
+
 // ========================================
 // サポートユーズ派生セレクター
 // ========================================
@@ -878,10 +932,69 @@ export function getRezonEntry(hex: string): RezonEntry | null {
 }
 
 // ========================================
-// ブラザー情報派生セレクター
+// SSS (シークレットサテライトサーバー) 判定
 // ========================================
 
+const sssMap = sssMapping as Record<string, { id: string; name: string; level: number; group: string }>;
+
 type BrotherSlot = 1 | 2 | 3 | 4 | 5 | 6;
+
+const SSS_KEYS: Record<BrotherSlot, { val1: string; serverId: string; val2: string }> = {
+  1: { val1: 'SSS_VAL1_L1', serverId: 'SSS_SERVER_ID_L1', val2: 'SSS_VAL2_L1' },
+  2: { val1: 'SSS_VAL1_L2', serverId: 'SSS_SERVER_ID_L2', val2: 'SSS_VAL2_L2' },
+  3: { val1: 'SSS_VAL1_L3', serverId: 'SSS_SERVER_ID_L3', val2: 'SSS_VAL2_L3' },
+  4: { val1: 'SSS_VAL1_R1', serverId: 'SSS_SERVER_ID_R1', val2: 'SSS_VAL2_R1' },
+  5: { val1: 'SSS_VAL1_R2', serverId: 'SSS_SERVER_ID_R2', val2: 'SSS_VAL2_R2' },
+  6: { val1: 'SSS_VAL1_R3', serverId: 'SSS_SERVER_ID_R3', val2: 'SSS_VAL2_R3' },
+};
+
+/** SSS判定: VAL1=="03" && SERVER_ID=="05" && VAL2が"01"-"38"の範囲 */
+function isSSSActive(val1: string, serverId: string, val2: string): boolean {
+  if (val1 !== '03' || serverId !== '05') return false;
+  const num = parseInt(val2, 16);
+  return num >= 0x01 && num <= 0x38;
+}
+
+export interface SSSInfo {
+  /** SSS設定中か */
+  active: boolean;
+  /** Organizer互換ID (例: "1", "G01") */
+  id: string | null;
+  /** SSSマスターのi18nキー (例: "sss.name.ox") */
+  name: string | null;
+  /** レベル */
+  level: number | null;
+  /** グループ ("S" or "M") */
+  group: string | null;
+  /** SSS_VAL2 の hex 値 */
+  val2Hex: string;
+}
+
+/** スロット番号(1-6)のSSS情報を返す */
+export function useSSSInfo(slot: BrotherSlot): SSSInfo {
+  const sssKeys = SSS_KEYS[slot];
+  const hexKey = useGameStore((s) =>
+    `${s.values[sssKeys.val1]?.value ?? ''}|${s.values[sssKeys.serverId]?.value ?? ''}|${s.values[sssKeys.val2]?.value ?? ''}`,
+  );
+  return useMemo(() => {
+    const [val1, serverId, val2] = hexKey.split('|');
+    const active = !!(val1 && serverId && val2) && isSSSActive(val1, serverId, val2);
+    const padded = val2 ? val2.toUpperCase().padStart(2, '0') : '';
+    const entry = active ? sssMap[padded] : null;
+    return {
+      active,
+      id: entry?.id ?? null,
+      name: entry?.name ?? null,
+      level: entry?.level ?? null,
+      group: entry?.group ?? null,
+      val2Hex: padded,
+    };
+  }, [hexKey]);
+}
+
+// ========================================
+// ブラザー情報派生セレクター
+// ========================================
 
 const BROTHER_KEYS: Record<BrotherSlot, {
   noise: string; wc: string; rezon: string; mega: string; giga: string;
@@ -898,15 +1011,33 @@ export interface BrotherInfo {
   noise: NoiseForm | null;
   cards: (Card | null)[];
   rezon: RezonEntry | null;
+  /** ホワイトカードセット hex (8桁zero-padded) */
+  wcHex: string;
+  /** メガカード hex ID (4桁) */
+  megaCardHex: string;
+  /** ギガカード hex ID (4桁) */
+  gigaCardHex: string;
 }
 
-/** スロット番号(1-6)のブラザー情報を返す */
+const EMPTY_BROTHER: BrotherInfo = {
+  noise: null,
+  cards: [null, null, null, null, null, null],
+  rezon: null,
+  wcHex: '00000000',
+  megaCardHex: '',
+  gigaCardHex: '',
+};
+
+/** スロット番号(1-6)のブラザー情報を返す（SSS設定時は空を返す） */
 export function useBrotherInfo(slot: BrotherSlot): BrotherInfo {
+  const sss = useSSSInfo(slot);
   const keys = BROTHER_KEYS[slot];
   const hexKey = useGameStore((s) =>
     `${s.values[keys.noise]?.value ?? ''}|${s.values[keys.wc]?.value ?? ''}|${s.values[keys.rezon]?.value ?? ''}|${s.values[keys.mega]?.value ?? ''}|${s.values[keys.giga]?.value ?? ''}`,
   );
   return useMemo(() => {
+    if (sss.active) return EMPTY_BROTHER;
+
     const [noiseHex, wcHex, rezonHex, megaHex, gigaHex] = hexKey.split('|');
 
     const noise = noiseHex ? getNoise(noiseHex) : null;
@@ -916,8 +1047,13 @@ export function useBrotherInfo(slot: BrotherSlot): BrotherInfo {
     const cards = [...wcCards, megaCard, gigaCard];
     const rezon = rezonHex ? (rezonMap[rezonHex] ?? null) : null;
 
-    return { noise, cards, rezon };
-  }, [hexKey]);
+    return {
+      noise, cards, rezon,
+      wcHex: wcHex ? wcHex.padStart(8, '0') : '00000000',
+      megaCardHex: megaHex ? megaHex.padStart(4, '0').toUpperCase() : '',
+      gigaCardHex: gigaHex ? gigaHex.padStart(4, '0').toUpperCase() : '',
+    };
+  }, [hexKey, sss.active]);
 }
 
 /** NOISE_RATE_1/2 が一致かつ 0-9999 なら末尾1桁を落とした値を返す */

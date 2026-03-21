@@ -346,6 +346,67 @@
       "burai": "Burai"
     }
   },
+  "sss": {
+    "title": "Secret Satellite Server",
+    "name": {
+      "ox": "Ox",
+      "cancer": "Cancer",
+      "diamond": "Diamond",
+      "ophiuca": "Ophiuca",
+      "crown": "Crown",
+      "brachio": "Brachio",
+      "goat": "Goat",
+      "cygnus": "Cygnus",
+      "harp": "Harp",
+      "club": "Club",
+      "apollo": "Apollo",
+      "phantom": "Phantom",
+      "leo": "Leo",
+      "empty": "Empty",
+      "wolf": "Wolf",
+      "gemini": "Gemini",
+      "libra": "Libra",
+      "corvus": "Corvus",
+      "condor": "Condor",
+      "moon": "Moon",
+      "spade": "Spade",
+      "origa": "Origa",
+      "virgo": "Virgo",
+      "pegasus": "Pegasus",
+      "ace": "Ace",
+      "andromeda": "Andromeda",
+      "burai": "Burai",
+      "blues": "Blues",
+      "dragon": "Dragon",
+      "joker": "Joker",
+      "ramu": "Ra Mu",
+      "forte": "Forte",
+      "alpha": "Alpha",
+      "beta": "Beta",
+      "gamma": "Gamma",
+      "delta": "Delta",
+      "epsilon": "Epsilon",
+      "zeta": "Zeta",
+      "eta": "Eta",
+      "theta": "Theta",
+      "iota": "Iota",
+      "kappa": "Kappa",
+      "lambda": "Lambda",
+      "mu": "Mu",
+      "nu": "Nu",
+      "xi": "Xi",
+      "omicron": "Omicron",
+      "pi": "Pi",
+      "rho": "Rho",
+      "sigma": "Sigma",
+      "tau": "Tau",
+      "upsilon": "Upsilon",
+      "phi": "Phi",
+      "chi": "Chi",
+      "psi": "Psi",
+      "omega": "Omega"
+    }
+  },
   "monitor": {
     "selectVersion": "Select Version",
     "romDetected": "ROM detected. Please select your version.",
@@ -364,9 +425,9 @@
     "remainingTurns": "Turns left: <1>{{count}}</1>",
     "updateOnFinalize": "Update on Finalize confirm",
     "tab": {
-      "monitor": "Debug",
-      "tab2": "Folder Viewer",
-      "tab3": "Build Viewer"
+      "monitor": "Memory",
+      "tab2": "Finalized Folder",
+      "tab3": "Mega Man/Folder"
     }
   },
   "build": {
@@ -374,6 +435,7 @@
     "folder": "Folder",
     "whiteCard": "White Card",
     "brother": "Brother",
+    "sss": "SSS",
     "noisedCard": "Noised Card",
     "ability": "Ability",
     "rezon": "Rezon",
@@ -383,7 +445,21 @@
     "warlockStats": "Attack {{attack}}Lv\nRapid {{rapid}}Lv\nCharge {{charge}}Lv",
     "total": "Total",
     "copyHtml": "Copy as HTML",
-    "tableHint": "You can select and copy table ranges."
+    "copyMarkdown": "Copy as Markdown",
+    "tableHint": "You can select and copy table ranges.",
+    "exportJson": "Export JSON",
+    "organizerLink": "MMSF Battle Organizer",
+    "header": {
+      "cardName": "Card",
+      "count": "Qty",
+      "name": "Name",
+      "people": "Count",
+      "card": "Card",
+      "ability": "Ability",
+      "capacity": "Cap",
+      "rezon": "Rezon",
+      "effect": "Effect"
+    }
   },
   "ability": {
     "name": {

@@ -51,7 +51,7 @@ export function GameMonitor({ version }: { version: 'BA' | 'RJ' }) {
       {/* ヘッダー: タイトル + 接続状態 */}
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 1 }}>
         <Typography variant="h5" component="h1">
-          Game Monitor
+          Memory Monitor
         </Typography>
         <Chip
           label={version}
@@ -60,7 +60,7 @@ export function GameMonitor({ version }: { version: 'BA' | 'RJ' }) {
           variant="outlined"
         />
         <Chip
-          label={pipeConnected ? 'Pipe接続中' : 'Pipe未接続'}
+          label={pipeConnected ? 'DS接続中' : 'DS未接続'}
           color={pipeConnected ? 'success' : 'default'}
           size="small"
         />

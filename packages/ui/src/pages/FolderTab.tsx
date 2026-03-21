@@ -12,7 +12,7 @@ import {
   useNoiseCards,
 } from '../stores/gameStore';
 import { TYPE_NAME_MAP } from '../i18n';
-import { getNoiseLevel } from '../utils/noiseLevel';
+import { getNoiseLevel, isFinalized } from '../utils/noiseLevel';
 
 const finalizationData = loadFinalizationData();
 const gaList = loadGAList();
@@ -54,7 +54,7 @@ export function FolderTab({ version }: { version: Version }) {
   const initialLevelSet = useRef(false);
   useEffect(() => {
     if (initialLevelSet.current) return;
-    if (fTurnRemaining > 0) {
+    if (isFinalized(fTurnRemaining)) {
       initialLevelSet.current = true;
       if (confirmLv1 >= 1 && confirmLv1 <= 12) {
         setLevel(confirmLv1 as Level);
@@ -70,7 +70,7 @@ export function FolderTab({ version }: { version: Version }) {
     // 起動時ファイナライズ中 → 自動決定をスキップ（左右で自由に切り替え可能にする）
     // F_Turn_Remaining が 0 になった（ファイナライズ解除）で通常モードに復帰
     if (initialLevelSet.current) {
-      if (fTurnRemaining === 0) {
+      if (!isFinalized(fTurnRemaining)) {
         initialLevelSet.current = false; // 通常モードに復帰
       }
       return;
@@ -134,7 +134,7 @@ export function FolderTab({ version }: { version: Version }) {
             '& .MuiChip-label': { px: 0.5 },
           }}
         />
-        {fTurnRemaining > 0 && (
+        {isFinalized(fTurnRemaining) && (
           <>
             <Divider orientation="vertical" flexItem />
             <Chip

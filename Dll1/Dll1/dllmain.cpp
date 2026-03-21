@@ -62,7 +62,26 @@ static const GameAddress RJ_ADDRESSES[] = {
     { "CURRENT_CARD",       0x020F1E24, 1 }, // カーソル選択中のカード？
     
     { "F_Turn_Remaining",   0x021C1A14, 1 }, // 残りファイナライズターン(バトル中に0=非変身)
-    
+
+    { "SSS_VAL1_L1",        0x220F6608, 1 },
+    { "SSS_SERVER_ID_L1",   0x220F393D, 1 },
+    { "SSS_VAL2_L1",        0x220F660E, 1 },
+    { "SSS_VAL1_L2",        0x220F6624, 1 },
+    { "SSS_SERVER_ID_L2",   0x220F3941, 1 },
+    { "SSS_VAL2_L2",        0x220F662A, 1 },
+    { "SSS_VAL1_L3",        0x220F6640, 1 },
+    { "SSS_SERVER_ID_L3",   0x220F3945, 1 },
+    { "SSS_VAL2_L3",        0x220F6646, 1 },
+    { "SSS_VAL1_R1",        0x220F665C, 1 },
+    { "SSS_SERVER_ID_R1",   0x220F3949, 1 },
+    { "SSS_VAL2_R1",        0x220F6662, 1 },
+    { "SSS_VAL1_R2",        0x220F6678, 1 },
+    { "SSS_SERVER_ID_R2",   0x220F394D, 1 },
+    { "SSS_VAL2_R2",        0x220F667E, 1 },
+    { "SSS_VAL1_R3",        0x220F6694, 1 },
+    { "SSS_SERVER_ID_R3",   0x220F3951, 1 },
+    { "SSS_VAL2_R3",        0x220F669A, 1 },
+
     { "MY_REZON",       0x220F39BE, 1 },
     { "REZON_L0",       0x220F3FFE, 1 },
     { "REZON_L1",       0x220F463E, 1 },
@@ -187,8 +206,27 @@ static const GameAddress BA_ADDRESSES[] = {
     { "SELECTED_SSS_VAL_2", 0x02186260, 2 }, // SSS選択時サーバーアドレスの値: 1-56 (サテライトLv 1-32, メテオLv 1-24)
     { "SSS_CURSOR",         0x021873DF, 1 }, // SSS選択 A/B/Cのカーソル位置: 0-2
     { "CURRENT_CARD",       0x020F1E04, 1 }, // カーソル選択中のカード？
-    
+
     { "F_Turn_Remaining",   0x021C19D4, 1 }, // 残りファイナライズターン(バトル中に0=非変身)
+
+    { "SSS_VAL1_L1",        0x220F65E8, 1 },
+    { "SSS_SERVER_ID_L1",   0x220F391D, 1 },
+    { "SSS_VAL2_L1",        0x220F65EE, 1 },
+    { "SSS_VAL1_L2",        0x220F6604, 1 },
+    { "SSS_SERVER_ID_L2",   0x220F3921, 1 },
+    { "SSS_VAL2_L2",        0x220F660A, 1 },
+    { "SSS_VAL1_L3",        0x220F6620, 1 },
+    { "SSS_SERVER_ID_L3",   0x220F3925, 1 },
+    { "SSS_VAL2_L3",        0x220F6626, 1 },
+    { "SSS_VAL1_R1",        0x220F663C, 1 },
+    { "SSS_SERVER_ID_R1",   0x220F3929, 1 },
+    { "SSS_VAL2_R1",        0x220F6642, 1 },
+    { "SSS_VAL1_R2",        0x220F6658, 1 },
+    { "SSS_SERVER_ID_R2",   0x220F392D, 1 },
+    { "SSS_VAL2_R2",        0x220F665E, 1 },
+    { "SSS_VAL1_R3",        0x220F6674, 1 },
+    { "SSS_SERVER_ID_R3",   0x220F3931, 1 },
+    { "SSS_VAL2_R3",        0x220F667A, 1 },
 
     { "MY_REZON",       0x220F399E, 1 },
     

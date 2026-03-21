@@ -2,16 +2,20 @@ import { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Box, Button } from "@mui/material";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import {
   useGameNumber,
   useGameValue,
   useDeckCards,
+  useDeckCardsSlotted,
   useDeckCardSummary,
   getNoise,
   getWhiteCards,
   useNoiseCards,
+  useNoisedCardHexIds,
   useActiveAbilities,
   useBrotherInfo,
+  useSSSInfo,
   getRezonEntry,
   useSupportUse,
   useWarlockWeapon,
@@ -21,6 +25,7 @@ import {
 import { JSheet } from "../components/JSheet";
 import { buildHtmlDocument, type HtmlSection } from "../utils/buildHtmlTable";
 import { buildMarkdownDocument } from "../utils/buildMarkdownTable";
+import { buildOrganizerJson } from "../utils/buildOrganizerJson";
 
 export const palette = [
   "#E39A9A",
@@ -43,7 +48,7 @@ const SUIT_STYLE: Record<string, { icon: string; bg: string }> = {
   joker: { icon: "★", bg: "#828282" },
 };
 
-const hdr = { fontWeight: "bold" as const, fontSize: 14 };
+const hdr = { fontWeight: "bold" as const, fontSize: 14, userSelect: "text" as const };
 
 const HP_ABILITY_RE = /^ability\.name\.hp(\d+)$/;
 
@@ -64,8 +69,18 @@ const COLS_2 = [
   { align: "right" as const, width: 80 },
 ];
 const COLS_1 = [{ type: "html" as const, align: "left" as const, width: 320 }];
+const COLS_2N = [
+  { type: "html" as const, align: "left" as const, width: 280 },
+  { align: "right" as const, width: 40 },
+];
+const COLS_SSS = [
+  { type: "html" as const, align: "left" as const, width: 160 },
+  { type: "html" as const, align: "left" as const, width: 160 },
+];
 
-export function BuildTab() {
+type Version = 'BA' | 'RJ';
+
+export function BuildTab({ version }: { version: Version }) {
   const { t, i18n } = useTranslation();
 
   // カード名の多言語切替ヘルパー
@@ -85,13 +100,21 @@ export function BuildTab() {
   const bro4 = useBrotherInfo(4);
   const bro5 = useBrotherInfo(5);
   const bro6 = useBrotherInfo(6);
+  const sss1 = useSSSInfo(1);
+  const sss2 = useSSSInfo(2);
+  const sss3 = useSSSInfo(3);
+  const sss4 = useSSSInfo(4);
+  const sss5 = useSSSInfo(5);
+  const sss6 = useSSSInfo(6);
   const myRezonGv = useGameValue("MY_REZON");
   const supportUse = useSupportUse();
   const warlock = useWarlockWeapon();
   const baseHp = useGameNumber("BASE_HP");
+  const noisedCardHexIds = useNoisedCardHexIds();
 
   // REG / TAG1 / TAG2 (すべて CARD配列の 0-based インデックス)
   const deckCards = useDeckCards();
+  const deckCardsSlotted = useDeckCardsSlotted();
   const regGv = useGameValue("REG");
   const tagIndices = useTagIndices();
 
@@ -296,6 +319,25 @@ export function BuildTab() {
     return [rows, style];
   }, [t, broNoises, broWCGroups, broMegas, broGigas]);
 
+  // SSS (2列 x 3行: 左=slot1-3, 右=slot4-6)
+  const sssSlots = [sss1, sss2, sss3, sss4, sss5, sss6];
+  const sssCount = sssSlots.filter((s) => s.active).length;
+  const formatSSS = (s: typeof sss1) =>
+    s.active && s.name && s.group != null && s.level != null
+      ? `${s.group}. Lv${s.level} ${t(s.name)}`
+      : "";
+  const sssData = useMemo<string[][]>(() => {
+    const left = [sss1, sss2, sss3];
+    const right = [sss4, sss5, sss6];
+    const rows: string[][] = [];
+    for (let i = 0; i < 3; i++) {
+      const l = formatSSS(left[i]);
+      const r = formatSSS(right[i]);
+      if (l || r) rows.push([l, r]);
+    }
+    return rows;
+  }, [t, sss1, sss2, sss3, sss4, sss5, sss6]);
+
   // ノイズドカード（背景色付き）
   const [noiseData, noiseStyle] = useMemo<
     [string[][], Record<string, string>]
@@ -366,15 +408,16 @@ export function BuildTab() {
   const sections = useMemo<HtmlSection[]>(
     () => [
       { title: t("build.rockman"), data: rockmanData, columns: [{ type: "html", align: "left", width: 160 }, { align: "right", width: 160 }], style: rockmanStyle },
-      { title: t("build.folder"), data: folderData, columns: COLS_2 },
-      { title: t("build.whiteCard"), data: wcData, columns: COLS_1, style: wcStyle },
-      { title: t("build.brother"), data: brotherData, columns: COLS_2, style: brotherStyle },
-      { title: t("build.noisedCard"), data: noiseData, columns: COLS_1, style: noiseStyle },
-      { title: t("build.ability"), data: abilityData, columns: COLS_2, style: abilityStyle },
-      { title: t("build.rezon"), data: rezonData, columns: COLS_2 },
-      { title: t("build.rezonEffect"), data: rezonEffectData, columns: COLS_1 },
+      { title: t("build.folder"), data: folderData, columns: COLS_2N, headers: [t("build.header.cardName"), t("build.header.count")] },
+      { title: t("build.whiteCard"), data: wcData, columns: COLS_1, style: wcStyle, headers: [t("build.header.cardName")] },
+      { title: t("build.brother"), data: brotherData, columns: COLS_2N, style: brotherStyle, headers: [t("build.header.name"), t("build.header.people")] },
+      ...(sssCount > 0 ? [{ title: t("build.sss"), data: sssData, columns: COLS_SSS }] : []),
+      { title: t("build.noisedCard"), data: noiseData, columns: COLS_1, style: noiseStyle, headers: [t("build.header.card")] },
+      { title: t("build.ability"), data: abilityData, columns: COLS_2, style: abilityStyle, headers: [t("build.header.ability"), t("build.header.capacity")] },
+      { title: t("build.rezon"), data: rezonData, columns: COLS_2N, headers: [t("build.header.rezon"), t("build.header.people")] },
+      { title: t("build.rezonEffect"), data: rezonEffectData, columns: COLS_1, headers: [t("build.header.effect")] },
     ],
-    [t, rockmanData, rockmanStyle, folderData, wcData, wcStyle, brotherData, brotherStyle, noiseData, noiseStyle, abilityData, abilityStyle, rezonData, rezonEffectData],
+    [t, rockmanData, rockmanStyle, folderData, wcData, wcStyle, brotherData, brotherStyle, sssCount, sssData, noiseData, noiseStyle, abilityData, abilityStyle, rezonData, rezonEffectData],
   );
 
   const handleCopyHtml = useCallback(() => {
@@ -384,6 +427,45 @@ export function BuildTab() {
   const handleCopyMarkdown = useCallback(() => {
     navigator.clipboard.writeText(buildMarkdownDocument(sections));
   }, [sections]);
+
+  const handleExportJson = useCallback(() => {
+    // 日本語翻訳を固定で取得（Organizer は日本語名ベース）
+    const tJa = (key: string) => t(key, { lng: 'ja' });
+
+    const json = buildOrganizerJson({
+      version,
+      noiseName: myNoise ? tJa(myNoise.name) : '',
+      warlockWeaponName: warlock ? tJa(warlock.name) : '',
+      deckSlots: deckCardsSlotted.map((c) => c?.name ?? null),
+      regSlotIndex: regIdx,
+      abilities: abilities.map((ab) => ({
+        name: tJa(ab.name),
+        capacity: ab.capacity,
+      })),
+      noisedCardHexIds,
+      whiteCardSetHex: wcGv?.value?.padStart(8, '0').slice(-2) ?? '00',
+      brothers: brothers.map((bro) => ({
+        noiseName: bro.noise ? tJa(bro.noise.name) : '',
+        rezonName: bro.rezon ? tJa('rezon.name.' + bro.rezon.name) : '',
+        whiteCardSetHex: bro.wcHex.slice(-2),
+        megaCardHex: bro.megaCardHex,
+        gigaCardHex: bro.gigaCardHex,
+      })),
+      sssSlots: sssSlots.map((s) => ({ active: s.active, id: s.id })),
+      myRezonName: myRezon ? tJa('rezon.name.' + myRezon.name) : '',
+      noiseDisplayName: myNoise ? t(myNoise.name) : '',
+    });
+
+    const blob = new Blob([JSON.stringify(json, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const now = new Date();
+    const ts = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}-${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}${String(now.getSeconds()).padStart(2, '0')}`;
+    a.href = url;
+    a.download = `build-${version.toLowerCase()}-${ts}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }, [version, myNoise, warlock, deckCardsSlotted, regIdx, abilities, noisedCardHexIds, wcGv, brothers, sssSlots, myRezon, t]);
 
   return (
     <Box
@@ -397,24 +479,39 @@ export function BuildTab() {
         userSelect: "none",
       }}
     >
-      <Box sx={{ display: "flex", gap: 1, mb: 0.5 }}>
-        <Button
-          variant="contained"
-          startIcon={<ContentCopyIcon />}
-          onClick={handleCopyHtml}
-        >
-          {t("build.copyHtml")}
-        </Button>
-        {/* <Button
-          variant="contained"
-          startIcon={<ContentCopyIcon />}
-          onClick={handleCopyMarkdown}
-        >
-          Markdown形式でコピー
-        </Button> */}
-      </Box>
-      <Box sx={{ fontSize: 11, color: "#aaa", mb: 1 }}>
-        {t("build.tableHint")}
+      <Box sx={{ display: "flex", alignItems: "flex-start", mb: 1 }}>
+        <Box>
+          <Box sx={{ display: "flex", gap: 1 }}>
+            <Button variant="contained" size="small" startIcon={<ContentCopyIcon />} onClick={handleCopyHtml}>
+              {t("build.copyHtml")}
+            </Button>
+            <Button variant="contained" size="small" startIcon={<ContentCopyIcon />} onClick={handleCopyMarkdown}>
+              {t("build.copyMarkdown")}
+            </Button>
+          </Box>
+          <Box sx={{ fontSize: 11, color: "#aaa", mt: 0.5 }}>
+            {t("build.tableHint")}
+          </Box>
+        </Box>
+        <Box sx={{ flex: 1 }} />
+        <Box sx={{ textAlign: "right" }}>
+          <Button variant="contained" size="small" startIcon={<FileDownloadIcon />} onClick={handleExportJson}>
+            {t("build.exportJson")}
+          </Button>
+          <Box
+            sx={{ fontSize: 13, mt: 0.5, color: "#88f", cursor: "pointer", "&:hover": { textDecoration: "underline" } }}
+            onClick={() => {
+              const url = "https://mmsf-perfect-battle-organizer.vercel.app/builds";
+              if ((window as any).electronAPI?.openExternal) {
+                (window as any).electronAPI.openExternal(url);
+              } else {
+                window.open(url, "_blank", "noopener,noreferrer");
+              }
+            }}
+          >
+            {t("build.organizerLink")}
+          </Box>
+        </Box>
       </Box>
 
       <Box sx={{ display: "flex", justifyContent: "center" }}>
@@ -433,13 +530,20 @@ export function BuildTab() {
             />
 
             <div style={hdr}>{t("build.folder")}</div>
-            <JSheet data={folderData} columns={COLS_2} />
+            <JSheet data={folderData} columns={COLS_2N} />
 
             <div style={hdr}>{t("build.whiteCard")}</div>
             <JSheet data={wcData} columns={COLS_1} style={wcStyle} />
 
             <div style={hdr}>{t("build.brother")}</div>
-            <JSheet data={brotherData} columns={COLS_2} style={brotherStyle} />
+            <JSheet data={brotherData} columns={COLS_2N} style={brotherStyle} />
+
+            {sssCount > 0 && (
+              <>
+                <div style={hdr}>{t("build.sss")}</div>
+                <JSheet data={sssData} columns={COLS_SSS} />
+              </>
+            )}
           </Box>
 
           {/* 右カラム: ノイズドカード〜レゾン効果 */}
@@ -451,7 +555,7 @@ export function BuildTab() {
             <JSheet data={abilityData} columns={COLS_2} style={abilityStyle} />
 
             <div style={hdr}>{t("build.rezon")}</div>
-            <JSheet data={rezonData} columns={COLS_2} />
+            <JSheet data={rezonData} columns={COLS_2N} />
 
             <div style={hdr}>{t("build.rezonEffect")}</div>
             <JSheet data={rezonEffectData} columns={COLS_1} />
