@@ -20,7 +20,7 @@ function createWindow() {
   Menu.setApplicationMenu(null);
 
   const mainWindow = new BrowserWindow({
-    title: 'SSR3 Viewer 0.9.0-rc.1',
+    title: 'SSR3 melonDS Viewer 1.0.0',
     width: 680,
     height: 460,
     icon: join(__dirname, '..', 'resources', 'icon.ico'),
