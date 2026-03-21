@@ -223,6 +223,8 @@
         "break": 0
       },
       "cs": "heavy_dawn",
+      "card_name": "ヘビードーン",
+      "card_name_en": "Big Drop",
       "mega_num_plus": 0,
       "giga_num_plus": 0
     }
@@ -394,6 +396,8 @@
         "break": 0
       },
       "cs": "m_flame",
+      "card_name": "マシーンフレイム",
+      "card_name_en": "Mech Flame",
       "mega_num_plus": 0,
       "giga_num_plus": 0
     }
@@ -593,6 +597,8 @@
         "break": 0
       },
       "cs": "plus",
+      "card_name": "C+",
+      "card_name_en": "C+",
       "mega_num_plus": 0,
       "giga_num_plus": 0
     }
@@ -794,6 +800,8 @@
         "break": 0
       },
       "cs": "giza_wheel",
+      "card_name": "ギザホイール",
+      "card_name_en": "Buzzsaw",
       "mega_num_plus": 0,
       "giga_num_plus": 0
     }
@@ -1080,6 +1088,8 @@
         "break": 0
       },
       "cs": "i_spinning",
+      "card_name": "アイススピニング",
+      "card_name_en": "Ice Spin",
       "mega_num_plus": 0,
       "giga_num_plus": 0
     }
@@ -1623,6 +1633,8 @@
         "break": 0
       },
       "cs": "mad_vulcan",
+      "card_name": "マッドバルカン",
+      "card_name_en": "Mad Vulcan",
       "mega_num_plus": 0,
       "giga_num_plus": 0
     }
@@ -1821,6 +1833,8 @@
         "break": 0
       },
       "cs": "f_spear",
+      "card_name": "フラッシュスピア",
+      "card_name_en": "Flash Strike",
       "mega_num_plus": 0,
       "giga_num_plus": 0
     }
@@ -2078,6 +2092,8 @@
         "break": 0
       },
       "cs": "m_technology",
+      "card_name": "ムーテクノロジー",
+      "card_name_en": "Mu Technology",
       "mega_num_plus": 0,
       "giga_num_plus": 0
     }
@@ -2533,6 +2549,8 @@
         "break": 0
       },
       "cs": "spread",
+      "card_name": "エアスプレッド",
+      "card_name_en": "Air Spread",
       "mega_num_plus": 0,
       "giga_num_plus": 0
     }
@@ -2676,6 +2694,8 @@
         "break": 0
       },
       "cs": "shuriken",
+      "card_name": "シュリシュリケン",
+      "card_name_en": "Shuriken",
       "mega_num_plus": 0,
       "giga_num_plus": 0
     }

@@ -230,6 +230,18 @@ export function BuildTab({ version }: { version: Version }) {
 
   // ─── JSheet 用データ変換 ───────────────────────────────────────
 
+  // チャージショット: 5枚中 cs を持つ最後のカードを採用
+  const chargeShotName = useMemo(() => {
+    let name: string | null = null;
+    for (const card of noiseCards.cards) {
+      const ed = card.effectDetail;
+      if (ed.cs) {
+        name = i18n.language === "en" ? (ed.card_name_en ?? ed.card_name ?? null) : (ed.card_name ?? null);
+      }
+    }
+    return name;
+  }, [noiseCards.cards, i18n.language]);
+
   // ロックマン
   const rockmanData = useMemo<string[][]>(
     () => [
@@ -241,14 +253,15 @@ export function BuildTab({ version }: { version: Version }) {
           ? t("build.warlockStats", { attack: warlock.attack, rapid: warlock.rapid, charge: warlock.charge })
           : "---",
       ],
+      [t("build.chargeShot"), chargeShotName ?? "---"],
     ],
-    [myNoise, t, hp.baseHp, supportUse, warlock],
+    [myNoise, t, hp.baseHp, supportUse, warlock, chargeShotName],
   );
 
   // ロックマン: ウォーロック装備セル（B3）に pre-wrap を適用
   const rockmanStyle = useMemo<Record<string, string>>(() => {
     const s: Record<string, string> = {};
-    if (warlock) s["B3"] = "white-space: pre-wrap;";
+    if (warlock) s["B3"] = "white-space: pre-wrap; text-align: right;";
     return s;
   }, [warlock]);
 
@@ -364,13 +377,13 @@ export function BuildTab({ version }: { version: Version }) {
       [t("build.total"), String(totalCapacity)],
     ];
     const lastRow = data.length;
-    return [
-      data,
-      {
-        [`A${lastRow}`]: "font-weight: bold;",
-        [`B${lastRow}`]: "font-weight: bold;",
-      },
-    ];
+    const style: Record<string, string> = {};
+    for (let i = 1; i <= lastRow; i++) {
+      style[`B${i}`] = "text-align: right;";
+    }
+    style[`A${lastRow}`] = "font-weight: bold;";
+    style[`B${lastRow}`] += " font-weight: bold;";
+    return [data, style];
   }, [abilities, totalCapacity, t]);
 
   // レゾン

@@ -443,6 +443,7 @@
     "support": "サポート",
     "supportDefault": "デフォルト",
     "warlockStats": "アタック {{attack}}Lv\nラピッド {{rapid}}Lv\nチャージ {{charge}}Lv",
+    "chargeShot": "チャージショット",
     "total": "合計",
     "copyHtml": "HTMLでコピー",
     "copyMarkdown": "マークダウンでコピー",

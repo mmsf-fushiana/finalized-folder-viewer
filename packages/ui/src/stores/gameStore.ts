@@ -639,6 +639,9 @@ export interface NoiseCardEntry {
     ga_plus: Record<string, number>;
     mega_num_plus?: number;
     giga_num_plus?: number;
+    cs?: string;
+    card_name?: string;
+    card_name_en?: string;
     [key: string]: unknown;
   };
 }
