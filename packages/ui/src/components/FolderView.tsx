@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { Box, Typography, Paper, Chip, IconButton, Tooltip } from '@mui/material';
-import { ChevronLeft, ChevronRight } from '@mui/icons-material';
+import { ChevronLeft, ChevronRight } from './icons';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import type { Card, GalaxyAdvance, Version, Level } from '../types';

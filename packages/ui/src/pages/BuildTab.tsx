@@ -1,8 +1,7 @@
 import { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Box, Button } from "@mui/material";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import FileDownloadIcon from "@mui/icons-material/FileDownload";
+import { ContentCopyIcon, FileDownloadIcon } from "../components/icons";
 import {
   useGameNumber,
   useGameValue,
@@ -253,7 +252,7 @@ export function BuildTab({ version }: { version: Version }) {
           ? t("build.warlockStats", { attack: warlock.attack, rapid: warlock.rapid, charge: warlock.charge })
           : "---",
       ],
-      [t("build.chargeShot"), chargeShotName ?? "---"],
+      [t("build.chargeShot"), chargeShotName ?? t("build.supportDefault")],
     ],
     [myNoise, t, hp.baseHp, supportUse, warlock, chargeShotName],
   );

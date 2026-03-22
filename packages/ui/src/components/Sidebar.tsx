@@ -1,5 +1,5 @@
 import { Box, Autocomplete, TextField, Button, Typography, Radio, Chip, InputAdornment, Card as MuiCard } from '@mui/material';
-import { Search } from '@mui/icons-material';
+import { SearchIcon as Search } from './icons';
 import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import type { Card, FinalizationData } from '../types';

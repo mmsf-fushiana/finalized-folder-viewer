@@ -17,7 +17,6 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-    "@mui/icons-material": "^6.3.0",
     "@mui/material": "^6.3.0",
     "@ssr3-viewer/ui": "*",
     "react": "^19.0.0",
@@ -37,7 +36,7 @@
   "build": {
     "appId": "com.ssr3-viewer.desktop",
     "productName": "SSR3 melonDS Viewer",
-    "asar": false,
+    "asar": true,
     "directories": {
       "output": "release"
     },
@@ -47,6 +46,7 @@
     "win": {
       "target": "nsis",
       "icon": "resources/icon.ico"
-    }
+    },
+    "electronLanguages": ["en-US", "ja"]
   }
 }
