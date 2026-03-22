@@ -424,7 +424,7 @@ export function BuildTab({ version }: { version: Version }) {
       { title: t("build.whiteCard"), data: wcData, columns: COLS_1, style: wcStyle, headers: [t("build.header.cardName")] },
       { title: t("build.brother"), data: brotherData, columns: COLS_2N, style: brotherStyle, headers: [t("build.header.name"), t("build.header.people")] },
       ...(sssCount > 0 ? [{ title: t("build.sss"), data: sssData, columns: COLS_SSS }] : []),
-      { title: t("build.noisedCard"), data: noiseData, columns: COLS_1, style: noiseStyle, headers: [t("build.header.card")] },
+      { title: t("build.noisedCard"), data: noiseData, columns: COLS_1, headers: [t("build.header.card")] },
       { title: t("build.ability"), data: abilityData, columns: COLS_2, style: abilityStyle, headers: [t("build.header.ability"), t("build.header.capacity")] },
       { title: t("build.rezon"), data: rezonData, columns: COLS_2N, headers: [t("build.header.rezon"), t("build.header.people")] },
       { title: t("build.rezonEffect"), data: rezonEffectData, columns: COLS_1, headers: [t("build.header.effect")] },

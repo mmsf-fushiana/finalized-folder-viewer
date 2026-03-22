@@ -19,7 +19,7 @@ function parseCell(key: string): { col: number; row: number } | null {
 
 /** style 文字列中の個別プロパティを抽出 */
 function pickStyle(css: string, prop: string): string | null {
-  const re = new RegExp(`${prop}\\s*:\\s*([^;]+)`);
+  const re = new RegExp(`(?:^|;\\s*)${prop}\\s*:\\s*([^;]+)`);
   const m = re.exec(css);
   return m ? m[1].trim() : null;
 }
@@ -62,7 +62,10 @@ function sectionToHtml(sec: HtmlSection, indent: string): string {
         const bg = pickStyle(cellCss, "background-color");
         if (bg) parts.push(`background-color: ${bg}`);
         const color = pickStyle(cellCss, "color");
-        if (color) parts.push(`color: ${color}`);
+        // 白文字は背景色が無視される環境で見えなくなるため除外
+        if (color && color !== "white" && color !== "#fff" && color !== "#ffffff") {
+          parts.push(`color: ${color}`);
+        }
         const fw = pickStyle(cellCss, "font-weight");
         if (fw) parts.push(`font-weight: ${fw}`);
       }
