@@ -699,12 +699,10 @@ export function FolderView({ version, level, cards, gaList, ratings: ratingsProp
             onTypeClick={handleTypeClick}
           />
           <ClassStats cards={cards} />
-          {showRezon && (
-            <AttributeRating
-              ratings={ratings}
-              onRatingChange={onRatingChange}
-            />
-          )}
+          <AttributeRating
+            ratings={ratings}
+            onRatingChange={onRatingChange}
+          />
           <GAList cards={cards} gaList={gaList ?? []} />
         </Box>
       </Box>
