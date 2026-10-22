@@ -1,105 +1,33 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import {
-  Box,
-  Button,
-  Link,
-  Step,
-  StepLabel,
-  Stepper,
-  Typography,
-} from '@mui/material';
-import { useGameStore, usePipeStatus, useGameActive } from '../stores/gameStore';
-import type { GameMessage } from '../stores/gameStore';
-import { VERSION_COLORS } from '../types';
+import { Box, Link, Step, StepLabel, Stepper, Typography } from '@mui/material';
+import { usePipeStatus, useRomLoaded, useRomFile } from '../stores/gameStore';
 import { LanguageSwitcher } from '../components/LanguageSwitcher';
 
-type GameVersion = 'BA' | 'RJ';
-
-declare global {
-  interface Window {
-    gameAPI?: {
-      onMessage: (callback: (msg: GameMessage) => void) => () => void;
-      onPipeStatus: (callback: (connected: boolean) => void) => () => void;
-      getPipeStatus: () => Promise<boolean>;
-      writeValue: (target: string, value: number) => void;
-      requestRefresh: () => void;
-      ping: () => void;
-      setVersion: (version: string) => void;
-      rescan: () => void;
-    };
-    electronAPI?: {
-      openExternal: (url: string) => void;
-      resizeWindow: (width: number, height: number) => void;
-    };
-  }
-}
-
+/**
+ * 待機画面。
+ * gameAPI の購読と、流星3 検出時の /monitor/<版> への遷移は useRomNavigator (DesktopLayout) が行うので、
+ * ここは「melonDS 起動待ち → 流星3 の ROM 読み込み待ち」の状態表示だけを持つ。
+ */
 export function DesktopHome() {
   const { t } = useTranslation();
-  const navigate = useNavigate();
 
   const pipeConnected = usePipeStatus();
-  const gameActive = useGameActive();
+  const romLoaded = useRomLoaded();
+  const romFile = useRomFile();
 
-  useEffect(() => {
-    const api = window.gameAPI;
-    if (!api) return;
+  // Stepper: 0=エミュレータ接続待ち, 1=流星3 ROM 読み込み待ち
+  const activeStep = !pipeConnected ? 0 : 1;
 
-    const { setPipeConnected, handleMessage } = useGameStore.getState();
-
-    const removePipeStatus = api.onPipeStatus((connected) => {
-      setPipeConnected(connected);
-    });
-
-    const removeMessage = api.onMessage((msg: GameMessage) => {
-      handleMessage(msg);
-    });
-
-    api.getPipeStatus().then((connected) => {
-      setPipeConnected(connected);
-      if (connected) api.requestRefresh();
-    });
-
-    return () => {
-      removePipeStatus();
-      removeMessage();
-    };
-  }, []);
-
-  // パイプ接続済み＋ROM未検出の間、500msごとにrescanリクエスト
-  useEffect(() => {
-    if (!pipeConnected || gameActive) return;
-    const id = setInterval(() => {
-      window.gameAPI?.rescan();
-    }, 500);
-    return () => clearInterval(id);
-  }, [pipeConnected, gameActive]);
-
-  const handleVersionSelect = (version: GameVersion) => {
-    window.electronAPI?.resizeWindow(800, 1030);
-    navigate(`/monitor/${version}`);
-  };
-
-  const canSelect = pipeConnected && gameActive;
-
-  // Stepper: 0=エミュレータ接続待ち, 1=ROM検出待ち, 2=バージョン選択可能
-  const activeStep = !pipeConnected ? 0 : !gameActive ? 1 : 2;
-
-  const steps = [
-    t('monitor.step.connect'),
-    t('monitor.step.detect'),
-    t('monitor.step.select'),
-  ];
+  const steps = [t('monitor.step.connect'), t('monitor.step.detect')];
 
   let hintMessage: string;
   if (!pipeConnected) {
     hintMessage = t('monitor.startDS');
-  } else if (!gameActive) {
+  } else if (!romLoaded) {
     hintMessage = t('monitor.startGame');
   } else {
-    hintMessage = t('monitor.romDetected');
+    // ROM は読まれているが流星3 ではない (流星3 なら useRomNavigator が既に遷移している)
+    hintMessage = romFile ? t('monitor.wrongRom', { file: romFile }) : t('monitor.unknownRom');
   }
 
   return (
@@ -140,30 +68,9 @@ export function DesktopHome() {
         ))}
       </Stepper>
 
-      <Typography variant="body2" color={activeStep < 2 ? 'error' : 'text.primary'}>
+      <Typography variant="body2" color="error">
         {hintMessage}
       </Typography>
-
-      <Box sx={{ display: 'flex', gap: 3 }}>
-        {(['BA', 'RJ'] as const).map((ver) => (
-          <Button
-            key={ver}
-            variant="contained"
-            size="large"
-            disabled={!canSelect}
-            onClick={() => handleVersionSelect(ver)}
-            sx={{
-              minWidth: 140,
-              fontSize: '1.1rem',
-              py: 1.5,
-              bgcolor: VERSION_COLORS[ver],
-              '&:hover': { bgcolor: VERSION_COLORS[ver], filter: 'brightness(1.2)' },
-            }}
-          >
-            {ver === 'BA' ? 'Black Ace' : 'Red Joker'}
-          </Button>
-        ))}
-      </Box>
 
       <Link
         component="button"

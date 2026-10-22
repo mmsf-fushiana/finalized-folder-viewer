@@ -408,16 +408,21 @@
     }
   },
   "monitor": {
-    "selectVersion": "Select Version",
-    "romDetected": "ROM detected. Please select your version.",
+    "wrongRom": "The loaded ROM \"{{file}}\" is not Mega Man Star Force 3.",
+    "unknownRom": "The loaded ROM is not Mega Man Star Force 3.",
     "pipeDisconnected": "Pipe Not Connected",
     "startDS": "Please start melonDS.",
     "waitingGame": "Waiting for Game",
     "startGame": "Please load Mega Man Star Force 3.",
     "step": {
       "connect": "Emulator",
-      "detect": "ROM Detected",
-      "select": "Select Version"
+      "detect": "Load Mega Man Star Force 3"
+    },
+    "chip": {
+      "dsConnected": "DS Connected",
+      "dsDisconnected": "DS Disconnected",
+      "gameDetected": "Game Detected",
+      "gameWaiting": "Waiting for Game"
     },
     "title": "Mega Man Star Force 3 melonDS Viewer",
     "openWebViewer": "Open Web Finalized Folder Viewer",

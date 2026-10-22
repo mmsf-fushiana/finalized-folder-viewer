@@ -14,7 +14,7 @@ import wcMapping from '@data/wc_mapping.json';
 import noiseMapping from '@data/noise.json';
 import sssMapping from '@data/sss.json';
 import { getNoiseLevel, isFinalized } from '../utils/noiseLevel';
-import type { Card, Level } from '../types';
+import type { Card, Level, Version } from '../types';
 
 // ========================================
 // 型定義
@@ -39,6 +39,12 @@ export interface GameState {
   pipeConnected: boolean;
   gameActive: boolean;
   mainram: string;
+  // ロード中 ROM (DLL が ROM ヘッダと melonDS 設定ファイルから判定)
+  romLoaded: boolean;          // ヘッダが全ゼロでない
+  romCode: string;             // ゲームコード ("CRRJ" / "CRBJ" / ...)、未ロード時 ""
+  romVersion: Version | '';    // 判定した版。流星3 以外・未ロードは ''
+  romFile: string;             // ROM ファイル名 (確認済みの時だけ)
+  romPath: string;             // ROM フルパス (確認済みの時だけ)
   values: Record<string, GameValue>;
   // 差分表示用
   lastDeltaKeys: string[];     // 最後に変化したキー一覧
@@ -75,6 +81,12 @@ export interface StatusMessage {
   connected: boolean;
   gameActive: boolean;
   mainram?: string;
+  // 以下は ROM 自動判定対応 DLL のみ送る (旧 DLL では省略される)
+  romLoaded?: boolean;
+  romCode?: string;
+  romVersion?: string;   // "RJ" | "BA" | ""
+  romFile?: string;
+  romPath?: string;
 }
 
 export interface ErrorMessage {
@@ -96,6 +108,25 @@ export type GameMessage =
   | ErrorMessage
   | PongMessage;
 
+// preload.ts が公開する API の型 (デスクトップ版のみ存在する)
+declare global {
+  interface Window {
+    gameAPI?: {
+      onMessage: (callback: (msg: GameMessage) => void) => () => void;
+      onPipeStatus: (callback: (connected: boolean) => void) => () => void;
+      getPipeStatus: () => Promise<boolean>;
+      writeValue: (target: string, value: number) => void;
+      requestRefresh: () => void;
+      ping: () => void;
+      rescan: () => void;
+    };
+    electronAPI?: {
+      openExternal: (url: string) => void;
+      resizeWindow: (width: number, height: number) => void;
+    };
+  }
+}
+
 // ========================================
 // Zustand Store
 // ========================================
@@ -108,19 +139,34 @@ interface GameActions {
 
 type GameStore = GameState & GameActions;
 
+// ROM 情報の初期値 (切断時・ROM 消失時に戻す)
+const romInitial = {
+  romLoaded: false,
+  romCode: '',
+  romVersion: '' as Version | '',
+  romFile: '',
+  romPath: '',
+};
+
+// ゲーム値系の初期値 (版や ROM ファイルが変わった時に戻す。DLL が直後に full を送る)
+const gameValuesInitial = {
+  values: {} as Record<string, GameValue>,
+  lastDeltaKeys: [] as string[],
+  lastDeltaTime: 0,
+  lastError: null as string | null,
+  _capturedNoiseRate: null as number | null,
+  _folderFinalized: false,
+  _confirmedFolderLevel: null as Level | null,
+  _initialized: false,
+};
+
 const initialState: GameState = {
   pipeConnected: false,
   gameActive: false,
   mainram: '',
-  values: {},
-  lastDeltaKeys: [],
-  lastDeltaTime: 0,
+  ...romInitial,
   lastReceivedTime: 0,
-  lastError: null,
-  _capturedNoiseRate: null,
-  _folderFinalized: false,
-  _confirmedFolderLevel: null,
-  _initialized: false,
+  ...gameValuesInitial,
 };
 
 export const useGameStore = create<GameStore>()((set, get) => ({
@@ -130,7 +176,7 @@ export const useGameStore = create<GameStore>()((set, get) => ({
     set(
       connected
         ? { pipeConnected: true }
-        : { pipeConnected: false, gameActive: false },
+        : { pipeConnected: false, gameActive: false, mainram: '', ...romInitial, ...gameValuesInitial },
     ),
 
   handleMessage: (msg) => {
@@ -264,13 +310,28 @@ export const useGameStore = create<GameStore>()((set, get) => ({
         break;
       }
 
-      case 'status':
+      case 'status': {
+        const prev = get();
+        const romVersion: Version | '' =
+          msg.romVersion === 'BA' || msg.romVersion === 'RJ' ? msg.romVersion : '';
+        const romPath = msg.romPath ?? '';
+        // 版が変わった、または別の ROM ファイルに切り替わった (= ゲームが再起動した) 時は値系を捨てる
+        const rebooted =
+          romVersion !== prev.romVersion ||
+          (prev.romPath !== '' && romPath !== '' && romPath !== prev.romPath);
         set({
           gameActive: msg.gameActive,
-          mainram: msg.mainram || get().mainram,
+          mainram: msg.mainram || prev.mainram,
+          romLoaded: msg.romLoaded ?? false,
+          romCode: msg.romCode ?? '',
+          romVersion,
+          romFile: msg.romFile ?? '',
+          romPath,
           lastReceivedTime: now,
+          ...(rebooted ? gameValuesInitial : {}),
         });
         break;
+      }
 
       case 'error':
         set({
@@ -320,9 +381,24 @@ export function usePipeStatus(): boolean {
   return useGameStore((s) => s.pipeConnected);
 }
 
-/** ゲーム検出状態 */
+/** ゲーム検出状態 (MainRAM 検出済み) */
 export function useGameActive(): boolean {
   return useGameStore((s) => s.gameActive);
+}
+
+/** ROM がロードされているか (流星3 以外も含む) */
+export function useRomLoaded(): boolean {
+  return useGameStore((s) => s.romLoaded);
+}
+
+/** 判定された版 ('' = 流星3 以外 / 未ロード) */
+export function useRomVersion(): Version | '' {
+  return useGameStore((s) => s.romVersion);
+}
+
+/** ロード中 ROM のファイル名 ('' = 未確定) */
+export function useRomFile(): string {
+  return useGameStore((s) => s.romFile);
 }
 
 // ========================================
@@ -1204,9 +1280,10 @@ let unsubscribers: (() => void)[] = [];
 
 /**
  * window.gameAPI のイベントを Zustand ストアに接続する。
- * MonitorPage マウント時に呼び出し、アンマウント時に返却関数で解除する。
+ * デスクトップ版のレイアウト (useRomNavigator) がマウント時に一度だけ呼び、
+ * アプリ生存中は購読を維持する。版は DLL が自動判定するので引数は無い。
  */
-export function subscribeGameAPI(gameVersion: string): () => void {
+export function subscribeGameAPI(): () => void {
   unsubscribeGameAPI(); // 二重購読防止
 
   const api = window.gameAPI;
@@ -1224,8 +1301,7 @@ export function subscribeGameAPI(gameVersion: string): () => void {
   });
   unsubscribers.push(removePipeStatus);
 
-  // バージョン通知 → フルステート要求
-  api.setVersion(gameVersion);
+  // 現在の接続状態を取得し、接続済みなら status / full を要求
   api.getPipeStatus().then((connected) => {
     setPipeConnected(connected);
     if (connected) api.requestRefresh();

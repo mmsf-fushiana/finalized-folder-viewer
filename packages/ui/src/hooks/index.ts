@@ -1,5 +1,7 @@
 // Shared hooks
 
+export { useRomNavigator, formatCaption, stripRomExtension, APP_TITLE } from './useRomNavigator';
+
 declare global {
   interface Window {
     env?: {
