@@ -27,6 +27,9 @@ public:
     // アドレス登録
     void RegisterAddress(const char* name, uint32_t addr, uint8_t size);
 
+    // 登録済みアドレスを全て破棄 (版の切り替え時)
+    void Clear();
+
     // 全アドレスを読み取り、変化を検知
     void Update(MemoryReadFunc readFunc);
 

@@ -1,6 +1,7 @@
 ﻿// dllmain.cpp : melonDS用 DLLプロキシ (version.dll)
 // NDS構造体パターンスキャンによるMainRAM検出
 // Named Pipe Server + DeltaTracker によるリアルタイム通信
+// ROM ヘッダミラー (0x027FFE00) と melonDS 設定ファイルによる版・ROM 自動判定
 
 #include "pch.h"
 #include <Psapi.h>
@@ -10,6 +11,8 @@
 #include "pipe_server.h"
 #include "delta_tracker.h"
 #include "json_util.h"
+#include "rom_detect.h"
+#include <mutex>
 
 #pragma comment(lib, "Psapi.lib")
 
@@ -346,9 +349,11 @@ static constexpr size_t BA_ADDRESS_COUNT = sizeof(BA_ADDRESSES) / sizeof(BA_ADDR
 static uint8_t* g_mainRAM = nullptr;
 static uint32_t g_mainRAMMask = 0;
 
-// バージョン選択状態（一度選択したら変更不可・再起動のみ）
-static std::atomic<bool> g_versionSelected{ false };
-static char g_selectedVersion[4] = "";  // "BA" or "RJ"
+// ROM 状態 (書き込みはメインスレッドのみ。他スレッドは g_stateMutex 下で読む)
+static RomState g_rom;
+static std::mutex g_stateMutex;                       // g_deltaTracker / g_rom / g_mainRAM の変更を保護
+static std::atomic<bool> g_fullRequested{ false };    // 次の tick でフルステートを送る
+static std::atomic<bool> g_rescanRequested{ false };  // 次の tick で MainRAM を再スキャンする
 
 // PipeServer & DeltaTracker
 static PipeServer g_pipeServer;
@@ -414,6 +419,16 @@ static bool SafeReadU16(void* addr, uint16_t* outValue) {
 static bool SafeReadU8(void* addr, uint8_t* outValue) {
     __try {
         *outValue = *reinterpret_cast<uint8_t*>(addr);
+        return true;
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER) {
+        return false;
+    }
+}
+
+static bool SafeReadBytes(const void* src, void* dst, size_t n) {
+    __try {
+        memcpy(dst, src, n);
         return true;
     }
     __except (EXCEPTION_EXECUTE_HANDLER) {
@@ -557,6 +572,53 @@ uint8_t* FindMainRAMByHeapScan() {
 }
 
 // ========================================
+// ROM 判定・status 生成
+// ========================================
+
+// ヘッダミラー先頭 16 バイトを読む (MainRAM 未検出・読めない時は false)
+static bool ReadCartHeader(uint8_t* out16) {
+    uint8_t* p = GetHostAddress(DS_CART_HEADER_ADDR);
+    return p && SafeReadBytes(p, out16, CART_HEADER_PROBE);
+}
+
+// 版に応じたアドレス表を登録し直す。g_stateMutex を保持した状態で呼ぶ (メインスレッド専用)
+static void ApplyVersionLocked(const char* version) {
+    g_deltaTracker.Clear();
+    const GameAddress* table = nullptr;
+    size_t count = 0;
+    if (strcmp(version, "RJ") == 0) { table = RJ_ADDRESSES; count = RJ_ADDRESS_COUNT; }
+    else if (strcmp(version, "BA") == 0) { table = BA_ADDRESSES; count = BA_ADDRESS_COUNT; }
+    for (size_t i = 0; i < count; i++) {
+        g_deltaTracker.RegisterAddress(table[i].name, table[i].dsAddress, table[i].size);
+    }
+    printf("[DLL] アドレス表: %s (%zu アドレス)\n", version[0] ? version : "(なし)", count);
+}
+
+// status メッセージ。どのスレッドから呼んでもよい (状態はロック下でコピーする)
+static std::string BuildStatusJson() {
+    RomState rom;
+    uint8_t* mainram = nullptr;
+    {
+        std::lock_guard<std::mutex> lk(g_stateMutex);
+        rom = g_rom;
+        mainram = g_mainRAM;
+    }
+    JsonWriter jw;
+    jw.BeginObject();
+    jw.StringField("type", "status");
+    jw.BoolField("connected", true);
+    jw.BoolField("gameActive", mainram != nullptr);
+    if (mainram) jw.PtrField("mainram", mainram);
+    jw.BoolField("romLoaded", rom.loaded);
+    jw.StringField("romCode", rom.code);
+    jw.StringField("romVersion", rom.version);
+    jw.StringField("romFile", rom.file.c_str());
+    jw.StringField("romPath", rom.path.c_str());
+    jw.EndObject();
+    return jw.GetString();
+}
+
+// ========================================
 // コマンド処理（Electron → DLL）
 // ========================================
 
@@ -586,67 +648,26 @@ static void HandleCommand(const std::string& message) {
         jw.EndObject();
         g_pipeServer.Send(jw.GetString());
 
-    } else if (strcmp(cmd.cmd, "setVersion") == 0) {
-        // バージョン設定（一度だけ有効。再起動しないと変更不可）
-        if (g_versionSelected) {
-            printf("[DLL] setVersion: 既にバージョン選択済み (%s)\n", g_selectedVersion);
-            return;
-        }
-        const GameAddress* addresses = nullptr;
-        size_t count = 0;
-        if (strcmp(cmd.target, "RJ") == 0) {
-            addresses = RJ_ADDRESSES;
-            count = RJ_ADDRESS_COUNT;
-            strncpy_s(g_selectedVersion, "RJ", 3);
-        } else if (strcmp(cmd.target, "BA") == 0) {
-            addresses = BA_ADDRESSES;
-            count = BA_ADDRESS_COUNT;
-            strncpy_s(g_selectedVersion, "BA", 3);
-        } else {
-            printf("[DLL] setVersion: 不明なバージョン: %s\n", cmd.target);
-            return;
-        }
-        for (size_t i = 0; i < count; i++) {
-            g_deltaTracker.RegisterAddress(addresses[i].name, addresses[i].dsAddress, addresses[i].size);
-        }
-        g_versionSelected = true;
-        printf("[DLL] バージョン設定: %s (%zu アドレス)\n", g_selectedVersion, count);
-
-        // フルステート送信（MainRAM検出済みなら即時）
-        if (g_mainRAM) {
-            g_deltaTracker.Update(ReadMemory);
-            g_pipeServer.Send(g_deltaTracker.BuildFullStateJson());
-            g_deltaTracker.ResetChangeFlags();
-        }
-
     } else if (strcmp(cmd.cmd, "refresh") == 0) {
-        // 現在のstatus送信
-        {
-            JsonWriter jw;
-            jw.BeginObject();
-            jw.StringField("type", "status");
-            jw.BoolField("connected", true);
-            jw.BoolField("gameActive", g_mainRAM != nullptr);
-            if (g_mainRAM) {
-                jw.PtrField("mainram", g_mainRAM);
-            }
-            jw.EndObject();
-            g_pipeServer.Send(jw.GetString());
-        }
-        // フルステート再送（バージョン選択済みの場合のみ）
-        if (g_mainRAM && g_versionSelected) {
-            g_deltaTracker.Update(ReadMemory);
-            std::string fullJson = g_deltaTracker.BuildFullStateJson();
-            g_pipeServer.Send(fullJson);
-            g_deltaTracker.ResetChangeFlags();
-        }
+        // 現在の status を即時返し、フルステートはメインスレッドに次の tick で送らせる
+        g_pipeServer.Send(BuildStatusJson());
+        g_fullRequested = true;
         printf("[DLL] refresh実行\n");
 
     } else if (strcmp(cmd.cmd, "write") == 0) {
-        // 値書き込み
-        TrackedValue* tv = g_deltaTracker.FindByName(cmd.target);
-        if (tv) {
-            if (WriteMemory(tv->dsAddress, tv->size, cmd.value)) {
+        // 値書き込み (アドレス表の入れ替えと競合しないようロック下で行う)
+        bool found = false;
+        bool written = false;
+        {
+            std::lock_guard<std::mutex> lk(g_stateMutex);
+            TrackedValue* tv = g_deltaTracker.FindByName(cmd.target);
+            if (tv) {
+                found = true;
+                written = WriteMemory(tv->dsAddress, tv->size, cmd.value);
+            }
+        }
+        if (found) {
+            if (written) {
                 printf("[DLL] write: %s = %u\n", cmd.target, cmd.value);
             } else {
                 JsonWriter jw;
@@ -668,21 +689,10 @@ static void HandleCommand(const std::string& message) {
         }
 
     } else if (strcmp(cmd.cmd, "rescan") == 0) {
-        // MainRAM再スキャン（未検出時のみ実行）
-        if (!g_mainRAM) {
-            g_mainRAM = FindMainRAMByHeapScan();
-        }
-        JsonWriter jw;
-        jw.BeginObject();
-        jw.StringField("type", "status");
-        jw.BoolField("connected", true);
-        jw.BoolField("gameActive", g_mainRAM != nullptr);
-        if (g_mainRAM) {
-            jw.PtrField("mainram", g_mainRAM);
-        }
-        jw.EndObject();
-        g_pipeServer.Send(jw.GetString());
-        printf("[DLL] rescan実行: %s\n", g_mainRAM ? "検出成功" : "未検出");
+        // MainRAM 再スキャンはメインスレッドに依頼し、現在の status を返す
+        if (!g_mainRAM) g_rescanRequested = true;
+        g_pipeServer.Send(BuildStatusJson());
+        printf("[DLL] rescan要求: %s\n", g_mainRAM ? "検出済み" : "再スキャン予約");
 
     } else {
         printf("[DLL] 不明コマンド: %s\n", cmd.cmd);
@@ -704,28 +714,17 @@ void MainThreadFunc() {
     printf("[DLL] メインスレッド開始\n");
 
     // PipeServerコールバック設定
-    // ※ アドレス登録は setVersion コマンド受信後に行う
     g_pipeServer.OnMessage = HandleCommand;
     g_pipeServer.OnConnect = []() {
         printf("[DLL] クライアント接続 → hello送信\n");
-        g_pipeServer.Send(g_deltaTracker.BuildHelloJson());
-
-        // 現在の状態を即時返す
-        JsonWriter jw;
-        jw.BeginObject();
-        jw.StringField("type", "status");
-        jw.BoolField("connected", true);
-        jw.BoolField("gameActive", g_mainRAM != nullptr);
-        if (g_mainRAM) jw.PtrField("mainram", g_mainRAM);
-        jw.EndObject();
-        g_pipeServer.Send(jw.GetString());
-
-        // MainRAM検出済み＋バージョン選択済みならフルステート送信
-        if (g_mainRAM && g_versionSelected) {
-            g_deltaTracker.Update(ReadMemory);
-            g_pipeServer.Send(g_deltaTracker.BuildFullStateJson());
-            g_deltaTracker.ResetChangeFlags();
+        std::string hello;
+        {
+            std::lock_guard<std::mutex> lk(g_stateMutex);
+            hello = g_deltaTracker.BuildHelloJson();
         }
+        g_pipeServer.Send(hello);
+        g_pipeServer.Send(BuildStatusJson());
+        g_fullRequested = true;   // 版が分かっていればメインループが次の tick でフルステートを送る
     };
     g_pipeServer.OnDisconnect = []() {
         printf("[DLL] クライアント切断\n");
@@ -734,47 +733,82 @@ void MainThreadFunc() {
     // PipeServer開始
     g_pipeServer.Start("\\\\.\\pipe\\ssr3_viewer");
 
-    // MainRAM検出はクライアントからの rescan コマンドで行う
-    // バージョン選択待機（フロントエンドからの setVersion コマンドを待つ）
-    printf("[DLL] バージョン選択待機中...\n");
-    while (g_running && !g_versionSelected) {
-        Sleep(100);
-    }
-    if (!g_running) {
-        g_pipeServer.Stop();
-        return;
-    }
-    printf("[DLL] バージョン確定: %s\n", g_selectedVersion);
-
     // ========================================
     // メインポーリングループ (50ms間隔)
+    //   (a) MainRAM 自動検出  (b) ROM 状態の監視・アドレス表切替  (c) 値の監視・送信
+    //   DeltaTracker / g_rom / g_mainRAM を書き換えるのはこのスレッドだけ
     // ========================================
     printf("[DLL] ポーリング開始 (50ms)\n");
+    RomDetector detector;
+    DWORD lastScan = 0;
     DWORD lastFullSend = GetTickCount();
 
     while (g_running) {
-        if (!g_pipeServer.IsConnected()) {
-            Sleep(50);
-            continue;
-        }
-
-        // メモリ読み取り＆差分検知
-        g_deltaTracker.Update(ReadMemory);
-
-        // 定期的にフルステート送信 (30秒ごと)
         DWORD now = GetTickCount();
-        if (now - lastFullSend >= 30000) {
-            g_pipeServer.Send(g_deltaTracker.BuildFullStateJson());
-            g_deltaTracker.ResetChangeFlags();
-            lastFullSend = now;
-        }
-        // 差分があれば送信
-        else if (g_deltaTracker.HasChanges()) {
-            std::string deltaJson = g_deltaTracker.BuildDeltaJson();
-            if (!deltaJson.empty()) {
-                g_pipeServer.Send(deltaJson);
+        bool connected = g_pipeServer.IsConnected();
+
+        // (a) MainRAM 自動検出: クライアント接続中かつ未検出の間 500ms ごと、または rescan 要求時
+        if (!g_mainRAM && (g_rescanRequested.exchange(false) || (connected && now - lastScan >= 500))) {
+            lastScan = now;
+            uint8_t* found = FindMainRAMByHeapScan();
+            if (found) {
+                {
+                    std::lock_guard<std::mutex> lk(g_stateMutex);
+                    g_mainRAM = found;
+                }
+                if (connected) g_pipeServer.Send(BuildStatusJson());
             }
-            g_deltaTracker.ResetChangeFlags();
+        }
+
+        // (b) ROM 状態の監視 (パイプ未接続でも回し、接続直後に正しい status を返せるようにする)
+        if (g_mainRAM) {
+            uint8_t hdr[CART_HEADER_PROBE];
+            bool hdrOk = ReadCartHeader(hdr);
+            RomState next;
+            bool changed = false;
+            {
+                std::lock_guard<std::mutex> lk(g_stateMutex);
+                changed = detector.Poll(hdrOk ? hdr : nullptr, g_rom, next);
+                if (changed) {
+                    if (strcmp(next.version, g_rom.version) != 0) {
+                        ApplyVersionLocked(next.version);
+                    }
+                    g_rom = next;
+                }
+            }
+            if (changed) {
+                printf("[DLL] ROM: loaded=%d code=%s version=%s file=%s\n",
+                    next.loaded ? 1 : 0, next.code, next.version, next.file.c_str());
+                if (connected) g_pipeServer.Send(BuildStatusJson());
+                if (next.version[0]) g_fullRequested = true;   // 版の確定・切替、同版の別ファイルでも full を送り直す
+            }
+        }
+
+        // (c) 値の監視・送信 (接続中かつ版が分かっている時だけ)
+        bool versionKnown = false;
+        {
+            std::lock_guard<std::mutex> lk(g_stateMutex);
+            versionKnown = g_rom.version[0] != '\0';
+        }
+        if (connected && g_mainRAM && versionKnown) {
+            std::string out;
+            {
+                std::lock_guard<std::mutex> lk(g_stateMutex);
+                g_deltaTracker.Update(ReadMemory);
+                bool wantFull = g_fullRequested.exchange(false) || (now - lastFullSend >= 30000);
+                if (wantFull) {
+                    out = g_deltaTracker.BuildFullStateJson();
+                    lastFullSend = now;
+                }
+                else if (g_deltaTracker.HasChanges()) {
+                    out = g_deltaTracker.BuildDeltaJson();
+                }
+                g_deltaTracker.ResetChangeFlags();
+            }
+            if (!out.empty()) g_pipeServer.Send(out);
+        }
+        else {
+            g_fullRequested = false;   // 送れない状態の要求は捨てる (版が決まれば改めて送る)
         }
 
         Sleep(50);
