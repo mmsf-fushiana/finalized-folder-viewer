@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Box,
   Typography,
@@ -25,8 +26,10 @@ function formatTimestamp(ms: number): string {
 }
 
 export function GameMonitor({ version }: { version: 'BA' | 'RJ' }) {
+  const { t } = useTranslation();
   const pipeConnected = useGameStore((s) => s.pipeConnected);
-  const gameActive = useGameStore((s) => s.gameActive);
+  const romVersion = useGameStore((s) => s.romVersion);
+  const romFile = useGameStore((s) => s.romFile);
   const mainram = useGameStore((s) => s.mainram);
   const values = useGameStore((s) => s.values);
   const lastDeltaKeys = useGameStore((s) => s.lastDeltaKeys);
@@ -60,14 +63,18 @@ export function GameMonitor({ version }: { version: 'BA' | 'RJ' }) {
           variant="outlined"
         />
         <Chip
-          label={pipeConnected ? 'DS接続中' : 'DS未接続'}
+          label={pipeConnected ? t('monitor.chip.dsConnected') : t('monitor.chip.dsDisconnected')}
           color={pipeConnected ? 'success' : 'default'}
           size="small"
         />
         {pipeConnected && (
           <Chip
-            label={gameActive ? 'ゲーム検出' : 'ゲーム待機中'}
-            color={gameActive ? 'info' : 'warning'}
+            label={
+              romVersion
+                ? `${romFile || t('monitor.chip.gameDetected')} [${romVersion}]`
+                : t('monitor.chip.gameWaiting')
+            }
+            color={romVersion ? 'info' : 'warning'}
             size="small"
             variant="outlined"
           />

@@ -1,16 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Box, Tab, Tabs, Typography } from '@mui/material';
 import {
-  subscribeGameAPI, useGameStore, useGameValue, hexToNumber,
+  useGameValue, hexToNumber,
   useRezonAttackStarSum, useRezonFinalizeTurnSum, useRezonAccessLvSum,
 } from '../stores/gameStore';
+import type { Version } from '../types';
 import { GameMonitor } from '../components/GameMonitor';
 import { FolderTab } from './FolderTab';
 import { BuildTab } from './BuildTab';
-
-type GameVersion = 'BA' | 'RJ';
 
 function ValueRow({ label }: { label: string }) {
   const gv = useGameValue(label);
@@ -70,17 +69,10 @@ function WarlockTab() {
 export function MonitorPage() {
   const { t } = useTranslation();
   const { version } = useParams<{ version: string }>();
-  const gameVersion = (version === 'BA' || version === 'RJ' ? version : 'RJ') as GameVersion;
+  // 版は DLL が判定し useRomNavigator が URL を同期する。ここでは URL の値をそのまま使う
+  const gameVersion = (version === 'BA' || version === 'RJ' ? version : 'RJ') as Version;
 
   const [activeTab, setActiveTab] = useState(0);
-
-  useEffect(() => {
-    const unsubscribe = subscribeGameAPI(gameVersion);
-    return () => {
-      unsubscribe();
-      useGameStore.getState().reset();
-    };
-  }, [gameVersion]);
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column' }}>

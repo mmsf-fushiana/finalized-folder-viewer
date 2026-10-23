@@ -15,6 +15,10 @@ void DeltaTracker::RegisterAddress(const char* name, uint32_t addr, uint8_t size
     m_values.push_back(tv);
 }
 
+void DeltaTracker::Clear() {
+    m_values.clear();
+}
+
 void DeltaTracker::Update(MemoryReadFunc readFunc) {
     for (auto& tv : m_values) {
         uint32_t newValue = 0;

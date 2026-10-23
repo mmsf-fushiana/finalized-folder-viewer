@@ -6,6 +6,7 @@ import { Health } from './pages/Health';
 import { Settings } from './pages/Settings';
 import { FolderDetail } from './pages/FolderDetail';
 import { AppLayout } from './layouts/AppLayout';
+import { DesktopLayout } from './layouts/DesktopLayout';
 import { TwoPaneLayout } from './layouts/TwoPaneLayout';
 import { isDesktop } from './hooks';
 import { loadFinalizationData, loadGAList } from './data';
@@ -15,7 +16,7 @@ const gaList = loadGAList();
 
 const desktopRoot: RouteObject = {
   path: '/',
-  element: <AppLayout />,
+  element: <DesktopLayout />,
   children: [
     { index: true, element: <DesktopHome /> },
     { path: 'monitor/:version', element: <MonitorPage /> },

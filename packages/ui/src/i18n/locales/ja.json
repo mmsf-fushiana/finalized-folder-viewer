@@ -408,16 +408,21 @@
     }
   },
   "monitor": {
-    "selectVersion": "バージョンを選択",
     "pipeDisconnected": "Pipe未接続",
     "waitingGame": "ゲーム待機中",
     "startDS": "version.dllを差し替えたmelonDSを起動して下さい。",
     "startGame": "起動中のmelonDSに流星のロックマン3を読み込んで下さい。",
-    "romDetected": "ROMの起動を確認しました。バージョンを選択して下さい。",
+    "wrongRom": "読み込まれたROM「{{file}}」は流星のロックマン3ではありません。",
+    "unknownRom": "読み込まれたROMは流星のロックマン3ではありません。",
     "step": {
       "connect": "version.dllを置いたmelonDSを起動する",
-      "detect": "ROMを読み込む",
-      "select": "バージョン選択する"
+      "detect": "流星のロックマン3のROMを読み込む"
+    },
+    "chip": {
+      "dsConnected": "DS接続中",
+      "dsDisconnected": "DS未接続",
+      "gameDetected": "ゲーム検出",
+      "gameWaiting": "ゲーム待機中"
     },
     "title": "流星のロックマン3 melonDS Viewer",
     "openWebViewer": "Web版 ファイナライズフォルダビューアを開く",

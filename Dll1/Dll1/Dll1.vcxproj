@@ -156,6 +156,7 @@
     <ClInclude Include="json_util.h" />
     <ClInclude Include="pipe_server.h" />
     <ClInclude Include="delta_tracker.h" />
+    <ClInclude Include="rom_detect.h" />
     <ClInclude Include="..\deps\minhook\include\MinHook.h" />
   </ItemGroup>
   <ItemGroup>

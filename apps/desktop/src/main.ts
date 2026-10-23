@@ -93,12 +93,6 @@ function createWindow() {
     }
   });
 
-  ipcMain.on('game-setVersion', (_event, version: string) => {
-    if (pipeClient) {
-      pipeClient.setVersion(version);
-    }
-  });
-
   ipcMain.on('game-rescan', () => {
     if (pipeClient) {
       pipeClient.rescan();

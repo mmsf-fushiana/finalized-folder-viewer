@@ -43,10 +43,6 @@ contextBridge.exposeInMainWorld('gameAPI', {
   ping: () => {
     ipcRenderer.send('game-ping');
   },
-  // バージョン設定 (BA / RJ)
-  setVersion: (version: string) => {
-    ipcRenderer.send('game-setVersion', version);
-  },
   // MainRAM再スキャン要求
   rescan: () => {
     ipcRenderer.send('game-rescan');

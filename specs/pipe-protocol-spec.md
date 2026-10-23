@@ -37,26 +37,6 @@ DLLの生存確認。
 
 ---
 
-### setVersion
-
-監視対象バージョンを設定する。セッション中1回のみ有効（再設定不可）。
-
-```json
-{"cmd":"setVersion","target":"BA"}
-```
-
-| フィールド | 型 | 説明 |
-|-----------|-----|------|
-| `cmd` | string | `"setVersion"` |
-| `target` | string | `"BA"` (Black Ace) または `"RJ"` (Red Joker) |
-
-**動作**:
-1. 対応するバージョンのアドレスマップ（約147個）を DeltaTracker に登録
-2. MainRAM検出済みの場合、即座に `full` メッセージを送信
-3. 2回目以降の呼び出しは無視される
-
----
-
 ### refresh
 
 現在の状態とフルステートの再送を要求する。
@@ -66,8 +46,8 @@ DLLの生存確認。
 ```
 
 **レスポンス**:
-1. `status` メッセージ（常に送信）
-2. `full` メッセージ（MainRAM検出済み＋バージョン選択済みの場合のみ）
+1. `status` メッセージ（常に即時送信）
+2. `full` メッセージ（版が判定済みの場合、DLL メインスレッドの次の tick で送信）
 
 ---
 
@@ -93,17 +73,15 @@ DLLの生存確認。
 
 ### rescan
 
-MainRAMのヒープスキャン検出を要求する。未検出時のみスキャンを実行する。
+MainRAM の再スキャンを要求する（手動フォールバック）。
+DLL はクライアント接続中かつ未検出の間、500ms 間隔で自動的にスキャンするので、通常はフロントエンドから送る必要はない。
 
 ```json
 {"cmd":"rescan"}
 ```
 
-**レスポンス**: `status` メッセージ（最新の検出状態を含む）
-
-**コンテキスト**:
-フロントエンドが `pipeConnected && !gameActive` の間、500ms間隔で送信する。
-ROM読み込みタイミングに依存せず、いつでもMainRAMを検出可能にするためのコマンド。
+**レスポンス**: `status` メッセージ（現在の状態を即時返す）。
+スキャン自体はメインスレッドが次の tick で行い、検出できればもう一度 `status` を送る。
 
 ---
 
@@ -144,10 +122,12 @@ struct JsonCommand {
 
 ### status
 
-ゲーム接続状態の通知。
+ゲーム接続状態と、ロード中 ROM の判定結果の通知。
 
 ```json
-{"type":"status","connected":true,"gameActive":true,"mainram":"0x1A2B3C4D"}
+{"type":"status","connected":true,"gameActive":true,"mainram":"0x1A2B3C4D",
+ "romLoaded":true,"romCode":"CRRJ","romVersion":"RJ",
+ "romFile":"ビググレ種.nds","romPath":"C:\\Users\\...\\save\\ビググレ種.nds"}
 ```
 
 | フィールド | 型 | 説明 |
@@ -156,11 +136,28 @@ struct JsonCommand {
 | `connected` | boolean | パイプ接続状態（常に `true`） |
 | `gameActive` | boolean | MainRAM検出済みかどうか |
 | `mainram` | string（省略可能） | MainRAMポインタの16進表記。`gameActive=true` の場合のみ |
+| `romLoaded` | boolean | ROM ヘッダミラー (DS 0x027FFE00) が全ゼロでない（何らかの ROM がブート済み） |
+| `romCode` | string | ヘッダのゲームコード 4 文字（`"CRRJ"` / `"CRBJ"` など）。未ロード時 `""` |
+| `romVersion` | string | 判定した版。`"RJ"`（CRRJ）/ `"BA"`（CRBJ）/ `""`（流星3 以外・未ロード） |
+| `romFile` | string | ROM ファイル名。未確定時 `""` |
+| `romPath` | string | ROM のフルパス。未確定時 `""`。アーカイブ内 ROM は `"a.zip|b.nds"` |
+
+**ROM 判定の仕組み**:
+- 版はヘッダミラーのゲームコードだけで決まり、DLL が対応する版のアドレス表を自動で登録・入れ替える。
+  melonDS の Reset でヘッダが一瞬ゼロになっても、300ms 続かなければ `romLoaded` は落とさない。
+- ファイル名は melonDS がブート直後に書き換える設定ファイル
+  （1.x: `melonDS.toml` の `RecentROM` 先頭、0.9.x: `melonDS.ini` の `RecentROM_0`）から取る。
+  設定ファイルは melonDS.exe と同じフォルダ（`portable` サブフォルダがあればそちら）にある。
+- 設定ファイルはヘッダより後に書かれるため、`romFile` / `romPath` は
+  **そのファイルの先頭 16 バイトがヘッダミラーと一致した時だけ** 載せる。
+  切り替え直後は `romVersion` だけ先に変わり、ファイル名は少し遅れて届く。アーカイブ内 ROM は照合せず採用する。
+- 設定ファイルが読めない・書き込み途中の間は前回のファイル名を維持する。Recent を Clear した直後は `""` になる。
 
 **送信タイミング**:
 - クライアント接続時（`hello` の直後）
-- `refresh` コマンド受信時
-- `rescan` コマンド受信時
+- `refresh` / `rescan` コマンド受信時
+- MainRAM を検出した時
+- ROM 状態（`romLoaded` / `romCode` / `romVersion` / `romFile` / `romPath`）のいずれかが変化した時
 
 ---
 
@@ -199,11 +196,12 @@ struct JsonCommand {
 | 2 bytes | 4桁 | `"FFFF"` |
 | 4 bytes | 8桁 | `"FFFFFFFF"` |
 
-**送信タイミング**:
-- `setVersion` コマンド受信時（MainRAM検出済みの場合）
-- `refresh` コマンド受信時（バージョン選択済みの場合）
+**送信タイミング**（いずれも DLL メインスレッドから、版が判定済みの場合のみ）:
+- 版が判定・切り替わった直後（アドレス表の入れ替え後）
+- 同じ版のまま別の ROM ファイルに切り替わった直後
+- `refresh` コマンド受信後の次の tick
+- クライアント接続後の次の tick
 - メインポーリングループで30秒ごと
-- クライアント再接続時（バージョン選択済み＋MainRAM検出済みの場合）
 
 ---
 
@@ -285,23 +283,26 @@ struct JsonCommand {
 ```
 Electron                          DLL (in melonDS)
    │                                  │
-   │  ── TCP接続(Named Pipe) ──────>  │
+   │  ── 接続(Named Pipe) ──────────>  │
    │                                  │
    │  <──── hello ──────────────────  │  接続直後
-   │  <──── status{gameActive} ────  │  現在のMainRAM検出状態
+   │  <──── status{gameActive,rom*}   │  現在の検出状態
    │                                  │
-   │  ── rescan ──────────────────>  │  gameActive=false の間 500ms毎
-   │  <──── status{gameActive:false}  │  未検出
-   │  ── rescan ──────────────────>  │
-   │  <──── status{gameActive:true}   │  ROM読み込み後に検出成功
+   │                                  │  (接続中・未検出の間 500ms毎にヒープスキャン)
+   │  <──── status{gameActive:true}   │  MainRAM検出
    │                                  │
-   │  ── setVersion{target:"BA"} ──>  │  ユーザーがバージョン選択
+   │                                  │  ユーザーが melonDS で ROM を読み込む
+   │  <──── status{romVersion:"BA"}   │  ヘッダから版を判定 → アドレス表を登録
    │  <──── full ──────────────────  │  全アドレスの初期値
+   │  <──── status{romFile:"x.nds"}   │  設定ファイルからファイル名を確認
    │                                  │
    │  <──── delta ─────────────────  │  50ms毎（変更あり時）
-   │  <──── delta ─────────────────  │
    │  <──── full ──────────────────  │  30秒毎の定期フル送信
-   │  <──── delta ─────────────────  │
+   │                                  │
+   │                                  │  ユーザーが別版の ROM に切り替える
+   │  <──── status{romVersion:"RJ"}   │  アドレス表を入れ替え
+   │  <──── full ──────────────────  │
+   │  <──── status{romFile:"y.nds"}   │
    │                                  │
    │  ── write{ZENY, 99999} ──────>  │  値書き込み
    │                                  │
@@ -321,7 +322,7 @@ Electron                          DLL
    │                                  │
    │  <──── hello ──────────────────  │
    │  <──── status ────────────────  │  最新の検出状態
-   │  <──── full ──────────────────  │  バージョン選択済みなら即時
+   │  <──── full ──────────────────  │  版が判定済みなら次の tick
 ```
 
 ---
@@ -331,10 +332,11 @@ Electron                          DLL
 | 対象 | 間隔 | 実行側 |
 |------|------|--------|
 | パイプ再接続 | 100ms | Electron (PipeClient) |
-| MainRAM rescan | 500ms | Frontend (DesktopHome.tsx) ※ `gameActive=false` の間のみ |
+| MainRAM 自動検出 | 500ms | DLL (メインポーリングループ) ※ クライアント接続中かつ未検出の間のみ |
+| ROM 状態監視（ヘッダミラー） | 50ms | DLL (メインポーリングループ) |
+| ROM 状態監視（設定ファイル） | 100ms（ファイル名未確定時）/ 500ms（確定後） | DLL (メインポーリングループ) |
 | メモリ読み取り（delta検出） | 50ms | DLL (メインポーリングループ) |
 | フルステート再送信 | 30秒 | DLL (メインポーリングループ内) |
-| バージョン選択待機 | 100ms | DLL (MainThreadFunc) |
 
 ---
 
@@ -345,7 +347,6 @@ Electron                          DLL
 | Renderer API | IPC チャネル | PipeClient メソッド | DLL コマンド |
 |-------------|-------------|-------------------|-------------|
 | `gameAPI.ping()` | `game-ping` | `ping()` | `{"cmd":"ping"}` |
-| `gameAPI.setVersion(ver)` | `game-setVersion` | `setVersion(ver)` | `{"cmd":"setVersion","target":"..."}` |
 | `gameAPI.requestRefresh()` | `game-refresh` | `requestRefresh()` | `{"cmd":"refresh"}` |
 | `gameAPI.writeValue(t, v)` | `game-write` | `writeValue(t, v)` | `{"cmd":"write","target":"...","value":...}` |
 | `gameAPI.rescan()` | `game-rescan` | `rescan()` | `{"cmd":"rescan"}` |
